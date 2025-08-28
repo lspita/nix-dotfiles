@@ -1,16 +1,14 @@
 {
   config,
   customLib,
+  pkgs,
   vars,
   ...
 }:
 customLib.mkModule {
   inherit config;
   path = [
-    "modules"
-    "system"
-    "shared"
-    "user"
+    "git"
   ];
   mkConfig =
     { ... }:
@@ -18,8 +16,11 @@ customLib.mkModule {
       uvars = vars.user;
     in
     {
-      users.users.${uvars.username} = {
-        description = uvars.fullname;
+      programs.git = {
+        package = pkgs.git;
+        enable = true;
+        userName = uvars.username;
+        userEmail = uvars.email;
       };
     };
 }

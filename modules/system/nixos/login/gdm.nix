@@ -6,8 +6,6 @@
 customLib.mkModule {
   inherit config;
   path = [
-    "modules"
-    "system"
     "nixos"
     "login"
     "gdm"
@@ -17,7 +15,7 @@ customLib.mkModule {
     {
       services.displayManager.gdm = {
         enable = true;
-        wayland = config.modules.system.nixos.wayland.enable;
+        wayland = config.modules.nixos.wayland.enable;
       };
       security.pam.services.gdm = {
         fprintAuth = config.services.fprintd.enable;

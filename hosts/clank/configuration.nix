@@ -2,7 +2,7 @@
   ...
 }:
 {
-  modules.system.nixos = {
+  modules.nixos = {
     # base system
     boot.enable = true;
     wayland.enable = true;

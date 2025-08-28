@@ -7,11 +7,12 @@
   mkConfig,
 }:
 let
-  moduleName = if builtins.isNull name then lib.concatStringsSep "." path else name;
-  cfg = lib.attrsets.getAttrFromPath path config;
+  modulePath = [ "modules" ] ++ path;
+  moduleName = if builtins.isNull name then lib.concatStringsSep "." modulePath else name;
+  cfg = lib.attrsets.getAttrFromPath modulePath config;
 in
 {
-  options = lib.attrsets.setAttrByPath path (
+  options = lib.attrsets.setAttrByPath modulePath (
     {
       enable = lib.mkEnableOption moduleName;
     }

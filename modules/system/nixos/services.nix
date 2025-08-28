@@ -6,8 +6,6 @@
 customLib.mkModule {
   inherit config;
   path = [
-    "modules"
-    "system"
     "nixos"
     "services"
   ];
