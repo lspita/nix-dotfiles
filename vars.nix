@@ -6,6 +6,7 @@
     fullname = "Ludovico Spitaleri";
     email = "ludovico.spitaleri@gmail.com"; # used for some configurations (e.g. git)
   };
+  editor = "nano";
   nixpkgs = {
     allowUnfree = true;
   };

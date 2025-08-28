@@ -21,6 +21,13 @@ customLib.mkModule {
         enable = true;
         userName = uvars.username;
         userEmail = uvars.email;
+        extraConfig = {
+          init.defaultBranch = "main";
+          pull.rebase = false;
+          core = {
+            editor = vars.editor;
+          };
+        };
       };
     };
 }
