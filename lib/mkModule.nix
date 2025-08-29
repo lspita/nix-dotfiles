@@ -3,6 +3,7 @@
   config,
   path,
   name ? null,
+  enableOption ? "enable",
   extraOptions ? { },
   mkConfig,
 }:
@@ -14,11 +15,11 @@ in
 {
   options = lib.attrsets.setAttrByPath modulePath (
     {
-      enable = lib.mkEnableOption moduleName;
+      ${enableOption} = lib.mkEnableOption moduleName;
     }
     // extraOptions
   );
-  config = lib.mkIf cfg.enable (mkConfig {
+  config = lib.mkIf cfg.${enableOption} (mkConfig {
     inherit cfg;
   });
 }
