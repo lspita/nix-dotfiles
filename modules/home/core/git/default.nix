@@ -8,6 +8,7 @@
 customLib.mkModule {
   inherit config;
   path = [
+    "core"
     "git"
   ];
   mkConfig =

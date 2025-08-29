@@ -3,7 +3,7 @@
 }:
 {
   modules = {
-    nix.enable = true;
-    git.enable = true;
+    # base programs and settings
+    core.enable = true;
   };
 }

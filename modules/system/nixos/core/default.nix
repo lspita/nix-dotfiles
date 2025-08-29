@@ -18,6 +18,12 @@
         locale.enable = true;
         services.enable = true;
         user.enable = true;
+        audio = {
+          pipewire.enable = true;
+        };
+        network = {
+          networkmanager.enable = true;
+        };
       };
     };
 }

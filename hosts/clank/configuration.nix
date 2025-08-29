@@ -9,7 +9,5 @@
     login.gdm.enable = true;
     # desktop
     desktop.gnome.enable = true;
-    # audio
-    audio.pipewire.enable = true;
   };
 }
