@@ -8,7 +8,7 @@
     "nixos"
     "core"
   ];
-  enableOption = "enableDefaultModules";
+  enableOption = "enableDefaults";
   name = "default nixos system modules";
   mkConfig =
     { ... }:

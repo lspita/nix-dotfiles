@@ -4,7 +4,7 @@
 {
   modules = {
     nixos = {
-      core.enableDefaultModules = true;
+      core.enableDefaults = true;
       login = {
         gdm.enable = true;
       };
