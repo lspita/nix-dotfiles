@@ -10,7 +10,6 @@
     zed-editor
     nixd
     nil
-    bitwarden-desktop
     firefox
     git
   ];

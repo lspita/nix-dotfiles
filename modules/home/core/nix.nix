@@ -11,10 +11,24 @@ customLib.mkModule {
     "core"
     "nix"
   ];
+  extraOptions = {
+    gc = {
+      dates = lib.mkOption {
+        type = lib.types.str;
+        default = "weekly";
+        description = "How often or when garbage collection is performed.";
+      };
+      options = lib.mkOption {
+        type = lib.types.str;
+        default = "--delete-older-than 7d";
+        description = "Options given to nix-collect-garbage when the garbage collector is run automatically.";
+      };
+    };
+  };
   mkConfig =
-    { ... }:
+    { cfg }:
     {
-      nix = with lib; {
+      nix = {
         settings = {
           trusted-users = [ vars.user.username ];
           auto-optimise-store = true;
@@ -25,8 +39,7 @@ customLib.mkModule {
         };
         gc = {
           automatic = true;
-          dates = mkDefault "weekly";
-          options = mkDefault "--delete-older-than 7d";
+          inherit (cfg.gc) dates options;
         };
       };
     };
