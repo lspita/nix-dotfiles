@@ -30,7 +30,8 @@
       ...
     }:
     let
-      lib = nixpkgs.lib;
+      pkgs = nixpkgs;
+      lib = pkgs.lib;
       mkSystem =
         {
           hostname,

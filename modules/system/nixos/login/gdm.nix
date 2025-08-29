@@ -17,9 +17,5 @@ customLib.mkModule {
         enable = true;
         wayland = config.modules.nixos.core.wayland.enable;
       };
-      security.pam.services.gdm = {
-        fprintAuth = config.services.fprintd.enable;
-        enableGnomeKeyring = true; # not working when using fingerprint https://gitlab.gnome.org/GNOME/gdm/-/issues/613
-      };
     };
 }

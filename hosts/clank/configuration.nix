@@ -8,7 +8,10 @@
       gdm.enable = true;
     };
     desktop = {
-      gnome.enable = true;
+      gnome = {
+        enable = true;
+        sshAgent.enable = false; # use bitwarden instead
+      };
     };
   };
 }
