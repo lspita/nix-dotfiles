@@ -4,7 +4,7 @@
 {
   modules.nixos = {
     # base system
-    defaultModules = true;
+    core.enable = true;
     # login
     login.gdm.enable = true;
     # desktop

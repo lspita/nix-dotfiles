@@ -15,7 +15,7 @@ customLib.mkModule {
     {
       services.displayManager.gdm = {
         enable = true;
-        wayland = config.modules.nixos.wayland.enable;
+        wayland = config.modules.nixos.core.wayland.enable;
       };
       security.pam.services.gdm = {
         fprintAuth = config.services.fprintd.enable;

@@ -7,6 +7,7 @@ customLib.mkModule {
   inherit config;
   path = [
     "nixos"
+    "core"
     "wayland"
   ];
   mkConfig =

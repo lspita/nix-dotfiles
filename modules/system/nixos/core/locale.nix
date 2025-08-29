@@ -8,6 +8,7 @@ customLib.mkModule {
   inherit config;
   path = [
     "nixos"
+    "core"
     "locale"
   ];
   mkConfig =
