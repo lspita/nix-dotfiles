@@ -14,7 +14,7 @@ customLib.mkModule {
   mkConfig =
     { ... }:
     {
-      modules.base.user.enable = true;
+      modules.user.enable = true;
       users.users.${vars.user.username} = {
         isNormalUser = true;
         extraGroups = [

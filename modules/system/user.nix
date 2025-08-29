@@ -7,7 +7,6 @@
 customLib.mkModule {
   inherit config;
   path = [
-    "base"
     "user"
   ];
   mkConfig =
