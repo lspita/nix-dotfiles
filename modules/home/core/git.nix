@@ -2,7 +2,6 @@
   config,
   customLib,
   lib,
-  pkgs,
   vars,
   ...
 }:
@@ -29,7 +28,6 @@ customLib.mkModule {
       '';
 
       programs.git = {
-        package = pkgs.git;
         enable = true;
         userName = uvars.username;
         userEmail = uvars.email;
