@@ -3,7 +3,7 @@
 }:
 {
   modules.nixos = {
-    core.enable = true;
+    core.enableDefaultModules = true;
     login = {
       gdm.enable = true;
     };

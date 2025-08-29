@@ -7,6 +7,7 @@
   path = [
     "core"
   ];
+  enableOption = "enableDefaultModules";
   name = "default core programs and settings";
   mkConfig =
     { ... }:

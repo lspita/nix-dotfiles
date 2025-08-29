@@ -3,7 +3,7 @@
 }:
 {
   modules = {
-    core.enable = true;
+    core.enableDefaultModules = true;
     security = {
       bitwarden = {
         enable = true;
