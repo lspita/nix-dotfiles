@@ -1,14 +1,10 @@
 { customLib, config, ... }:
-{
-  imports = customLib.scanPaths ./.;
-}
-// customLib.mkModule {
+customLib.mkDefaultsModule {
   inherit config;
+  importPath = ./.;
   path = [
     "shell"
   ];
-  enableOption = "enableDefaults";
-  name = "default shell settings";
   mkConfig =
     { ... }:
     {

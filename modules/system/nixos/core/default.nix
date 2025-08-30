@@ -1,15 +1,11 @@
 { customLib, config, ... }:
-{
-  imports = customLib.scanPaths ./.;
-}
-// customLib.mkModule {
+customLib.mkDefaultsModule {
   inherit config;
+  importPath = ./.;
   path = [
     "nixos"
     "core"
   ];
-  enableOption = "enableDefaults";
-  name = "default nixos system modules";
   mkConfig =
     { ... }:
     {

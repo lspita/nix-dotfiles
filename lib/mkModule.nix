@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, super, ... }:
 {
   config,
   path,
@@ -8,8 +8,9 @@
   mkConfig,
 }:
 let
-  modulePath = [ "modules" ] ++ path;
-  moduleName = if builtins.isNull name then lib.concatStringsSep "." modulePath else name;
+  mu = super.moduleUtils;
+  modulePath = mu.modulePath path;
+  moduleName = if builtins.isNull name then mu.moduleName modulePath else name;
   cfg = lib.attrsets.getAttrFromPath modulePath config;
 in
 {
@@ -19,7 +20,7 @@ in
     }
     // extraOptions
   );
-  config = lib.mkIf cfg.${enableOption} (mkConfig {
+  config = lib.mkIf (cfg.${enableOption}) (mkConfig {
     inherit cfg;
   });
 }

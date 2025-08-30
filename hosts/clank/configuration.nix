@@ -16,4 +16,6 @@
       };
     };
   };
+
+  system.stateVersion = "25.05"; # do not touch
 }

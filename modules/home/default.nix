@@ -1,6 +1,6 @@
-{ customLib, ... }:
-{
-  imports = customLib.scanPaths ./.;
-
-  home.stateVersion = "25.05"; # do not touch
+{ customLib, config, ... }:
+customLib.mkDefaultsModule {
+  inherit config;
+  importPath = ./.;
+  path = [ ];
 }

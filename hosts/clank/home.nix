@@ -4,6 +4,7 @@
 {
   modules = {
     core.enableDefaults = true;
+    pkgs.enable = true;
     security = {
       bitwarden = {
         enable = true;
@@ -15,4 +16,6 @@
       bash.enable = true;
     };
   };
+
+  home.stateVersion = "25.05"; # do not touch
 }
