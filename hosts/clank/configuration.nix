@@ -2,6 +2,8 @@
   ...
 }:
 {
+  imports = [ ./gnome-touchpad-resize.nix ];
+
   modules = {
     nixos = {
       core.enableDefaults = true;
@@ -16,6 +18,4 @@
       };
     };
   };
-
-  system.stateVersion = "25.05"; # do not touch
 }

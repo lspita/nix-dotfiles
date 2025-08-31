@@ -16,6 +16,4 @@
       bash.enable = true;
     };
   };
-
-  home.stateVersion = "25.05"; # do not touch
 }

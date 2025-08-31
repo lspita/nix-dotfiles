@@ -2,7 +2,7 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs = {
+    nixpkgs-unstable = {
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
@@ -12,26 +12,25 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     haumea = {
       url = "github:nix-community/haumea/v0.2.2";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
   outputs =
     {
-      nixpkgs,
+      nixpkgs-unstable,
       nixpkgs-stable,
       home-manager,
       haumea,
+      bitwarden-desktop-proxy-fix,
       ...
     }:
     let
-      pkgs = nixpkgs;
-      lib = pkgs.lib;
       mkSystem =
         {
           hostname,
@@ -44,7 +43,18 @@
               baseVars = import ./vars.nix;
               hostVarPath = hostPath "vars.nix";
             in
-            baseVars // (lib.mkIf (builtins.pathExists hostVarPath) (import hostVarPath));
+            baseVars // (if builtins.pathExists hostVarPath then (import hostVarPath) else { });
+          mkPackages =
+            pkgs:
+            import pkgs {
+              inherit system;
+              config = {
+                allowUnfree = vars.nixpkgs.allowUnfree;
+              };
+            };
+          pkgs-unstable = mkPackages nixpkgs-unstable;
+          pkgs-stable = mkPackages nixpkgs-stable;
+          lib = pkgs-unstable.lib;
           customLib = haumea.lib.load {
             src = ./lib;
             inputs = {
@@ -52,23 +62,24 @@
             };
           };
           specialArgs = {
-            inherit customLib vars;
-            pkgs-stable = import nixpkgs-stable {
-              inherit system;
-              config.allowUnfree = vars.nixpkgs.allowUnfree;
-            };
+            inherit
+              customLib
+              vars
+              pkgs-stable
+              bitwarden-desktop-proxy-fix
+              ;
           };
         in
-        lib.nixosSystem {
-          system = system;
+        nixpkgs-unstable.lib.nixosSystem {
+          inherit system;
+          pkgs = pkgs-unstable;
           modules = [
             {
-              nixpkgs = {
-                config.allowUnfree = vars.nixpkgs.allowUnfree;
-              };
+              networking.hostName = lib.mkIf vars.overrideHostname (lib.mkForce hostname);
+              system.stateVersion = vars.stateVersion;
             }
             (hostPath "hardware-configuration.nix")
-            (import ./modules/system)
+            ./modules/system
             (hostPath "configuration.nix")
             home-manager.nixosModules.home-manager
             {
@@ -76,14 +87,16 @@
               home-manager = {
                 useUserPackages = true;
                 useGlobalPkgs = true;
-                users.${vars.user.username}.imports = [
-                  ./modules/home
-                  (hostPath "home.nix")
-                ];
+                users.${vars.user.username} = {
+                  imports = [
+                    ./modules/home
+                    (hostPath "home.nix")
+                  ];
+                  home.stateVersion = vars.stateVersion;
+                };
                 extraSpecialArgs = specialArgs;
               };
             }
-            (lib.mkIf vars.overrideHostname { networking.hostName = hostname; })
           ];
           specialArgs = specialArgs;
         };

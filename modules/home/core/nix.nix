@@ -30,7 +30,6 @@ customLib.mkModule {
     {
       nix = {
         settings = {
-          trusted-users = [ vars.user.username ];
           auto-optimise-store = true;
           experimental-features = [
             "nix-command"
