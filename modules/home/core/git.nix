@@ -32,7 +32,7 @@ customLib.mkModule {
 
       programs.git = {
         enable = true;
-        userName = uvars.username;
+        userName = uvars.fullname;
         userEmail = uvars.email;
         extraConfig = {
           init.defaultBranch = "main";
