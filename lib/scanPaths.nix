@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib }:
 # https://github.com/ryan4yin/nix-config/blob/c56593516d8309557f4b74e60add8e2a36f0bf95/lib/default.nix#L16
 path:
 builtins.map (f: (path + "/${f}")) (

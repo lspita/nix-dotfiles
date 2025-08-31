@@ -1,4 +1,4 @@
-{ lib, super, ... }:
+{ lib, super }:
 {
   config,
   path,

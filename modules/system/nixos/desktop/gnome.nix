@@ -13,17 +13,9 @@ customLib.mkModule {
   ];
   extraOptions = {
     sshAgent = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to enable gnome ssh agent";
-      };
+      enable = customLib.mkTrueEnableOption "gnome ssh agent";
     };
-    networkManagerWifiFix = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "Whether to enable the network manager wifi fix (if using network manager)";
-    };
+    networkManagerWifiFix = customLib.mkTrueEnableOption "gnome network manager wifi fix";
   };
   mkConfig =
     { cfg }:

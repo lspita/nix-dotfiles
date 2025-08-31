@@ -1,10 +1,7 @@
+{ super }:
 {
-  super,
-  ...
-}:
-{
-  importPath,
   config,
+  importPath,
   path,
   extraOptions ? { },
   mkConfig ? null,
