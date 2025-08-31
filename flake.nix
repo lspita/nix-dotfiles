@@ -2,34 +2,34 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs-unstable = {
+    nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
-    };
-
-    nixpkgs-stable = {
-      url = "github:nixos/nixpkgs/nixos-25.05";
     };
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     haumea = {
       url = "github:nix-community/haumea/v0.2.2";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # bitwarden-desktop: Build desktop proxy #425477
+    # https://github.com/NixOS/nixpkgs/pull/425477
+    bitwarden-desktop-proxy-fix = {
+      url = "github:nixos/nixpkgs/b3ce5dae9deb6af047bc1a2420bdc3a009b064cc";
     };
   };
-
   outputs =
     {
-      nixpkgs-unstable,
-      nixpkgs-stable,
+      nixpkgs,
       home-manager,
       haumea,
       bitwarden-desktop-proxy-fix,
       ...
-    }:
+    }@flakeInputs:
     let
       mkSystem =
         {
@@ -38,52 +38,61 @@
         }:
         let
           hostPath = path: ./hosts/${hostname}/${path};
+
           vars =
             let
               baseVars = import ./vars.nix;
               hostVarPath = hostPath "vars.nix";
             in
             baseVars // (if builtins.pathExists hostVarPath then (import hostVarPath) else { });
-          mkPackages =
-            pkgs:
-            import pkgs {
-              inherit system;
-              config = {
-                allowUnfree = vars.nixpkgs.allowUnfree;
-              };
-            };
-          pkgs-unstable = mkPackages nixpkgs-unstable;
-          pkgs-stable = mkPackages nixpkgs-stable;
-          lib = pkgs-unstable.lib;
+          lib = nixpkgs.lib;
+          libInputs = {
+            inherit lib vars flakeInputs;
+          };
+
           customLib = haumea.lib.load {
             src = ./lib;
-            inputs = {
-              inherit lib vars;
-            };
+            inputs = libInputs;
           };
+
           specialArgs = {
             inherit
               customLib
               vars
-              pkgs-stable
-              bitwarden-desktop-proxy-fix
+              flakeInputs
               ;
           };
         in
-        nixpkgs-unstable.lib.nixosSystem {
+        lib.nixosSystem {
           inherit system;
-          pkgs = pkgs-unstable;
           modules = [
+            # nixpkgs settings
+            {
+              nixpkgs = {
+                config = {
+                  allowUnfree = vars.nixpkgs.allowUnfree;
+                };
+                overlays = builtins.attrValues (
+                  haumea.lib.load {
+                    src = ./overlays;
+                    inputs = libInputs;
+                  }
+                );
+              };
+            }
+            # host hardware config
+            (hostPath "hardware-configuration.nix")
+            # base system config
             {
               networking.hostName = lib.mkIf vars.overrideHostname (lib.mkForce hostname);
               system.stateVersion = vars.stateVersion;
             }
-            (hostPath "hardware-configuration.nix")
+            # system config
             ./modules/system
             (hostPath "configuration.nix")
+            # home manager
             home-manager.nixosModules.home-manager
             {
-              # home manager
               home-manager = {
                 useUserPackages = true;
                 useGlobalPkgs = true;

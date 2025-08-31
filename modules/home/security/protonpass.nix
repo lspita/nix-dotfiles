@@ -2,7 +2,6 @@
   config,
   customLib,
   pkgs,
-  lib,
   ...
 }:
 customLib.mkModule {
