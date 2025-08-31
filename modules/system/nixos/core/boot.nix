@@ -18,6 +18,7 @@ customLib.mkModule {
       default = 0;
       description = "Timeout (in seconds) until loader boots the default menu item.";
     };
+    plymouth.enable = customLib.mkTrueEnableOption "plymouth boot screen";
   };
   mkConfig =
     { cfg }:
@@ -33,23 +34,30 @@ customLib.mkModule {
           timeout = cfg.entriesTimeout; # spam space to show entries selection
         };
         tmp.cleanOnBoot = true;
+      }
+      // (
+        # lib.mkIf gives an error like no options at all where set in boot
+        if cfg.plymouth.enable then
+          {
+            # https://wiki.nixos.org/wiki/Plymouth
+            plymouth = {
+              enable = true;
+              theme = "bgrt"; # distro logo
+            };
 
-        # https://wiki.nixos.org/wiki/Plymouth
-        plymouth = {
-          enable = true;
-          theme = "bgrt"; # distro logo
-        };
-
-        # Enable "Silent boot"
-        consoleLogLevel = 3;
-        initrd.verbose = false;
-        kernelParams = [
-          "quiet"
-          "splash"
-          "boot.shell_on_fail"
-          "udev.log_priority=3"
-          "rd.systemd.show_status=auto"
-        ];
-      };
+            # Enable "Silent boot"
+            consoleLogLevel = 3;
+            initrd.verbose = false;
+            kernelParams = [
+              "quiet"
+              "splash"
+              "boot.shell_on_fail"
+              "udev.log_priority=3"
+              "rd.systemd.show_status=auto"
+            ];
+          }
+        else
+          { }
+      );
     };
 }
