@@ -1,7 +1,6 @@
 {
   config,
   customLib,
-  lib,
   vars,
   ...
 }:
