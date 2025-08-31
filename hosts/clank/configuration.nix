@@ -2,7 +2,10 @@
   ...
 }:
 {
-  imports = [ ./gnome-touchpad-resize.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./custom/gnome-touchpad-resize.nix
+  ];
 
   modules = {
     nixos = {
