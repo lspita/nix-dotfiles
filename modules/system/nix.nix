@@ -12,6 +12,12 @@ customLib.mkModule {
   mkConfig =
     { ... }:
     {
-      nix.settings.trusted-users = [ vars.user.username ];
+      nix.settings = {
+        trusted-users = [ vars.user.username ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+      };
     };
 }

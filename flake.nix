@@ -27,7 +27,6 @@
       nixpkgs,
       home-manager,
       haumea,
-      bitwarden-desktop-proxy-fix,
       ...
     }@flakeInputs:
     let

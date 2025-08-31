@@ -11,6 +11,7 @@ customLib.mkDefaultsModule {
       modules.core = {
         git.enable = true;
         nix.enable = true;
+        nh.enable = true;
       };
     };
 }

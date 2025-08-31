@@ -8,8 +8,15 @@
     email = "ludovico.spitaleri@gmail.com"; # used for some configurations (e.g. git)
   };
   editor = "nano";
-  nixpkgs = {
-    allowUnfree = true;
+  nix = {
+    cleaning = {
+      frequency = "weekly";
+      deleteOlderThan = "7d";
+      maxGenerations = 5;
+    };
+    pkgs = {
+      allowUnfree = true;
+    };
   };
   locale = {
     timeZone = "Europe/Rome";
