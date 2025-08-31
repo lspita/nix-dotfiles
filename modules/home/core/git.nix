@@ -3,6 +3,7 @@
   customLib,
   lib,
   vars,
+  pkgs,
   ...
 }:
 customLib.mkModule {
@@ -26,6 +27,8 @@ customLib.mkModule {
       home.activation.removeExistingGitconfig = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
         rm -f ${config.home.homeDirectory}/.gitconfig
       '';
+
+      home.packages = with pkgs; [ git-filter-repo ];
 
       programs.git = {
         enable = true;
