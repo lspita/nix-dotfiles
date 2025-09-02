@@ -9,7 +9,7 @@ customLib.mkDefaultsModule {
   mkConfig =
     { ... }:
     {
-      modules = {
+      custom.modules = {
         nix.enable = true;
         nixos.core = {
           boot.enable = true;

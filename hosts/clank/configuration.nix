@@ -4,7 +4,7 @@
     ./hardware-configuration.nix
   ];
 
-  modules = {
+  custom.modules = {
     nixos = {
       core.enableDefaults = true;
       login.sddm.enable = true;

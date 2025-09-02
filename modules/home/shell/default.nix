@@ -8,7 +8,7 @@ customLib.mkDefaultsModule {
   mkConfig =
     { ... }:
     {
-      modules.shell.aliases.enable = true;
+      custom.modules.shell.aliases.enable = true;
       home.shell.enableShellIntegration = true;
     };
 }

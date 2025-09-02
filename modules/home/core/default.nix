@@ -8,7 +8,7 @@ customLib.mkDefaultsModule {
   mkConfig =
     { ... }:
     {
-      modules.core = {
+      custom.modules.core = {
         environment.enable = true;
         git.enable = true;
         nix.enable = true;

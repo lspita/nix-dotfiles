@@ -9,7 +9,7 @@ customLib.mkDefaultsModule {
   mkConfig =
     { ... }:
     {
-      modules.linux.core = {
+      custom.modules.linux.core = {
         xdg.enable = true;
       };
     };

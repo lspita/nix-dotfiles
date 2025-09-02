@@ -15,7 +15,7 @@ customLib.mkModule {
     {
       services.displayManager.gdm = {
         enable = true;
-        wayland = config.modules.nixos.core.wayland.enable;
+        wayland = config.custom.modules.nixos.core.wayland.enable;
       };
     };
 }

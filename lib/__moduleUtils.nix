@@ -1,5 +1,11 @@
 { lib, ... }:
 {
-  modulePath = path: [ "modules" ] ++ path;
+  modulePath =
+    path:
+    [
+      "custom"
+      "modules"
+    ]
+    ++ path;
   moduleName = modulePath: lib.concatStringsSep "." modulePath;
 }
