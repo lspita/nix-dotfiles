@@ -9,7 +9,8 @@ customLib.mkModule {
   path = [
     "linux"
     "desktop"
-    "plasmaSettings"
+    "plasma"
+    "settings"
   ];
   imports = [ flakeInputs.plasma-manager.homeModules.plasma-manager ];
   mkConfig =
@@ -18,8 +19,7 @@ customLib.mkModule {
       programs.plasma = {
         enable = true;
         workspace = {
-          enableMiddleClickPaste = false;
-          lookAndFeel = "org.kde.breeze.desktop";
+          enableMiddleClickPaste = false; # it doesn't disable it in reality :(
         };
       };
     };

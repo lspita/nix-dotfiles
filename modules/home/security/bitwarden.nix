@@ -18,11 +18,12 @@ customLib.mkModule {
   };
   mkConfig =
     { cfg }:
+    let
+      package = pkgs.bitwarden-desktop;
+    in
     {
       home = {
-        packages = with pkgs; [
-          bitwarden-desktop
-        ];
+        packages = [ package ];
         sessionVariables = lib.mkIf cfg.sshAgent.enable (
           let
             sockerDir =
@@ -42,5 +43,6 @@ customLib.mkModule {
           }
         );
       };
+      xdg.autostart.entries = [ "${package}/share/applications/bitwarden.desktop" ];
     };
 }

@@ -4,7 +4,7 @@
     core.enableDefaults = true;
     linux = {
       core.enableDefaults = true;
-      desktop.plasmaSettings.enable = true;
+      desktop.plasma.enableDefaults = true;
     };
     pkgs.enable = true;
     security = {

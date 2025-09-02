@@ -17,6 +17,7 @@ customLib.mkDefaultsModule {
           locale.enable = true;
           services.enable = true;
           user.enable = true;
+          bluetooth.enable = true;
           audio = {
             pipewire.enable = true;
           };
