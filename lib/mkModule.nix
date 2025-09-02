@@ -2,6 +2,7 @@
 {
   config,
   path,
+  imports ? [ ],
   name ? null,
   enableOption ? "enable",
   extraOptions ? { },
@@ -14,6 +15,7 @@ let
   cfg = lib.attrsets.getAttrFromPath modulePath config;
 in
 {
+  inherit imports;
   options = lib.attrsets.setAttrByPath modulePath (
     {
       ${enableOption} = lib.mkEnableOption moduleName;

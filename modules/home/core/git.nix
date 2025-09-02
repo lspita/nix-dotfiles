@@ -15,7 +15,6 @@ customLib.mkModule {
   mkConfig =
     { ... }:
     let
-      uvars = vars.user;
       attributesConfigPath = "git/attributes";
     in
     {
@@ -30,19 +29,22 @@ customLib.mkModule {
 
       home.packages = with pkgs; [ git-filter-repo ];
 
-      programs.git = {
-        enable = true;
-        userName = uvars.fullname;
-        userEmail = uvars.email;
-        extraConfig = {
-          init.defaultBranch = "main";
-          pull.rebase = false;
-          core = {
-            editor = vars.editor;
-            attributesfile = "${config.xdg.configHome}/${attributesConfigPath}";
+      programs.git =
+        with vars.user;
+        with vars.defaultApps;
+        {
+          enable = true;
+          userName = fullname;
+          userEmail = email;
+          extraConfig = {
+            init.defaultBranch = "main";
+            pull.rebase = false;
+            core = {
+              editor = editor;
+              attributesfile = "${config.xdg.configHome}/${attributesConfigPath}";
+            };
           };
         };
-      };
       xdg.configFile = {
         ${attributesConfigPath}.text = ''
           * text=auto eol=lf

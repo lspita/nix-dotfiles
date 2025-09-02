@@ -2,12 +2,17 @@
   dotfilesHome = "nix-dotfiles"; # location of dotfiles in the user home
   overrideHostname = true;
   stateVersion = "25.05";
+  backupFileExtension = "backup";
   user = {
     username = "lspita";
     fullname = "Ludovico Spitaleri";
     email = "ludovico.spitaleri@gmail.com"; # used for some configurations (e.g. git)
   };
-  editor = "nano";
+  defaultApps = {
+    # not the gui apps, used only for the enviroment variables. see `modules/home/core/default-apps.nix`
+    browser = "firefox";
+    editor = "nano";
+  };
   nix = {
     cleaning = {
       frequency = "weekly";

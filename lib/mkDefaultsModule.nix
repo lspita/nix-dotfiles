@@ -6,22 +6,23 @@
   extraOptions ? { },
   mkConfig ? null,
 }:
-{
+# if instead of lib.mkIf for lazy evaluation
+let
   imports = super.scanPaths importPath;
-}
-// (
-  # if instead of lib.mkIf for lazy evaluation
-  if builtins.isNull mkConfig then
-    { }
-  else
-    (super.mkModule {
-      inherit
-        config
-        path
-        mkConfig
-        extraOptions
-        ;
-      enableOption = "enableDefaults";
-      name = with super.moduleUtils; "defaults for ${moduleName (modulePath path)}";
-    })
-)
+in
+if builtins.isNull mkConfig then
+  {
+    inherit imports;
+  }
+else
+  super.mkModule {
+    inherit
+      config
+      path
+      imports
+      extraOptions
+      mkConfig
+      ;
+    enableOption = "enableDefaults";
+    name = with super.moduleUtils; "defaults for ${moduleName (modulePath path)}";
+  }

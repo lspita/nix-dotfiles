@@ -3,16 +3,14 @@ customLib.mkDefaultsModule {
   inherit config;
   importPath = ./.;
   path = [
+    "linux"
     "core"
   ];
   mkConfig =
     { ... }:
     {
-      modules.core = {
-        environment.enable = true;
-        git.enable = true;
-        nix.enable = true;
-        nh.enable = true;
+      modules.linux.core = {
+        xdg.enable = true;
       };
     };
 }

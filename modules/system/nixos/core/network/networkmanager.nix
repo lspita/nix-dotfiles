@@ -21,7 +21,7 @@ customLib.mkModule {
     {
       networking.networkmanager = {
         enable = true;
-        settings = lib.mkIf cfg.networkManagerWifiFix {
+        settings = lib.mkIf cfg.wifiLimitedConnectivityFix {
           # fix wifi considered without internet access
           # https://discourse.nixos.org/t/is-gnome-supposed-to-detect-captive-portals/44417/4
           # converted to settings attribute because extraConfig is not supported anymore

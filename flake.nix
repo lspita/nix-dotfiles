@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
+      url = "github:nixos/nixpkgs/nixpkgs-unstable";
     };
 
     nix-darwin = {
@@ -26,6 +26,12 @@
     bitwarden-desktop-proxy-fix = {
       url = "github:nixos/nixpkgs/b3ce5dae9deb6af047bc1a2420bdc3a009b064cc";
     };
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
   outputs =
     {
@@ -33,6 +39,7 @@
       nix-darwin,
       home-manager,
       haumea,
+      plasma-manager,
       ...
     }@flakeInputs:
     let
@@ -133,6 +140,7 @@
                   home-manager = {
                     useUserPackages = true;
                     useGlobalPkgs = true;
+                    backupFileExtension = vars.backupFileExtension;
                     users.${vars.user.username} = {
                       imports = [
                         ./modules/home
