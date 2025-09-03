@@ -1,5 +1,9 @@
 { ... }:
 {
+  imports = [
+    ./home/plasma-touchpad.nix
+  ];
+
   custom.modules = {
     core.enableDefaults = true;
     linux = {

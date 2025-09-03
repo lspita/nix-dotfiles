@@ -2,6 +2,7 @@
   config,
   customLib,
   flakeInputs,
+  vars,
   ...
 }:
 customLib.mkModule {
@@ -18,9 +19,15 @@ customLib.mkModule {
     {
       programs.plasma = {
         enable = true;
+        overrideConfig = true;
         workspace = {
           enableMiddleClickPaste = false; # it doesn't disable it in reality :(
         };
+        input.keyboard.layouts = [
+          {
+            layout = vars.locale.keyboard;
+          }
+        ];
       };
     };
 }

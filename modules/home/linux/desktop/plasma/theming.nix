@@ -16,17 +16,18 @@ customLib.mkModule {
     { ... }:
     let
       koiPackage = pkgs.kdePackages.koi; # theme switcher https://github.com/baduhai/Koi
+      koiScriptsDataDir = "koi/scripts";
+      koiScriptDark = "${koiScriptsDataDir}/dark.sh";
+      koiScriptLight = "${koiScriptsDataDir}/light.sh";
     in
     {
       home.packages =
+        with pkgs;
         with pkgs.kdePackages;
         [
           koiPackage
-          kde-gtk-config
-        ]
-        ++ (
-          let
-            flavours = [
+          (catppuccin-kde.override {
+            flavour = [
               "mocha"
               "latte"
             ];
@@ -34,25 +35,48 @@ customLib.mkModule {
               "mauve"
               "sapphire"
             ];
-          in
-          with pkgs;
-          [
-            (catppuccin-kde.override {
-              flavour = flavours;
-              accents = accents;
-            })
-          ]
-          ++ (builtins.map (variant: catppuccin-gtk.override { inherit variant accents; }) flavours)
-        );
+            winDecStyles = [ "classic" ];
+          })
+          catppuccin-cursors.mochaMauve
+          catppuccin-cursors.mochaSapphire
+          catppuccin-cursors.latteMauve
+          catppuccin-cursors.latteSapphire
+        ];
       xdg = {
         autostart.entries = [ "${koiPackage}/share/applications/local.KoiDbusInterface.desktop" ];
+        dataFile = {
+          ${koiScriptDark} = {
+            text = ''
+              #!/usr/bin/env bash
+              plasma-apply-cursortheme catppuccin-mocha-sapphire-cursors
+            '';
+            executable = true;
+          };
+          ${koiScriptLight} = {
+            text = ''
+              #!/usr/bin/env bash
+              plasma-apply-cursortheme catppuccin-latte-sapphire-cursors
+            '';
+            executable = true;
+          };
+        };
       };
       programs.plasma = {
-        workspace.lookAndFeel = "org.kde.breezedark.desktop"; # fallback
+        workspace = {
+          # Breeze (default, that is breeze) follows colors
+          theme = "default";
+          splashScreen.theme = "None";
+        };
         configFile = {
+          kdeglobals = {
+            General = {
+              ColorScheme.persistent = true;
+            };
+          };
           koirc = {
             General = {
-              notify.value = 2; # enabled
+              current.persistent = true;
+              notify.value = 0; # disabled
               schedule.value = 0; # disabled
               start-hidden.value = 2; # enabled
             };
@@ -60,20 +84,27 @@ customLib.mkModule {
             # it overwrites with defaults. With the "immutable" option enabled for the keys
             # it doesn't recognize them anymore and says you have empty values.
             ColorScheme = {
-              # plasma-apply-colorscheme --list-schemes
+              # see available with plasma-apply-colorscheme -l
               enabled.value = true;
               dark.value = "CatppuccinMochaSapphire";
               light.value = "CatppuccinLatteSapphire";
             };
-            GTKTheme = {
+            Script = {
               enabled.value = true;
-              dark.value = "catppuccin-mocha-sapphire-standard";
-              light.value = "catppuccin-latte-sapphire-standard";
+              dark.value = "${config.xdg.dataHome}/${koiScriptDark}";
+              light.value = "${config.xdg.dataHome}/${koiScriptLight}";
             };
+            GTKTheme.enabled.value = false;
+            PlasmaStyle.enabled.value = false;
             KvantumStyle.enabled.value = false;
             IconTheme.enabled.value = false;
-            Script.enabled.value = false;
             Wallpaper.enabled.value = false;
+          };
+        };
+        hotkeys.commands = {
+          "koi-toggle-theme" = {
+            key = "Meta+F5";
+            command = "qdbus dev.baduhai.Koi /Koi local.KoiDbusInterface.toggleMode";
           };
         };
       };
