@@ -21,12 +21,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # bitwarden-desktop: Build desktop proxy #425477
-    # https://github.com/NixOS/nixpkgs/pull/425477
-    bitwarden-desktop-proxy-fix = {
-      url = "github:nixos/nixpkgs/b3ce5dae9deb6af047bc1a2420bdc3a009b064cc";
-    };
-
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,7 +33,6 @@
       nix-darwin,
       home-manager,
       haumea,
-      plasma-manager,
       ...
     }@flakeInputs:
     let
