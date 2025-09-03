@@ -26,7 +26,14 @@ customLib.mkModule {
       ];
     in
     {
-      programs.plasma.workspace.wallpaper = "${config.xdg.dataHome}/${wallpapersDataDir}/${selected}";
+      programs.plasma =
+        let
+          wallpaperPath = "${config.xdg.dataHome}/${wallpapersDataDir}/${selected}";
+        in
+        {
+          workspace.wallpaper = wallpaperPath;
+          kscreenlocker.appearance.wallpaper = wallpaperPath;
+        };
     }
     // (builtins.foldl' (
       result:
