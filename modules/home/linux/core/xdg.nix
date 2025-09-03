@@ -29,7 +29,7 @@ customLib.mkModule {
 
           desktop = "${config.home.homeDirectory}/Desktop";
           documents = "${config.home.homeDirectory}/Documents";
-          download = "${config.home.homeDirectory}/Download";
+          download = "${config.home.homeDirectory}/Downloads";
           music = "${config.home.homeDirectory}/Music";
           pictures = "${config.home.homeDirectory}/Pictures";
           publicShare = "${config.home.homeDirectory}/Public";
