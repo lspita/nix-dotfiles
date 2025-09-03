@@ -16,7 +16,10 @@ customLib.mkDefaultsModule {
     {
       custom.modules.linux.desktop.plasma = {
         settings.enable = true;
-        theming.enable = true;
+        appearance = {
+          catppuccin.enable = true;
+          wallpapers.enable = true;
+        };
       };
     };
 }

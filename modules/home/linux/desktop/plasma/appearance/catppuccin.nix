@@ -10,7 +10,8 @@ customLib.mkModule {
     "linux"
     "desktop"
     "plasma"
-    "theming"
+    "appearance"
+    "catppuccin"
   ];
   mkConfig =
     { ... }:
@@ -91,11 +92,11 @@ customLib.mkModule {
               dark.value = "${config.xdg.dataHome}/${koiScriptDark}";
               light.value = "${config.xdg.dataHome}/${koiScriptLight}";
             };
+            Wallpaper.enabled.value = false;
             GTKTheme.enabled.value = false;
             PlasmaStyle.enabled.value = false;
             KvantumStyle.enabled.value = false;
             IconTheme.enabled.value = false;
-            Wallpaper.enabled.value = false;
           };
         };
         hotkeys.commands = {
