@@ -68,11 +68,8 @@ customLib.mkModule {
           splashScreen.theme = "None";
         };
         configFile = {
-          kdeglobals = {
-            General = {
-              ColorScheme.persistent = true;
-            };
-          };
+          kdeglobals.General.ColorScheme.persistent = true;
+          kcminputrc.Mouse.cursorTheme.persistent = true;
           koirc = {
             General = {
               current.persistent = true;
