@@ -32,15 +32,10 @@ customLib.mkModule {
               "mocha"
               "latte"
             ];
-            accents = [
-              "mauve"
-              "sapphire"
-            ];
+            accents = [ "sapphire" ];
             winDecStyles = [ "classic" ];
           })
-          catppuccin-cursors.mochaMauve
           catppuccin-cursors.mochaSapphire
-          catppuccin-cursors.latteMauve
           catppuccin-cursors.latteSapphire
         ];
       xdg = {
