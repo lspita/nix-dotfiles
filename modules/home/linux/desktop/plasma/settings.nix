@@ -3,7 +3,6 @@
   customLib,
   flakeInputs,
   vars,
-  pkgs,
   ...
 }:
 customLib.mkModule {

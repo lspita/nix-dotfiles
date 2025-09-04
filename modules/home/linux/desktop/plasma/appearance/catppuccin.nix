@@ -22,22 +22,19 @@ customLib.mkModule {
       koiScriptLight = "${koiScriptsDataDir}/light.sh";
     in
     {
-      home.packages =
-        with pkgs;
-        with pkgs.kdePackages;
-        [
-          koiPackage
-          (catppuccin-kde.override {
-            flavour = [
-              "mocha"
-              "latte"
-            ];
-            accents = [ "sapphire" ];
-            winDecStyles = [ "classic" ];
-          })
-          catppuccin-cursors.mochaSapphire
-          catppuccin-cursors.latteSapphire
-        ];
+      home.packages = with pkgs; [
+        koiPackage
+        (catppuccin-kde.override {
+          flavour = [
+            "mocha"
+            "latte"
+          ];
+          accents = [ "sapphire" ];
+          winDecStyles = [ "classic" ];
+        })
+        catppuccin-cursors.mochaSapphire
+        catppuccin-cursors.latteSapphire
+      ];
       xdg = {
         autostart.entries = [ "${koiPackage}/share/applications/local.KoiDbusInterface.desktop" ];
         dataFile = {
