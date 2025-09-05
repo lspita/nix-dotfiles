@@ -1,6 +1,5 @@
 {
   dotfilesHome = "nix-dotfiles"; # location of dotfiles in the user home
-  overrideHostname = true;
   stateVersion = "25.05";
   backupFileExtension = "backup";
   user = {

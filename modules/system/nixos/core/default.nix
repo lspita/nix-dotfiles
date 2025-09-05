@@ -1,4 +1,9 @@
-{ customLib, config, ... }:
+{
+  customLib,
+  config,
+  lib,
+  ...
+}:
 customLib.mkDefaultsModule {
   inherit config;
   importPath = ./.;
@@ -8,21 +13,22 @@ customLib.mkDefaultsModule {
   ];
   mkConfig =
     { ... }:
+    with lib;
     {
       custom.modules = {
-        nix.enable = true;
+        nix.enable = mkDefault true;
         nixos.core = {
-          boot.enable = true;
-          wayland.enable = true;
-          locale.enable = true;
-          services.enable = true;
-          user.enable = true;
-          bluetooth.enable = true;
+          boot.enable = mkDefault true;
+          wayland.enable = mkDefault true;
+          locale.enable = mkDefault true;
+          services.enable = mkDefault true;
+          user.enable = mkDefault true;
+          bluetooth.enable = mkDefault true;
           audio = {
-            pipewire.enable = true;
+            pipewire.enable = mkDefault true;
           };
           network = {
-            networkmanager.enable = true;
+            networkmanager.enable = mkDefault true;
           };
         };
       };

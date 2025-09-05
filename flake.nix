@@ -118,11 +118,11 @@
           // {
             ${configurationsSet.${systemType}}.${hostname} = createSystem.${systemType} {
               inherit system pkgs;
-              modules = [
+              modules = with lib; [
                 # base system config
                 {
-                  networking.hostName = lib.mkIf vars.overrideHostname (lib.mkForce hostname);
-                  system.stateVersion = vars.stateVersion;
+                  networking.hostName = mkDefault hostname;
+                  system.stateVersion = mkDefault vars.stateVersion;
                 }
                 # system config
                 ./modules/system
@@ -131,15 +131,15 @@
                 home-manager.${homeModulesSet.${systemType}}.home-manager
                 {
                   home-manager = {
-                    useUserPackages = true;
-                    useGlobalPkgs = true;
-                    backupFileExtension = vars.backupFileExtension;
+                    useUserPackages = mkDefault true;
+                    useGlobalPkgs = mkDefault true;
+                    backupFileExtension = mkDefault vars.backupFileExtension;
                     users.${vars.user.username} = {
                       imports = [
                         ./modules/home
                         (hostPath "home.nix")
                       ];
-                      home.stateVersion = vars.stateVersion;
+                      home.stateVersion = lib.mkDefault vars.stateVersion;
                     };
                     extraSpecialArgs = specialArgs;
                   };

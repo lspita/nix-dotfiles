@@ -1,4 +1,9 @@
-{ customLib, config, ... }:
+{
+  customLib,
+  config,
+  lib,
+  ...
+}:
 customLib.mkDefaultsModule {
   inherit config;
   importPath = ./.;
@@ -8,9 +13,10 @@ customLib.mkDefaultsModule {
   ];
   mkConfig =
     { ... }:
+    with lib;
     {
       custom.modules.linux.core = {
-        xdg.enable = true;
+        xdg.enable = mkDefault true;
       };
     };
 }

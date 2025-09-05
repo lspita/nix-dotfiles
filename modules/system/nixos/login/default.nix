@@ -1,4 +1,9 @@
-{ customLib, config, ... }:
+{
+  customLib,
+  config,
+  lib,
+  ...
+}:
 customLib.mkDefaultsModule {
   inherit config;
   importPath = ./.;
@@ -8,10 +13,11 @@ customLib.mkDefaultsModule {
   ];
   mkConfig =
     { ... }:
+    with lib;
     {
       security.pam.services = {
-        sudo.fprintAuth = config.services.fprintd.enable;
-        login.fprintAuth = config.services.fprintd.enable;
+        sudo.fprintAuth = mkDefault config.services.fprintd.enable;
+        login.fprintAuth = mkDefault config.services.fprintd.enable;
       };
     };
 }

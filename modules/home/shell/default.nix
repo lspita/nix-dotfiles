@@ -1,4 +1,9 @@
-{ customLib, config, ... }:
+{
+  customLib,
+  config,
+  lib,
+  ...
+}:
 customLib.mkDefaultsModule {
   inherit config;
   importPath = ./.;
@@ -7,8 +12,9 @@ customLib.mkDefaultsModule {
   ];
   mkConfig =
     { ... }:
+    with lib;
     {
-      custom.modules.shell.aliases.enable = true;
-      home.shell.enableShellIntegration = true;
+      custom.modules.shell.aliases.enable = mkDefault true;
+      home.shell.enableShellIntegration = mkDefault true;
     };
 }

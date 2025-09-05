@@ -1,6 +1,7 @@
 {
   config,
   customLib,
+  lib,
   ...
 }:
 customLib.mkDefaultsModule {
@@ -13,12 +14,13 @@ customLib.mkDefaultsModule {
   ];
   mkConfig =
     { ... }:
+    with lib;
     {
       custom.modules.linux.desktop.plasma = {
-        settings.enable = true;
+        settings.enable = mkDefault true;
         appearance = {
-          catppuccin.enable = true;
-          wallpapers.enable = true;
+          catppuccin.enable = mkDefault true;
+          wallpapers.enable = mkDefault true;
         };
       };
     };

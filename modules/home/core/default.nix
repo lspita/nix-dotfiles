@@ -1,4 +1,9 @@
-{ customLib, config, ... }:
+{
+  customLib,
+  config,
+  lib,
+  ...
+}:
 customLib.mkDefaultsModule {
   inherit config;
   importPath = ./.;
@@ -7,12 +12,13 @@ customLib.mkDefaultsModule {
   ];
   mkConfig =
     { ... }:
+    with lib;
     {
       custom.modules.core = {
-        environment.enable = true;
-        git.enable = true;
-        nix.enable = true;
-        nh.enable = true;
+        environment.enable = mkDefault true;
+        git.enable = mkDefault true;
+        nix.enable = mkDefault true;
+        nh.enable = mkDefault true;
       };
     };
 }
