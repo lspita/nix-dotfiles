@@ -152,10 +152,16 @@
     in
     mkSystems (
       builtins.map
-        (hostname: {
-          inherit hostname;
-          system = import "${hostsDir}/${hostname}/system.nix";
-        })
+        (
+          hostname:
+          let
+            hostInfo = import "${hostsDir}/${hostname}/info.nix";
+          in
+          {
+            inherit hostname;
+            inherit (hostInfo) system;
+          }
+        )
         (
           builtins.attrNames (
             lib.attrsets.filterAttrs (
