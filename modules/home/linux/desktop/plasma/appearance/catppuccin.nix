@@ -32,8 +32,8 @@ customLib.mkModule {
           accents = [ "sapphire" ];
           winDecStyles = [ "classic" ];
         })
-        catppuccin-cursors.mochaSapphire
-        catppuccin-cursors.latteSapphire
+        catppuccin-cursors.mochaLight
+        catppuccin-cursors.latteDark
       ];
       xdg = {
         autostart.entries = [ "${koiPackage}/share/applications/local.KoiDbusInterface.desktop" ];
@@ -41,14 +41,14 @@ customLib.mkModule {
           ${koiScriptDark} = {
             text = ''
               #!/usr/bin/env bash
-              plasma-apply-cursortheme catppuccin-mocha-sapphire-cursors
+              plasma-apply-cursortheme catppuccin-mocha-light-cursors
             '';
             executable = true;
           };
           ${koiScriptLight} = {
             text = ''
               #!/usr/bin/env bash
-              plasma-apply-cursortheme catppuccin-latte-sapphire-cursors
+              plasma-apply-cursortheme catppuccin-latte-dark-cursors
             '';
             executable = true;
           };
