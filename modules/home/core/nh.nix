@@ -15,15 +15,11 @@ customLib.mkModule {
     {
       programs.nh = {
         enable = true;
-        clean =
-          let
-            cvars = vars.nix.cleaning;
-          in
-          {
-            enable = true;
-            dates = cvars.frequency;
-            extraArgs = "--keep-since ${cvars.deleteOlderThan} --keep ${builtins.toString cvars.maxGenerations}";
-          };
+        clean = with vars.nix.cleaning; {
+          enable = true;
+          dates = frequency;
+          extraArgs = "--keep-since ${deleteOlderThan} --keep ${builtins.toString maxGenerations}";
+        };
         flake = customLib.dotPath config ".";
       };
     };

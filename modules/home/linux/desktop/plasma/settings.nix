@@ -25,7 +25,7 @@ customLib.mkModule {
         };
         input.keyboard.layouts = [
           {
-            layout = vars.locale.keyboard;
+            layout = vars.linux.locale.keyboard;
           }
         ];
       };

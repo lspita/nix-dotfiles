@@ -11,12 +11,10 @@ customLib.mkModule {
   ];
   mkConfig =
     { ... }:
-    let
-      uvars = vars.user;
-    in
+    with vars.user;
     {
-      users.users.${uvars.username} = {
-        description = uvars.fullname;
+      users.users.${username} = {
+        description = fullname;
       };
     };
 }

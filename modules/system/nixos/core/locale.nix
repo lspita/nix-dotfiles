@@ -13,19 +13,17 @@ customLib.mkModule {
   ];
   mkConfig =
     { ... }:
-    let
-      lvars = vars.locale;
-    in
+    with vars.linux.locale;
     {
       # Set your time zone.
-      time.timeZone = lvars.timeZone;
+      time.timeZone = timeZone;
 
       # Select internationalisation properties.
-      i18n.defaultLocale = lvars.default;
+      i18n.defaultLocale = default;
 
-      i18n.extraLocaleSettings = lvars.extraSettings;
+      i18n.extraLocaleSettings = extraSettings;
 
       # Configure console keymap
-      console.keyMap = lvars.keyboard;
+      console.keyMap = keyboard;
     };
 }

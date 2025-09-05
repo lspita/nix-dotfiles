@@ -13,10 +13,10 @@ customLib.mkModule {
   mkConfig =
     { ... }:
     {
-      home.sessionVariables = with vars.defaultApps; {
-        EDITOR = editor;
-        VISUAL = editor;
-        BROWSER = browser;
+      home.sessionVariables = with vars.linux.defaultApps; {
+        EDITOR = editor.program;
+        VISUAL = editor.program;
+        BROWSER = browser.program;
       };
     };
 }

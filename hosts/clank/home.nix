@@ -7,8 +7,10 @@
   custom.modules = {
     core.enableDefaults = true;
     linux = {
-      core.enableDefaults = true;
-      desktop.plasma.enableDefaults = true;
+      desktop = {
+        core.enableDefaults = true;
+        plasma.enableDefaults = true;
+      };
     };
     pkgs.enable = true;
     security = {

@@ -31,7 +31,7 @@ customLib.mkModule {
 
       programs.git =
         with vars.user;
-        with vars.defaultApps;
+        with vars.linux.defaultApps;
         {
           enable = true;
           userName = fullname;
@@ -40,7 +40,7 @@ customLib.mkModule {
             init.defaultBranch = "main";
             pull.rebase = false;
             core = {
-              editor = editor;
+              editor = editor.program;
               attributesfile = "${config.xdg.configHome}/${attributesConfigPath}";
             };
           };

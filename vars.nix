@@ -7,11 +7,6 @@
     fullname = "Ludovico Spitaleri";
     email = "ludovico.spitaleri@gmail.com"; # used for some configurations (e.g. git)
   };
-  defaultApps = {
-    # not the gui apps, used only for the enviroment variables. see `modules/home/core/default-apps.nix`
-    browser = "firefox";
-    editor = "nano";
-  };
   nix = {
     cleaning = {
       frequency = "weekly";
@@ -22,20 +17,47 @@
       allowUnfree = true;
     };
   };
-  locale = {
-    timeZone = "Europe/Rome";
-    keyboard = "it";
-    default = "en_US.UTF-8";
-    extraSettings = {
-      LC_ADDRESS = "it_IT.UTF-8";
-      LC_IDENTIFICATION = "it_IT.UTF-8";
-      LC_MEASUREMENT = "it_IT.UTF-8";
-      LC_MONETARY = "it_IT.UTF-8";
-      LC_NAME = "it_IT.UTF-8";
-      LC_NUMERIC = "it_IT.UTF-8";
-      LC_PAPER = "it_IT.UTF-8";
-      LC_TELEPHONE = "it_IT.UTF-8";
-      LC_TIME = "it_IT.UTF-8";
+  linux = {
+    defaultApps = rec {
+      # Some app types need both desktop and program definitions.
+      # - desktop: desktop file for gui app
+      # - program: use from cli (but can be a gui app)
+      #
+      # You can check available desktop files
+      # - system: ls -l /run/current-system/sw/share/applications/
+      # - user: ls /etc/profiles/per-user/$USER/share/applications/
+      #
+      # Use null to leave unset.
+      browser = {
+        desktop = "firefox.desktop";
+        program = "firefox";
+      };
+      editor = {
+        desktop = "dev.zed.Zed.desktop";
+        program = "nano";
+      };
+      fileManager = "org.kde.dolphin.desktop";
+      pdf = browser.desktop;
+      mail = browser.desktop;
+      image = null;
+      audio = null;
+      video = null;
+    };
+    locale = {
+      timeZone = "Europe/Rome";
+      keyboard = "it";
+      default = "en_US.UTF-8";
+      extraSettings = {
+        LC_ADDRESS = "it_IT.UTF-8";
+        LC_IDENTIFICATION = "it_IT.UTF-8";
+        LC_MEASUREMENT = "it_IT.UTF-8";
+        LC_MONETARY = "it_IT.UTF-8";
+        LC_NAME = "it_IT.UTF-8";
+        LC_NUMERIC = "it_IT.UTF-8";
+        LC_PAPER = "it_IT.UTF-8";
+        LC_TELEPHONE = "it_IT.UTF-8";
+        LC_TIME = "it_IT.UTF-8";
+      };
     };
   };
 }
