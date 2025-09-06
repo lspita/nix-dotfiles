@@ -1,8 +1,25 @@
 {
   config,
   customLib,
+  lib,
   ...
 }:
+let
+  wallpapers = [
+    {
+      id = "mountains";
+      name = "Mountains";
+      dir = "mountains";
+      size = "3840x2160";
+    }
+    {
+      id = "material-tux";
+      name = "Material Tux";
+      file = "material-tux.png";
+      size = "4936x2784";
+    }
+  ];
+in
 customLib.mkModule {
   inherit config;
   path = [
@@ -12,30 +29,22 @@ customLib.mkModule {
     "appearance"
     "wallpapers"
   ];
+  extraOptions = {
+    selected = lib.mkOption {
+      type = lib.types.enum (builtins.map (w: w.id) wallpapers);
+      description = "The selected wallpaper.";
+    };
+  };
   mkConfig =
-    { ... }:
+    { cfg }:
     let
-      selected = "Mountains";
       wallpapersDataDir = "wallpapers";
       wallpapersAssetsDir = "wallpapers";
-      wallpapers = [
-        {
-          id = "Mountains";
-          dir = "mountains";
-          size = "3840x2160";
-        }
-        {
-          id = "MaterialTux";
-          name = "Material Tux";
-          file = "material_tux.png";
-          size = "4936x2784";
-        }
-      ];
     in
     {
       programs.plasma =
         let
-          wallpaperPath = "${config.xdg.dataHome}/${wallpapersDataDir}/${selected}";
+          wallpaperPath = "${config.xdg.dataHome}/${wallpapersDataDir}/${cfg.selected}";
         in
         {
           workspace.wallpaper = wallpaperPath;

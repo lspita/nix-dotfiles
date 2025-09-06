@@ -25,7 +25,10 @@ customLib.mkDefaultsModule {
           theme = {
             catppuccin.enable = mkDefault true;
           };
-          wallpapers.enable = mkDefault true;
+          wallpapers = {
+            enable = mkDefault true;
+            selected = mkDefault "mountains";
+          };
           koi = {
             enable = mkDefault true;
             theme = {
