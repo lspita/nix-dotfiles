@@ -1,7 +1,6 @@
 {
   config,
   customLib,
-  flakeInputs,
   vars,
   ...
 }:
@@ -13,7 +12,6 @@ customLib.mkModule {
     "plasma"
     "settings"
   ];
-  imports = [ flakeInputs.plasma-manager.homeModules.plasma-manager ];
   mkConfig =
     { ... }:
     {

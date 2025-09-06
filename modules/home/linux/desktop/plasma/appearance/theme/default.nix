@@ -11,10 +11,6 @@ customLib.mkDefaultsModule {
     "desktop"
     "plasma"
     "appearance"
+    "theme"
   ];
-  mkConfig =
-    { ... }:
-    {
-      programs.plasma.workspace.splashScreen.theme = "None";
-    };
 }
