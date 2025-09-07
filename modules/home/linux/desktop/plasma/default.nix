@@ -18,6 +18,7 @@ customLib.mkDefaultsModule {
     { ... }:
     with lib;
     {
+      programs.plasma.enable = true;
       custom.modules.linux.desktop.plasma = {
         settings.enable = mkDefault true;
         appearance = {

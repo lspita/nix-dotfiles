@@ -16,16 +16,9 @@ customLib.mkModule {
     { ... }:
     {
       programs.plasma = {
-        enable = true;
         overrideConfig = true;
-        workspace = {
-          enableMiddleClickPaste = false; # it doesn't disable it in reality :(
-        };
-        input.keyboard.layouts = [
-          {
-            layout = vars.linux.locale.keyboard;
-          }
-        ];
+        workspace.enableMiddleClickPaste = false; # it doesn't disable it in reality :(
+        input.keyboard.layouts = [ { layout = vars.linux.locale.keyboard; } ];
       };
     };
 }
