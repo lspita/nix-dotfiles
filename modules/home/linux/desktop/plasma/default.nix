@@ -23,6 +23,7 @@ customLib.mkDefaultsModule {
         settings.enable = mkDefault true;
         appearance = {
           enableDefaults = mkDefault true;
+          layout.enable = mkDefault true;
           theme = {
             catppuccin.enable = mkDefault true;
           };
@@ -42,6 +43,11 @@ customLib.mkDefaultsModule {
                 enable = mkDefault true;
                 dark = "catppuccin-mocha-light-cursors";
                 light = "catppuccin-latte-dark-cursors";
+              };
+              gtk = {
+                enable = mkDefault true;
+                dark = "Breeze";
+                light = "Breeze";
               };
             };
           };

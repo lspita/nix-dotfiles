@@ -33,6 +33,7 @@ customLib.mkModule {
       theme = {
         colors = mkLightDarkThemeOption "colors"; # plasma-apply-colorscheme --list-schemes
         cursor = mkLightDarkThemeOption "cursor theme"; # plasma-apply-cursortheme --list-themes
+        gtk = mkLightDarkThemeOption "gtk theme"; # ls /var/run/current-system/sw/share/themes
       };
     };
   mkConfig =
@@ -110,7 +111,11 @@ customLib.mkModule {
               light.value = "${config.xdg.dataHome}/${koiScriptLight}";
             };
             Wallpaper.enabled.value = false;
-            GTKTheme.enabled.value = false;
+            GTKTheme = {
+              enabled.value = cfg.theme.gtk.enable;
+              dark.value = cfg.theme.gtk.dark;
+              light.value = cfg.theme.gtk.light;
+            };
             PlasmaStyle.enabled.value = false;
             KvantumStyle.enabled.value = false;
             IconTheme.enabled.value = false;

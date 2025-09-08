@@ -29,6 +29,6 @@ customLib.mkModule {
         catppuccin-cursors.mochaLight
         catppuccin-cursors.latteDark
       ];
-      programs.plasma.workspace.theme = "default"; # breeze, follows colors
+      programs.plasma.workspace.theme = "default";
     };
 }
