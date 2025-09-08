@@ -1,0 +1,32 @@
+{
+  "auto_install_extensions": {
+    "catppuccin": true,
+    "catppuccin-icons": true,
+    "git-firefly": true,
+    "nix": true,
+    "dockerfile": true,
+    "docker-compose": true
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "minimap": {
+    "show": "always"
+  },
+  "inlay_hints": {
+    "enabled": true
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "theme": {
+    "mode": "system",
+    "dark": "Catppuccin Mocha",
+    "light": "Catppuccin Latte"
+  },
+  "icon_theme": {
+    "mode": "system",
+    "dark": "Catppuccin Mocha",
+    "light": "Catppuccin Latte"
+  }
+}

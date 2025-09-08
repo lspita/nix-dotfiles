@@ -5,11 +5,9 @@
     ./system/keyboard-remap.nix
   ];
 
-  custom.modules = {
-    nixos = {
-      core.enableDefaults = true;
-      login.sddm.enable = true;
-      desktop.plasma.enable = true;
-    };
+  custom.modules.nixos = {
+    core.enableDefaults = true;
+    login.sddm.enable = true;
+    desktop.plasma.enable = true;
   };
 }
