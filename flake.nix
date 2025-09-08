@@ -56,7 +56,7 @@
           result:
           {
             hostname,
-            system,
+            hostInfo,
           }:
           let
             hostPath = path: "${hostsDir}/${hostname}/${path}";
@@ -77,7 +77,7 @@
             };
 
             pkgs = import nixpkgs {
-              inherit system;
+              inherit (hostInfo) system;
               config = {
                 allowUnfree = vars.nixpkgs.allowUnfree;
                 allowUnfreePredicate = (_: vars.nixpkgs.allowUnfree);
@@ -117,12 +117,13 @@
           result
           // {
             ${configurationsSet.${systemType}}.${hostname} = createSystem.${systemType} {
-              inherit system pkgs;
+              inherit pkgs;
+              inherit (hostInfo) system;
               modules = with lib; [
                 # base system config
                 {
                   networking.hostName = mkDefault hostname;
-                  system.stateVersion = mkDefault vars.stateVersion;
+                  system.stateVersion = mkDefault hostInfo.stateVersion;
                 }
                 # system config
                 ./modules/system
@@ -139,7 +140,7 @@
                         ./modules/home
                         (hostPath "home.nix")
                       ];
-                      home.stateVersion = lib.mkDefault vars.stateVersion;
+                      home.stateVersion = lib.mkDefault hostInfo.stateVersion;
                     };
                     extraSpecialArgs = specialArgs;
                   };
@@ -158,8 +159,7 @@
             hostInfo = import "${hostsDir}/${hostname}/info.nix";
           in
           {
-            inherit hostname;
-            inherit (hostInfo) system;
+            inherit hostname hostInfo;
           }
         )
         (

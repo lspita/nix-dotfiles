@@ -1,6 +1,5 @@
 {
   dotfilesHome = "nix-dotfiles"; # location of dotfiles in the user home
-  stateVersion = "25.05";
   backupFileExtension = "backup";
   user = {
     username = "lspita";
