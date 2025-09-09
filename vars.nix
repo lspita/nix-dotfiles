@@ -23,10 +23,12 @@
       # - program: use from cli (but can be a gui app)
       #
       # You can check available desktop files
-      # - system: ls -l /run/current-system/sw/share/applications/
+      # - system: ls /run/current-system/sw/share/applications/
       # - user: ls /etc/profiles/per-user/$USER/share/applications/
-      #
-      # Use null to leave unset.
+      terminal = {
+        desktop = "org.kde.konsole.desktop";
+        program = "konsole";
+      };
       browser = {
         desktop = "firefox.desktop";
         program = "firefox";
@@ -38,9 +40,9 @@
       fileManager = "org.kde.dolphin.desktop";
       pdf = browser.desktop;
       mail = browser.desktop;
-      image = null;
-      audio = null;
-      video = null;
+      image = "org.kde.gwenview.desktop";
+      audio = "org.kde.elisa.desktop";
+      video = "vlc.desktop";
     };
     locale = {
       timeZone = "Europe/Rome";

@@ -1,6 +1,7 @@
 {
   config,
   customLib,
+  vars,
   ...
 }:
 customLib.mkModule {
@@ -47,7 +48,23 @@ customLib.mkModule {
           opacity = "translucent";
           hiding = "dodgewindows";
           floating = true;
-          widgets = [ "org.kde.plasma.icontasks" ];
+          widgets = [
+            {
+              name = "org.kde.plasma.icontasks";
+              config = {
+                General = {
+                  launchers =
+                    with vars.linux.defaultApps;
+                    builtins.map (app: "applications:${app}") [
+                      browser.desktop
+                      editor.desktop
+                      terminal.desktop
+                      fileManager
+                    ];
+                };
+              };
+            }
+          ];
         }
       ];
     };

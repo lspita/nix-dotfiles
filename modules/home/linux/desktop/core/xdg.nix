@@ -49,10 +49,7 @@ customLib.mkModule {
             let
               setAssociations =
                 app: mimetypes:
-                if builtins.isNull app then
-                  { }
-                else
-                  builtins.listToAttrs (builtins.map (mime: lib.attrsets.nameValuePair mime app) mimetypes);
+                builtins.listToAttrs (builtins.map (mime: lib.attrsets.nameValuePair mime app) mimetypes);
             in
             (builtins.foldl' (result: current: result // current) { } [
               (setAssociations browser.desktop [

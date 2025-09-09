@@ -79,7 +79,7 @@
             pkgs = import nixpkgs {
               inherit (hostInfo) system;
               config = {
-                allowUnfree = vars.nixpkgs.allowUnfree;
+                allowUnfree = vars.nix.pkgs.allowUnfree;
                 allowUnfreePredicate = (_: vars.nixpkgs.allowUnfree);
               };
               overlays = builtins.attrValues (
@@ -102,7 +102,7 @@
             customLib = haumea.lib.load {
               src = ./lib;
               inputs = baseInputs // {
-                inherit pkgs;
+                inherit pkgs systemType;
               };
             };
 
@@ -111,6 +111,7 @@
                 customLib
                 vars
                 flakeInputs
+                systemType
                 ;
             };
           in
