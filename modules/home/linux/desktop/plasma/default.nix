@@ -21,6 +21,7 @@ customLib.mkDefaultsModule {
       programs.plasma.enable = true;
       custom.modules.linux.desktop.plasma = {
         settings.enable = mkDefault true;
+        virtualKeyboard.enable = mkDefault true;
         appearance = {
           enableDefaults = mkDefault true;
           layout.enable = mkDefault true;
