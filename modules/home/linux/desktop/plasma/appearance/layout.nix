@@ -1,7 +1,9 @@
 {
   config,
   customLib,
+  lib,
   vars,
+  pkgs,
   ...
 }:
 customLib.mkModule {
@@ -55,12 +57,20 @@ customLib.mkModule {
                 General = {
                   launchers =
                     with vars.linux.defaultApps;
-                    builtins.map (app: "applications:${app}") [
-                      browser.desktop
-                      editor.desktop
-                      terminal.desktop
-                      fileManager
-                    ];
+                    let
+                      ifPackageInstalled =
+                        packageName: desktopFile:
+                        if builtins.any (p: p.pname == packageName) config.home.packages then [ desktopFile ] else [ ];
+                    in
+                    builtins.map (app: "applications:${app}") (
+                      [
+                        browser.desktop
+                        editor.desktop
+                        terminal.desktop
+                        fileManager
+                      ]
+                      ++ (ifPackageInstalled "spotify" "spotify.desktop")
+                    );
                 };
               };
             }
