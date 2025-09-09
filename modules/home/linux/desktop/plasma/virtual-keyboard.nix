@@ -14,15 +14,12 @@ customLib.mkModule {
   ];
   mkConfig =
     { ... }:
-    let
-      package = pkgs.maliit-keyboard;
-    in
     {
-      home.packages = [ package ];
+      home.packages = [ pkgs.maliit-keyboard ];
       programs.plasma.configFile.kwinrc = {
         Wayland = {
           InputMethod = {
-            value = "${package}/share/applications/com.github.maliit.keyboard.desktop";
+            value = "${config.home.profileDirectory}/share/applications/com.github.maliit.keyboard.desktop";
             shellExpand = true; # enabling it from the gui settings puts $e
           };
           VirtualKeyboardEnabled.value = true;
