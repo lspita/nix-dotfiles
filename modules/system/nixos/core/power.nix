@@ -14,5 +14,10 @@ customLib.mkModule {
     { ... }:
     {
       powerManagement.enable = true;
+      systemd.sleep.extraConfig = ''
+        AllowHibernation=no
+        AllowHybridSleep=no
+        AllowSuspendThenHibernate=no
+      '';
     };
 }
