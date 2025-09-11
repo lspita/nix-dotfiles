@@ -18,8 +18,9 @@ customLib.mkDefaultsModule {
       custom.modules = {
         nix.enable = mkDefault true;
         nixos.core = {
-          filesystem.enable = mkDefault true;
           boot.enable = mkDefault true;
+          filesystem.enable = mkDefault true;
+          power.enable = mkDefault true;
           wayland.enable = mkDefault true;
           locale.enable = mkDefault true;
           services.enable = mkDefault true;
