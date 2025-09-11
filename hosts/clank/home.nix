@@ -10,7 +10,7 @@
       core.enableDefaults = true;
       plasma.enableDefaults = true;
     };
-    pkgs.enable = true;
+    packages.enable = true;
     security.bitwarden = {
       enable = true;
       sshAgent.enable = true;

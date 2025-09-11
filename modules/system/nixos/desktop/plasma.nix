@@ -1,6 +1,7 @@
 {
   config,
   customLib,
+  pkgs,
   ...
 }:
 customLib.mkModule {
@@ -13,6 +14,17 @@ customLib.mkModule {
   mkConfig =
     { ... }:
     {
+      # # https://nixos.wiki/wiki/KDE
       services.desktopManager.plasma6.enable = true;
+      programs.partition-manager.enable = true;
+      environment.systemPackages = with pkgs.kdePackages; [
+        kcalc
+        kcharselect
+        kclock
+        kcolorchooser
+        kolourpaint
+        ksystemlog
+        isoimagewriter
+      ];
     };
 }
