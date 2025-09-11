@@ -22,6 +22,9 @@ customLib.mkDefaultsModule {
       custom.modules.linux.desktop.plasma = {
         settings.enable = mkDefault true;
         virtualKeyboard.enable = mkDefault true;
+        plugin = {
+          dynamicWorkspaces.enable = mkDefault true;
+        };
         appearance = {
           enableDefaults = mkDefault true;
           layout.enable = mkDefault true;
