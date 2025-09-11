@@ -54,7 +54,6 @@ customLib.mkModule {
             (builtins.foldl' (result: current: result // current) { } [
               (setAssociations browser.desktop [
                 "text/html"
-                "text/xml"
                 "application/xhtml+xml"
                 "application/xhtml_xml"
                 "application/rdf+xml"

@@ -19,7 +19,6 @@ customLib.mkModule {
         git
         vlc
         spotify
-        hardinfo2 # System information and benchmarks for Linux systems
       ];
     };
 }
