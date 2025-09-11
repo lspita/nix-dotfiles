@@ -1,7 +1,6 @@
 {
   config,
   customLib,
-  pkgs,
   ...
 }:
 customLib.mkModule {
