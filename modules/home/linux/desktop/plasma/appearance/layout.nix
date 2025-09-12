@@ -76,15 +76,6 @@ customLib.mkModule {
             ];
           }
         ];
-        shortcuts = {
-          # replace application launcher shortcut since there is none
-          kwin = {
-            Overview = "Meta";
-          };
-          plasmashell = {
-            "activate application launcher" = "None";
-          };
-        };
       };
     };
 }
