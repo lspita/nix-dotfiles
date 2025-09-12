@@ -26,8 +26,8 @@
       # - system: ls /run/current-system/sw/share/applications/
       # - user: ls /etc/profiles/per-user/$USER/share/applications/
       terminal = {
-        desktop = "org.kde.konsole.desktop";
-        program = "konsole";
+        desktop = "kitty.desktop";
+        program = "kitty";
       };
       browser = {
         desktop = "firefox.desktop";

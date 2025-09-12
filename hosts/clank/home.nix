@@ -19,6 +19,7 @@
       enableDefaults = true;
       bash.enable = true;
     };
+    terminal.kitty.enable = true;
     editor.zed.enable = true;
   };
 }
