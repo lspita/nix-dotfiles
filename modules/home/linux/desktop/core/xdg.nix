@@ -67,6 +67,8 @@ customLib.mkModule {
                 "x-scheme-handler/https"
               ])
               (setAssociations editor.desktop [
+                "text/plain" # make plasma recognize it
+                "text/markdown"
                 "text/*"
                 "application/json"
                 "application/xml"
@@ -81,5 +83,6 @@ customLib.mkModule {
             ]);
         };
       };
+      home.shellAliases.open = "xdg-open";
     };
 }

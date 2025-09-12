@@ -16,10 +16,13 @@ customLib.mkModule {
       configDir = "zed";
     in
     {
-      # not programs.zed-editor to have the settings symlinked
-      home.packages = with pkgs; [
-        zed-editor
-      ];
+      home = {
+        # not programs.zed-editor to have the settings symlinked
+        packages = with pkgs; [
+          zed-editor
+        ];
+        shellAliases.zed = "zeditor";
+      };
       xdg.configFile = {
         "${configDir}/settings.json".source = config.lib.file.mkOutOfStoreSymlink (
           customLib.dotPath config "modules/home/editor/zed/settings.json"
