@@ -88,7 +88,10 @@ customLib.mkModule {
       };
       programs.plasma = {
         configFile = {
-          kdeglobals.General.ColorScheme.persistent = true;
+          kdeglobals.General = {
+            ColorScheme.persistent = true;
+            ColorSchemeHash.persistent = true;
+          };
           kcminputrc.Mouse.cursorTheme.persistent = true;
           koirc = {
             General = {
