@@ -26,8 +26,8 @@
       # - system: ls /run/current-system/sw/share/applications/
       # - user: ls /etc/profiles/per-user/$USER/share/applications/
       terminal = {
-        desktop = "kitty.desktop";
-        program = "kitty";
+        desktop = "org.wezfurlong.wezterm.desktop";
+        program = "wezterm";
       };
       browser = {
         desktop = "firefox.desktop";

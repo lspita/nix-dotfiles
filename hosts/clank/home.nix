@@ -19,7 +19,7 @@
       enableDefaults = true;
       bash.enable = true;
     };
-    terminal.kitty.enable = true;
+    terminal.wezterm.enable = true;
     editor.zed.enable = true;
   };
 }

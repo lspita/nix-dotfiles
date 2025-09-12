@@ -15,6 +15,7 @@ customLib.mkModule {
       home.packages = with pkgs; [
         nixd
         nil
+        lua-language-server
         firefox
         git
         vlc
