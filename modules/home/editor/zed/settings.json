@@ -10,6 +10,9 @@
   },
   "ui_font_size": 16,
   "buffer_font_size": 16,
+  "scrollbar": {
+    "show": "never"
+  },
   "minimap": {
     "show": "always"
   },
