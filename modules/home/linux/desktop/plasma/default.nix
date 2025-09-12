@@ -21,6 +21,7 @@ customLib.mkDefaultsModule {
       programs.plasma.enable = true;
       custom.modules.linux.desktop.plasma = {
         settings.enable = mkDefault true;
+        windowShortcuts.enable = mkDefault true;
         terminal.enable = mkDefault true;
         virtualKeyboard.enable = mkDefault true;
         plugin = {

@@ -10,8 +10,10 @@ local function scheme_for_appearance(appearance)
     end
 end
 
-return {
+local config = {
     use_fancy_tab_bar = false,
     hide_tab_bar_if_only_one_tab = true,
     color_scheme = scheme_for_appearance(wezterm.gui.get_appearance()),
 }
+
+return config
