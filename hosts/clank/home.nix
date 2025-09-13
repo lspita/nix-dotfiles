@@ -1,12 +1,8 @@
 { ... }:
 {
-  imports = [
-    # ./home/plasma-touchpad.nix
-  ];
-
   custom.modules = {
     core.enableDefaults = true;
-    # linux.desktop.core.enableDefaults = true;
+    linux.desktop.core.enableDefaults = true;
     packages.enable = true;
     security.bitwarden = {
       enable = true;

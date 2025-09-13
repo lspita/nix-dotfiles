@@ -26,8 +26,8 @@
       # - system: ls /run/current-system/sw/share/applications/
       # - user: ls /etc/profiles/per-user/$USER/share/applications/
       terminal = {
-        desktop = "kitty.desktop";
-        program = "kitty";
+        desktop = "org.gnome.Console.desktop";
+        program = "kgx";
       };
       browser = {
         desktop = "firefox.desktop";
@@ -37,12 +37,12 @@
         desktop = "dev.zed.Zed.desktop";
         program = "nano";
       };
-      fileManager = "org.kde.dolphin.desktop";
+      fileManager = "org.gnome.Nautilus.desktop";
       pdf = browser.desktop;
       mail = browser.desktop;
-      image = "org.kde.gwenview.desktop";
-      audio = "org.kde.elisa.desktop";
-      video = "vlc.desktop";
+      image = "org.gnome.Loupe.desktop";
+      audio = "org.gnome.Decibels.desktop";
+      video = "org.gnome.Totem.desktop";
     };
     locale = {
       timeZone = "Europe/Rome";
