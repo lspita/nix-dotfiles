@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./home/plasma-touchpad.nix
+    # ./home/plasma-touchpad.nix
   ];
 
   custom.modules = {

@@ -9,7 +9,7 @@
     core.enableDefaults = true;
     login = {
       enableDefaults = true;
-      sddm.enable = true;
+      gdm.enable = true;
     };
     desktop.gnome.enable = true;
   };
