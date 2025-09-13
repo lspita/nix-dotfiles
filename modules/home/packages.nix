@@ -18,7 +18,6 @@ customLib.mkModule {
         lua-language-server
         firefox
         git
-        vlc
         spotify
       ];
     };
