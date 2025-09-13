@@ -2,7 +2,14 @@
 {
   custom.modules = {
     core.enableDefaults = true;
-    linux.desktop.core.enableDefaults = true;
+    linux.desktop = {
+      core.enableDefaults = true;
+      gnome = {
+        enableDefaults = true;
+        vrr.enable = true;
+        fractionalScaling.enable = true;
+      };
+    };
     packages.enable = true;
     security.bitwarden = {
       enable = true;
