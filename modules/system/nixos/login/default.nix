@@ -11,13 +11,4 @@ customLib.mkDefaultsModule {
     "nixos"
     "login"
   ];
-  mkConfig =
-    { ... }:
-    with lib;
-    {
-      security.pam.services = {
-        sudo.fprintAuth = mkDefault config.services.fprintd.enable;
-        login.fprintAuth = mkDefault false; # require password to activate keyring/wallet
-      };
-    };
 }

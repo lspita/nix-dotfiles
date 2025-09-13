@@ -8,10 +8,7 @@
 
   custom.modules.nixos = {
     core.enableDefaults = true;
-    login = {
-      enableDefaults = true;
-      gdm.enable = true;
-    };
+    login.gdm.enable = true;
     desktop.gnome.enable = true;
   };
 }
