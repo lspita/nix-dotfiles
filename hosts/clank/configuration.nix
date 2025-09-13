@@ -7,10 +7,10 @@
 
   custom.modules.nixos = {
     core.enableDefaults = true;
-    login.sddm.enable = true;
-    desktop.plasma = {
-      enable = true;
-      excludePackages = with pkgs.kdePackages; [ kate ]; # use zed instead
+    login = {
+      enableDefaults = true;
+      sddm.enable = true;
     };
+    desktop.gnome.enable = true;
   };
 }

@@ -6,10 +6,7 @@
 
   custom.modules = {
     core.enableDefaults = true;
-    linux.desktop = {
-      core.enableDefaults = true;
-      plasma.enableDefaults = true;
-    };
+    # linux.desktop.core.enableDefaults = true;
     packages.enable = true;
     security.bitwarden = {
       enable = true;
@@ -19,7 +16,7 @@
       enableDefaults = true;
       bash.enable = true;
     };
-    terminal.kitty.enable = true;
+    # terminal.kitty.enable = true;
     editor.zed.enable = true;
   };
 }

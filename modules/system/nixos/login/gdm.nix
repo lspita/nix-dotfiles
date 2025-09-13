@@ -9,14 +9,14 @@ customLib.mkModule {
   path = [
     "nixos"
     "login"
-    "sddm"
+    "gdm"
   ];
   mkConfig =
     { ... }:
     {
-      services.displayManager.sddm = {
+      services.displayManager.gdm = {
         enable = true;
-        wayland.enable = config.custom.modules.nixos.core.wayland.enable;
+        wayland = config.custom.modules.nixos.core.wayland.enable;
       };
     };
 }
