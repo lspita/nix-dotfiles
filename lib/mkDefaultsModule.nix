@@ -1,4 +1,4 @@
-{ super }:
+{ root }:
 {
   config,
   importPath,
@@ -9,14 +9,14 @@
 }:
 # if instead of lib.mkIf for lazy evaluation
 let
-  totalImports = imports ++ (super.scanPaths importPath);
+  totalImports = imports ++ (root.scanPaths importPath);
 in
 if builtins.isNull mkConfig then
   {
     imports = totalImports;
   }
 else
-  super.mkModule {
+  root.mkModule {
     inherit
       config
       path
@@ -25,5 +25,5 @@ else
       ;
     imports = totalImports;
     enableOption = "enableDefaults";
-    name = with super.moduleUtils; "defaults for ${moduleName (modulePath path)}";
+    name = with root.moduleUtils; "defaults for ${moduleName (modulePath path)}";
   }

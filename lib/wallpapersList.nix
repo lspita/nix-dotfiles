@@ -1,5 +1,5 @@
 {
-  super,
+  root,
   lib,
   vars,
 }:
@@ -10,7 +10,7 @@ let
   wallpapers = lib.attrsets.mapAttrs (
     path: type:
     let
-      wallpaperPath = "${super.assetPath config wallpaperAssetsDir}/${path}";
+      wallpaperPath = "${root.assetPath config wallpaperAssetsDir}/${path}";
     in
     if type == "directory" then
       {

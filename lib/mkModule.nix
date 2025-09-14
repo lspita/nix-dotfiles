@@ -1,4 +1,4 @@
-{ lib, super }:
+{ root, lib }:
 {
   config,
   path,
@@ -9,7 +9,7 @@
   mkConfig,
 }:
 let
-  mu = super.moduleUtils;
+  mu = root.moduleUtils;
   modulePath = mu.modulePath path;
   moduleName = if builtins.isNull name then mu.moduleName modulePath else name;
   cfg = lib.attrsets.getAttrFromPath modulePath config;
