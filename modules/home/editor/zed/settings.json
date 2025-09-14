@@ -1,4 +1,7 @@
 {
+  "features": {
+    "edit_prediction_provider": "none"
+  },
   "auto_install_extensions": {
     "catppuccin": true,
     "catppuccin-icons": true,

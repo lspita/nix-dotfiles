@@ -6,8 +6,11 @@
       core.enableDefaults = true;
       gnome = {
         enableDefaults = true;
-        vrr.enable = true;
-        fractionalScaling.enable = true;
+        settings = {
+          vrr.enable = true;
+          fractionalScaling.enable = true;
+          locationServices.enable = true;
+        };
       };
     };
     packages.enable = true;
