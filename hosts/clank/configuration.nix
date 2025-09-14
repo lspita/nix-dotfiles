@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -9,6 +9,9 @@
   custom.modules.nixos = {
     core.enableDefaults = true;
     login.gdm.enable = true;
-    desktop.gnome.enable = true;
+    desktop.gnome = {
+      enable = true;
+      excludePackages = with pkgs; [ gnome-console ]; # use kitty instead
+    };
   };
 }

@@ -17,9 +17,12 @@ customLib.mkModule {
     { ... }:
     {
       # https://github.com/ryan4yin/nix-config/blob/main/home/linux/gui/base/xdg.nix
-      xdg = {
+      xdg = with vars.linux.defaultApps; {
         enable = true;
-        terminal-exec.enable = true;
+        terminal-exec = {
+          enable = true;
+          settings.default = [ terminal.desktop ];
+        };
         cacheHome = "${config.home.homeDirectory}/.cache";
         configHome = "${config.home.homeDirectory}/.config";
         dataHome = "${config.home.homeDirectory}/.local/share";
@@ -43,7 +46,7 @@ customLib.mkModule {
           readOnly = false; # for now, allow autostart
         };
 
-        mimeApps = with vars.linux.defaultApps; {
+        mimeApps = {
           enable = true;
           defaultApplications =
             let
