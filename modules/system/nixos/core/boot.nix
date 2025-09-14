@@ -1,11 +1,10 @@
 {
   config,
-  customLib,
   lib,
   vars,
   ...
 }:
-customLib.mkModule {
+lib.custom.mkModule {
   inherit config;
   path = [
     "nixos"
@@ -18,7 +17,7 @@ customLib.mkModule {
       default = 0;
       description = "Timeout (in seconds) until loader boots the default menu item.";
     };
-    plymouth.enable = customLib.mkTrueEnableOption "plymouth boot screen";
+    plymouth.enable = lib.custom.mkTrueEnableOption "plymouth boot screen";
   };
   mkConfig =
     { cfg }:

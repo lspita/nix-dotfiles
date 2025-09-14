@@ -1,5 +1,5 @@
-{ customLib, config, ... }:
-customLib.mkModule {
+{ config, lib, ... }:
+lib.custom.mkModule {
   inherit config;
   path = [
     "shell"

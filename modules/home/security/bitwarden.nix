@@ -1,11 +1,10 @@
 {
   config,
-  customLib,
-  pkgs,
   lib,
+  pkgs,
   ...
 }:
-customLib.mkModule {
+lib.custom.mkModule {
   inherit config;
   path = [
     "security"

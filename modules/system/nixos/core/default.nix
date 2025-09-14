@@ -1,10 +1,9 @@
 {
-  customLib,
   config,
   lib,
   ...
 }:
-customLib.mkDefaultsModule {
+lib.custom.mkDefaultsModule {
   inherit config;
   importPath = ./.;
   path = [

@@ -1,10 +1,10 @@
 {
   config,
-  customLib,
+  lib,
   pkgs,
   ...
 }:
-customLib.mkModule {
+lib.custom.mkModule {
   inherit config;
   path = [
     "editor"
@@ -25,7 +25,7 @@ customLib.mkModule {
       };
       xdg.configFile = {
         "${configDir}/settings.json".source = config.lib.file.mkOutOfStoreSymlink (
-          customLib.dotPath config "modules/home/editor/zed/settings.json"
+          lib.custom.dotPath config "modules/home/editor/zed/settings.json"
         );
       };
     };

@@ -1,10 +1,10 @@
 {
   config,
-  customLib,
+  lib,
   vars,
   ...
 }:
-customLib.mkModule {
+lib.custom.mkModule {
   inherit config;
   path = [
     "core"
@@ -20,7 +20,7 @@ customLib.mkModule {
           dates = frequency;
           extraArgs = "--keep-since ${deleteOlderThan} --keep ${builtins.toString maxGenerations}";
         };
-        flake = customLib.dotPath config ".";
+        flake = lib.custom.dotPath config ".";
       };
     };
 }

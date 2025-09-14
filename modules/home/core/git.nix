@@ -1,12 +1,11 @@
 {
   config,
-  customLib,
   lib,
   vars,
   pkgs,
   ...
 }:
-customLib.mkModule {
+lib.custom.mkModule {
   inherit config;
   path = [
     "core"

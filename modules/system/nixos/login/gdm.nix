@@ -1,9 +1,5 @@
-{
-  config,
-  customLib,
-  ...
-}:
-customLib.mkModule {
+{ config, lib, ... }:
+lib.custom.mkModule {
   inherit config;
   path = [
     "nixos"

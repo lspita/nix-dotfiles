@@ -1,5 +1,5 @@
-{ customLib, config, ... }:
-customLib.mkModule {
+{ config, lib, ... }:
+lib.custom.mkModule {
   inherit config;
   path = [
     "terminal"
@@ -10,7 +10,7 @@ customLib.mkModule {
     {
       programs.wezterm.enable = true;
       xdg.configFile."wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink (
-        customLib.dotPath config "modules/home/terminal/wezterm/wezterm.lua"
+        lib.custom.dotPath config "modules/home/terminal/wezterm/wezterm.lua"
       );
     };
 }

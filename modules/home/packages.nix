@@ -1,10 +1,10 @@
 {
-  customLib,
   config,
+  lib,
   pkgs,
   ...
 }:
-customLib.mkModule {
+lib.custom.mkModule {
   inherit config;
   path = [
     "packages"

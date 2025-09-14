@@ -1,12 +1,11 @@
 {
   config,
-  customLib,
+  lib,
   pkgs,
   vars,
-  lib,
   ...
 }:
-customLib.mkModule {
+lib.custom.mkModule {
   inherit config;
   path = [
     "nixos"

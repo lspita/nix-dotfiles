@@ -1,11 +1,10 @@
 {
   config,
-  customLib,
-  vars,
   lib,
+  vars,
   ...
 }:
-customLib.mkModule {
+lib.custom.mkModule {
   inherit config;
   path = [
     "nixos"
@@ -14,7 +13,7 @@ customLib.mkModule {
     "networkmanager"
   ];
   extraOptions = {
-    wifiLimitedConnectivityFix = customLib.mkTrueEnableOption "network manager limited wifi connectivity fix";
+    wifiLimitedConnectivityFix = lib.custom.mkTrueEnableOption "network manager limited wifi connectivity fix";
   };
   mkConfig =
     { cfg }:

@@ -1,5 +1,5 @@
-{ customLib, config, ... }:
-customLib.mkModule {
+{ config, lib, ... }:
+lib.custom.mkModule {
   inherit config;
   path = [
     "terminal"
@@ -21,10 +21,10 @@ customLib.mkModule {
         in
         {
           "${kittyConfigDir}/dark-theme.auto.conf".source = config.lib.file.mkOutOfStoreSymlink (
-            customLib.dotPath config "modules/home/terminal/kitty/themes/catppuccin-mocha.conf"
+            lib.custom.dotPath config "modules/home/terminal/kitty/themes/catppuccin-mocha.conf"
           );
           "${kittyConfigDir}/light-theme.auto.conf".source = config.lib.file.mkOutOfStoreSymlink (
-            customLib.dotPath config "modules/home/terminal/kitty/themes/catppuccin-latte.conf"
+            lib.custom.dotPath config "modules/home/terminal/kitty/themes/catppuccin-latte.conf"
           );
         };
     };

@@ -1,11 +1,10 @@
 {
   config,
-  customLib,
   lib,
   vars,
   ...
 }:
-customLib.mkModule {
+lib.custom.mkModule {
   inherit config;
   path = [
     "linux"
@@ -16,7 +15,7 @@ customLib.mkModule {
   mkConfig =
     { ... }:
     let
-      wallpapers = customLib.wallpapersList config;
+      wallpapers = lib.custom.wallpapersList config;
       wallpapersDataDir = "gnome-background-properties";
       color = "#000000";
       bgSettings = "org/gnome/desktop/background";

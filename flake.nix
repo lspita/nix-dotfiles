@@ -108,7 +108,6 @@
 
             specialArgs = {
               inherit
-                customLib
                 vars
                 flakeInputs
                 systemType
@@ -120,6 +119,11 @@
             ${configurationsSet.${systemType}}.${hostname} = createSystem.${systemType} {
               inherit pkgs;
               inherit (hostInfo) system;
+              lib = lib.extend (
+                _: _: {
+                  custom = customLib;
+                }
+              );
               modules = with lib; [
                 # base system config
                 {
