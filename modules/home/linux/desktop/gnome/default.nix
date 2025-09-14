@@ -17,6 +17,7 @@ customLib.mkDefaultsModule {
     {
       custom.modules.linux.desktop.gnome = with lib; {
         settings.enable = mkDefault true;
+        wallpaper.enable = mkDefault true;
       };
     };
 }
