@@ -11,14 +11,11 @@ lib.custom.mkModule {
     "desktop"
     "gnome"
     "extensions"
-    "blur-my-shell"
+    "light-style"
   ];
   mkConfig =
     { ... }:
     lib.custom.gnome.mkExtensionConfig {
-      package = pkgs.gnomeExtensions.blur-my-shell;
-      settings = {
-        "overview".style-components = 3; # transparent
-      };
+      package = pkgs.gnomeExtensions.light-style;
     };
 }
