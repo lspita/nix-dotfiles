@@ -20,6 +20,7 @@ lib.custom.mkDefaultsModule {
         wallpaper.enable = mkDefault true;
         dock.enable = mkDefault true;
         shortcuts.enable = mkDefault true;
+        nautilus.enable = mkDefault true;
       };
     };
 }
