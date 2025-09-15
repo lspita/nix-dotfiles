@@ -25,6 +25,7 @@ lib.custom.mkDefaultsModule {
         light-style.enable = mkDefault true;
         night-theme-switcher.enable = mkDefault true;
         user-themes.enable = mkDefault true;
+        vitals.enable = mkDefault true;
       };
     };
 }
