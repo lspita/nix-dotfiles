@@ -4,12 +4,22 @@
   pkgs,
   ...
 }:
-lib.custom.gnome.mkExtensionModule {
+lib.custom.mkModule {
   inherit config;
-  package = pkgs.gnomeExtensions.blur-my-shell;
+  path = [
+    "linux"
+    "desktop"
+    "gnome"
+    "extensions"
+    "blur-my-shell"
+  ];
   mkConfig =
     { ... }:
-    {
-      "panel".blur = false;
+    lib.custom.gnome.mkExtensionConfig {
+      package = pkgs.gnomeExtensions.blur-my-shell;
+      settings = {
+        "panel".blur = false;
+        "overview".style-components = 3; # transparent
+      };
     };
 }

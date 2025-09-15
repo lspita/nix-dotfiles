@@ -6,7 +6,6 @@
       core.enableDefaults = true;
       gnome = {
         enableDefaults = true;
-        extensions.enableDefaults = true;
         settings = {
           vrr.enable = true;
           fractionalScaling.enable = true;

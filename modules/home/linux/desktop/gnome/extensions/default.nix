@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 lib.custom.mkDefaultsModule {
@@ -15,10 +16,12 @@ lib.custom.mkDefaultsModule {
   mkConfig =
     { ... }:
     {
+      home.packages = [ pkgs.gnome-extension-manager ];
       dconf.settings."org/gnome/shell".disabled-extensions = [ ];
       custom.modules.linux.desktop.gnome.extensions = with lib; {
-        dash-to-dock.enable = mkDefault true;
+        just-perfection.enable = mkDefault true;
         blur-my-shell.enable = mkDefault true;
+        forge.enable = mkDefault true;
       };
     };
 }

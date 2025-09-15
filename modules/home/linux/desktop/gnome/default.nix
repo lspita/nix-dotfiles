@@ -21,6 +21,7 @@ lib.custom.mkDefaultsModule {
         dock.enable = mkDefault true;
         shortcuts.enable = mkDefault true;
         nautilus.enable = mkDefault true;
+        extensions.enableDefaults = mkDefault true;
       };
     };
 }
