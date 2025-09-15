@@ -22,6 +22,7 @@ lib.custom.mkDefaultsModule {
         shortcuts.enable = mkDefault true;
         nautilus.enable = mkDefault true;
         extensions.enableDefaults = mkDefault true;
+        theme.adw-gtk3.enable = mkDefault true;
       };
     };
 }
