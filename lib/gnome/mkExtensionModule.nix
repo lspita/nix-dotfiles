@@ -27,7 +27,7 @@ root.mkModule {
   mkConfig =
     { cfg }:
     {
-      home.packages = [ package ];
+      programs.gnome-shell.extensions = [ { inherit package; } ];
       dconf.settings = {
         "org/gnome/shell".enabled-extensions = [ uuid ];
       }

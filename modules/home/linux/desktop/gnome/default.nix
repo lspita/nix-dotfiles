@@ -19,6 +19,7 @@ lib.custom.mkDefaultsModule {
         settings.enable = mkDefault true;
         wallpaper.enable = mkDefault true;
         dock.enable = mkDefault true;
+        shortcuts.enable = mkDefault true;
       };
     };
 }
