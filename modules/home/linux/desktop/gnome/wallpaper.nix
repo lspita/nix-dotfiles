@@ -18,47 +18,43 @@ lib.custom.mkModule {
       wallpapers = lib.custom.wallpapersList config;
       wallpapersDataDir = "gnome-background-properties";
       color = "#000000";
-      bgSettings = "org/gnome/desktop/background";
-      ssSettings = "org/gnome/desktop/screensaver";
     in
     {
       dconf.settings =
-        lib.recursiveUpdate
-          (
-            let
-              pathToURI = path: "file://${path}";
-            in
-            with wallpapers.${vars.wallpaper};
-            (
-              if type == "light-dark" then
-                {
-                  ${bgSettings} = {
-                    picture-uri = pathToURI path.light;
-                    picture-uri-dark = pathToURI path.dark;
-                  };
-                  ${ssSettings}.picture-uri = pathToURI path.light;
-                }
-              else
-                let
-                  uri = pathToURI path;
-                in
-                {
-                  ${bgSettings} = {
-                    picture-uri = uri;
-                  };
-                  ${ssSettings}.picture-uri = uri;
-                }
-            )
-          )
-          {
-            ${bgSettings}.primary-color = color;
-            ${ssSettings}.primary-color = color;
+        with wallpapers.${vars.wallpaper};
+        let
+          pathToURI = path: "file://${path}";
+          uris =
+            if type == "light-dark" then
+              {
+                light = pathToURI path.light;
+                dark = pathToURI path.dark;
+              }
+            else
+              let
+                uri = pathToURI path;
+              in
+              {
+                light = uri;
+                dark = uri;
+              };
+        in
+        {
+          "org/gnome/desktop/background" = {
+            picture-uri = uris.light;
+            picture-uri-dark = uris.dark;
+            primary-color = color;
           };
+          "org/gnome/desktop/screensaver" = {
+            picture-uri = uris.light;
+            primary-color = color;
+          };
+        };
       xdg.dataFile = lib.attrsets.foldlAttrs (
-        result: name: properties:
+        result: id: properties:
         result
         // {
-          "${wallpapersDataDir}/${properties.id}.xml".text =
+          "${wallpapersDataDir}/${id}.xml".text =
             # https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/blob/main/backgrounds/adwaita.xml.in
             with properties; ''
               <?xml version="1.0"?>

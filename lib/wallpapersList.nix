@@ -7,41 +7,46 @@ config:
 let
   wallpaperAssetsDir = "wallpapers";
   wallpapersStaticRoot = ../assets/${wallpaperAssetsDir};
-  wallpapers = lib.attrsets.mapAttrs (
-    path: type:
+  wallpapers = lib.attrsets.foldlAttrs (
+    result: path: type:
     let
       wallpaperPath = "${root.assetPath config wallpaperAssetsDir}/${path}";
     in
-    if type == "directory" then
-      {
-        id = path;
-        type = "light-dark";
-        path =
-          let
-            searchVariant =
-              variant:
+    result
+    // (
+      if type == "directory" then
+        {
+          ${path} = {
+            type = "light-dark";
+            path =
               let
-                matches = builtins.filter (lib.strings.hasPrefix variant) (
-                  builtins.attrNames (builtins.readDir "${wallpapersStaticRoot}/${path}")
-                );
+                searchVariant =
+                  variant:
+                  let
+                    matches = builtins.filter (lib.strings.hasPrefix variant) (
+                      builtins.attrNames (builtins.readDir "${wallpapersStaticRoot}/${path}")
+                    );
+                  in
+                  if builtins.length matches == 0 then
+                    throw "Variant ${variant} not found for wallpaper ${path}"
+                  else
+                    "${wallpaperPath}/${builtins.head matches}";
               in
-              if builtins.length matches == 0 then
-                throw "Variant ${variant} not found for wallpaper ${path}"
-              else
-                "${wallpaperPath}/${builtins.head matches}";
-          in
-          {
-            light = searchVariant "light";
-            dark = searchVariant "dark";
+              {
+                light = searchVariant "light";
+                dark = searchVariant "dark";
+              };
           };
-      }
-    else
-      {
-        id = builtins.head (builtins.match "(.*)\\..*" path);
-        type = "regular";
-        path = wallpaperPath;
-      }
-  ) (builtins.readDir wallpapersStaticRoot);
+        }
+      else
+        {
+          ${builtins.head (builtins.match "(.*)\\..*" path)} = {
+            type = "regular";
+            path = wallpaperPath;
+          };
+        }
+    )
+  ) { } (builtins.readDir wallpapersStaticRoot);
 in
 if builtins.hasAttr vars.wallpaper wallpapers then
   wallpapers
