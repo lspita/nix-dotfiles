@@ -23,7 +23,7 @@
       enableDefaults = true;
       bash.enable = true;
     };
-    terminal.kitty.enable = true;
+    terminal.gnome-console.enable = true;
     editor.zed.enable = true;
   };
 }
