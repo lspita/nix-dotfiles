@@ -29,7 +29,6 @@ lib.custom.mkDefaultsModule {
         user-themes.enable = mkDefault true;
         vitals.enable = mkDefault true;
         open-bar.enable = mkDefault true;
-        # forge.enable = mkDefault true;
       };
     };
 }
