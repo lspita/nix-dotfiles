@@ -44,9 +44,9 @@ lib.custom.mkModule {
           # popup menus
           menustyle = false;
           # shell
-          apply-menu-notif = true;
-          apply-menu-shell = true;
-          apply-accent-shell = true;
+          apply-menu-notif = false;
+          apply-menu-shell = false;
+          apply-accent-shell = false;
           apply-all-shell = false;
           # gtk/flatpak
           # headerbar-hint = 0;
