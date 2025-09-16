@@ -21,7 +21,7 @@ lib.custom.mkDefaultsModule {
       custom.modules.linux.desktop.gnome.extensions = with lib; {
         just-perfection.enable = mkDefault true;
         blur-my-shell.enable = mkDefault true;
-        forge.enable = mkDefault true;
+        # forge.enable = mkDefault true;
         light-style.enable = mkDefault true;
         night-theme-switcher.enable = mkDefault true;
         user-themes.enable = mkDefault true;

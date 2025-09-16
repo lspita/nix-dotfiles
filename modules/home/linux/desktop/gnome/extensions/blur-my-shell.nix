@@ -19,6 +19,7 @@ lib.custom.mkModule {
       package = pkgs.gnomeExtensions.blur-my-shell;
       settings = {
         "overview".style-components = 3; # transparent
+        "panel".blur = false;
       };
     };
 }
