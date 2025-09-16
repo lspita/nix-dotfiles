@@ -85,6 +85,9 @@ lib.custom.mkModule {
             ]);
         };
       };
-      home.shellAliases.open = "xdg-open";
+      home = {
+        shellAliases.open = "xdg-open";
+        file.${config.xdg.userDirs.templates}.source = ./templates;
+      };
     };
 }
