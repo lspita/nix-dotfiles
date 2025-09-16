@@ -15,7 +15,7 @@ lib.custom.mkModule {
   ];
   extraOptions = {
     applications = {
-      enable = lib.custom.mkTrueEnableOption "applications blur";
+      enable = lib.mkEnableOption "applications blur";
       blacklist = lib.mkOption {
         type = with lib.types; listOf str;
         default = [ ];
