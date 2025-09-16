@@ -20,7 +20,7 @@ lib.custom.mkModule {
       settings = {
         "" = {
           support-notifier-type = 0; # don't show support request anymore
-          theme = true;
+          theme = false;
           world-clock = false;
           weather = false;
           window-demands-attention-focus = true;

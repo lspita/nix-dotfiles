@@ -1,9 +1,8 @@
 { lib }:
 {
   package,
-  # https://github.com/NixOS/nixpkgs/blob/c23193b943c6c689d70ee98ce3128239ed9e32d1/pkgs/desktops/gnome/extensions/buildGnomeExtension.nix#L68-L71
-  name ? package.extensionPortalSlug,
   uuid ? package.extensionUuid,
+  name ? package.extensionPortalSlug,
   settings ? { },
 }:
 {

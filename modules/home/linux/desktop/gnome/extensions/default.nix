@@ -16,16 +16,20 @@ lib.custom.mkDefaultsModule {
   mkConfig =
     { ... }:
     {
-      home.packages = [ pkgs.gnome-extension-manager ];
+      home.packages = with pkgs; [
+        gnome-extension-manager
+        dconf-editor
+      ];
       dconf.settings."org/gnome/shell".disabled-extensions = [ ];
       custom.modules.linux.desktop.gnome.extensions = with lib; {
         just-perfection.enable = mkDefault true;
         blur-my-shell.enable = mkDefault true;
-        # forge.enable = mkDefault true;
         light-style.enable = mkDefault true;
         night-theme-switcher.enable = mkDefault true;
         user-themes.enable = mkDefault true;
         vitals.enable = mkDefault true;
+        open-bar.enable = mkDefault true;
+        # forge.enable = mkDefault true;
       };
     };
 }

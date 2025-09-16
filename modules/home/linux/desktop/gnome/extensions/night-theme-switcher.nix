@@ -17,6 +17,7 @@ lib.custom.mkModule {
     { ... }:
     lib.custom.gnome.mkExtensionConfig {
       package = pkgs.gnomeExtensions.night-theme-switcher;
+      name = "nightthemeswitcher";
       settings = {
         "time" = {
           nightthemeswitcher-ondemand-keybinding = [ "<Super>F5" ];
