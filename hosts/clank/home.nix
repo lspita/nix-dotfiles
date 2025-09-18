@@ -13,7 +13,6 @@
         };
       };
     };
-    packages.enable = true;
     security.bitwarden = {
       enable = true;
       sshAgent.enable = true;
@@ -28,5 +27,6 @@
       enable = true;
       passwordManager.enable = false;
     };
+    spotify.enable = true;
   };
 }

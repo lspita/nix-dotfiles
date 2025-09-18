@@ -2,9 +2,7 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs = {
-      url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin";
@@ -31,6 +29,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    flake-utils.url = "github:numtide/flake-utils";
   };
   outputs =
     {
@@ -38,6 +38,7 @@
       nix-darwin,
       home-manager,
       haumea,
+      flake-utils,
       ...
     }@flakeInputs:
     let
@@ -179,5 +180,30 @@
             ) (builtins.readDir hostsDir)
           )
         )
-    );
+    )
+    // (flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+        };
+      in
+      {
+        devShells.default = pkgs.mkShell {
+          name = "nix-dotfiles default devshell";
+          buildInputs = with pkgs; [
+            nixd
+            nil
+            nixfmt
+            lua-language-server
+            git
+            direnv
+          ];
+
+          shellHook = ''
+            echo "Hello, world"
+          '';
+        };
+      }
+    ));
 }
