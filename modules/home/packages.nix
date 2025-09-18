@@ -16,7 +16,6 @@ lib.custom.mkModule {
         nixd
         nil
         lua-language-server
-        firefox
         git
         spotify
       ];

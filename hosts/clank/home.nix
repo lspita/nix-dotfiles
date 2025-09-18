@@ -24,5 +24,9 @@
     };
     terminal.gnome-console.enable = true;
     editor.zed.enable = true;
+    browser.firefox = {
+      enable = true;
+      passwordManager.enable = false;
+    };
   };
 }
