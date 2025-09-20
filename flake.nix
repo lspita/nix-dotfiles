@@ -191,7 +191,6 @@
             nixfmt
             lua-language-server
             git
-            direnv
           ];
         };
       }
