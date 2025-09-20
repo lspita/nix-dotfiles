@@ -45,5 +45,8 @@
     "mode": "system",
     "dark": "Catppuccin Mocha",
     "light": "Catppuccin Latte"
+  },
+  "file_types": {
+    "Shell Script": [".envrc"]
   }
 }
