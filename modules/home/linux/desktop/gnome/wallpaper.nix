@@ -21,35 +21,38 @@ lib.custom.mkModule {
     in
     {
       dconf.settings =
-        with wallpapers.${vars.wallpaper};
-        let
-          pathToURI = path: "file://${path}";
-          uris =
-            if type == "light-dark" then
-              {
-                light = pathToURI path.light;
-                dark = pathToURI path.dark;
-              }
-            else
-              let
-                uri = pathToURI path;
-              in
-              {
-                light = uri;
-                dark = uri;
-              };
-        in
-        {
-          "org/gnome/desktop/background" = {
-            picture-uri = uris.light;
-            picture-uri-dark = uris.dark;
-            primary-color = color;
+        if builtins.isNull vars.wallpaper then
+          { }
+        else
+          with wallpapers.${vars.wallpaper};
+          let
+            pathToURI = path: "file://${path}";
+            uris =
+              if type == "light-dark" then
+                {
+                  light = pathToURI path.light;
+                  dark = pathToURI path.dark;
+                }
+              else
+                let
+                  uri = pathToURI path;
+                in
+                {
+                  light = uri;
+                  dark = uri;
+                };
+          in
+          {
+            "org/gnome/desktop/background" = {
+              picture-uri = uris.light;
+              picture-uri-dark = uris.dark;
+              primary-color = color;
+            };
+            "org/gnome/desktop/screensaver" = {
+              picture-uri = uris.light;
+              primary-color = color;
+            };
           };
-          "org/gnome/desktop/screensaver" = {
-            picture-uri = uris.light;
-            primary-color = color;
-          };
-        };
       xdg.dataFile = lib.attrsets.foldlAttrs (
         result: id: properties:
         result
