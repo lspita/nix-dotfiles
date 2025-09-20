@@ -33,7 +33,8 @@ lib.custom.mkModule {
         "panel".blur = false;
         "applications" = with cfg.applications; {
           inherit blacklist;
-          enable-all = enable;
+          blur = enable;
+          enable-all = true;
           dynamic-opacity = opaqueFocused;
         };
       };
