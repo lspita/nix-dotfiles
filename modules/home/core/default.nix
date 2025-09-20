@@ -14,6 +14,7 @@ lib.custom.mkDefaultsModule {
     with lib;
     {
       custom.modules.core = {
+        fonts.enable = mkDefault true;
         direnv.enable = mkDefault true;
         environment.enable = mkDefault true;
         git.enable = mkDefault true;

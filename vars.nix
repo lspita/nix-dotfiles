@@ -17,6 +17,25 @@
       allowUnfree = true;
     };
   };
+  fonts =
+    let
+      size = 11;
+    in
+    {
+      packages =
+        pkgs: with pkgs; [
+          nerd-fonts.noto
+          noto-fonts
+        ];
+      normal = {
+        inherit size;
+        name = "Noto Sans";
+      };
+      monospace = {
+        inherit size;
+        name = "NotoMono Nerd Font";
+      };
+    };
   linux = {
     defaultApps = rec {
       # Some app types need both desktop and program definitions.

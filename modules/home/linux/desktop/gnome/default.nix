@@ -16,6 +16,7 @@ lib.custom.mkDefaultsModule {
     {
       programs.gnome-shell.enable = true;
       custom.modules.linux.desktop.gnome = with lib; {
+        font.enable = mkDefault true;
         settings.enable = mkDefault true;
         wallpaper.enable = mkDefault true;
         appsLayout.enable = mkDefault true;
