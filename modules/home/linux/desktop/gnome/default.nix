@@ -18,7 +18,7 @@ lib.custom.mkDefaultsModule {
       custom.modules.linux.desktop.gnome = with lib; {
         settings.enable = mkDefault true;
         wallpaper.enable = mkDefault true;
-        dock.enable = mkDefault true;
+        appsLayout.enable = mkDefault true;
         shortcuts.enable = mkDefault true;
         nautilus.enable = mkDefault true;
         extensions.enableDefaults = mkDefault true;

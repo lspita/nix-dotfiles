@@ -29,6 +29,7 @@ lib.custom.mkDefaultsModule {
         user-themes.enable = mkDefault true;
         vitals.enable = mkDefault true;
         open-bar.enable = mkDefault true;
+        alphabetical-app-grid.enable = mkDefault true;
       };
     };
 }
