@@ -1,6 +1,15 @@
 {
+  "edit_predictions": {
+    "mode": "subtle",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null,
+      "enterprise_uri": null
+    },
+    "enabled_in_text_threads": false
+  },
   "features": {
-    "edit_prediction_provider": "none"
+    "edit_prediction_provider": "zed"
   },
   "auto_install_extensions": {
     "catppuccin": true,
