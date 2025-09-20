@@ -30,6 +30,7 @@ lib.custom.mkDefaultsModule {
         vitals.enable = mkDefault true;
         open-bar.enable = mkDefault true;
         alphabetical-app-grid.enable = mkDefault true;
+        auto-power-profile.enable = mkDefault true;
       };
     };
 }
