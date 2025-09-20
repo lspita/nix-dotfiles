@@ -193,10 +193,6 @@
             git
             direnv
           ];
-
-          shellHook = ''
-            echo "Hello, world"
-          '';
         };
       }
     ));
