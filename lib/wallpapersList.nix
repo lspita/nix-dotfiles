@@ -40,7 +40,7 @@ let
         }
       else
         {
-          ${builtins.head (builtins.match "(.*)\\..*" path)} = {
+          ${root.fileBasename path} = {
             type = "regular";
             path = wallpaperPath;
           };
