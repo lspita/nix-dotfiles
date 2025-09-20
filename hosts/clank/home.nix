@@ -26,9 +26,12 @@
       zed.enable = true;
       vscode.enable = true;
     };
-    browser.firefox = {
-      enable = true;
-      passwordManager.enable = false;
+    browser = {
+      firefox = {
+        enable = true;
+        passwordManager.enable = false;
+      };
+      chrome.enable = true;
     };
     spotify.enable = true;
   };
