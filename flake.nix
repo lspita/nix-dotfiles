@@ -183,7 +183,7 @@
         };
       in
       {
-        devShells.default = pkgs.mkShell {
+        devShell = pkgs.mkShell {
           name = "nix-dotfiles default devshell";
           buildInputs = with pkgs; [
             nixd
