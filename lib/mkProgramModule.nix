@@ -1,8 +1,9 @@
-{ root }:
+{ root, lib }:
 {
   config,
   path,
-  packages,
+  packages ? [ ],
+  programs ? [ ],
 }:
 root.mkModule {
   inherit
@@ -11,7 +12,13 @@ root.mkModule {
     ;
   mkConfig =
     { ... }:
+    let
+      singleOrList = value: if builtins.isList value then value else [ value ];
+    in
     {
-      home.packages = if builtins.isList packages then packages else [ packages ];
+      home.packages = singleOrList packages;
+      programs = builtins.foldl' (result: program: result // { ${program}.enable = true; }) { } (
+        singleOrList programs
+      );
     };
 }
