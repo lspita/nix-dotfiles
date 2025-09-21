@@ -191,6 +191,7 @@
             nixfmt
             lua-language-server
             git
+            markdown-oxide
           ];
         };
       }
