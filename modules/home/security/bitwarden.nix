@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  systemType,
   ...
 }:
 lib.custom.mkModule {
@@ -26,19 +27,16 @@ lib.custom.mkModule {
         sessionVariables = lib.mkIf cfg.sshAgent.enable (
           let
             sockerDir =
-              with pkgs.stdenv;
               let
                 homeDir = config.home.homeDirectory;
               in
-              if isLinux then
-                homeDir
-              else if isDarwin then
-                "${homeDir}/Library/Containers/com.bitwarden.desktop/Data"
-              else
-                throw "Unsupported platform for bitwarden ssh agent socket";
+              {
+                linux = homeDir;
+                darwin = "${homeDir}/Library/Containers/com.bitwarden.desktop/Data";
+              };
           in
           {
-            SSH_AUTH_SOCK = "${sockerDir}/.bitwarden-ssh-agent.sock";
+            SSH_AUTH_SOCK = "${sockerDir.${systemType}}/.bitwarden-ssh-agent.sock";
           }
         );
       };
