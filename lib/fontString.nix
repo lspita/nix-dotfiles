@@ -1,1 +1,1 @@
-{ ... }: { name, size }: "${name} ${builtins.toString size}"
+_: { name, size }: "${name} ${builtins.toString size}"

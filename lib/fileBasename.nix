@@ -1,1 +1,1 @@
-{ ... }: filename: builtins.head (builtins.match "(.*)\\..*" filename)
+_: filename: builtins.head (builtins.match "(.*)\\..*" filename)

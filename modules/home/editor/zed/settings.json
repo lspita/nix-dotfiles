@@ -1,4 +1,10 @@
 {
+  "agent": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-thinking"
+    }
+  },
   "edit_predictions": {
     "mode": "subtle",
     "copilot": {
