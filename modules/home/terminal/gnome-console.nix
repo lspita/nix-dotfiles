@@ -14,6 +14,9 @@ lib.custom.mkModule {
     { ... }:
     {
       home.packages = with pkgs; [ gnome-console ];
-      dconf.settings."org/gnome/Console".theme = "auto";
+      dconf.settings."org/gnome/Console" = {
+        theme = "auto";
+        font-scale = 1.1;
+      };
     };
 }
