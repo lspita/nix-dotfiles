@@ -19,10 +19,13 @@
     };
     shell = {
       enableDefaults = true;
+      prompt.ohmyposh = {
+        enable = true;
+        theme = "robbyrussell";
+      };
       # you need to also enable the shells in configuration.nix
-      bash.enable = true;
       zsh.enable = true;
-      prompt.starship.enable = true;
+      bash.enable = true;
     };
     terminal.gnome-console.enable = true;
     editor = {

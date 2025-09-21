@@ -28,7 +28,7 @@
         pkgs: with pkgs; [
           nerd-fonts.noto
           noto-fonts
-          jetbrains-mono
+          nerd-fonts.jetbrains-mono
         ];
       normal = {
         inherit size;
@@ -36,7 +36,7 @@
       };
       monospace = {
         inherit size;
-        name = "Jetbrains Mono";
+        name = "NotoMono Nerd Font";
       };
     };
   linux = {
