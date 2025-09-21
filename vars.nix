@@ -18,6 +18,7 @@
       allowUnfree = true;
     };
   };
+  shell = pkgs: pkgs.zsh;
   fonts =
     let
       size = 11;
@@ -27,6 +28,7 @@
         pkgs: with pkgs; [
           nerd-fonts.noto
           noto-fonts
+          jetbrains-mono
         ];
       normal = {
         inherit size;
@@ -34,7 +36,7 @@
       };
       monospace = {
         inherit size;
-        name = "NotoMono Nerd Font";
+        name = "Jetbrains Mono";
       };
     };
   linux = {

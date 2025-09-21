@@ -1,4 +1,4 @@
-{ root, lib }:
+{ root }:
 {
   config,
   path,

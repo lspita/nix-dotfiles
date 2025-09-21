@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   vars,
   ...
 }:
@@ -15,6 +16,7 @@ lib.custom.mkModule {
     {
       users.users.${username} = {
         description = fullname;
+        shell = vars.shell pkgs;
       };
     };
 }

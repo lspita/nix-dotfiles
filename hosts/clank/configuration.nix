@@ -6,12 +6,18 @@
     ./system/gnome/touchpad-resize.nix
   ];
 
-  custom.modules.nixos = {
-    core.enableDefaults = true;
-    login.gdm.enable = true;
-    desktop.gnome = {
-      enable = true;
-      excludePackages = with pkgs; [ gnome-console ]; # use kitty instead
+  custom.modules = {
+    nixos = {
+      core.enableDefaults = true;
+      login.gdm.enable = true;
+      desktop.gnome = {
+        enable = true;
+        excludePackages = with pkgs; [ gnome-console ]; # use kitty instead
+      };
+    };
+    shell = {
+      bash.enable = true;
+      zsh.enable = true;
     };
   };
 }
