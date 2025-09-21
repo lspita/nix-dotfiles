@@ -14,6 +14,12 @@
         enable = true;
         excludePackages = with pkgs; [ gnome-console ]; # use kitty instead
       };
+      virtualisation.containers = {
+        enable = true;
+        autoPrune.enable = true;
+        docker.enable = true;
+        podman.enable = true;
+      };
     };
     shell = {
       bash.enable = true;
