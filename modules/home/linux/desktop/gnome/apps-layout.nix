@@ -2,7 +2,6 @@
   config,
   lib,
   vars,
-  pkgs,
   ...
 }:
 lib.custom.mkModule {
@@ -25,15 +24,13 @@ lib.custom.mkModule {
 
       dconf.settings = {
         "org/gnome/shell" = {
-          favorite-apps =
-            with vars.linux.defaultApps;
-            [
-              browser.desktop
-              editor.desktop
-              terminal.desktop
-              fileManager
-            ]
-            ++ (if builtins.elem pkgs.spotify config.home.packages then [ "spotify.desktop" ] else [ ]);
+          favorite-apps = with vars.linux.defaultApps; [
+            browser.desktop
+            editor.desktop
+            terminal.desktop
+            fileManager
+            music
+          ];
         };
       }
       // (

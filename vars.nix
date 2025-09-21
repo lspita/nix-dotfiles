@@ -59,6 +59,7 @@
         program = "nano";
       };
       fileManager = "org.gnome.Nautilus.desktop";
+      music = "spotify.desktop";
       pdf = browser.desktop;
       mail = browser.desktop;
       image = "org.gnome.Loupe.desktop";
