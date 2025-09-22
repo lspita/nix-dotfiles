@@ -51,10 +51,7 @@ let
 
         pkgs = import nixpkgs {
           inherit (hostInfo) system;
-          config = {
-            allowUnfree = vars.nix.pkgs.allowUnfree;
-            allowUnfreePredicate = (_: vars.nixpkgs.allowUnfree);
-          };
+          config = { inherit (vars.nix) allowUnfree; };
           overlays = builtins.attrValues (
             haumea.lib.load {
               src = flakePath "overlays";

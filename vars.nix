@@ -9,7 +9,7 @@
     image = "clank";
   };
 
-  nix.pkgs.allowUnfree = true;
+  nix.allowUnfree = true;
 
   shell = pkgs: pkgs.zsh;
   fonts =
