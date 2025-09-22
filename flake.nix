@@ -27,5 +27,13 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = inputs: import ./outputs (inputs // { flakeRoot = ./.; });
+  outputs =
+    inputs:
+    import ./outputs (
+      inputs
+      // rec {
+        flakeRoot = ./.;
+        flakePath = path: "${flakeRoot}/${path}";
+      }
+    );
 }

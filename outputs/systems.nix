@@ -3,11 +3,10 @@
   nix-darwin,
   home-manager,
   haumea,
-  flakeRoot,
+  flakePath,
   ...
 }@flakeInputs:
 let
-  flakePath = path: "${flakeRoot}/${path}";
   hostsDir = flakePath "hosts";
   lib = nixpkgs.lib;
   createSystem = {
@@ -26,10 +25,7 @@ let
     systems:
     builtins.foldl' (
       result:
-      {
-        hostname,
-        hostInfo,
-      }:
+      { hostname, hostInfo }:
       let
         hostPath = path: "${hostsDir}/${hostname}/${path}";
 
