@@ -8,7 +8,6 @@ lib.custom.mkModule {
   inherit config;
   path = [
     "linux"
-    "desktop"
     "core"
     "xdg"
   ];

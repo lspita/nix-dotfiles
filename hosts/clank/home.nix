@@ -2,9 +2,9 @@
 {
   custom.modules = {
     core.enableDefaults = true;
-    linux.desktop = {
+    linux = {
       core.enableDefaults = true;
-      gnome = {
+      desktop.gnome = {
         enableDefaults = true;
         settings = {
           vrr.enable = true;

@@ -8,14 +8,13 @@ lib.custom.mkDefaultsModule {
   importPath = ./.;
   path = [
     "linux"
-    "desktop"
     "core"
   ];
   mkConfig =
     { ... }:
     with lib;
     {
-      custom.modules.linux.desktop.core = {
+      custom.modules.linux.core = {
         xdg.enable = mkDefault true;
       };
     };
