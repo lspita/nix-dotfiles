@@ -11,7 +11,7 @@
 
   nix.allowUnfree = true;
 
-  shell = pkgs: pkgs.zsh;
+  shell = pkgs: pkgs.bash;
   fonts =
     let
       size = 11;
