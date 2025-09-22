@@ -2,11 +2,12 @@
   root,
   lib,
   vars,
+  flakePath,
 }:
 config:
 let
   wallpaperAssetsDir = "wallpapers";
-  wallpapersStaticRoot = ../assets/${wallpaperAssetsDir};
+  wallpapersStaticRoot = flakePath "assets/${wallpaperAssetsDir}";
   wallpapers = lib.attrsets.foldlAttrs (
     result: path: type:
     let

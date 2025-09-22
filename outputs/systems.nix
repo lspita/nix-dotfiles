@@ -45,6 +45,7 @@ let
             lib
             vars
             flakeInputs
+            flakePath
             ;
         };
 
@@ -62,6 +63,10 @@ let
           );
         };
 
+        inputs = baseInputs // {
+          inherit pkgs systemType;
+        };
+
         systemType =
           with pkgs.stdenv;
           if isLinux then
@@ -72,19 +77,14 @@ let
             throw "Unsupported system type";
 
         customLib = haumea.lib.load {
+          inherit inputs;
           src = flakePath "lib";
-          inputs = baseInputs // {
-            inherit pkgs systemType;
-          };
         };
 
-        specialArgs = {
-          inherit
-            vars
-            flakeInputs
-            systemType
-            ;
-        };
+        specialArgs = builtins.removeAttrs inputs [
+          "lib"
+          "pkgs"
+        ];
       in
       result
       // {
