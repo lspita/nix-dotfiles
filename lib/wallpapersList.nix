@@ -49,7 +49,10 @@ let
     )
   ) { } (builtins.readDir wallpapersStaticRoot);
 in
-if builtins.hasAttr vars.wallpaper wallpapers then
+let
+  wallpaper = vars.wallpaper;
+in
+if builtins.isNull wallpaper || builtins.hasAttr wallpaper wallpapers then
   wallpapers
 else
-  throw "Invalid wallpaper selected: ${vars.wallpaper}"
+  throw "Invalid wallpaper selected: ${wallpaper}"

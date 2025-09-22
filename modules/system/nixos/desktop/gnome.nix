@@ -21,6 +21,10 @@ lib.custom.mkModule {
   };
   mkConfig =
     { cfg }:
+    let
+      pfp = lib.custom.pfpList config;
+      userImage = vars.user.image;
+    in
     {
       services.desktopManager.gnome.enable = true;
       environment.gnome.excludePackages =
@@ -49,5 +53,15 @@ lib.custom.mkModule {
           }
         ];
       };
+      # https://discourse.nixos.org/t/setting-the-user-profile-image-under-gnome/36233
+      system.activationScripts =
+        if builtins.isNull userImage then
+          { }
+        else
+          {
+            gnome-set-pfp.text = ''
+              cp -f ${pfp.${userImage}} /var/lib/AccountsService/icons/${vars.user.username}
+            '';
+          };
     };
 }

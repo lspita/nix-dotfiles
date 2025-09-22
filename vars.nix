@@ -2,11 +2,11 @@
   dotfilesHome = "nix-dotfiles"; # location of dotfiles in the user home
   backupFileExtension = "bkp";
   wallpaper = "moon";
-  pfp = "clank";
   user = {
     username = "lspita";
     fullname = "Ludovico Spitaleri";
     email = "ludovico.spitaleri@gmail.com"; # used for some configurations (e.g. git)
+    image = "clank";
   };
   nix = {
     cleaning = {
