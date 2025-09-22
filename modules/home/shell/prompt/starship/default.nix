@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 lib.custom.mkModule {
@@ -21,7 +20,6 @@ lib.custom.mkModule {
   mkConfig =
     { cfg }:
     {
-      home.packages = with pkgs; [ blesh ];
       programs.starship = with cfg; {
         enable = true;
         settings =
