@@ -8,16 +8,9 @@
     email = "ludovico.spitaleri@gmail.com"; # used for some configurations (e.g. git)
     image = "clank";
   };
-  nix = {
-    cleaning = {
-      frequency = "weekly";
-      deleteOlderThan = "7d";
-      maxGenerations = 5;
-    };
-    pkgs = {
-      allowUnfree = true;
-    };
-  };
+
+  nix.pkgs.allowUnfree = true;
+
   shell = pkgs: pkgs.zsh;
   fonts =
     let

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  vars,
   ...
 }:
 lib.custom.mkModule {
@@ -27,7 +26,6 @@ lib.custom.mkModule {
           systemd-boot = {
             enable = true;
             editor = false; # recommended false https://search.nixos.org/options?channel=unstable&show=boot.loader.systemd-boot.editor
-            configurationLimit = vars.nix.cleaning.maxGenerations;
           };
           efi.canTouchEfiVariables = true;
           timeout = cfg.entriesTimeout; # spam space to show entries selection

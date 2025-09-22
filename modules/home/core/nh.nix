@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  vars,
   ...
 }:
 lib.custom.mkModule {
@@ -15,11 +14,6 @@ lib.custom.mkModule {
     {
       programs.nh = {
         enable = true;
-        clean = with vars.nix.cleaning; {
-          enable = true;
-          dates = frequency;
-          extraArgs = "--keep-since ${deleteOlderThan} --keep ${builtins.toString maxGenerations}";
-        };
         flake = lib.custom.dotPath config ".";
       };
     };
