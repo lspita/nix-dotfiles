@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 lib.custom.mkProgramModule {
@@ -10,5 +9,5 @@ lib.custom.mkProgramModule {
     "editor"
     "vscode"
   ];
-  packages = pkgs.vscode;
+  programs = "vscode";
 }
