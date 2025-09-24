@@ -40,5 +40,6 @@
       chrome.enable = true;
     };
     spotify.enable = true;
+    gh.enable = true;
   };
 }
