@@ -57,6 +57,7 @@ lib.custom.mkModule {
           ])
         ];
         "org/gnome/system/location".enabled = cfg.locationServices.enable;
+        "org/gnome/desktop/peripherals/touchpad".disable-while-typing = false;
       };
     };
 }
