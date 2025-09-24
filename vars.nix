@@ -50,7 +50,7 @@
         program = "firefox";
       };
       editor = {
-        desktop = "dev.zed.Zed.desktop";
+        desktop = "code.desktop";
         program = "nano";
       };
       fileManager = "org.gnome.Nautilus.desktop";
