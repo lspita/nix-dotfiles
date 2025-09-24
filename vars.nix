@@ -25,7 +25,7 @@
         ];
       normal = {
         inherit size;
-        name = "Noto Sans";
+        name = "NotoSans Nerd Font";
       };
       monospace = {
         inherit size;
