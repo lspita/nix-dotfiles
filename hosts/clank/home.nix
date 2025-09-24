@@ -23,7 +23,6 @@
         enable = true;
         theme = "robbyrussell";
       };
-      # you need to also enable the shells in configuration.nix
       zsh.enable = true;
       bash.enable = true;
     };
