@@ -24,7 +24,10 @@
         theme = "robbyrussell";
       };
       zsh.enable = true;
-      bash.enable = true;
+      bash = {
+        enable = true;
+        blesh.enable = true;
+      };
     };
     terminal.gnome-console.enable = true;
     editor = {

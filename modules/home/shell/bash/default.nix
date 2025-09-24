@@ -1,6 +1,7 @@
 { config, lib, ... }:
 lib.custom.mkModule {
   inherit config;
+  imports = [ ./blesh.nix ];
   path = [
     "shell"
     "bash"
