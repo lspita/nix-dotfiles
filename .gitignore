@@ -1,1 +1,3 @@
 .direnv/
+# output of build
+/result

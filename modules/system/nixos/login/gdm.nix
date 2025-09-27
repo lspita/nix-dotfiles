@@ -1,17 +1,15 @@
 { config, lib, ... }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "nixos"
-    "login"
-    "gdm"
-  ];
-  mkConfig =
-    { ... }:
+with lib.custom;
+modules.mkModule config ./gdm.nix {
+  options = {
+    wayland = utils.mkTrueEnableOption "wayland support";
+  };
+  config =
+    { self, ... }:
     {
       services.displayManager.gdm = {
+        inherit (self) wayland;
         enable = true;
-        wayland = config.custom.modules.nixos.core.wayland.enable;
       };
     };
 }

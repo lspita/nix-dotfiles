@@ -1,32 +1,23 @@
-{
-  config,
-  lib,
-  ...
-}:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "shell"
-    "prompt"
-    "starship"
-  ];
-  extraOptions = {
+{ config, lib, ... }:
+with lib.custom;
+modules.mkModule config ./. {
+  options = {
     preset = lib.mkOption {
       type = with lib.types; nullOr str;
       default = null;
       description = "starship preset to use";
     };
   };
-  mkConfig =
-    { cfg }:
+  config =
+    { self, ... }:
     {
-      programs.starship = with cfg; {
+      programs.starship = {
         enable = true;
         settings =
-          if builtins.isNull preset then
+          if builtins.isNull self.preset then
             { }
           else
-            builtins.fromTOML (builtins.readFile ./presets/${preset}.toml);
+            builtins.fromTOML (builtins.readFile ./presets/${self.preset}.toml);
       };
     };
 }

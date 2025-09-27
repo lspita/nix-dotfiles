@@ -4,16 +4,9 @@
   vars,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "linux"
-    "desktop"
-    "gnome"
-    "appsLayout"
-  ];
-  mkConfig =
-    { ... }:
+with lib.custom;
+modules.mkModule config ./appsLayout.nix {
+  config =
     let
       defaultAppFolders = [
         "Utilities"
@@ -21,7 +14,6 @@ lib.custom.mkModule {
       ];
     in
     {
-
       dconf.settings = {
         "org/gnome/shell" = {
           favorite-apps = with vars.linux.defaultApps; [

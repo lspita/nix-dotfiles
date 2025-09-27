@@ -5,24 +5,19 @@
   vars,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "nixos"
-    "desktop"
-    "gnome"
-  ];
-  extraOptions = {
+with lib.custom;
+modules.mkModule config ./gnome.nix {
+  options = {
     excludePackages = lib.mkOption {
       type = with lib.types; listOf package;
       default = [ ];
       description = "Gnome packages to exclude";
     };
   };
-  mkConfig =
-    { cfg }:
+  config =
+    { self, ... }:
     let
-      pfp = lib.custom.pfpList config;
+      profiles = assets.profilesList config;
       userImage = vars.user.image;
     in
     {
@@ -35,7 +30,7 @@ lib.custom.mkModule {
           geary
           epiphany
         ]
-        ++ cfg.excludePackages;
+        ++ self.excludePackages;
 
       # https://github.com/Stunkymonkey/nautilus-open-any-terminal
       programs = {
@@ -60,7 +55,7 @@ lib.custom.mkModule {
         else
           {
             gnome-set-pfp.text = ''
-              cp -f ${pfp.${userImage}} /var/lib/AccountsService/icons/${vars.user.username}
+              cp -f ${profiles.${userImage}} /var/lib/AccountsService/icons/${vars.user.username}
             '';
           };
     };

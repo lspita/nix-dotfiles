@@ -4,16 +4,9 @@
   pkgs,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "linux"
-    "desktop"
-    "gnome"
-    "extensions"
-    "blur-my-shell"
-  ];
-  extraOptions = {
+with lib.custom;
+modules.mkModule config ./blur-my-shell.nix {
+  options = {
     applications = {
       enable = lib.mkEnableOption "applications blur";
       blacklist = lib.mkOption {
@@ -24,14 +17,14 @@ lib.custom.mkModule {
       opaqueFocused = lib.mkEnableOption "opaque effect for focused app";
     };
   };
-  mkConfig =
-    { cfg }:
-    lib.custom.gnome.mkExtensionConfig {
+  config =
+    { self, ... }:
+    gnome.mkExtensionConfig {
       package = pkgs.gnomeExtensions.blur-my-shell;
       settings = {
         "overview".style-components = 3; # transparent
         "panel".blur = false;
-        "applications" = with cfg.applications; {
+        "applications" = with self.applications; {
           inherit blacklist;
           blur = enable;
           enable-all = true;

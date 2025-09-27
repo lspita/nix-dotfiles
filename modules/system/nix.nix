@@ -4,12 +4,9 @@
   vars,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "nix"
-  ];
-  extraOptions = {
+with lib.custom;
+modules.mkModule config ./nix.nix {
+  options = {
     cleaning = {
       dates = lib.mkOption {
         type = with lib.types; either singleLineStr (listOf str);
@@ -23,8 +20,8 @@ lib.custom.mkModule {
       };
     };
   };
-  mkConfig =
-    { cfg }:
+  config =
+    { self, ... }:
     {
       nix = {
         settings = {
@@ -35,7 +32,7 @@ lib.custom.mkModule {
           ];
           auto-optimise-store = true;
         };
-        gc = with cfg.cleaning; {
+        gc = with self.cleaning; {
           inherit dates;
           automatic = true;
           options = "--delete-older-than +${builtins.toString maxGenerations}";

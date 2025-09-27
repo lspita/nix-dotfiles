@@ -1,20 +1,10 @@
-{
-  config,
-  lib,
-  ...
-}:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "core"
-    "nh"
-  ];
-  mkConfig =
-    { ... }:
-    {
-      programs.nh = {
-        enable = true;
-        flake = lib.custom.dotPath config ".";
-      };
+{ config, lib, ... }:
+with lib.custom;
+modules.mkModule config ./nh.nix {
+  config = {
+    programs.nh = {
+      enable = true;
+      flake = utils.dotRoot config;
     };
+  };
 }

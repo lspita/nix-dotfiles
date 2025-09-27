@@ -5,16 +5,10 @@
   vars,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "core"
-    "fonts"
-  ];
-  mkConfig =
-    { ... }:
-    {
-      home.packages = vars.fonts.packages pkgs;
-      fonts.fontconfig.enable = true;
-    };
+with lib.custom;
+modules.mkModule config ./fonts.nix {
+  config = {
+    home.packages = vars.fonts.packages pkgs;
+    fonts.fontconfig.enable = true;
+  };
 }

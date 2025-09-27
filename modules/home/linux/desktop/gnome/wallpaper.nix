@@ -4,18 +4,11 @@
   vars,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "linux"
-    "desktop"
-    "gnome"
-    "wallpaper"
-  ];
-  mkConfig =
-    { ... }:
+with lib.custom;
+modules.mkModule config ./wallpaper.nix {
+  config =
     let
-      wallpapers = lib.custom.wallpapersList config;
+      wallpapers = assets.wallpapersList config;
       wallpapersDataDir = "gnome-background-properties";
       color = "#000000";
     in

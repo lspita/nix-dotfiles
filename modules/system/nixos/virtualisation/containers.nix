@@ -4,14 +4,9 @@
   vars,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "nixos"
-    "virtualisation"
-    "containers"
-  ];
-  extraOptions = {
+with lib.custom;
+modules.mkModule config ./containers.nix {
+  options = {
     autoPrune = {
       enable = lib.mkEnableOption "container auto pruning";
       dates = lib.mkOption {
@@ -27,14 +22,15 @@ lib.custom.mkModule {
     };
     docker = {
       enable = lib.mkEnableOption "docker";
-      rootless = lib.custom.mkTrueEnableOption "user permissions for rootless docker";
+      rootless = utils.mkTrueEnableOption "user permissions for rootless docker";
     };
     podman.enable = lib.mkEnableOption "podman";
   };
-  mkConfig =
-    { cfg }:
+  config =
+    { self, ... }:
+    with self;
     {
-      virtualisation = with cfg; {
+      virtualisation = {
         docker = {
           inherit autoPrune;
           inherit (docker) enable;
@@ -45,7 +41,7 @@ lib.custom.mkModule {
         };
       };
       users.users.${vars.user.username}.extraGroups =
-        with cfg.docker;
+        with docker;
         if enable && rootless then [ "docker" ] else [ ];
     };
 }

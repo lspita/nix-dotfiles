@@ -4,14 +4,9 @@
   pkgs,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "editor"
-    "zed"
-  ];
-  mkConfig =
-    { ... }:
+with lib.custom;
+modules.mkModule config ./. {
+  config =
     let
       configDir = "zed";
     in
@@ -24,9 +19,8 @@ lib.custom.mkModule {
         shellAliases.zed = "zeditor";
       };
       xdg.configFile = {
-        "${configDir}/settings.json".source = config.lib.file.mkOutOfStoreSymlink (
-          lib.custom.dotPath config "modules/home/editor/zed/settings.json"
-        );
+        "${configDir}/settings.json".source =
+          utils.dotSymlink config "modules/home/editor/zed/settings.json";
       };
     };
 }

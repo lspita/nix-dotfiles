@@ -1,29 +1,19 @@
-{
-  config,
-  lib,
-  ...
-}:
-lib.custom.mkDefaultsModule {
-  inherit config;
-  importPath = ./.;
-  path = [
-    "linux"
-    "desktop"
-    "gnome"
-  ];
-  mkConfig =
-    { ... }:
-    {
+{ config, lib, ... }:
+with lib.custom;
+modules.mkDefaultsModule config ./. {
+  config =
+    { setDefaultModules, ... }:
+    (setDefaultModules {
+      font.enable = true;
+      settings.enable = true;
+      wallpaper.enable = true;
+      appsLayout.enable = true;
+      shortcuts.enable = true;
+      nautilus.enable = true;
+      extensions.enableDefaults = true;
+      theme.adw-gtk3.enable = true;
+    })
+    // {
       programs.gnome-shell.enable = true;
-      custom.modules.linux.desktop.gnome = with lib; {
-        font.enable = mkDefault true;
-        settings.enable = mkDefault true;
-        wallpaper.enable = mkDefault true;
-        appsLayout.enable = mkDefault true;
-        shortcuts.enable = mkDefault true;
-        nautilus.enable = mkDefault true;
-        extensions.enableDefaults = mkDefault true;
-        theme.adw-gtk3.enable = mkDefault true;
-      };
     };
 }

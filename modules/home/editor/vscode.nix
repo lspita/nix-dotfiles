@@ -1,13 +1,7 @@
-{
-  config,
-  lib,
-  ...
-}:
-lib.custom.mkProgramModule {
-  inherit config;
-  path = [
-    "editor"
-    "vscode"
-  ];
-  programs = "vscode";
+{ config, lib, ... }:
+with lib.custom;
+modules.mkModule config ./vscode.nix {
+  config = {
+    programs.vscode.enable = true;
+  };
 }

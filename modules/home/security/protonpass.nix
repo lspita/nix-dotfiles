@@ -4,19 +4,9 @@
   pkgs,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "security"
-    "protonpass"
-  ];
-  mkConfig =
-    { ... }:
-    {
-      home = {
-        packages = with pkgs; [
-          proton-pass
-        ];
-      };
-    };
+with lib.custom;
+modules.mkModule config ./protonpass.nix {
+  config = {
+    home.packages = with pkgs; [ proton-pass ];
+  };
 }

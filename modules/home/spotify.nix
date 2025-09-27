@@ -4,10 +4,9 @@
   pkgs,
   ...
 }:
-lib.custom.mkProgramModule {
-  inherit config;
-  path = [
-    "spotify"
-  ];
-  packages = pkgs.spotify;
+with lib.custom;
+modules.mkModule config ./spotify.nix {
+  config = {
+    home.packages = with pkgs; [ spotify ];
+  };
 }

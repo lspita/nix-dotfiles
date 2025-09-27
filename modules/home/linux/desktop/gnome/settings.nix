@@ -4,21 +4,15 @@
   vars,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "linux"
-    "desktop"
-    "gnome"
-    "settings"
-  ];
-  extraOptions = with lib; {
-    vrr.enable = mkEnableOption "variable refresh rate";
-    fractionalScaling.enable = mkEnableOption "fractional scaling";
-    locationServices.enable = mkEnableOption "location services";
+with lib.custom;
+modules.mkModule config ./settings.nix {
+  options = {
+    vrr.enable = lib.mkEnableOption "variable refresh rate";
+    fractionalScaling.enable = lib.mkEnableOption "fractional scaling";
+    locationServices.enable = lib.mkEnableOption "location services";
   };
-  mkConfig =
-    { cfg }:
+  config =
+    { self, ... }:
     {
       dconf.settings = {
         "org/gnome/desktop/interface" = {
@@ -31,9 +25,9 @@ lib.custom.mkModule {
           center-new-windows = true;
           experimental-features =
             [ ]
-            ++ (if cfg.vrr.enable then [ "variable-refresh-rate" ] else [ ])
+            ++ (if self.vrr.enable then [ "variable-refresh-rate" ] else [ ])
             ++ (
-              if cfg.fractionalScaling.enable then
+              if self.fractionalScaling.enable then
                 [
                   "scale-monitor-framebuffer"
                   "xwayland-native-scaling"
@@ -56,7 +50,7 @@ lib.custom.mkModule {
             vars.linux.locale.keyboard
           ])
         ];
-        "org/gnome/system/location".enabled = cfg.locationServices.enable;
+        "org/gnome/system/location".enabled = self.locationServices.enable;
         "org/gnome/desktop/peripherals/touchpad".disable-while-typing = false;
       };
     };

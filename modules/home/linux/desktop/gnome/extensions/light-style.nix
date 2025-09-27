@@ -4,18 +4,9 @@
   pkgs,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "linux"
-    "desktop"
-    "gnome"
-    "extensions"
-    "light-style"
-  ];
-  mkConfig =
-    { ... }:
-    lib.custom.gnome.mkExtensionConfig {
-      package = pkgs.gnomeExtensions.light-style;
-    };
+with lib.custom;
+modules.mkModule config ./light-style.nix {
+  config = gnome.mkExtensionConfig {
+    package = pkgs.gnomeExtensions.light-style;
+  };
 }

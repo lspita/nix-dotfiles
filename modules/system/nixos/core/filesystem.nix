@@ -4,20 +4,13 @@
   pkgs,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "nixos"
-    "core"
-    "filesystem"
-  ];
-  mkConfig =
-    { ... }:
-    {
-      environment.systemPackages = with pkgs; [
-        # exfat support
-        exfat
-        exfatprogs
-      ];
-    };
+with lib.custom;
+modules.mkModule config ./filesystem.nix {
+  config = {
+    environment.systemPackages = with pkgs; [
+      # exfat support
+      exfat
+      exfatprogs
+    ];
+  };
 }

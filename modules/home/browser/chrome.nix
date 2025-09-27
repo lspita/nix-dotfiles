@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-lib.custom.mkProgramModule {
-  inherit config;
-  path = [
-    "browser"
-    "chrome"
-  ];
-  packages = pkgs.google-chrome;
+with lib.custom;
+modules.mkModule config ./chrome.nix {
+  config = {
+    home.packages = with pkgs; [ google-chrome ];
+  };
 }

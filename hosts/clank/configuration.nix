@@ -6,7 +6,8 @@
     ./system/gnome/touchpad-resize.nix
   ];
 
-  custom.modules = {
+  custom.modules.system = {
+    enableDefaults = true;
     nixos = {
       core.enableDefaults = true;
       login.gdm.enable = true;

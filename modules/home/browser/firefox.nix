@@ -1,19 +1,11 @@
-{
-  config,
-  lib,
-  ...
-}:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "browser"
-    "firefox"
-  ];
-  extraOptions = {
-    passwordManager.enable = lib.custom.mkTrueEnableOption "firefox password manager";
+{ config, lib, ... }:
+with lib.custom;
+modules.mkModule config ./firefox.nix {
+  options = {
+    passwordManager.enable = utils.mkTrueEnableOption "firefox password manager";
   };
-  mkConfig =
-    { cfg }:
+  config =
+    { self, ... }:
     {
       programs.firefox = {
         enable = true;
@@ -22,7 +14,7 @@ lib.custom.mkModule {
           OverrideFirstRunPage = "";
           NoDefaultBookmarks = true;
         }
-        // (with cfg.passwordManager; {
+        // (with self.passwordManager; {
           PasswordManagerEnabled = enable;
           OfferToSaveLogins = enable;
         });
@@ -65,7 +57,7 @@ lib.custom.mkModule {
                   "customizableui-special-spring2"
                 ]
                 ++ (
-                  if config.custom.modules.security.bitwarden.enable then
+                  if config.custom.modules.home.security.bitwarden.enable then
                     # pin bitwarden extension
                     [ "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" ]
                   else

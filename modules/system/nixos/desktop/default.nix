@@ -1,9 +1,11 @@
 { config, lib, ... }:
-lib.custom.mkDefaultsModule {
-  inherit config;
-  importPath = ./.;
-  path = [
-    "nixos"
-    "desktop"
-  ];
+with lib.custom;
+modules.mkDefaultsModule config ./. {
+  config =
+    { setDefaultModules, ... }:
+    setDefaultModules {
+      printing.enable = true;
+      fingerprint.enable = true;
+    };
+
 }

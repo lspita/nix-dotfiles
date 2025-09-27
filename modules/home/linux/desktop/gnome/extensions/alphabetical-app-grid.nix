@@ -4,18 +4,9 @@
   pkgs,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "linux"
-    "desktop"
-    "gnome"
-    "extensions"
-    "alphabetical-app-grid"
-  ];
-  mkConfig =
-    { ... }:
-    lib.custom.gnome.mkExtensionConfig {
-      package = pkgs.gnomeExtensions.alphabetical-app-grid;
-    };
+with lib.custom;
+modules.mkModule config ./alphabetical-app-grid.nix {
+  config = gnome.mkExtensionConfig {
+    package = pkgs.gnomeExtensions.alphabetical-app-grid;
+  };
 }

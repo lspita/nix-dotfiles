@@ -1,6 +1,6 @@
 { ... }:
 {
-  custom.modules = {
+  custom.modules.home = {
     core.enableDefaults = true;
     linux = {
       core.enableDefaults = true;

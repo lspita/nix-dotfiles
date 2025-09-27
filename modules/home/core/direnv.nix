@@ -1,20 +1,10 @@
-{
-  config,
-  lib,
-  ...
-}:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "core"
-    "direnv"
-  ];
-  mkConfig =
-    { ... }:
-    {
-      programs.direnv = {
-        enable = true;
-        nix-direnv.enable = true;
-      };
+{ config, lib, ... }:
+with lib.custom;
+modules.mkModule config ./direnv.nix {
+  config = {
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
     };
+  };
 }

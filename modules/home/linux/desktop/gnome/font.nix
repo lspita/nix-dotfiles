@@ -4,21 +4,13 @@
   vars,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "linux"
-    "desktop"
-    "gnome"
-    "font"
-  ];
-  mkConfig =
-    { ... }:
-    with lib.custom;
+with lib.custom;
+modules.mkModule config ./font.nix {
+  config =
     with vars.fonts;
     let
-      normalFont = fontString normal;
-      monospaceFont = fontString monospace;
+      normalFont = utils.fontString normal;
+      monospaceFont = utils.fontString monospace;
     in
     {
       dconf.settings = {

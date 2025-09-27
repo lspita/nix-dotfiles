@@ -1,18 +1,13 @@
 {
   config,
   lib,
-  vars,
   pkgs,
+  vars,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "core"
-    "git"
-  ];
-  mkConfig =
-    { ... }:
+with lib.custom;
+modules.mkModule config ./git.nix {
+  config =
     let
       attributesConfigPath = "git/attributes";
     in

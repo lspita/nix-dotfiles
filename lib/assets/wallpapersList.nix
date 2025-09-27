@@ -1,5 +1,6 @@
 {
   root,
+  super,
   lib,
   vars,
   flakePath,
@@ -11,7 +12,7 @@ let
   wallpapers = lib.attrsets.foldlAttrs (
     result: path: type:
     let
-      wallpaperPath = "${root.assetPath config wallpaperAssetsDir}/${path}";
+      wallpaperPath = "${super.assetPath config wallpaperAssetsDir}/${path}";
     in
     result
     // (
@@ -41,7 +42,7 @@ let
         }
       else
         {
-          ${root.fileBasename path} = {
+          ${root.utils.fileBasename path} = {
             type = "regular";
             path = wallpaperPath;
           };

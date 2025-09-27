@@ -4,16 +4,9 @@
   vars,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "linux"
-    "desktop"
-    "gnome"
-    "shortcuts"
-  ];
-  mkConfig =
-    { ... }:
+with lib.custom;
+modules.mkModule config ./shortcuts.nix {
+  config =
     with vars.linux.defaultApps;
     let
       overrides = {

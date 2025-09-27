@@ -1,18 +1,12 @@
 { config, lib, ... }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "shell"
-    "zsh"
-  ];
-  mkConfig =
-    { ... }:
-    {
-      programs.zsh = {
-        enable = true;
-        enableCompletion = true;
-        autosuggestion.enable = true;
-        syntaxHighlighting.enable = true;
-      };
+with lib.custom;
+modules.mkModule config ./zsh.nix {
+  config = {
+    programs.zsh = {
+      enable = true;
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
     };
+  };
 }

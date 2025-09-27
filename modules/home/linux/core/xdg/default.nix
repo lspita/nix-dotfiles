@@ -4,15 +4,13 @@
   vars,
   ...
 }:
-lib.custom.mkModule {
-  inherit config;
-  path = [
-    "linux"
-    "core"
-    "xdg"
-  ];
-  mkConfig =
-    { ... }:
+with lib.custom;
+modules.mkModule config ./. {
+  options = {
+    openAlias = utils.mkTrueEnableOption "open alias";
+  };
+  config =
+    { self, ... }:
     {
       # https://github.com/ryan4yin/nix-config/blob/main/home/linux/gui/base/xdg.nix
       xdg = with vars.linux.defaultApps; {
@@ -181,8 +179,15 @@ lib.custom.mkModule {
         };
       };
       home = {
-        shellAliases.open = "xdg-open";
         file.${config.xdg.userDirs.templates}.source = ./templates;
-      };
+      }
+      // (
+        if self.openAlias then
+          {
+            shellAliases.open = "xdg-open";
+          }
+        else
+          { }
+      );
     };
 }

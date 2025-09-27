@@ -3,6 +3,7 @@
   nix-darwin,
   home-manager,
   haumea,
+  flakeRoot,
   flakePath,
   ...
 }@flakeInputs:
@@ -28,23 +29,21 @@ let
       { hostname, hostInfo }:
       let
         hostPath = path: "${hostsDir}/${hostname}/${path}";
-
         vars =
           let
             baseVars = import (flakePath "vars.nix");
             hostVarPath = hostPath "vars.nix";
           in
           baseVars // (if builtins.pathExists hostVarPath then (import hostVarPath) else { });
-
         baseInputs = {
           inherit
             lib
             vars
             flakeInputs
+            flakeRoot
             flakePath
             ;
         };
-
         pkgs = import nixpkgs {
           inherit (hostInfo) system;
           config = { inherit (vars.nix) allowUnfree; };
@@ -55,11 +54,6 @@ let
             }
           );
         };
-
-        inputs = baseInputs // {
-          inherit pkgs systemType;
-        };
-
         systemType =
           with pkgs.stdenv;
           if isLinux then
@@ -68,16 +62,27 @@ let
             "darwin"
           else
             throw "Unsupported system type";
-
+        inputs = baseInputs // {
+          inherit pkgs systemType;
+        };
         customLib = haumea.lib.load {
           inherit inputs;
           src = flakePath "lib";
         };
-
         specialArgs = builtins.removeAttrs inputs [
           "lib"
           "pkgs"
         ];
+        loadModules =
+          {
+            modulesPath,
+            hostConfig,
+          }:
+          {
+            imports = (customLib.modules.listRec (flakePath "modules/${modulesPath}")) ++ [
+              (hostPath hostConfig)
+            ];
+          };
       in
       result
       // {
@@ -94,10 +99,13 @@ let
             {
               networking.hostName = mkDefault hostname;
               system.stateVersion = mkDefault hostInfo.stateVersion;
+              nix.nixPath = mkDefault [ "nixpkgs=${nixpkgs}" ]; # https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md
             }
             # system config
-            (flakePath "modules/system")
-            (hostPath "configuration.nix")
+            (loadModules {
+              modulesPath = "system";
+              hostConfig = "configuration.nix";
+            })
             # home manager
             home-manager.${homeModulesSet.${systemType}}.home-manager
             {
@@ -107,8 +115,10 @@ let
                 backupFileExtension = mkDefault vars.backupFileExtension;
                 users.${vars.user.username} = {
                   imports = [
-                    (flakePath "modules/home")
-                    (hostPath "home.nix")
+                    (loadModules {
+                      modulesPath = "home";
+                      hostConfig = "home.nix";
+                    })
                   ];
                   home.stateVersion = lib.mkDefault hostInfo.stateVersion;
                 };
