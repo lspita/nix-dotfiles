@@ -1,1 +1,1 @@
-{ root }: config: path: "${root.utils.dotPath config "assets"}/${path}"
+{ root }: config: path: "${root.path.dotPath config "assets"}/${path}"

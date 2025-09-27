@@ -4,7 +4,7 @@ modules.mkModule config ./nh.nix {
   config = {
     programs.nh = {
       enable = true;
-      flake = utils.dotRoot config;
+      flake = path.dotRoot config;
     };
   };
 }

@@ -20,7 +20,7 @@ modules.mkModule config ./. {
       };
       xdg.configFile = {
         "${configDir}/settings.json".source =
-          utils.dotSymlink config "modules/home/editor/zed/settings.json";
+          path.dotSymlink config "modules/home/editor/zed/settings.json";
       };
     };
 }

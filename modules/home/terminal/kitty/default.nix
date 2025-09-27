@@ -15,9 +15,9 @@ modules.mkModule config ./. {
       in
       {
         "${kittyConfigDir}/dark-theme.auto.conf".source =
-          utils.dotSymlink config "modules/home/terminal/kitty/themes/catppuccin-mocha.conf";
+          path.dotSymlink config "modules/home/terminal/kitty/themes/catppuccin-mocha.conf";
         "${kittyConfigDir}/light-theme.auto.conf".source =
-          utils.dotSymlink config "modules/home/terminal/kitty/themes/catppuccin-latte.conf";
+          path.dotSymlink config "modules/home/terminal/kitty/themes/catppuccin-latte.conf";
       };
   };
 }

@@ -13,7 +13,7 @@ let
     result: path: type:
     result
     // {
-      ${root.utils.fileBasename path} = "${super.assetPath config profilesAssetsDir}/${path}";
+      ${root.path.fileBasename path} = "${super.assetPath config profilesAssetsDir}/${path}";
     }
   ) { } (builtins.readDir profilesStaticRoot);
 in
