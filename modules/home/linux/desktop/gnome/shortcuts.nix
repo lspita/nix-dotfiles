@@ -9,9 +9,6 @@ modules.mkModule config ./shortcuts.nix {
   config =
     with vars.linux.defaultApps;
     let
-      overrides = {
-        close = [ "<Super>q" ];
-      };
       customKeybindings = [
         {
           id = "launch-terminal";
@@ -24,10 +21,13 @@ modules.mkModule config ./shortcuts.nix {
     in
     {
       dconf.settings = {
-        "org/gnome/desktop/wm/keybindings" = overrides;
-        "org/gnome/settings-daemon/plugins/media-keys".custom-keybindings = builtins.map (
-          kb: "/${customKeybindingsRoot}/${kb.id}/"
-        ) customKeybindings;
+        "org/gnome/desktop/wm/keybindings" = {
+          close = [ "<Super>q" ];
+        };
+        "org/gnome/settings-daemon/plugins/media-keys" = {
+          help = [ ]; # remove shortcut for gnome help
+          custom-keybindings = builtins.map (kb: "/${customKeybindingsRoot}/${kb.id}/") customKeybindings;
+        };
       }
       // (builtins.foldl' (
         result: kb:
