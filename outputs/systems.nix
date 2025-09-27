@@ -10,18 +10,6 @@
 let
   hostsDir = flakePath "hosts";
   lib = nixpkgs.lib;
-  createSystem = {
-    linux = nixpkgs.lib.nixosSystem;
-    darwin = nix-darwin.lib.darwinSystem;
-  };
-  configurationsSet = {
-    linux = "nixosConfigurations";
-    darwin = "darwinConfigurations";
-  };
-  homeModulesSet = {
-    linux = "nixosModules";
-    darwin = "darwinModules";
-  };
   mkSystems =
     systems:
     builtins.foldl' (
@@ -83,10 +71,22 @@ let
               (hostPath hostConfig)
             ];
           };
+        createSystem = customLib.utils.osValue {
+          linux = nixpkgs.lib.nixosSystem;
+          darwin = nix-darwin.lib.darwinSystem;
+        };
+        configurationsSet = customLib.utils.osValue {
+          linux = "nixosConfigurations";
+          darwin = "darwinConfigurations";
+        };
+        homeModulesSet = customLib.utils.osValue {
+          linux = "nixosModules";
+          darwin = "darwinModules";
+        };
       in
       result
       // {
-        ${configurationsSet.${systemType}}.${hostname} = createSystem.${systemType} {
+        ${configurationsSet}.${hostname} = createSystem {
           inherit pkgs;
           inherit (hostInfo) system;
           lib = lib.extend (
@@ -107,7 +107,7 @@ let
               hostConfig = "configuration.nix";
             })
             # home manager
-            home-manager.${homeModulesSet.${systemType}}.home-manager
+            home-manager.${homeModulesSet}.home-manager
             {
               home-manager = {
                 useUserPackages = mkDefault true;

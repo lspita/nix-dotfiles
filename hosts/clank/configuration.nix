@@ -11,9 +11,12 @@
     nixos = {
       core.enableDefaults = true;
       login.gdm.enable = true;
-      desktop.gnome = {
-        enable = true;
-        excludePackages = with pkgs; [ gnome-console ]; # use kitty instead
+      desktop = {
+        enableDefaults = true;
+        gnome = {
+          enable = true;
+          excludePackages = with pkgs; [ gnome-console ]; # use kitty instead
+        };
       };
       virtualisation.containers = {
         enable = true;

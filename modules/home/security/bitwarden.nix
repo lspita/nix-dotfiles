@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  systemType,
   ...
 }:
 with lib.custom;
@@ -26,13 +25,13 @@ modules.mkModule config ./bitwarden.nix {
                 let
                   homeDir = config.home.homeDirectory;
                 in
-                {
+                utils.osValue {
                   linux = homeDir;
                   darwin = "${homeDir}/Library/Containers/com.bitwarden.desktop/Data";
                 };
             in
             {
-              SSH_AUTH_SOCK = "${sockerDir.${systemType}}/.bitwarden-ssh-agent.sock";
+              SSH_AUTH_SOCK = "${sockerDir}/.bitwarden-ssh-agent.sock";
             }
           else
             { };
