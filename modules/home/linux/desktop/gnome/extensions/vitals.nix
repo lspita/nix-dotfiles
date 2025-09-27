@@ -13,6 +13,7 @@ modules.mkModule config ./vitals.nix {
         position-in-panel = 0; # left
         icon-style = 1; # gnome
         show-battery = true;
+        menu-centered = true;
         show-gpu = true; # beta
         hot-sensors = [
           "_processor_usage_"
