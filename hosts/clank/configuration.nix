@@ -18,12 +18,22 @@
           excludePackages = with pkgs; [ gnome-console ]; # use kitty instead
         };
       };
-      virtualisation.containers = {
-        enable = true;
-        autoPrune.enable = true;
-        docker.enable = true;
-        podman.enable = true;
-      };
+      virtualisation =
+        let
+          autoPrune = {
+            enable = true;
+          };
+        in
+        {
+          docker = {
+            inherit autoPrune;
+            enable = true;
+          };
+          podman = {
+            inherit autoPrune;
+            enable = true;
+          };
+        };
     };
   };
 }
