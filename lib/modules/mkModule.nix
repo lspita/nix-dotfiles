@@ -1,15 +1,22 @@
 { root, lib }:
 config: path: module:
 let
+  utils = root.utils;
+in
+let
   imports = module.imports or [ ];
   options = module.options or { };
   enable = module.enable or "enable";
-  flakePathList = (
+  rootPathList = [ "custom" ];
+  modulePathList = (
     lib.lists.drop 4 # "/nix/store/<hash>/..." is splitted into ["" "nix" "store" "<hash>" ...]
       (with lib.strings; splitString "/" (removeSuffix ".nix" (builtins.toString path)))
   );
-  pathList = [ "custom" ] ++ flakePathList;
-  self = lib.attrsets.getAttrFromPath pathList config;
+  pathList = rootPathList ++ modulePathList;
+  getSubconfig = path: lib.attrsets.getAttrFromPath path config;
+  self = getSubconfig pathList;
+  super = getSubconfig (lib.lists.dropEnd 1 pathList);
+  root = getSubconfig rootPathList;
   cfg = module.config;
 in
 {
@@ -22,28 +29,17 @@ in
   );
   config = lib.mkIf (self.${enable}) (
     if builtins.isFunction cfg then
-      cfg (
-        let
-          relativeListPath =
-            subpath:
-            lib.lists.foldl' (
-              pathList: p:
-              if p == "." then
-                pathList
-              else if p == ".." then
-                lib.lists.dropEnd 1 pathList
-              else
-                pathList ++ [ p ]
-            ) pathList subpath;
-        in
-        rec {
-          inherit self;
-          path = lib.strings.concatStringsSep "/" flakePathList;
-          setSubconfig = subpath: value: lib.attrsets.setAttrByPath (relativeListPath subpath) value;
-          getSubconfig = subpath: lib.attrsets.getAttrFromPath (relativeListPath subpath) config;
-          setDefaultModules = value: setSubconfig [ ] (root.utils.mkDefaultRec value);
-        }
-      )
+      cfg (rec {
+        inherit
+          pathList
+          self
+          super
+          root
+          ;
+        path = lib.strings.concatStringsSep "/" modulePathList;
+        setSubconfig = value: lib.attrsets.setAttrByPath pathList value;
+        setDefaultModules = value: setSubconfig (utils.mkDefaultRec value);
+      })
     else
       cfg
   );
