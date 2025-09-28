@@ -1,12 +1,11 @@
 { pkgs, ... }:
 {
   imports = [
-    ./hardware-configuration.nix
-    ./system/keyboard-remap.nix
-    ./system/gnome/touchpad-resize.nix
+    ./keyboard-remap.nix
+    ./gnome/touchpad-resize.nix
   ];
 
-  custom.modules.system = {
+  custom = {
     enableDefaults = true;
     nixos = {
       core.enableDefaults = true;

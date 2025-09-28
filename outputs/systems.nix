@@ -16,11 +16,17 @@ let
       result:
       { hostname, hostInfo }:
       let
-        hostPath = path: "${hostsDir}/${hostname}/${path}";
+        hostPath =
+          path:
+          let
+            fullPath = "${hostsDir}/${hostname}/${path}";
+          in
+          with lib.filesystem;
+          if pathIsDirectory fullPath then resolveDefaultNix fullPath else "${fullPath}.nix";
         vars =
           let
             baseVars = import (flakePath "vars.nix");
-            hostVarPath = hostPath "vars.nix";
+            hostVarPath = hostPath "vars";
           in
           baseVars // (if builtins.pathExists hostVarPath then (import hostVarPath) else { });
         baseInputs = {
@@ -61,16 +67,16 @@ let
           "lib"
           "pkgs"
         ];
-        loadModules =
-          {
-            modulesPath,
-            hostConfig,
-          }:
-          {
-            imports = (customLib.modules.listRec (flakePath "modules/${modulesPath}")) ++ [
-              (hostPath hostConfig)
-            ];
-          };
+        loadModules = type: {
+          imports =
+            (customLib.modules.listRec (flakePath "modules/${type}"))
+            ++ (
+              let
+                hostConfig = hostPath type;
+              in
+              if builtins.pathExists hostConfig then [ hostConfig ] else [ ]
+            );
+        };
         createSystem = customLib.utils.osValue {
           linux = nixpkgs.lib.nixosSystem;
           darwin = nix-darwin.lib.darwinSystem;
@@ -102,10 +108,8 @@ let
               nix.nixPath = mkDefault [ "nixpkgs=${nixpkgs}" ]; # https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md
             }
             # system config
-            (loadModules {
-              modulesPath = "system";
-              hostConfig = "configuration.nix";
-            })
+            (hostPath "hardware")
+            (loadModules "system")
             # home manager
             home-manager.${homeModulesSet}.home-manager
             {
@@ -115,10 +119,7 @@ let
                 backupFileExtension = mkDefault vars.backupFileExtension;
                 users.${vars.user.username} = {
                   imports = [
-                    (loadModules {
-                      modulesPath = "home";
-                      hostConfig = "home.nix";
-                    })
+                    (loadModules "home")
                   ];
                   home.stateVersion = lib.mkDefault hostInfo.stateVersion;
                 };

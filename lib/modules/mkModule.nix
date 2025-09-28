@@ -9,10 +9,10 @@ let
   enable = module.enable or "enable";
   rootPathList = [ "custom" ];
   modulePathList = (
-    lib.lists.drop 4 # "/nix/store/<hash>/..." is splitted into ["" "nix" "store" "<hash>" ...]
+    lib.lists.drop 4 # "/nix/store/<hash>/..." is splitted into [ "" "nix" "store" "<hash>" ... ]
       (with lib.strings; splitString "/" (removeSuffix ".nix" (builtins.toString path)))
   );
-  pathList = rootPathList ++ modulePathList;
+  pathList = rootPathList ++ (lib.lists.drop 2 modulePathList); # drop also [ "modules" "<category>" ]
   getSubconfig = path: lib.attrsets.getAttrFromPath path config;
   self = getSubconfig pathList;
   super = getSubconfig (lib.lists.dropEnd 1 pathList);
