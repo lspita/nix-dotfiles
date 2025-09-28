@@ -7,6 +7,7 @@
 with lib.custom;
 modules.mkModule config ./. {
   config =
+    { path, ... }:
     let
       configDir = "zed";
     in
@@ -19,8 +20,7 @@ modules.mkModule config ./. {
         shellAliases.zed = "zeditor";
       };
       xdg.configFile = {
-        "${configDir}/settings.json".source =
-          path.dotSymlink config "modules/home/editor/zed/settings.json";
+        "${configDir}/settings.json".source = dotfiles.dotSymlink config "${path}/settings.json";
       };
     };
 }

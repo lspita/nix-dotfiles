@@ -57,7 +57,7 @@ modules.mkModule config ./firefox.nix {
                   "customizableui-special-spring2"
                 ]
                 ++ (
-                  if config.custom.modules.home.security.bitwarden.enable then
+                  if utils.isInstalled config "bitwarden-desktop" then
                     # pin bitwarden extension
                     [ "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" ]
                   else
