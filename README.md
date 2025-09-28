@@ -1,2 +1,5 @@
 # Nix dotfiles
 
+## TODO
+
+- docs
