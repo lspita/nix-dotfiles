@@ -11,6 +11,7 @@
           fractionalScaling.enable = true;
           locationServices.enable = true;
         };
+        extensions.blur-my-shell.applications.enable = true;
       };
     };
     security.bitwarden = {
