@@ -17,7 +17,7 @@ modules.mkModule config ./gnome.nix {
   config =
     { self, ... }:
     let
-      profiles = assets.profilesList config;
+      profiles = assets.profiles config;
       userImage = vars.user.image;
     in
     {

@@ -8,7 +8,7 @@ with lib.custom;
 modules.mkModule config ./wallpaper.nix {
   config =
     let
-      wallpapers = assets.wallpapersList config;
+      wallpapers = assets.wallpapers config;
       wallpapersDataDir = "gnome-background-properties";
       color = "#000000";
     in
