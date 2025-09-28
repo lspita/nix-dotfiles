@@ -44,5 +44,6 @@
     };
     spotify.enable = true;
     gh.enable = true;
+    fastfetch.enable = true;
   };
 }
