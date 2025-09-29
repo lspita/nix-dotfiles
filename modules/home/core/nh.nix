@@ -26,8 +26,8 @@ modules.mkModule config ./nh.nix {
             '';
             flake-sync = ''
               flake-pull
-              nh os switch
-              flake-push "\$\{1-"flake update"}"
+              nh os switch -u
+              flake-push "''${1-"flake update"}"
             '';
           }
         else
