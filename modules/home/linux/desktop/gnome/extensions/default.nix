@@ -18,7 +18,6 @@ modules.mkDefaultsModule config ./. {
       open-bar.enable = true;
       alphabetical-app-grid.enable = true;
       auto-power-profile.enable = true;
-      hide-cursor.enable = true;
     })
     // {
       home.packages = with pkgs; [
