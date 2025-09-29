@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   imports = [
     ./keyboard-remap.nix
@@ -15,7 +15,7 @@
         enableDefaults = true;
         gnome = {
           enable = true;
-          excludePackages = with pkgs; [ gnome-console ]; # use kitty instead
+          nautilus.enableDefaults = true;
         };
       };
       virtualisation =

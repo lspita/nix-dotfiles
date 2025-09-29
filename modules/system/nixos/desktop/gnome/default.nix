@@ -6,7 +6,7 @@
   ...
 }:
 with lib.custom;
-modules.mkModule config ./gnome.nix {
+modules.mkModule config ./. {
   options = {
     excludePackages = lib.mkOption {
       type = with lib.types; listOf package;
@@ -29,25 +29,10 @@ modules.mkModule config ./gnome.nix {
           gnome-tour
           geary
           epiphany
+          gnome-console
         ]
         ++ self.excludePackages;
 
-      # https://github.com/Stunkymonkey/nautilus-open-any-terminal
-      programs = {
-        nautilus-open-any-terminal = {
-          enable = true;
-          terminal = "custom";
-        };
-        dconf.profiles.user.databases = [
-          {
-            settings."com/github/stunkymonkey/nautilus-open-any-terminal" = {
-              # https://github.com/Stunkymonkey/nautilus-open-any-terminal/blob/253fb95c649ab05641cf7e6b5090a2146b0b1d6c/nautilus_open_any_terminal/schemas/com.github.stunkymonkey.nautilus-open-any-terminal.gschema.xml#L24-L39
-              custom-local-command = "${vars.linux.defaultApps.terminal.program} %s";
-              custom-remote-command = "${vars.linux.defaultApps.terminal.program} %s";
-            };
-          }
-        ];
-      };
       # https://discourse.nixos.org/t/setting-the-user-profile-image-under-gnome/36233
       system.activationScripts =
         if builtins.isNull userImage then
