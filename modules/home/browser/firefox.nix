@@ -34,6 +34,7 @@ modules.mkModule config ./firefox.nix {
             "browser.toolbars.bookmarks.visibility" = "always";
             "browser.bookmarks.addedImportButton" = true;
             "browser.tabs.closeWindowWithLastTab" = false;
+            "browser.download.open_pdf_attachments_inline" = true;
             # to fully apply, close and reopen after first startup
             "browser.uiCustomization.state" = {
               placements = {
