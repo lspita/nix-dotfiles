@@ -8,11 +8,12 @@ modules.mkModule config ./. {
     };
   };
   config =
-    { self, ... }:
+    { self, root, ... }:
     {
       programs.bash = {
         enable = true;
         enableCompletion = self.completition.enable;
+        initExtra = shell.loadFunctions root;
       };
       # https://www.cyberciti.biz/faq/bash-shell-setup-filename-tab-completion-case-insensitive/
       home.file.".inputrc".text = ''
