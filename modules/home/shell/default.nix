@@ -2,9 +2,9 @@
 with lib.custom;
 modules.mkDefaultsModule config ./. {
   options = {
-    functions = lib.mkOption {
-      type = with lib.types; attrs;
-      default = { };
+    rc = lib.mkOption {
+      type = with lib.types; listOf anything; # list of str or (str -> str)
+      default = [ ];
       description = "Shell functions to include";
     };
   };
