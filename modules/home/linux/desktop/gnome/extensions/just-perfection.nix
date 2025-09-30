@@ -16,6 +16,7 @@ modules.mkModule config ./just-perfection.nix {
         weather = false;
         window-demands-attention-focus = true;
         startup-status = 0; # desktop
+        workspace-switcher-should-show = true;
       };
     };
   };
