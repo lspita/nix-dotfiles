@@ -20,9 +20,9 @@
     };
     shell = {
       enableDefaults = true;
-      prompt.ohmyposh = {
+      prompt.starship = {
         enable = true;
-        theme = "robbyrussell";
+        preset = "omarchy";
       };
       zsh.enable = true;
       bash = {
