@@ -37,6 +37,11 @@ modules.mkModule config ./nh.nix {
                 flake-push "''${1-"flake update"}"
               }
             ''
+            ''
+              flake-init() {
+                nix flake init -t $NH_FLAKE#"$1"
+              }
+            ''
           ]
         else
           [ ];
