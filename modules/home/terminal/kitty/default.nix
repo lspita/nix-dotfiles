@@ -1,8 +1,15 @@
 { config, lib, ... }:
 with lib.custom;
 modules.mkModule config ./. {
+  options = {
+    theme = lib.mkOption {
+      type = with lib.types; nullOr str;
+      default = null;
+      description = "kitty theme";
+    };
+  };
   config =
-    { path, ... }:
+    { self, ... }:
     {
       programs.kitty = {
         enable = true;
@@ -12,14 +19,27 @@ modules.mkModule config ./. {
         };
       };
       xdg.configFile =
-        let
-          kittyConfigDir = "kitty";
-        in
-        {
-          "${kittyConfigDir}/dark-theme.auto.conf".source =
-            dotfiles.dotSymlink config "${path}/themes/catppuccin-mocha.conf";
-          "${kittyConfigDir}/light-theme.auto.conf".source =
-            dotfiles.dotSymlink config "${path}/themes/catppuccin-latte.conf";
-        };
+        if builtins.isNull self.theme then
+          { }
+        else
+          let
+            kittyConfigDir = "kitty";
+            theme = ./themes/${self.theme};
+            paths =
+              if lib.filesystem.pathIsDirectory theme then
+                {
+                  dark = "${theme}/dark.conf";
+                  light = "${theme}/light.conf";
+                }
+              else
+                {
+                  dark = "${theme}.conf";
+                  light = "${theme}.conf";
+                };
+          in
+          {
+            "${kittyConfigDir}/dark-theme.auto.conf".source = paths.dark;
+            "${kittyConfigDir}/light-theme.auto.conf".source = paths.light;
+          };
     };
 }
