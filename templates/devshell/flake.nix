@@ -20,6 +20,7 @@
             buildInputs = [
               nixd
               nil
+              nixfmt
             ];
           };
       }
