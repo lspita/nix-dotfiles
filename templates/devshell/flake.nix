@@ -18,6 +18,7 @@
           with pkgs;
           mkShell {
             buildInputs = [
+              # nix
               nixd
               nil
               nixfmt
