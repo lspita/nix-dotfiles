@@ -8,6 +8,7 @@ modules.mkDefaultsModule config ./. {
         enable = true;
         plymouth.enable = true;
       };
+      nixld.enable = true;
       filesystem.enable = true;
       power.enable = true;
       wayland.enable = true;
