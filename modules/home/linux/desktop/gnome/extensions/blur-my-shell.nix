@@ -8,7 +8,7 @@ with lib.custom;
 modules.mkModule config ./blur-my-shell.nix {
   options = {
     applications = {
-      enable = lib.mkEnableOption "applications blur";
+      enable = utils.mkTrueEnableOption "applications blur";
       blacklist = lib.mkOption {
         type = with lib.types; listOf str;
         default = [ ];

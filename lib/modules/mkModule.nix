@@ -1,9 +1,6 @@
 { root, lib }:
 config: path: module:
 let
-  utils = root.utils;
-in
-let
   imports = module.imports or [ ];
   options = module.options or { };
   enable = module.enable or "enable";
@@ -38,7 +35,6 @@ in
           ;
         path = lib.strings.concatStringsSep "/" modulePathList;
         setSubconfig = value: lib.attrsets.setAttrByPath pathList value;
-        setDefaultModules = value: setSubconfig (utils.mkDefaultRec value);
       })
     else
       cfg

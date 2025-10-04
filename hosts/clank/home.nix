@@ -8,45 +8,14 @@
         enableDefaults = true;
         settings = {
           vrr.enable = true;
-          fractionalScaling.enable = true;
           locationServices.enable = true;
         };
-        extensions.blur-my-shell.applications.enable = true;
       };
     };
-    security.bitwarden = {
-      enable = true;
-      sshAgent.enable = true;
-    };
-    shell = {
-      enableDefaults = true;
-      prompt.starship = {
-        enable = true;
-        preset = "omarchy";
-      };
-      zsh.enable = true;
-      bash = {
-        enable = true;
-        blesh.enable = true;
-      };
-    };
+    shell.enableDefaults = true;
+    tools.enableDefaults = true;
+    apps.enableDefaults = true;
     terminal.gnome-console.enable = true;
-    editor = {
-      zed.enable = true;
-      vscode.enable = true;
-    };
-    browser = {
-      firefox = {
-        enable = true;
-        passwordManager.enable = false;
-      };
-      chrome.enable = true;
-    };
-    spotify.enable = true;
-    gh.enable = true;
-    fastfetch.enable = true;
-    lazycli.enable = true;
-    lazygit.enable = true;
-    lazydocker.enable = true;
+    apps.browser.chrome.enable = true;
   };
 }

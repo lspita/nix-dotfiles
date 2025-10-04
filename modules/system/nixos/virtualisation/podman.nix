@@ -3,7 +3,7 @@ with lib.custom;
 modules.mkModule config ./podman.nix {
   options = {
     autoPrune = {
-      enable = lib.mkEnableOption "podman auto pruning";
+      enable = utils.mkTrueEnableOption "podman auto pruning";
       dates = lib.mkOption {
         type = with lib.types; str;
         default = "weekly";

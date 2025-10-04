@@ -90,8 +90,7 @@ let
           darwin = "darwinModules";
         };
       in
-      result
-      // {
+      lib.attrsets.recursiveUpdate result {
         ${configurationsSet}.${hostname} = createSystem {
           inherit pkgs;
           inherit (hostInfo) system;

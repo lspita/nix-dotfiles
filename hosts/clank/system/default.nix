@@ -1,12 +1,12 @@
 { ... }:
 {
   imports = [
-    ./keyboard-remap.nix
-    ./gnome/touchpad-resize.nix
+    ./keyboardRemap.nix
+    ./gnome/touchpadResize.nix
   ];
 
   custom = {
-    enableDefaults = true;
+    core.enableDefaults = true;
     nixos = {
       core.enableDefaults = true;
       intel.graphics.enable = true;
@@ -18,22 +18,7 @@
           nautilus.enableDefaults = true;
         };
       };
-      virtualisation =
-        let
-          autoPrune = {
-            enable = true;
-          };
-        in
-        {
-          docker = {
-            inherit autoPrune;
-            enable = true;
-          };
-          podman = {
-            inherit autoPrune;
-            enable = true;
-          };
-        };
+      virtualisation.enableDefaults = true;
     };
   };
 }

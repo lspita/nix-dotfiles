@@ -8,7 +8,7 @@ with lib.custom;
 modules.mkModule config ./docker.nix {
   options = {
     autoPrune = {
-      enable = lib.mkEnableOption "docker auto pruning";
+      enable = utils.mkTrueEnableOption "docker auto pruning";
       dates = lib.mkOption {
         type = with lib.types; str;
         default = "weekly";

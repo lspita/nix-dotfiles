@@ -8,6 +8,7 @@ in
     result
     // {
       ${path} = {
+        description = "${path}"; # description is required
         path = "${root}/${path}";
       };
     }

@@ -12,6 +12,14 @@ modules.mkDefaultsModule config ./. {
     { setDefaultModules, ... }:
     (setDefaultModules {
       aliases.enable = true;
+      bash = {
+        enable = true;
+        blesh.enable = true;
+      };
+      prompt.starship = {
+        enable = true;
+        preset = "omarchy";
+      };
     })
     // {
       home.shell.enableShellIntegration = lib.mkDefault true;

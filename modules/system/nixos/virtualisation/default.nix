@@ -4,9 +4,7 @@ modules.mkDefaultsModule config ./. {
   config =
     { setDefaultModules, ... }:
     setDefaultModules {
-      fonts.enable = true;
-      environment.enable = true;
-      git.enable = true;
-      wget.enable = true;
+      docker.enable = true;
+      podman.enable = true;
     };
 }

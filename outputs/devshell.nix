@@ -8,7 +8,6 @@ flake-utils.lib.eachDefaultSystem (
   in
   {
     devShell = pkgs.mkShell {
-      name = "nix-dotfiles default devshell";
       buildInputs = with pkgs; [
         nixd
         nil
