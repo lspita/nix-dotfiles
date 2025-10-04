@@ -19,9 +19,11 @@
     {
       packages =
         pkgs: with pkgs; [
-          nerd-fonts.noto
           noto-fonts
+          nerd-fonts.noto
           nerd-fonts.jetbrains-mono
+          nerd-fonts.fira-code
+          nerd-fonts.fira-mono
         ];
       normal = {
         inherit size;
@@ -29,7 +31,7 @@
       };
       monospace = {
         inherit size;
-        name = "NotoMono Nerd Font";
+        name = "FiraMono Nerd Font";
       };
     };
   linux = {
