@@ -4,7 +4,7 @@
     core.enableDefaults = true;
     services.enableDefaults = true;
     nixos = {
-      wsl.enableDefaults = true;
+      wsl.enable = true;
       virtualisation.enableDefaults = true;
     };
   };
