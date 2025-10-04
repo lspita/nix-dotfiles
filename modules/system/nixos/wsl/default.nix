@@ -16,7 +16,7 @@ modules.mkDefaultsModule config ./wsl.nix {
     wsl.defaultUser = vars.user.username;
     programs.nix-ld.enable = true;
     # disable conflicts
-    custom.nixos = {
+    custom.nixos.core = {
       enableDefaults = false;
       ssh.enable = true;
     };
