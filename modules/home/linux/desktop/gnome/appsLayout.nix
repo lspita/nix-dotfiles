@@ -22,7 +22,7 @@ modules.mkModule config ./appsLayout.nix {
               browser.desktop
               editor.desktop
               terminal.desktop
-              fileManager
+              (utils.getNotNull "org.gnome.Nautilus.desktop" fileManager)
               music
             ]);
         };
