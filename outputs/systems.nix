@@ -27,8 +27,11 @@ let
           let
             baseVars = import (flakePath "vars.nix");
             hostVarPath = hostPath "vars";
+            hostVars = if builtins.pathExists hostVarPath then (import hostVarPath) else { };
           in
-          baseVars // (if builtins.pathExists hostVarPath then (import hostVarPath) else { });
+          lib.attrsets.recursiveUpdate baseVars (
+            if builtins.isFunction hostVars then hostVars baseVars else hostVars
+          );
         baseInputs = {
           inherit
             lib

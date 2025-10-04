@@ -16,13 +16,15 @@ modules.mkModule config ./appsLayout.nix {
     {
       dconf.settings = {
         "org/gnome/shell" = {
-          favorite-apps = with vars.linux.defaultApps; [
-            browser.desktop
-            editor.desktop
-            terminal.desktop
-            fileManager
-            music
-          ];
+          favorite-apps =
+            with vars.linux.defaultApps;
+            (builtins.filter (app: !(builtins.isNull app)) [
+              browser.desktop
+              editor.desktop
+              terminal.desktop
+              fileManager
+              music
+            ]);
         };
       }
       // (

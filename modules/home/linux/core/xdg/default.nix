@@ -17,8 +17,10 @@ modules.mkModule config ./. {
         enable = true;
         terminal-exec = {
           enable = true;
+        }
+        // (utils.ifNotNull terminal.desktop { } {
           settings.default = [ terminal.desktop ];
-        };
+        });
         cacheHome = "${config.home.homeDirectory}/.cache";
         configHome = "${config.home.homeDirectory}/.config";
         dataHome = "${config.home.homeDirectory}/.local/share";
@@ -48,7 +50,9 @@ modules.mkModule config ./. {
             let
               setAssociations =
                 app: mimetypes:
-                builtins.listToAttrs (builtins.map (mime: lib.attrsets.nameValuePair mime app) mimetypes);
+                utils.ifNotNull app { } (
+                  builtins.listToAttrs (builtins.map (mime: lib.attrsets.nameValuePair mime app) mimetypes)
+                );
             in
             (builtins.foldl' (result: current: result // current) { } [
               (setAssociations browser.desktop [

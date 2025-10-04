@@ -9,14 +9,19 @@ modules.mkModule config ./shortcuts.nix {
   config =
     with vars.linux.defaultApps;
     let
-      customKeybindings = [
-        {
-          id = "launch-terminal";
-          name = "Launch terminal";
-          command = terminal.program;
-          binding = "<Super>Return";
-        }
-      ];
+      customKeybindings =
+        [ ]
+        ++ (utils.ifNotNull terminal.program
+          [ ]
+          [
+            {
+              id = "launch-terminal";
+              name = "Launch terminal";
+              command = terminal.program;
+              binding = "<Super>Return";
+            }
+          ]
+        );
       customKeybindingsRoot = "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings";
     in
     {

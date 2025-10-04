@@ -1,1 +1,7 @@
-{ systemType }: { linux, darwin }@options: options.${systemType}
+{ systemType }:
+{
+  linux,
+  darwin,
+  wsl ? linux,
+}@options:
+options.${systemType}

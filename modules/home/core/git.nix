@@ -23,22 +23,18 @@ modules.mkModule config ./git.nix {
 
       home.packages = with pkgs; [ git-filter-repo ];
 
-      programs.git =
-        with vars.user;
-        with vars.linux.defaultApps;
-        {
-          enable = true;
-          userName = fullname;
-          userEmail = email;
-          extraConfig = {
-            init.defaultBranch = "main";
-            pull.rebase = false;
-            core = {
-              editor = editor.program;
-              attributesfile = "${config.xdg.configHome}/${attributesConfigPath}";
-            };
+      programs.git = with vars.user; {
+        enable = true;
+        userName = fullname;
+        userEmail = email;
+        extraConfig = {
+          init.defaultBranch = "main";
+          pull.rebase = false;
+          core = {
+            attributesfile = "${config.xdg.configHome}/${attributesConfigPath}";
           };
         };
+      };
       xdg.configFile = {
         ${attributesConfigPath}.text = ''
           * text=auto eol=lf

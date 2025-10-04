@@ -33,7 +33,7 @@
       };
     };
   linux = {
-    defaultApps = rec {
+    defaultApps = {
       # Some app types need both desktop and program definitions.
       # - desktop: desktop file for gui app
       # - program: use from cli (but can be a gui app)
@@ -42,8 +42,8 @@
       # - system: ls /run/current-system/sw/share/applications/
       # - user: ls /etc/profiles/per-user/$USER/share/applications/
       terminal = {
-        desktop = "org.gnome.Console.desktop";
-        program = "kgx";
+        desktop = null;
+        program = null;
       };
       browser = {
         desktop = "firefox.desktop";
@@ -53,13 +53,13 @@
         desktop = "code.desktop";
         program = "nano";
       };
-      fileManager = "org.gnome.Nautilus.desktop";
-      music = "spotify.desktop";
-      pdf = browser.desktop;
-      mail = browser.desktop;
-      image = "org.gnome.Loupe.desktop";
-      audio = "org.gnome.Decibels.desktop";
-      video = "org.gnome.Totem.desktop";
+      fileManager = null;
+      music = null;
+      pdf = null;
+      mail = null;
+      image = null;
+      audio = null;
+      video = null;
     };
     locale = {
       timeZone = "Europe/Rome";
