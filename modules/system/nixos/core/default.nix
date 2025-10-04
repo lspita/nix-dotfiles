@@ -12,7 +12,6 @@ modules.mkDefaultsModule config ./. {
       power.enable = true;
       wayland.enable = true;
       locale.enable = true;
-      ssh.enable = true;
       bluetooth.enable = true;
       audio.pipewire.enable = true;
       network.networkmanager.enable = true;
