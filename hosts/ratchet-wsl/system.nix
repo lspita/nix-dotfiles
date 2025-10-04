@@ -3,8 +3,7 @@
   custom = {
     core.enableDefaults = true;
     nixos = {
-      core.enableDefaults = true;
-      wsl.enable = true;
+      wsl.enableDefaults = true;
       virtualisation.enableDefaults = true;
     };
   };

@@ -6,7 +6,7 @@
   ...
 }:
 with lib.custom;
-modules.mkModule config ./wsl.nix {
+modules.mkDefaultsModule config ./wsl.nix {
   imports = [
     flakeInputs.nixos-wsl.nixosModules.default
   ];
@@ -15,5 +15,10 @@ modules.mkModule config ./wsl.nix {
     wsl.enable = true;
     wsl.defaultUser = vars.user.username;
     programs.nix-ld.enable = true;
+    # disable conflicts
+    custom.nixos = {
+      enableDefaults = false;
+      ssh.enable = true;
+    };
   };
 }
