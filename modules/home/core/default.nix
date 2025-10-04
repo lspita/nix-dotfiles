@@ -9,5 +9,6 @@ modules.mkDefaultsModule config ./. {
       environment.enable = true;
       git.enable = true;
       nh.enable = true;
+      wget.enable = true;
     };
 }
