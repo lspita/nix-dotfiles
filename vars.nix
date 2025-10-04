@@ -33,7 +33,7 @@
       };
     };
   linux = {
-    defaultApps = {
+    defaultApps = rec {
       # Some app types need both desktop and program definitions.
       # - desktop: desktop file for gui app
       # - program: use from cli (but can be a gui app)
@@ -56,9 +56,9 @@
         program = "nano";
       };
       fileManager = null;
-      music = null;
-      pdf = null;
-      mail = null;
+      music = "spotify.desktop";
+      pdf = browser.desktop;
+      mail = browser.desktop;
       image = null;
       audio = null;
       video = null;
