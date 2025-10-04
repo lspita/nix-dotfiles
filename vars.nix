@@ -41,6 +41,8 @@
       # You can check available desktop files
       # - system: ls /run/current-system/sw/share/applications/
       # - user: ls /etc/profiles/per-user/$USER/share/applications/
+      #
+      # use null to leave unset
       terminal = {
         desktop = null;
         program = null;
