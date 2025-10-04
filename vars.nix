@@ -17,6 +17,7 @@
       size = 11;
     in
     {
+      # font packages to install
       packages =
         pkgs: with pkgs; [
           noto-fonts
@@ -25,6 +26,7 @@
           nerd-fonts.fira-code
           nerd-fonts.fira-mono
         ];
+      # every font can either be null to not override or an attrset with name and size
       normal = {
         inherit size;
         name = "NotoSans Nerd Font";
