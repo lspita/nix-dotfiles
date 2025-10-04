@@ -38,7 +38,7 @@ modules.mkModule config ./nh.nix {
             ''
             ''
               flake-update() {
-                nh os update -u
+                nh os switch -u
                 flake-push "flake update"
               }
             ''
