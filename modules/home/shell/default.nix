@@ -10,19 +10,20 @@ modules.mkDefaultsModule config ./. {
   };
   config =
     { setDefaultModules, ... }:
-    (setDefaultModules {
-      aliases.enable = true;
-      bash = {
-        enable = true;
-        blesh.enable = true;
+    lib.attrsets.recursiveUpdate
+      (setDefaultModules {
+        aliases.enable = true;
+        bash = {
+          enable = true;
+          blesh.enable = true;
+        };
+        prompt.starship = {
+          enable = true;
+          preset = "omarchy";
+        };
+      })
+      {
+        home.shell.enableShellIntegration = lib.mkDefault true;
       };
-      prompt.starship = {
-        enable = true;
-        preset = "omarchy";
-      };
-    })
-    // {
-      home.shell.enableShellIntegration = lib.mkDefault true;
-    };
 
 }
