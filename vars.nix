@@ -8,9 +8,7 @@
     email = "ludovico.spitaleri@gmail.com"; # used for some configurations (e.g. git)
     image = "clank";
   };
-
   nix.allowUnfree = true;
-
   shell = pkgs: pkgs.bash;
   fonts =
     let
