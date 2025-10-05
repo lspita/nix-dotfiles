@@ -17,5 +17,6 @@ modules.mkDefaultsModule config ./. {
         passwordManager.enable = false;
       };
       spotify.enable = true;
+      hoppscotch.enable = true;
     };
 }
