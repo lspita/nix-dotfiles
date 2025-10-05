@@ -8,6 +8,7 @@
         enableDefaults = true;
         settings = {
           vrr.enable = true;
+          fractionalScaling.enable = true;
           locationServices.enable = true;
         };
       };
