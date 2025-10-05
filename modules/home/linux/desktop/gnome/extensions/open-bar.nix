@@ -29,6 +29,9 @@ modules.mkModule config ./open-bar.nix {
         fgalpha = 1.0;
         # bar background
         bgalpha = 0.0;
+        # bar highlights
+        hpad = 1.0;
+        vpad = 3.5;
         # bar border
         bwidth = 0.0;
         neon = false;
