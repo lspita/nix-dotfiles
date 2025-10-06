@@ -8,5 +8,6 @@ modules.mkDefaultsModule config ./. {
       environment.enable = true;
       git.enable = true;
       wget.enable = true;
+      curl.enable = true;
     };
 }

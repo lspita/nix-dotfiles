@@ -11,5 +11,9 @@ modules.mkDefaultsModule config ./. {
       lazycli.enable = true;
       lazygit.enable = true;
       lazydocker.enable = true;
+      jq.enable = true;
+      bat.enable = true;
+      delta.enable = true;
+      fzf.enable = true;
     };
 }

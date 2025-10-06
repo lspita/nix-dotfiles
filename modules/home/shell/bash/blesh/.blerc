@@ -1,0 +1,6 @@
+# https://github.com/akinomyoga/blesh-contrib/blob/master/integration/fzf.md
+
+# Set up fzf
+ble-import -d integration/fzf-completion
+ble-import -d integration/fzf-key-bindings
+ble-import -d integration/fzf-git
