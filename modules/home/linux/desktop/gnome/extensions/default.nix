@@ -20,6 +20,7 @@ modules.mkDefaultsModule config ./. {
         alphabetical-app-grid.enable = true;
         auto-power-profile.enable = true;
         caffeine.enable = true;
+        hide-cursor.enable = true;
       })
       {
         home.packages = with pkgs; [
