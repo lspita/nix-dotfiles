@@ -7,6 +7,7 @@ modules.mkModule config ./firefox.nix {
   config =
     { self, ... }:
     {
+      # extensions are synced with account
       programs.firefox = {
         enable = true;
         policies = {
@@ -31,7 +32,7 @@ modules.mkModule config ./firefox.nix {
             ];
             "devtools.toolbox.host" = "right";
             "browser.toolbarbuttons.introduced.sidebar-button" = true;
-            "browser.toolbars.bookmarks.visibility" = "always";
+            "browser.toolbars.bookmarks.visibility" = "newtab";
             "browser.bookmarks.addedImportButton" = true;
             "browser.tabs.closeWindowWithLastTab" = false;
             "browser.download.open_pdf_attachments_inline" = true;
