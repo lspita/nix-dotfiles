@@ -2,6 +2,11 @@
 with lib.custom;
 modules.mkModule config ./. {
   options = {
+    maxEntries = lib.mkOption {
+      type = lib.types.int;
+      default = 10;
+      description = "Maximum number of latest generations in the boot menu.";
+    };
     entriesTimeout = lib.mkOption {
       type = lib.types.int;
       default = 0;
@@ -16,6 +21,7 @@ modules.mkModule config ./. {
           systemd-boot = {
             enable = true;
             editor = false; # recommended false https://search.nixos.org/options?channel=unstable&show=boot.loader.systemd-boot.editor
+            configurationLimit = self.maxEntries;
           };
           efi.canTouchEfiVariables = true;
           timeout = self.entriesTimeout; # spam space to show entries selection
