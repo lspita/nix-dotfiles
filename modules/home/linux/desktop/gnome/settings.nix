@@ -42,7 +42,6 @@ modules.mkModule config ./settings.nix {
           night-light-schedule-to = 0.0;
           night-light-temperature = lib.hm.gvariant.mkUint32 3200;
         };
-        "org/gnome/settings-daemon/plugins/power".sleep-inactive-ac-type = "nothing";
         "org/gnome/shell/app-switcher".current-workspace-only = true;
         "org/gnome/desktop/input-sources".sources = [
           (lib.hm.gvariant.mkTuple [
