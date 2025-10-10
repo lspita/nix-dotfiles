@@ -18,7 +18,7 @@ modules.mkDefaultsModule config ./. {
         vitals.enable = true;
         open-bar.enable = true;
         alphabetical-app-grid.enable = true;
-        auto-power-profile.enable = true;
+        # auto-power-profile.enable = true;
         caffeine.enable = true;
         hide-cursor.enable = true;
       })
