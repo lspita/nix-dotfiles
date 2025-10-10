@@ -55,6 +55,8 @@
     "light": "Catppuccin Latte"
   },
   "file_types": {
-    "Shell Script": [".envrc"]
+    "Shell Script": [
+      ".envrc"
+    ]
   }
 }
