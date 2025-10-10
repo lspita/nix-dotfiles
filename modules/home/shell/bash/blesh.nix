@@ -5,7 +5,7 @@
   ...
 }:
 with lib.custom;
-modules.mkModule config ./. {
+modules.mkModule config ./blesh.nix {
   options = {
     fzfIntegration.enable = utils.mkTrueEnableOption "ble.sh fzf integration (if installed)";
   };
@@ -14,7 +14,17 @@ modules.mkModule config ./. {
     {
       home = {
         packages = with pkgs; [ blesh ];
-        file.".blerc".source = ./.blerc;
+        file.".blerc".text =
+          if self.fzfIntegration.enable then
+            ''
+              # https://github.com/akinomyoga/blesh-contrib/blob/master/integration/fzf.md
+
+              # Set up fzf
+              ble-import -d integration/fzf-completion
+              ble-import -d integration/fzf-key-bindings
+            ''
+          else
+            "";
       };
       # https://github.com/akinomyoga/ble.sh/wiki/Manual-A1-Installation#user-content-nixpkgs
       custom.shell.rc = lib.mkMerge [
