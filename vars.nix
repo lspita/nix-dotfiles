@@ -1,7 +1,7 @@
 {
   dotfilesHome = "nix-dotfiles"; # location of dotfiles in the user home
   backupFileExtension = "bkp";
-  wallpaper = "lake";
+  wallpaper = "planet";
   user = {
     username = "lspita";
     fullname = "Ludovico Spitaleri";

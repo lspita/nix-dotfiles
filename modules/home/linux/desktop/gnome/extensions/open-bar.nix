@@ -13,8 +13,8 @@ modules.mkModule config ./open-bar.nix {
       "" = {
         # auto theming
         autotheme-refresh = true;
-        autotheme-dark = "Color";
-        autotheme-light = "Color";
+        autotheme-dark = "Dark";
+        autotheme-light = "Light";
         auto-bgalpha = false;
         autofg-bar = true;
         autofg-menu = false;
