@@ -17,5 +17,8 @@ modules.mkModule config ./open.nix {
         ''
       ];
     };
+    home.shellAliases = {
+      xdg-open = "open";
+    };
   };
 }
