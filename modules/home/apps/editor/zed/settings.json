@@ -55,9 +55,14 @@
     "dark": "Catppuccin Mocha",
     "light": "Catppuccin Latte"
   },
+  "buffer_font_family": "FiraMono Nerd Font",
+  "buffer_font_features": {
+    "calt": false // ligatures
+  },
+  "ui_font_features": {
+    "calt": false // ligatures
+  },
   "file_types": {
-    "Shell Script": [
-      ".envrc"
-    ]
+    "Shell Script": [".envrc"]
   }
 }
