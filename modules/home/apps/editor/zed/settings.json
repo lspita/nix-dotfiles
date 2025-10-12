@@ -28,7 +28,8 @@
     "log": true,
     "ssh-config": true,
     "markdown-oxide": true,
-    "toml": true
+    "toml": true,
+    "neocmake": true
   },
   "ui_font_size": 16,
   "buffer_font_size": 16,
