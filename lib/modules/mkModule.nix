@@ -3,7 +3,8 @@ config: path: module:
 let
   imports = module.imports or [ ];
   options = module.options or { };
-  enable = module.enable or "enable";
+  enableOption = module.enableOption or "enable";
+  enable = module.enable or false;
   rootPathList = [ "custom" ];
   modulePathList = (
     lib.lists.drop 4 # "/nix/store/<hash>/..." is splitted into [ "" "nix" "store" "<hash>" ... ]
@@ -20,11 +21,15 @@ in
   inherit imports;
   options = lib.attrsets.setAttrByPath pathList (
     {
-      ${enable} = lib.mkEnableOption (lib.concatStringsSep "." pathList);
+      ${enableOption} = lib.mkOption {
+        type = lib.types.bool;
+        default = enable;
+        description = "Whether to enable ${lib.concatStringsSep "." pathList}";
+      };
     }
     // options
   );
-  config = lib.mkIf (self.${enable}) (
+  config = lib.mkIf (self.${enableOption}) (
     if builtins.isFunction cfg then
       cfg (rec {
         inherit

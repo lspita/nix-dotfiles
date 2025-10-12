@@ -3,7 +3,7 @@ config: path: module:
 super.mkModule config path (
   module
   // {
-    enable = "enableDefaults";
+    enableOption = "enableDefaults";
     config =
       { setSubconfig, ... }@inputs:
       if builtins.isFunction module.config then
