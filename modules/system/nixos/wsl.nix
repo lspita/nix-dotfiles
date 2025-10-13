@@ -18,5 +18,10 @@ modules.mkModule config ./wsl.nix {
     };
     programs.nix-ld.enable = true;
     custom.nixos.core.enableDefaults = false;
+    environment.sessionVariables = {
+      LD_LIBRARY_PATH = [
+        "/usr/lib/wsl/lib"
+      ];
+    };
   };
 }
