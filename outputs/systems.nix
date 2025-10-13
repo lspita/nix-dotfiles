@@ -54,7 +54,7 @@ let
         systemType =
           with pkgs.stdenv;
           if isLinux then
-            "linux"
+            if vars.linux.wsl then "wsl" else "linux"
           else if isDarwin then
             "darwin"
           else
