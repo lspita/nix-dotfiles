@@ -23,6 +23,11 @@
               nil
               nixfmt
             ];
+            shellHook = ''
+              set -a
+              source .env 2> /dev/null
+              set +a
+            '';
           };
       }
     );
