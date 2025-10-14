@@ -3,5 +3,8 @@
   linux,
   darwin,
   wsl ? linux,
-}@options:
+}: # @options doesn't have the wsl value if not given
+let
+  options = { inherit linux darwin wsl; };
+in
 options.${systemType}

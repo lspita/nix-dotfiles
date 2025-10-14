@@ -26,5 +26,8 @@ modules.mkDefaultsModule config ./. {
             ''
           ]
         ];
+        home.shellAliases = {
+          wsl-terminate = "wsl.exe -t $WSL_DISTRO_NAME";
+        };
       };
 }

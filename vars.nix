@@ -34,37 +34,42 @@
         name = "FiraMono Nerd Font";
       };
     };
-  linux = {
-    defaultApps = rec {
-      # Some app types need both desktop and program definitions.
-      # - desktop: desktop file for gui app
-      # - program: use from cli (but can be a gui app)
-      #
-      # You can check available desktop files
-      # - system: ls /run/current-system/sw/share/applications/
-      # - user: ls /etc/profiles/per-user/$USER/share/applications/
-      #
-      # use null to leave unset
-      terminal = {
-        desktop = null;
-        program = null;
+  linux = rec {
+    wsl = false;
+    defaultApps =
+      let
+        noWSL = value: if wsl then null else value;
+      in
+      rec {
+        # Some app types need both desktop and program definitions.
+        # - desktop: desktop file for gui app
+        # - program: use from cli (but can be a gui app)
+        #
+        # You can check available desktop files
+        # - system: ls /run/current-system/sw/share/applications/
+        # - user: ls /etc/profiles/per-user/$USER/share/applications/
+        #
+        # use null to leave unset
+        terminal = {
+          desktop = null;
+          program = null;
+        };
+        browser = {
+          desktop = noWSL "firefox.desktop";
+          program = noWSL "firefox";
+        };
+        editor = {
+          desktop = noWSL "code.desktop";
+          program = "nano";
+        };
+        fileManager = null;
+        music = noWSL "spotify.desktop";
+        pdf = browser.desktop;
+        mail = browser.desktop;
+        image = null;
+        audio = null;
+        video = null;
       };
-      browser = {
-        desktop = "firefox.desktop";
-        program = "firefox";
-      };
-      editor = {
-        desktop = "code.desktop";
-        program = "nano";
-      };
-      fileManager = null;
-      music = "spotify.desktop";
-      pdf = browser.desktop;
-      mail = browser.desktop;
-      image = null;
-      audio = null;
-      video = null;
-    };
     locale = {
       timeZone = "Europe/Rome";
       keyboard = "it";
