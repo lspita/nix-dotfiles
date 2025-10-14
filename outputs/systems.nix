@@ -72,7 +72,7 @@ let
         ];
         loadModules = type: {
           imports =
-            (customLib.modules.listRec (flakePath "modules/${type}"))
+            (customLib.utils.listRec (flakePath "modules/${type}"))
             ++ (
               let
                 hostConfig = hostPath type;
