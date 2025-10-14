@@ -9,12 +9,12 @@ flake-utils.lib.eachDefaultSystem (
   {
     devShell = pkgs.mkShell {
       buildInputs = with pkgs; [
+        # nix
         nixd
         nil
         nixfmt
+        # lua
         lua-language-server
-        git
-        markdown-oxide
       ];
     };
   }
