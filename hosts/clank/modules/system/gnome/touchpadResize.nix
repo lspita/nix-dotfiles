@@ -1,6 +1,7 @@
-{ lib, ... }@inputs:
+{ config, lib, ... }@inputs:
 with lib.custom;
 modules.mkHostModule inputs ./touchpadResize.nix {
+  enable = config.services.desktopManager.gnome.enable;
   config = {
     # Resize touchpad to contrast gnome scrolling speed.
     # https://wayland.freedesktop.org/libinput/doc/latest/absolute-coordinate-ranges.html
