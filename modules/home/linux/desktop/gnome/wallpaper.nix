@@ -1,14 +1,9 @@
-{
-  config,
-  lib,
-  vars,
-  ...
-}:
+{ lib, vars, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./wallpaper.nix {
+modules.mkModule inputs ./wallpaper.nix {
   config =
     let
-      wallpapers = assets.wallpapers config;
+      wallpapers = assets.wallpapers inputs;
       wallpapersDataDir = "gnome-background-properties";
       color = "#000000";
     in

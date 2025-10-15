@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./open.nix {
+modules.mkModule inputs ./open.nix {
   config = {
     custom = {
       linux.core.xdg.openAlias = false;

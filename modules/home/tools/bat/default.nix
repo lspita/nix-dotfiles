@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./. {
+modules.mkModule inputs ./. {
   options = {
     extraPackages = lib.mkOption {
       type = with lib.types; listOf package;

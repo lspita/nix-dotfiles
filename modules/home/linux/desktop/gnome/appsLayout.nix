@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  vars,
-  ...
-}:
+{ lib, vars, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./appsLayout.nix {
+modules.mkModule inputs ./appsLayout.nix {
   config =
     let
       defaultAppFolders = [

@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./zsh.nix {
+modules.mkModule inputs ./zsh.nix {
   config = {
     programs = {
       zsh = {
@@ -8,7 +8,7 @@ modules.mkModule config ./zsh.nix {
         enableCompletion = true;
         autosuggestion.enable = true;
         syntaxHighlighting.enable = true;
-        initContent = lib.mkAfter (shell.loadrc config "zsh");
+        initContent = lib.mkAfter (shell.loadrc inputs "zsh");
       };
     };
   };

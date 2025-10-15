@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./auto-power-profile.nix {
+modules.mkModule inputs ./auto-power-profile.nix {
   config = gnome.mkExtensionConfig {
     package = pkgs.gnomeExtensions.auto-power-profile;
     settings = {

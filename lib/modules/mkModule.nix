@@ -1,16 +1,30 @@
 { root, lib }:
-config: path: module:
+{ config, configType, ... }:
+path: module:
 let
   imports = module.imports or [ ];
   options = module.options or { };
   enableOption = module.enableOption or "enable";
   enable = module.enable or false;
-  rootPathList = [ "custom" ];
+  rootPathList = [ "custom" ] ++ (module.root or [ ]);
+  moduleDirPath =
+    (
+      let
+        dirPath = module.dirPath or [ ];
+      in
+      if builtins.isList dirPath then dirPath else splitPath dirPath
+    )
+    ++ [
+      "modules"
+      configType
+    ];
+  splitPath = lib.strings.splitString "/";
+
   modulePathList = (
     lib.lists.drop 4 # "/nix/store/<hash>/..." is splitted into [ "" "nix" "store" "<hash>" ... ]
-      (with lib.strings; splitString "/" (removeSuffix ".nix" (builtins.toString path)))
+      (splitPath (lib.strings.removeSuffix ".nix" (builtins.toString path)))
   );
-  pathList = rootPathList ++ (lib.lists.drop 2 modulePathList); # drop also [ "modules" "<category>" ]
+  pathList = rootPathList ++ (lib.lists.removePrefix moduleDirPath modulePathList);
   getSubconfig = path: lib.attrsets.getAttrFromPath path config;
   self = getSubconfig pathList;
   super = getSubconfig (lib.lists.dropEnd 1 pathList);

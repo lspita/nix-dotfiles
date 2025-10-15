@@ -1,12 +1,11 @@
 {
-  config,
   lib,
   pkgs,
   vars,
   ...
-}:
+}@inputs:
 with lib.custom;
-modules.mkModule config ./fonts.nix {
+modules.mkModule inputs ./fonts.nix {
   config = {
     home.packages = vars.fonts.packages pkgs;
   };

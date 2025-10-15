@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  vars,
-  ...
-}:
+{ lib, vars, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./environment.nix {
+modules.mkModule inputs ./environment.nix {
   config = {
     home.sessionVariables =
       with vars.linux.defaultApps;

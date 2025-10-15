@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  vars,
-  ...
-}:
+{ lib, vars, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./openAnyTerminal.nix {
+modules.mkModule inputs ./openAnyTerminal.nix {
   config = {
     # https://github.com/Stunkymonkey/nautilus-open-any-terminal
     programs = {

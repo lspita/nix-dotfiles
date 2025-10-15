@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  vars,
-  ...
-}:
+{ lib, vars, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./aliases.nix {
+modules.mkModule inputs ./aliases.nix {
   config = {
     home.shellAliases = {
       ll = "ls -al";

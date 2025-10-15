@@ -1,11 +1,8 @@
-{
-  config,
-  lib,
-  vars,
-  ...
-}:
+{ lib, vars, ... }@inputs:
+# TODO workspaces switch
+# TODO fullscreen
 with lib.custom;
-modules.mkModule config ./shortcuts.nix {
+modules.mkModule inputs ./shortcuts.nix {
   config =
     with vars.linux.defaultApps;
     let

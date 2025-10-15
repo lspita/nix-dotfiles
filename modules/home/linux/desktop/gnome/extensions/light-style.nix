@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./light-style.nix {
+modules.mkModule inputs ./light-style.nix {
   config = gnome.mkExtensionConfig {
     package = pkgs.gnomeExtensions.light-style;
   };

@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./just-perfection.nix {
+modules.mkModule inputs ./just-perfection.nix {
   config = gnome.mkExtensionConfig {
     package = pkgs.gnomeExtensions.just-perfection;
     settings = {

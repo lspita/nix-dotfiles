@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./curl.nix {
+modules.mkModule inputs ./curl.nix {
   config = {
     home.packages = with pkgs; [ curl ];
   };

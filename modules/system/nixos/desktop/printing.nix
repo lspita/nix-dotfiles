@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./printing.nix {
+modules.mkModule inputs ./printing.nix {
   config = {
     services.printing.enable = true; # cups
   };

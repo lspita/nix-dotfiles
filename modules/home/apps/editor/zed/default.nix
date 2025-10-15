@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./. {
+modules.mkModule inputs ./. {
   config =
     { path, ... }:
     let
@@ -20,7 +15,7 @@ modules.mkModule config ./. {
         shellAliases.zed = "zeditor";
       };
       xdg.configFile = {
-        "${configDir}/settings.json".source = dotfiles.dotSymlink config "${path}/settings.json";
+        "${configDir}/settings.json".source = dotfiles.dotSymlink inputs "${path}/settings.json";
       };
     };
 }

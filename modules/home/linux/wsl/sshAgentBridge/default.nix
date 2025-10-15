@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./. {
+modules.mkModule inputs ./. {
   config = {
     home.packages = with pkgs; [ socat ];
     custom.shell.rc = [

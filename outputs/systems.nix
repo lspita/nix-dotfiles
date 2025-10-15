@@ -8,7 +8,8 @@
   ...
 }@flakeInputs:
 let
-  hostsDir = flakePath "hosts";
+  hostsDirRel = "hosts";
+  hostsDir = flakePath hostsDirRel;
   lib = nixpkgs.lib;
   mkSystems =
     systems:
@@ -16,13 +17,15 @@ let
       result:
       { hostname, hostInfo }:
       let
+        hostDirRel = "${hostsDirRel}/${hostname}";
+        hostDir = "${hostsDir}/${hostname}";
         hostPath =
           path:
           let
-            fullPath = "${hostsDir}/${hostname}/${path}";
+            fullPath = "${hostDir}/${path}";
           in
           with lib.filesystem;
-          if pathIsDirectory fullPath then resolveDefaultNix fullPath else "${fullPath}.nix";
+          if pathIsDirectory fullPath then fullPath else "${fullPath}.nix";
         vars =
           let
             baseVars = import (flakePath "vars.nix");
@@ -36,6 +39,11 @@ let
           inherit
             lib
             vars
+            hostname
+            hostInfo
+            hostDirRel
+            hostDir
+            hostPath
             flakeInputs
             flakeRoot
             flakePath
@@ -73,6 +81,12 @@ let
         loadModules = type: {
           imports =
             (customLib.utils.listRec (flakePath "modules/${type}"))
+            ++ (
+              let
+                hostModulesPath = hostPath "modules/${type}";
+              in
+              if builtins.pathExists hostModulesPath then customLib.utils.listRec hostModulesPath else [ ]
+            )
             ++ (
               let
                 hostConfig = hostPath type;
@@ -125,11 +139,15 @@ let
                   ];
                   home.stateVersion = lib.mkDefault hostInfo.stateVersion;
                 };
-                extraSpecialArgs = specialArgs;
+                extraSpecialArgs = specialArgs // {
+                  configType = "home";
+                };
               };
             }
           ];
-          specialArgs = specialArgs;
+          specialArgs = specialArgs // {
+            configType = "system";
+          };
         };
       }
     ) { } systems;

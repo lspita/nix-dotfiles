@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  vars,
-  ...
-}:
+{ lib, vars, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./nix.nix {
+modules.mkModule inputs ./nix.nix {
   options = {
     cleaning = {
       dates = lib.mkOption {

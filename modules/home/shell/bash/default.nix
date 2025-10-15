@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./. {
+modules.mkModule inputs ./. {
   options = {
     completition = {
       enable = utils.mkTrueEnableOption "bash completition";
@@ -14,7 +14,7 @@ modules.mkModule config ./. {
         bash = {
           enable = true;
           enableCompletion = self.completition.enable;
-          initExtra = lib.mkAfter (shell.loadrc config "bash");
+          initExtra = lib.mkAfter (shell.loadrc inputs "bash");
         };
       };
       # https://www.cyberciti.biz/faq/bash-shell-setup-filename-tab-completion-case-insensitive/

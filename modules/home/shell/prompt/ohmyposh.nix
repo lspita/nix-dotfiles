@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./ohmyposh.nix {
+modules.mkModule inputs ./ohmyposh.nix {
   options = {
     theme = lib.mkOption {
       type = with lib.types; str;

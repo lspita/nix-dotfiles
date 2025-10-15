@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./bluetooth.nix {
+modules.mkModule inputs ./bluetooth.nix {
   config = {
     # https://nixos.wiki/wiki/Bluetooth
     hardware.bluetooth = {

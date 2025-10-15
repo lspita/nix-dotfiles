@@ -1,12 +1,11 @@
 {
-  config,
   lib,
   vars,
   flakeInputs,
   ...
-}:
+}@inputs:
 with lib.custom;
-modules.mkModule config ./wsl.nix {
+modules.mkModule inputs ./wsl.nix {
   imports = [
     flakeInputs.nixos-wsl.nixosModules.default
   ];

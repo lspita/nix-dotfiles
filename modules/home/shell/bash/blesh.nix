@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./blesh.nix {
+modules.mkModule inputs ./blesh.nix {
   options = {
     fzfIntegration.enable = utils.mkTrueEnableOption "ble.sh fzf integration (if installed)";
   };

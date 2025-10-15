@@ -1,10 +1,10 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./. {
+modules.mkModule inputs ./. {
   config =
     { path, ... }:
     {
       programs.wezterm.enable = true;
-      xdg.configFile."wezterm/wezterm.lua".source = dotfiles.dotSymlink config "${path}/wezterm.lua";
+      xdg.configFile."wezterm/wezterm.lua".source = dotfiles.dotSymlink inputs "${path}/wezterm.lua";
     };
 }

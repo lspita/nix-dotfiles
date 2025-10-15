@@ -1,10 +1,5 @@
 { ... }:
 {
-  imports = [
-    ./keyboardRemap.nix
-    ./gnome/touchpadResize.nix
-  ];
-
   custom = {
     core.enableDefaults = true;
     services.enableDefaults = true;

@@ -1,11 +1,11 @@
-{ lib, root }:
-config: program:
+{ super, lib }:
+{ config, ... }@inputs:
+program:
 let
-  packagesLists = [
-    # remember to put the "or []", you can't put it in a map function
-    (config.home.packages or [ ])
-    (config.environment.systemPackages or [ ])
-  ];
+  packagesLists = super.configTypeValue inputs {
+    home = config.home.packages;
+    system = config.environment.systemPackages;
+  };
 in
 config.programs.${program}.enable or false
 || lib.any (p: (lib.getName p) == program) (lib.lists.flatten packagesLists)

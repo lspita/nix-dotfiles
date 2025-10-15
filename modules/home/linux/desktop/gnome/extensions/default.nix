@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkDefaultsModule config ./. {
+modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultModules, ... }:
     lib.attrsets.recursiveUpdate

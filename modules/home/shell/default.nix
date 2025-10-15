@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkDefaultsModule config ./. {
+modules.mkDefaultsModule inputs ./. {
   options = {
     rc = lib.mkOption {
       type = with lib.types; listOf anything; # list of str or (str -> str)

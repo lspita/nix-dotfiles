@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./graphics.nix {
+modules.mkModule inputs ./graphics.nix {
   config = {
     # https://wiki.nixos.org/wiki/Intel_Graphics
     services.xserver.videoDrivers = [ "modesetting" ];

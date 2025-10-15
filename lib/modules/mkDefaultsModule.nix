@@ -1,6 +1,6 @@
 { root, super }:
-config: path: module:
-super.mkModule config path (
+inputs: path: module:
+super.mkModule inputs path (
   module
   // {
     enableOption = "enableDefaults";

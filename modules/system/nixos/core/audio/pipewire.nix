@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./pipewire.nix {
+modules.mkModule inputs ./pipewire.nix {
   config = {
     security.rtkit.enable = true;
     services = {

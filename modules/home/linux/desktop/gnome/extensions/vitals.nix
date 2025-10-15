@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./vitals.nix {
+modules.mkModule inputs ./vitals.nix {
   config = gnome.mkExtensionConfig {
     package = pkgs.gnomeExtensions.vitals;
     settings = {

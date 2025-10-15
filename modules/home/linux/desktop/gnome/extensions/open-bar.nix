@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./open-bar.nix {
+modules.mkModule inputs ./open-bar.nix {
   config = gnome.mkExtensionConfig {
     package = pkgs.gnomeExtensions.open-bar;
     name = "openbar";

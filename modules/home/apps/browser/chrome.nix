@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./chrome.nix {
+modules.mkModule inputs ./chrome.nix {
   config = {
     home.packages = with pkgs; [ google-chrome ];
   };

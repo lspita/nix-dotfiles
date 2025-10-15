@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./vscode.nix {
+modules.mkModule inputs ./vscode.nix {
   config = {
     programs.vscode.enable = true;
   };

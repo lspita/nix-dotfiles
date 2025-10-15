@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./firefox.nix {
+modules.mkModule inputs ./firefox.nix {
   options = {
     passwordManager.enable = utils.mkTrueEnableOption "firefox password manager";
   };
@@ -59,7 +59,7 @@ modules.mkModule config ./firefox.nix {
                   "customizableui-special-spring2"
                 ]
                 ++ (
-                  if utils.isInstalled config "bitwarden-desktop" then
+                  if utils.isInstalled inputs "bitwarden-desktop" then
                     # pin bitwarden extension
                     [ "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" ]
                   else

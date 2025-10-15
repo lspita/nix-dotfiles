@@ -5,14 +5,14 @@
   vars,
   flakePath,
 }:
-config:
+inputs:
 let
   wallpaperAssetsDir = "wallpapers";
   wallpapersStaticRoot = flakePath "assets/${wallpaperAssetsDir}";
   wallpapers = lib.attrsets.foldlAttrs (
     result: path: type:
     let
-      wallpaperPath = "${super.assetPath config wallpaperAssetsDir}/${path}";
+      wallpaperPath = "${super.assetPath inputs wallpaperAssetsDir}/${path}";
     in
     result
     // (

@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./caffeine.nix {
+modules.mkModule inputs ./caffeine.nix {
   config = gnome.mkExtensionConfig {
     package = pkgs.gnomeExtensions.caffeine;
   };

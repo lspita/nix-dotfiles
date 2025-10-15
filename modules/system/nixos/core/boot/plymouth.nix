@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./plymouth.nix {
+modules.mkModule inputs ./plymouth.nix {
   config = {
     # https://wiki.nixos.org/wiki/Plymouth
     boot = {

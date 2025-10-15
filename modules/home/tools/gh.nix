@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./gh.nix {
+modules.mkModule inputs ./gh.nix {
   config = {
     programs.gh = {
       enable = true;

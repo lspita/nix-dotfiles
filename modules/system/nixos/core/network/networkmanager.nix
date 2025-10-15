@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  vars,
-  ...
-}:
+{ lib, vars, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./networkmanager.nix {
+modules.mkModule inputs ./networkmanager.nix {
   options = {
     wifiLimitedConnectivityFix = utils.mkTrueEnableOption "network manager limited wifi connectivity fix";
   };

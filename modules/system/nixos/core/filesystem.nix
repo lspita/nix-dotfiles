@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./filesystem.nix {
+modules.mkModule inputs ./filesystem.nix {
   config = {
     environment.systemPackages = with pkgs; [
       # exfat support

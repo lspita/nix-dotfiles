@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  vars,
-  ...
-}:
+{ lib, vars, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./docker.nix {
+modules.mkModule inputs ./docker.nix {
   options = {
     autoPrune = {
       enable = utils.mkTrueEnableOption "docker auto pruning";

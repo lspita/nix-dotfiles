@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./gdm.nix {
+modules.mkModule inputs ./gdm.nix {
   options = {
     wayland = utils.mkTrueEnableOption "wayland support";
   };

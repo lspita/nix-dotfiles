@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./wayland.nix {
+modules.mkModule inputs ./wayland.nix {
   config = {
     # https://nixos.wiki/wiki/Wayland
     programs.xwayland.enable = true;

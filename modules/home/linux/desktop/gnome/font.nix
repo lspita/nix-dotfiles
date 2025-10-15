@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  vars,
-  ...
-}:
+{ lib, vars, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./font.nix {
+modules.mkModule inputs ./font.nix {
   config =
     with vars.fonts;
     let

@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./wget.nix {
+modules.mkModule inputs ./wget.nix {
   config = {
     home.packages = with pkgs; [ wget ];
   };

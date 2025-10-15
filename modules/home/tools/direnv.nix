@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./direnv.nix {
+modules.mkModule inputs ./direnv.nix {
   options = {
     silent = lib.mkEnableOption "silent logging";
   };

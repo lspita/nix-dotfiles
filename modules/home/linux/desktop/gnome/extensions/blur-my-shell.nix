@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./blur-my-shell.nix {
+modules.mkModule inputs ./blur-my-shell.nix {
   options = {
     applications = {
       enable = lib.mkEnableOption "applications blur";

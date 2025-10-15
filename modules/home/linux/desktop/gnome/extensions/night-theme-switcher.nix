@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./night-theme-switcher.nix {
+modules.mkModule inputs ./night-theme-switcher.nix {
   config = gnome.mkExtensionConfig {
     package = pkgs.gnomeExtensions.night-theme-switcher;
     name = "nightthemeswitcher";

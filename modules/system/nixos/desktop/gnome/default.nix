@@ -1,12 +1,11 @@
 {
-  config,
   lib,
   pkgs,
   vars,
   ...
-}:
+}@inputs:
 with lib.custom;
-modules.mkModule config ./. {
+modules.mkModule inputs ./. {
   options = {
     excludePackages = lib.mkOption {
       type = with lib.types; listOf package;
@@ -17,7 +16,7 @@ modules.mkModule config ./. {
   config =
     { self, ... }:
     let
-      profiles = assets.profiles config;
+      profiles = assets.profiles inputs;
       userImage = vars.user.image;
     in
     {

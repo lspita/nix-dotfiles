@@ -1,10 +1,6 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./fastfetch.nix {
+modules.mkModule inputs ./fastfetch.nix {
   options = {
     neofetchAlias = utils.mkTrueEnableOption "neofetch alias";
   };

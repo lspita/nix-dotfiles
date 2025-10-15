@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./nautilus.nix {
+modules.mkModule inputs ./nautilus.nix {
   config = {
     dconf.settings."org/gnome/nautilus/preferences" = {
       show-create-link = true;

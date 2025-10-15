@@ -1,1 +1,1 @@
-{ super }: config: path: "${super.dotRoot config}/${path}"
+{ super }: inputs: path: "${super.dotRoot inputs}/${path}"

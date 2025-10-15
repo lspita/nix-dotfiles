@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./lazygit.nix {
+modules.mkModule inputs ./lazygit.nix {
   config = {
     programs.lazygit.enable = true;
   };

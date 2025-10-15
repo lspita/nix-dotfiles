@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./bitwarden.nix {
+modules.mkModule inputs ./bitwarden.nix {
   options = {
     sshAgent.enable = lib.mkEnableOption "bitwarden ssh agent";
   };
@@ -23,7 +18,7 @@ modules.mkModule config ./bitwarden.nix {
             let
               sockerDir =
                 let
-                  homeDir = config.home.homeDirectory;
+                  homeDir = dotfiles.homeDir inputs;
                 in
                 utils.osValue {
                   linux = homeDir;

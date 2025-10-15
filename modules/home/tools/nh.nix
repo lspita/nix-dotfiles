@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./nh.nix {
+modules.mkModule inputs ./nh.nix {
   options = {
     functions.enable = utils.mkTrueEnableOption "flake shell functions";
   };
@@ -9,7 +9,7 @@ modules.mkModule config ./nh.nix {
     {
       programs.nh = {
         enable = true;
-        flake = dotfiles.dotRoot config;
+        flake = dotfiles.dotRoot inputs;
       };
       custom.shell.rc =
         if self.functions.enable then

@@ -4,9 +4,9 @@
   pkgs,
   vars,
   ...
-}:
+}@inputs:
 with lib.custom;
-modules.mkModule config ./git.nix {
+modules.mkModule inputs ./git.nix {
   config =
     let
       attributesConfigPath = "git/attributes";
@@ -18,7 +18,7 @@ modules.mkModule config ./git.nix {
       #
       #   https://git-scm.com/docs/git-config#Documentation/git-config.txt---global
       home.activation.removeExistingGitconfig = lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
-        rm -f ${config.home.homeDirectory}/.gitconfig
+        rm -f ${dotfiles.homeDir inputs}/.gitconfig
       '';
 
       home.packages = with pkgs; [ git-filter-repo ];

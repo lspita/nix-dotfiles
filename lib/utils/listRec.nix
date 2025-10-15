@@ -1,9 +1,4 @@
-{
-  lib,
-  flakeInputs,
-  root,
-  ...
-}:
+{ lib, flakeInputs, ... }:
 path:
 with flakeInputs;
 lib.attrsets.collect builtins.isString (

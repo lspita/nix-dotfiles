@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./delta.nix {
+modules.mkModule inputs ./delta.nix {
   config = {
     programs.git.delta.enable = true;
   };

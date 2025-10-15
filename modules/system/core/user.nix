@@ -1,12 +1,11 @@
 {
-  config,
   lib,
   pkgs,
   vars,
   ...
-}:
+}@inputs:
 with lib.custom;
-modules.mkModule config ./user.nix {
+modules.mkModule inputs ./user.nix {
   config = with vars.user; {
     users.users.${username} = {
       description = fullname;

@@ -5,7 +5,7 @@
   vars,
   flakePath,
 }:
-config:
+inputs:
 let
   profilesAssetsDir = "profiles";
   profilesStaticRoot = flakePath "assets/${profilesAssetsDir}";
@@ -13,7 +13,7 @@ let
     result: path: type:
     result
     // {
-      ${root.utils.fileBasename path} = "${super.assetPath config profilesAssetsDir}/${path}";
+      ${root.utils.fileBasename path} = "${super.assetPath inputs profilesAssetsDir}/${path}";
     }
   ) { } (builtins.readDir profilesStaticRoot);
 in

@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./fzf.nix {
+modules.mkModule inputs ./fzf.nix {
   config = {
     programs.fzf.enable = true;
   };

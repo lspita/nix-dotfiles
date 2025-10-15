@@ -1,1 +1,1 @@
-{ root }: config: path: "${root.dotfiles.dotPath config "assets"}/${path}"
+{ root }: inputs: path: "${root.dotfiles.dotPath inputs "assets"}/${path}"

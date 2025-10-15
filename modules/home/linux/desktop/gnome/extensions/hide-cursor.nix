@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./hide-cursor.nix {
+modules.mkModule inputs ./hide-cursor.nix {
   config = gnome.mkExtensionConfig {
     package = pkgs.gnomeExtensions.hide-cursor;
   };

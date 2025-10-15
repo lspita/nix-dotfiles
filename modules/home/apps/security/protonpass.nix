@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./protonpass.nix {
+modules.mkModule inputs ./protonpass.nix {
   config = {
     home.packages = with pkgs; [ proton-pass ];
   };

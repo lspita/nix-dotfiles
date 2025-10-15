@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./alphabetical-app-grid.nix {
+modules.mkModule inputs ./alphabetical-app-grid.nix {
   config = gnome.mkExtensionConfig {
     package = pkgs.gnomeExtensions.alphabetical-app-grid;
   };

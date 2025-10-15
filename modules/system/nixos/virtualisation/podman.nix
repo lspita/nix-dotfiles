@@ -1,6 +1,6 @@
-{ config, lib, ... }:
+{ lib, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./podman.nix {
+modules.mkModule inputs ./podman.nix {
   options = {
     autoPrune = {
       enable = utils.mkTrueEnableOption "podman auto pruning";

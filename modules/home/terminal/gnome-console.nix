@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./gnome-console.nix {
+modules.mkModule inputs ./gnome-console.nix {
   config = {
     home.packages = with pkgs; [ gnome-console ];
     dconf.settings."org/gnome/Console" = {

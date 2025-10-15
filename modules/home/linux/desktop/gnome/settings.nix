@@ -1,11 +1,6 @@
-{
-  config,
-  lib,
-  vars,
-  ...
-}:
+{ lib, vars, ... }@inputs:
 with lib.custom;
-modules.mkModule config ./settings.nix {
+modules.mkModule inputs ./settings.nix {
   options = {
     vrr.enable = lib.mkEnableOption "variable refresh rate";
     fractionalScaling.enable = lib.mkEnableOption "fractional scaling";
