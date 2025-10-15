@@ -1,5 +1,4 @@
 { lib, vars, ... }@inputs:
-# TODO workspaces switch
 # TODO fullscreen
 with lib.custom;
 modules.mkModule inputs ./shortcuts.nix {
@@ -25,7 +24,27 @@ modules.mkModule inputs ./shortcuts.nix {
       dconf.settings = {
         "org/gnome/desktop/wm/keybindings" = {
           close = [ "<Super>q" ];
-        };
+        }
+        // (builtins.foldl'
+          (
+            result: i:
+            let
+              istr = builtins.toString i;
+            in
+            result
+            // {
+              "move-to-workspace-${istr}" = [ "<Shift><Super>${istr}" ];
+              "switch-to-workspace-${istr}" = [ "<Super>${istr}" ];
+              "switch-to-application-${istr}" = [ ];
+            }
+          )
+          {
+            move-to-workspace-last = [ "<Shift><Super>0" ];
+            switch-to-workspace-last = [ "<Super>0" ];
+            switch-to-application-10 = [ ];
+          }
+          (lib.lists.range 1 9)
+        );
         "org/gnome/settings-daemon/plugins/media-keys" = {
           help = [ ]; # remove shortcut for gnome help
           custom-keybindings = builtins.map (kb: "/${customKeybindingsRoot}/${kb.id}/") customKeybindings;
