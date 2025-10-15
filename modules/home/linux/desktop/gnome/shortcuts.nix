@@ -1,5 +1,4 @@
 { lib, vars, ... }@inputs:
-# TODO fullscreen
 with lib.custom;
 modules.mkModule inputs ./shortcuts.nix {
   config =
@@ -15,6 +14,12 @@ modules.mkModule inputs ./shortcuts.nix {
               name = "Launch terminal";
               command = terminal.program;
               binding = "<Super>Return";
+            }
+            {
+              id = "launch-files";
+              name = "Launch file manager";
+              command = utils.getNotNull "nautilus" fileManager;
+              binding = "<Super>f";
             }
           ]
         );
@@ -48,6 +53,7 @@ modules.mkModule inputs ./shortcuts.nix {
         );
         "org/gnome/settings-daemon/plugins/media-keys" = {
           help = [ ]; # remove shortcut for gnome help
+          www = [ "<Super>b" ]; # launch browser
           custom-keybindings = builtins.map (kb: "/${customKeybindingsRoot}/${kb.id}/") customKeybindings;
         };
       }
