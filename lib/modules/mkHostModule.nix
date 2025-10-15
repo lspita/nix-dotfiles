@@ -3,7 +3,7 @@ inputs: path: module:
 super.mkModule inputs path (
   module
   // {
-    enable = true;
+    enable = module.enable or true;
     root = [ "hostModules" ];
     dirPath = hostDirRel;
   }
