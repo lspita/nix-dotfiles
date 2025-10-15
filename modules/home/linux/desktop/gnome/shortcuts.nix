@@ -24,6 +24,7 @@ modules.mkModule inputs ./shortcuts.nix {
       dconf.settings = {
         "org/gnome/desktop/wm/keybindings" = {
           close = [ "<Super>q" ];
+          toggle-fullscreen = [ "<Super>F11" ];
         }
         // (builtins.foldl'
           (
