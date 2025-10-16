@@ -15,5 +15,6 @@ modules.mkDefaultsModule inputs ./. {
       bat.enable = true;
       delta.enable = true;
       fzf.enable = true;
+      tree.enable = true;
     };
 }
