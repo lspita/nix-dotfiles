@@ -25,9 +25,11 @@ modules.mkModule inputs ./git.nix {
 
       programs.git = with vars.user; {
         enable = true;
-        userName = fullname;
-        userEmail = email;
-        extraConfig = {
+        settings = {
+          user = {
+            inherit email;
+            name = fullname;
+          };
           init.defaultBranch = "main";
           pull.rebase = false;
           core = {
