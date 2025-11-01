@@ -13,7 +13,6 @@
           enable = true;
           nautilus.enableDefaults = true;
         };
-        cosmic.enable = true;
       };
       virtualisation.enableDefaults = true;
     };
