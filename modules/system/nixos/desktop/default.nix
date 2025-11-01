@@ -7,5 +7,4 @@ modules.mkDefaultsModule inputs ./. {
       printing.enable = true;
       fingerprint.enable = true;
     };
-
 }
