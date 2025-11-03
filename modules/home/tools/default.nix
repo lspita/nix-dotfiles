@@ -16,5 +16,6 @@ modules.mkDefaultsModule inputs ./. {
       delta.enable = true;
       fzf.enable = true;
       tree.enable = true;
+      htop.enable = true;
     };
 }
