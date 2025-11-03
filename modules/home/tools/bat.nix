@@ -1,6 +1,6 @@
 { lib, pkgs, ... }@inputs:
 with lib.custom;
-modules.mkModule inputs ./. {
+modules.mkModule inputs ./bat.nix {
   options = {
     extraPackages = lib.mkOption {
       type = with lib.types; listOf package;
