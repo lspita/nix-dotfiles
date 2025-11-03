@@ -17,5 +17,6 @@ modules.mkDefaultsModule inputs ./. {
       fzf.enable = true;
       tree.enable = true;
       htop.enable = true;
+      ffmpeg.enable = true;
     };
 }
