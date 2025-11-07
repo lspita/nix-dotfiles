@@ -15,5 +15,6 @@ modules.mkDefaultsModule inputs ./. {
       bluetooth.enable = true;
       audio.pipewire.enable = true;
       network.networkmanager.enable = true;
+      documentation.enable = true;
     };
 }
