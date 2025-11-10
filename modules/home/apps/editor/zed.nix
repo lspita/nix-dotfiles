@@ -83,6 +83,27 @@ modules.mkModule inputs ./zed.nix {
             ];
           };
         };
+      userKeymaps = [
+        {
+          context = "Workspace || Editor";
+          bindings = {
+            # ; = ò in italian layout
+            "ctrl-;" = "terminal_panel::Toggle";
+          };
+        }
+        {
+          context = "ProjectPanel";
+          bindings = {
+            ctrl-shift-n = "project_panel::NewDirectory";
+          };
+        }
+        {
+          context = "Workspace";
+          bindings = {
+            ctrl-alt-n = "workspace::NewWindow";
+          };
+        }
+      ];
     };
     home.shellAliases.zed = "zeditor";
   };
