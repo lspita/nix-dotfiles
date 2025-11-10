@@ -4,7 +4,10 @@ modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultModules, ... }:
     setDefaultModules {
-      editor.vscode.enable = true;
+      editor = {
+        vscode.enable = true;
+        zed.enable = true;
+      };
       security.bitwarden = {
         enable = true;
         sshAgent.enable = true;

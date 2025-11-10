@@ -15,6 +15,8 @@ flake-utils.lib.eachDefaultSystem (
         nixfmt
         # lua
         lua-language-server
+        # markdown
+        markdown-oxide
       ];
     };
   }
