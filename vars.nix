@@ -59,7 +59,7 @@
           program = noWSL "firefox";
         };
         editor = {
-          desktop = noWSL "dev.zed.Zed.desktop";
+          desktop = noWSL "code.desktop";
           program = "nano";
         };
         fileManager = null;
