@@ -39,7 +39,7 @@ modules.mkModule inputs ./nh.nix {
             ''
               flake-update() {
                 nh os switch -u
-                flake-push "flake update"
+                flake-push "auto: flake update"
               }
             ''
             ''
