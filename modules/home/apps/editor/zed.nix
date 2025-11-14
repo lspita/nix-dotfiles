@@ -85,13 +85,6 @@ modules.mkModule inputs ./zed.nix {
         };
       userKeymaps = [
         {
-          context = "Workspace || Editor";
-          bindings = {
-            # ; = ò in italian layout
-            "ctrl-;" = "terminal_panel::Toggle";
-          };
-        }
-        {
           context = "ProjectPanel";
           bindings = {
             ctrl-shift-n = "project_panel::NewDirectory";
@@ -101,6 +94,35 @@ modules.mkModule inputs ./zed.nix {
           context = "Workspace";
           bindings = {
             ctrl-alt-n = "workspace::NewWindow";
+          };
+        }
+        {
+          context = "Workspace || Editor";
+          bindings = {
+            "ctrl-;" = "terminal_panel::Toggle";
+          };
+        }
+        {
+          context = "Workspace";
+          bindings = {
+            ctrl-alt-b = "workspace::ToggleLeftDock";
+          };
+        }
+        {
+          context = "Workspace";
+          bindings = {
+            ctrl-b = "workspace::ToggleRightDock";
+          };
+        }
+        {
+          context = "Workspace";
+          bindings = {
+            ctrl-r = [
+              "projects::OpenRecent"
+              {
+                create_new_window = false;
+              }
+            ];
           };
         }
       ];
