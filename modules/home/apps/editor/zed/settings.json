@@ -1,0 +1,67 @@
+{
+  "agent": {
+    "dock": "left"
+  },
+  "auto_install_extensions": {
+    "catppuccin": true,
+    "catppuccin-icons": true,
+    "docker-compose": true,
+    "dockerfile": true,
+    "git-firefly": true,
+    "log": true,
+    "markdown-oxide": true,
+    "neocmake": true,
+    "nix": true,
+    "ssh-config": true,
+    "toml": true
+  },
+  "auto_signature_help": true,
+  "base_keymap": "VSCode",
+  "buffer_font_features": {
+    "calt": false
+  },
+  "file_types": {
+    "Shell Script": [".envrc"]
+  },
+  "icon_theme": {
+    "dark": "Catppuccin Mocha",
+    "light": "Catppuccin Latte",
+    "mode": "system"
+  },
+  "inlay_hints": {
+    "enabled": true
+  },
+  "linked_edits": true,
+  "middle_click_paste": false,
+  "minimap": {
+    "show": "always"
+  },
+  "project_panel": {
+    "dock": "right",
+    "hide_root": true
+  },
+  "show_edit_predictions": true,
+  "show_signature_help_after_edits": true,
+  "show_whitespaces": "selection",
+  "tabs": {
+    "git_status": true
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "terminal": {
+    "blinking": "on"
+  },
+  "theme": {
+    "dark": "Catppuccin Mocha",
+    "light": "Catppuccin Latte",
+    "mode": "system"
+  },
+  "title_bar": {
+    "show_branch_icon": true
+  },
+  "ui_font_features": {
+    "calt": false
+  }
+}
