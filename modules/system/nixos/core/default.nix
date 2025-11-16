@@ -16,5 +16,6 @@ modules.mkDefaultsModule inputs ./. {
       audio.pipewire.enable = true;
       network.networkmanager.enable = true;
       documentation.enable = true;
+      nix-ld.enable = true;
     };
 }
