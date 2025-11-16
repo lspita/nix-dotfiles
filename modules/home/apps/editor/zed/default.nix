@@ -22,6 +22,7 @@ modules.mkModule inputs ./. {
           "markdown-oxide"
           "toml"
           "neocmake"
+          "zig"
         ];
         userSettings = objectConfig ./settings.json (
           let
