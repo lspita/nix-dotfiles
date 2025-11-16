@@ -21,14 +21,14 @@ modules.mkModule inputs ./nh.nix {
             ''
               flake-pull() {
                 git ${gitFlakeRef} pull
-              }  
+              }
             ''
             ''
               flake-push() {
                 git ${gitFlakeRef} add .
                 git ${gitFlakeRef} commit -m "$1"
                 git ${gitFlakeRef} push
-              }  
+              }
             ''
             ''
               flake-sync() {
@@ -45,6 +45,7 @@ modules.mkModule inputs ./nh.nix {
             ''
               flake-init() {
                 nix flake init -t $NH_FLAKE#"$1"
+                git rm --cached .envrc
               }
             ''
           ]
