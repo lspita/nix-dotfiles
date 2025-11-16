@@ -4,6 +4,7 @@
     "bindings": {
       "ctrl-;": "terminal_panel::Toggle",
       "ctrl-alt-n": "workspace::NewWindow",
+      "ctrl-shift-n": null,
       "ctrl-alt-b": "workspace::ToggleLeftDock",
       "ctrl-b": "workspace::ToggleRightDock",
       "ctrl-r": [
