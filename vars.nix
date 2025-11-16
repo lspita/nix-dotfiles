@@ -64,8 +64,8 @@
         };
         fileManager = null;
         music = noWSL "spotify.desktop";
-        pdf = browser.desktop;
         mail = browser.desktop;
+        pdf = null;
         image = null;
         audio = null;
         video = null;
