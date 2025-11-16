@@ -1,9 +1,14 @@
-{ lib, ... }@inputs:
+{
+  lib,
+  pkgs,
+  vars,
+  ...
+}@inputs:
 with lib.custom;
-modules.mkModule inputs ./podman.nix {
+modules.mkModule inputs ./docker.nix {
   options = {
     autoPrune = {
-      enable = utils.mkTrueEnableOption "podman auto pruning";
+      enable = utils.mkTrueEnableOption "docker auto pruning";
       dates = lib.mkOption {
         type = with lib.types; str;
         default = "weekly";
@@ -15,13 +20,18 @@ modules.mkModule inputs ./podman.nix {
         description = "Any additional flags passed to the prune command.";
       };
     };
+    setGroup = utils.mkTrueEnableOption "docker group for the user";
   };
   config =
     { self, ... }:
     {
-      virtualisation.podman = {
+      virtualisation.docker = {
         inherit (self) autoPrune;
         enable = true;
       };
+      environment.systemPackages = with pkgs; [
+        docker-compose
+      ];
+      users.users.${vars.user.username}.extraGroups = if self.setGroup then [ "docker" ] else [ ];
     };
 }

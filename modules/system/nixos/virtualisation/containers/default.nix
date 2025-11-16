@@ -4,6 +4,8 @@ modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultModules, ... }:
     setDefaultModules {
-      containers.enableDefaults = true;
+      config.enable = true;
+      # docker.enable = true;
+      podman.enable = true;
     };
 }
