@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
-    { self, setDefaultModules, ... }:
+    { setDefaultModules, ... }:
     lib.attrsets.recursiveUpdate
       (setDefaultModules {
         sshAgentBridge.enable = true;
