@@ -5,7 +5,7 @@ modules.mkModule inputs ./nh.nix {
     functions.enable = utils.mkTrueEnableOption "flake shell functions";
   };
   config =
-    { self, root, ... }:
+    { self, ... }:
     {
       programs.nh = {
         enable = true;
