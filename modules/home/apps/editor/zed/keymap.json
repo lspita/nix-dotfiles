@@ -4,7 +4,6 @@
     "bindings": {
       "ctrl-;": "terminal_panel::Toggle",
       "ctrl-alt-n": "workspace::NewWindow",
-      "ctrl-shift-n": null,
       "ctrl-alt-b": "workspace::ToggleLeftDock",
       "ctrl-b": "workspace::ToggleRightDock",
       "ctrl-r": [
@@ -14,7 +13,15 @@
         }
       ],
       "ctrl-shift-j": "workspace::ToggleBottomDock",
-      "ctrl-j": null
+      "ctrl-j": null,
+      "ctrl-shift-n": null
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "ctrl-shift-n": "project_panel::NewDirectory",
+      "ctrl-alt-n": null
     }
   }
 ]
