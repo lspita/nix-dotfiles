@@ -15,7 +15,8 @@
     "calt": false
   },
   "file_types": {
-    "Shell Script": [".envrc"]
+    "Shell Script": [".envrc"],
+    "YAML": [".clangd", ".clang-tidy", ".clang-format"]
   },
   "icon_theme": {
     "dark": "Catppuccin Mocha",
