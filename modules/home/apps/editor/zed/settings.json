@@ -1,19 +1,10 @@
 {
+  "format_on_save": "on",
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
   "agent": {
     "dock": "left"
-  },
-  "auto_install_extensions": {
-    "catppuccin": true,
-    "catppuccin-icons": true,
-    "docker-compose": true,
-    "dockerfile": true,
-    "git-firefly": true,
-    "log": true,
-    "markdown-oxide": true,
-    "neocmake": true,
-    "nix": true,
-    "ssh-config": true,
-    "toml": true
   },
   "auto_signature_help": true,
   "base_keymap": "VSCode",
