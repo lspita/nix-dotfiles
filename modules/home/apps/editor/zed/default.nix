@@ -23,6 +23,7 @@ modules.mkModule inputs ./. {
           "toml"
           "neocmake"
           "zig"
+          "make"
         ];
         userSettings = objectConfig ./settings.json (
           let
