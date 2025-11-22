@@ -1,4 +1,4 @@
-{ lib, root }:
+{ lib }:
 { config, ... }:
 shell:
 lib.strings.concatStringsSep "\n" (
