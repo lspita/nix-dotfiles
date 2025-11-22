@@ -2,10 +2,10 @@
 
 This is my nix + [home manager](https://github.com/nix-community/home-manager) configuration shared between different machines and systems.
 
-> [!important] Usage
+> [!important]
 > While it is modular and configurable, it's still meant to be my personal configuration and not something anyone can grab and use without touching anything.
 
-> [!important] MacOS
+> [!important]
 > [nix-darwin](https://github.com/nix-darwin/nix-darwin) is included in the flake for macos support and the modules are splitted based on what is cross-platform and what not, but since I don't have a mac, it was never tested.
 
 ## Structure
