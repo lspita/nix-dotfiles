@@ -1,22 +1,21 @@
 {
-  dotfilesHome = "nix-dotfiles"; # location of dotfiles in the user home
-  backupFileExtension = "bkp";
-  wallpaper = "moon";
+  dotfilesHome = "nix-dotfiles"; # string: location of this repo relative to the user home
+  backupFileExtension = "bkp"; # string: file extension to use for home-manager backups
+  wallpaper = "moon"; # string | null: wallpaper from `assets/wallpapers`
   user = {
-    username = "lspita";
-    fullname = "Ludovico Spitaleri";
-    email = "ludovico.spitaleri@gmail.com"; # used for some configurations (e.g. git)
-    image = "clank";
+    username = "lspita"; # string: short-form name
+    fullname = "Ludovico Spitaleri"; # string: long-form name
+    email = "ludovico.spitaleri@gmail.com"; # string | null: user email (e.g. for git config)
+    image = "clank"; # string | null: user image from `assets/profiles`
+    shell = pkgs: pkgs.bash; # fn(pkgs) -> pkg | null: shell package to use for the user
   };
-  nix.allowUnfree = true;
-  shell = pkgs: pkgs.bash;
+  nix.allowUnfree = true; # bool: if to allow nix unfree software
   fonts =
     let
       size = 11;
     in
     {
-      # font packages to install
-      packages =
+      packages = # fn(pkgs) -> list[pkg] | null: font packages to install
         pkgs: with pkgs; [
           noto-fonts
           nerd-fonts.noto
@@ -24,67 +23,74 @@
           nerd-fonts.fira-code
           nerd-fonts.fira-mono
         ];
-      # every font can either be null to not override or an attrset with name and size
-      normal = {
-        inherit size;
-        name = "NotoSans Nerd Font";
-      };
-      monospace = {
-        inherit size;
-        name = "FiraMono Nerd Font";
-      };
+      # <font>:
+      #   size = int: size of the font
+      #   name = string: name of the font
+      normal = # font | null: default font (interface, documents, ...)
+        {
+          inherit size;
+          name = "NotoSans Nerd Font";
+        };
+      monospace = # font | null: monospace font (terminal, editor, ...)
+        {
+          inherit size;
+          name = "FiraMono Nerd Font";
+        };
     };
-  linux = rec {
-    wsl = false;
-    defaultApps =
-      let
-        noWSL = value: if wsl then null else value;
-      in
-      rec {
-        # Some app types need both desktop and program definitions.
-        # - desktop: desktop file for gui app
-        # - program: use from cli (but can be a gui app)
-        #
-        # You can check available desktop files
-        # - system: ls /run/current-system/sw/share/applications/
-        # - user: ls /etc/profiles/per-user/$USER/share/applications/
-        #
-        # use null to leave unset
-        terminal = {
+  linux = {
+    wsl = false; # bool: if it is a wsl system
+    locale = {
+      timeZone = "Europe/Rome"; # string: system time zone
+      keyboard = "it"; # string: keyboard layout
+      default = "en_US.UTF-8"; # string: default locale
+      extraSettings =
+        # { [string] = string } | null: extra locales
+        {
+          LC_ADDRESS = "it_IT.UTF-8";
+          LC_IDENTIFICATION = "it_IT.UTF-8";
+          LC_MEASUREMENT = "it_IT.UTF-8";
+          LC_MONETARY = "it_IT.UTF-8";
+          LC_NAME = "it_IT.UTF-8";
+          LC_NUMERIC = "it_IT.UTF-8";
+          LC_PAPER = "it_IT.UTF-8";
+          LC_TELEPHONE = "it_IT.UTF-8";
+          LC_TIME = "it_IT.UTF-8";
+        };
+    };
+    defaultApps = rec {
+      # <desktop>: string = .desktop file of gui app
+      # <app>:
+      #   desktop = <desktop> | null: desktop file for gui app
+      #   program = string | null: program name to use from cli
+      #
+      # You can check available desktop files
+      # - system: ls /run/current-system/sw/share/applications/
+      # - user: ls /etc/profiles/per-user/$USER/share/applications/
+      terminal =
+        # app: default terminal app
+        {
           desktop = null;
           program = null;
         };
-        browser = {
-          desktop = noWSL "firefox.desktop";
-          program = noWSL "firefox";
+      browser =
+        # app: default browser
+        {
+          desktop = "firefox.desktop";
+          program = "firefox";
         };
-        editor = {
-          desktop = noWSL "dev.zed.Zed.desktop";
+      editor =
+        # app: default text editor
+        {
+          desktop = "dev.zed.Zed.desktop";
           program = "nano";
         };
-        fileManager = null;
-        music = noWSL "spotify.desktop";
-        mail = browser.desktop;
-        pdf = null;
-        image = null;
-        audio = null;
-        video = null;
-      };
-    locale = {
-      timeZone = "Europe/Rome";
-      keyboard = "it";
-      default = "en_US.UTF-8";
-      extraSettings = {
-        LC_ADDRESS = "it_IT.UTF-8";
-        LC_IDENTIFICATION = "it_IT.UTF-8";
-        LC_MEASUREMENT = "it_IT.UTF-8";
-        LC_MONETARY = "it_IT.UTF-8";
-        LC_NAME = "it_IT.UTF-8";
-        LC_NUMERIC = "it_IT.UTF-8";
-        LC_PAPER = "it_IT.UTF-8";
-        LC_TELEPHONE = "it_IT.UTF-8";
-        LC_TIME = "it_IT.UTF-8";
-      };
+      fileManager = null; # desktop | null: default file manager
+      music = "spotify.desktop"; # desktop | null: default music player (for audio files, set `audio`)
+      mail = browser.desktop; # desktop | null: default mail client
+      pdf = null; # desktop | null: default pdf viewer
+      image = null; # desktop | null: default image viewer
+      audio = null; # desktop | null: default audio player
+      video = null; # desktop | null: default video player
     };
   };
 }

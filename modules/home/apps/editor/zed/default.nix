@@ -26,17 +26,18 @@ modules.mkModule inputs ./. {
           "make"
         ];
         userSettings = objectConfig ./settings.json (
+          with vars.fonts;
           let
-            normalFont = vars.fonts.normal;
-            monoFont = vars.fonts.monospace;
             fontZoom = 1.5;
           in
-          {
-            ui_font_family = normalFont.name;
-            ui_font_size = normalFont.size * fontZoom;
-            buffer_font_family = monoFont.name;
-            buffer_font_size = monoFont.size * fontZoom;
-          }
+          (utils.ifNotNull normal { } {
+            ui_font_family = normal.name;
+            ui_font_size = normal.size * fontZoom;
+          })
+          // (utils.ifNotNull monospace { } {
+            buffer_font_family = monospace.name;
+            buffer_font_size = monospace.size * fontZoom;
+          })
         );
         userKeymaps = listConfig ./keymap.json [ ];
       };
