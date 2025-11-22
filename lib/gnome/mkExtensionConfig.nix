@@ -1,9 +1,10 @@
 { lib }:
+# set: config for gnome shell extension
 {
-  package,
-  uuid ? package.extensionUuid,
-  name ? package.extensionPortalSlug,
-  settings ? { },
+  package, # pkg: extension package
+  uuid ? package.extensionUuid, # string?: extension uuid
+  name ? package.extensionPortalSlug, # string?: extension name
+  settings ? { }, # set?: extension dconf settings
 }:
 {
   programs.gnome-shell.extensions = [ { inherit package; } ];

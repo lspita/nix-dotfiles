@@ -1,6 +1,7 @@
 { super, lib }:
-{ config, ... }@inputs:
-program:
+# bool: if `program` is installed in any way
+{ config, ... }@inputs: # set: config inputs
+program: # string: program name
 let
   packagesLists = super.configTypeValue inputs {
     home = config.home.packages;

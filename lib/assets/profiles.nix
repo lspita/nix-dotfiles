@@ -5,7 +5,8 @@
   vars,
   flakePath,
 }:
-inputs:
+# { [string] = string }: set with all profile pictures in the assets
+inputs: # set: config inputs
 let
   profilesAssetsDir = "profiles";
   profilesStaticRoot = flakePath "assets/${profilesAssetsDir}";

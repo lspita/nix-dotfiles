@@ -1,6 +1,26 @@
-{ root, lib }:
-{ config, configType, ... }:
-path: module:
+{ lib }:
+# set: configuration module
+{ config, configType, ... }: # set: config inputs
+path: # path: path to module (or dir if it is default.nix)
+module:
+/*
+  {
+    imports = list[imports]?: module imports
+    options = set?: module options
+    enableOption = string?: name of the option to enable the module
+    enable = bool?: default enable value
+    root = list[string]?: module subroot pathlist
+    dirPath = string?: relative path to `modules` dir
+    config = set | fn({
+      pathList = list[string]: pathlist to module config
+      self = set: module config
+      super = set: parent module config
+      root = set: root module config
+      path = string: relative path to module file
+      setSubconfig = fn(any) -> set: function to set submodules settings
+    }) -> set: module config
+  }
+*/
 let
   imports = module.imports or [ ];
   options = module.options or { };
@@ -45,7 +65,7 @@ in
   );
   config = lib.mkIf (self.${enableOption}) (
     if builtins.isFunction cfg then
-      cfg (rec {
+      cfg rec {
         inherit
           pathList
           self
@@ -54,7 +74,7 @@ in
           ;
         path = lib.strings.concatStringsSep "/" modulePathList;
         setSubconfig = value: lib.attrsets.setAttrByPath pathList value;
-      })
+      }
     else
       cfg
   );

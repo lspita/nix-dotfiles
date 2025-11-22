@@ -2,9 +2,9 @@
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
-    { setDefaultModules, ... }:
+    { setDefaultSubconfig, ... }:
     lib.attrsets.recursiveUpdate
-      (setDefaultModules {
+      (setDefaultSubconfig {
         just-perfection.enable = true;
         blur-my-shell.enable = true;
         light-style.enable = true;

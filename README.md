@@ -1,4 +1,1 @@
-# Nix dotfiles
-
-## TODO
-- docs
+# ❄️ Nix dotfiles

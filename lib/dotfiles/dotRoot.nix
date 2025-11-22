@@ -1,1 +1,4 @@
-{ super, vars }: inputs: "${super.homeDir inputs}/${vars.dotfilesHome}"
+{ super, vars }:
+# string: full path to this repo
+inputs: # set: config inputs
+"${super.homeDir inputs}/${vars.dotfilesHome}"

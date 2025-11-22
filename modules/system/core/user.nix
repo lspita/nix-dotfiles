@@ -10,8 +10,8 @@ modules.mkModule inputs ./user.nix {
     users.users.${username} = {
       description = fullname;
     }
-    // (utils.ifNotNull shell { } { shell = shell pkgs; })
-    // (utils.osValue {
+    // (utils.ifNotNull { } { shell = shell pkgs; } shell)
+    // (utils.systemValue {
       linux = {
         isNormalUser = true;
         extraGroups = [

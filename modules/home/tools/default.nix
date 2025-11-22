@@ -2,8 +2,8 @@
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
-    { setDefaultModules, ... }:
-    setDefaultModules {
+    { setDefaultSubconfig, ... }:
+    setDefaultSubconfig {
       nh.enable = true;
       direnv.enable = true;
       gh.enable = true;

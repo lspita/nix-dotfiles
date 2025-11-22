@@ -94,15 +94,15 @@ let
               if builtins.pathExists hostConfig then [ hostConfig ] else [ ]
             );
         };
-        createSystem = customLib.utils.osValue {
+        createSystem = customLib.utils.systemValue {
           linux = nixpkgs.lib.nixosSystem;
           darwin = nix-darwin.lib.darwinSystem;
         };
-        configurationsSet = customLib.utils.osValue {
+        configurationsSet = customLib.utils.systemValue {
           linux = "nixosConfigurations";
           darwin = "darwinConfigurations";
         };
-        homeModulesSet = customLib.utils.osValue {
+        homeModulesSet = customLib.utils.systemValue {
           linux = "nixosModules";
           darwin = "darwinModules";
         };

@@ -29,9 +29,9 @@ modules.mkModule inputs ./git.nix {
           user = {
             name = fullname;
           }
-          // (utils.ifNotNull email { } {
+          // (utils.ifNotNull { } {
             inherit email;
-          });
+          } email);
           init.defaultBranch = "main";
           pull.rebase = false;
           core = {

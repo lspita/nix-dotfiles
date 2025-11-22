@@ -9,9 +9,9 @@ modules.mkDefaultsModule inputs ./. {
     };
   };
   config =
-    { setDefaultModules, ... }:
+    { setDefaultSubconfig, ... }:
     lib.attrsets.recursiveUpdate
-      (setDefaultModules {
+      (setDefaultSubconfig {
         aliases.enable = true;
         bash = {
           enable = true;

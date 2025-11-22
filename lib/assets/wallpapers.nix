@@ -5,7 +5,21 @@
   vars,
   flakePath,
 }:
-inputs:
+/*
+  {
+    [string] = {
+      type = "light-dark"
+      path: {
+        light = string
+        dark = string
+      }
+    } | {
+      type = "regular"
+      path = string
+    }
+  }: set with all wallpapers in the assets
+*/
+inputs: # set: config inputs
 let
   wallpaperAssetsDir = "wallpapers";
   wallpapersStaticRoot = flakePath "assets/${wallpaperAssetsDir}";

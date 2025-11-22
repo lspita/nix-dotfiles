@@ -30,14 +30,14 @@ modules.mkModule inputs ./. {
           let
             fontZoom = 1.5;
           in
-          (utils.ifNotNull normal { } {
+          (utils.ifNotNull { } {
             ui_font_family = normal.name;
             ui_font_size = normal.size * fontZoom;
-          })
-          // (utils.ifNotNull monospace { } {
+          } normal)
+          // (utils.ifNotNull { } {
             buffer_font_family = monospace.name;
             buffer_font_size = monospace.size * fontZoom;
-          })
+          } monospace)
         );
         userKeymaps = listConfig ./keymap.json [ ];
       };

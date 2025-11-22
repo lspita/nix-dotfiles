@@ -2,9 +2,9 @@
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
-    { setDefaultModules, ... }:
+    { setDefaultSubconfig, ... }:
     lib.attrsets.recursiveUpdate
-      (setDefaultModules {
+      (setDefaultSubconfig {
         sshAgentBridge.enable = true;
         open.enable = true;
       })

@@ -6,7 +6,7 @@ modules.mkModule inputs ./shortcuts.nix {
     let
       customKeybindings =
         [ ]
-        ++ (utils.ifNotNull terminal.program
+        ++ (utils.ifNotNull
           [ ]
           [
             {
@@ -22,6 +22,7 @@ modules.mkModule inputs ./shortcuts.nix {
               binding = "<Super>f";
             }
           ]
+          terminal.program
         );
       customKeybindingsRoot = "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings";
     in

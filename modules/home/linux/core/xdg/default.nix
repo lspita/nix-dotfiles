@@ -47,9 +47,9 @@ modules.mkModule inputs ./. {
               terminal-exec = {
                 enable = true;
               }
-              // (utils.ifNotNull terminal.desktop { } {
+              // (utils.ifNotNull { } {
                 settings.default = [ terminal.desktop ];
-              });
+              } terminal.desktop);
 
               autostart = {
                 enable = true;
@@ -62,9 +62,9 @@ modules.mkModule inputs ./. {
                   let
                     setAssociations =
                       app: mimetypes:
-                      utils.ifNotNull app { } (
-                        builtins.listToAttrs (builtins.map (mime: lib.attrsets.nameValuePair mime app) mimetypes)
-                      );
+                      utils.ifNotNull { } (builtins.listToAttrs (
+                        builtins.map (mime: lib.attrsets.nameValuePair mime app) mimetypes
+                      )) app;
                   in
                   (builtins.foldl' (result: current: result // current) { } [
                     (setAssociations browser.desktop [

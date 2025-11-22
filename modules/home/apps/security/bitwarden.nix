@@ -20,7 +20,7 @@ modules.mkModule inputs ./bitwarden.nix {
                 let
                   homeDir = dotfiles.homeDir inputs;
                 in
-                utils.osValue {
+                utils.systemValue {
                   linux = homeDir;
                   darwin = "${homeDir}/Library/Containers/com.bitwarden.desktop/Data";
                 };

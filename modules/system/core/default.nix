@@ -2,8 +2,8 @@
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
-    { setDefaultModules, ... }:
-    setDefaultModules {
+    { setDefaultSubconfig, ... }:
+    setDefaultSubconfig {
       nix.enable = true;
       user.enable = true;
     };

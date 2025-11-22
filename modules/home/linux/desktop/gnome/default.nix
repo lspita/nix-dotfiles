@@ -2,9 +2,9 @@
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
-    { setDefaultModules, ... }:
+    { setDefaultSubconfig, ... }:
     lib.attrsets.recursiveUpdate
-      (setDefaultModules {
+      (setDefaultSubconfig {
         font.enable = true;
         settings.enable = true;
         wallpaper.enable = true;

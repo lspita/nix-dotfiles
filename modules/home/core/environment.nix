@@ -4,12 +4,12 @@ modules.mkModule inputs ./environment.nix {
   config = {
     home.sessionVariables =
       with vars.linux.defaultApps;
-      (utils.ifNotNull editor.program { } {
+      (utils.ifNotNull { } {
         EDITOR = editor.program;
         VISUAL = editor.program;
-      })
-      // (utils.ifNotNull browser.program { } {
+      } editor.program)
+      // (utils.ifNotNull { } {
         BROWSER = browser.program;
-      });
+      } browser.program);
   };
 }

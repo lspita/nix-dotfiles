@@ -7,6 +7,6 @@
 with lib.custom;
 modules.mkModule inputs ./fonts.nix {
   config = with vars.fonts; {
-    home.packages = utils.ifNotNull packages [ ] (packages pkgs);
+    home.packages = utils.ifNotNull [ ] (packages pkgs) packages;
   };
 }
