@@ -6,6 +6,10 @@ modules.mkDefaultsModule inputs ./. {
     setDefaultModules {
       openAnyTerminal.enable =
         with vars.linux.defaultApps.terminal;
-        desktop != "org.gnome.Console.desktop" && program != "kgx";
+        let
+          notNullAndDifferentFrom = value: check: (!builtins.isNull value) && value != check;
+        in
+        (notNullAndDifferentFrom desktop "org.gnome.Console.desktop")
+        && (notNullAndDifferentFrom program "kgx");
     };
 }
