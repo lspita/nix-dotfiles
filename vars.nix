@@ -23,9 +23,11 @@
           nerd-fonts.fira-code
           nerd-fonts.fira-mono
         ];
-      # <font>:
-      #   size = int: size of the font
-      #   name = string: name of the font
+      /*
+        <font>:
+          size = int: size of the font
+          name = string: name of the font
+      */
       normal = # font | null: default font (interface, documents, ...)
         {
           inherit size;
@@ -58,14 +60,16 @@
         };
     };
     defaultApps = rec {
-      # <desktop>: string = .desktop file of gui app
-      # <app>:
-      #   desktop = <desktop> | null: desktop file for gui app
-      #   program = string | null: program name to use from cli
-      #
-      # You can check available desktop files
-      # - system: ls /run/current-system/sw/share/applications/
-      # - user: ls /etc/profiles/per-user/$USER/share/applications/
+      /*
+        <desktop>: string = .desktop file of gui app
+        <app>:
+          desktop = <desktop> | null: desktop file for gui app
+          program = string | null: program name to use from cli
+
+        You can check available desktop files
+        - system: ls /run/current-system/sw/share/applications/
+        - user: ls /etc/profiles/per-user/$USER/share/applications/
+      */
       terminal =
         # app: default terminal app
         {
