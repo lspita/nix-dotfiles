@@ -21,7 +21,7 @@ modules.mkDefaultsModule inputs ./. {
           [
             ''
               clean-zone-identifier() {
-                find . -type f -name "*:Zone.Identifier" -exec rm "{}" \;
+                find . -type f -name "*Zone.Identifier" -exec rm "{}" \;
               }
             ''
           ]
