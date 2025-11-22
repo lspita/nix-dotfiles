@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }@inputs:
+{
+  lib,
+  pkgs,
+  vars,
+  ...
+}@inputs:
 with lib.custom;
 modules.mkModule inputs ./open-bar.nix {
   config = gnome.mkExtensionConfig {
@@ -8,8 +13,6 @@ modules.mkModule inputs ./open-bar.nix {
       "" = {
         # auto theming
         autotheme-refresh = true;
-        autotheme-dark = "Dark";
-        autotheme-light = "Light";
         auto-bgalpha = false;
         autofg-bar = true;
         autofg-menu = false;
@@ -47,7 +50,23 @@ modules.mkModule inputs ./open-bar.nix {
         # corner-radius = true;
         apply-gtk = false;
         apply-flatpak = false;
-      };
+      }
+      // (
+        if builtins.isNull vars.wallpaper then
+          { }
+        else
+          with (assets.wallpapers inputs).${vars.wallpaper};
+          assets.wallpaperValue type {
+            light-dark = {
+              autotheme-dark = "Dark";
+              autotheme-light = "Light";
+            };
+            regular = {
+              autotheme-dark = "Color";
+              autotheme-light = "Color";
+            };
+          }
+      );
     };
   };
 }

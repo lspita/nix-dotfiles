@@ -15,13 +15,12 @@ modules.mkModule inputs ./wallpaper.nix {
           with wallpapers.${vars.wallpaper};
           let
             pathToURI = path: "file://${path}";
-            uris =
-              if type == "light-dark" then
-                {
-                  light = pathToURI path.light;
-                  dark = pathToURI path.dark;
-                }
-              else
+            uris = assets.wallpaperValue type {
+              light-dark = {
+                light = pathToURI path.light;
+                dark = pathToURI path.dark;
+              };
+              regular =
                 let
                   uri = pathToURI path;
                 in
@@ -29,6 +28,7 @@ modules.mkModule inputs ./wallpaper.nix {
                   light = uri;
                   dark = uri;
                 };
+            };
           in
           {
             "org/gnome/desktop/background" = {
