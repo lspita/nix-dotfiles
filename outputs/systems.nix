@@ -5,12 +5,13 @@
   haumea,
   flakeRoot,
   flakePath,
+  lib,
+  listDir,
   ...
 }@flakeInputs:
 let
   hostsDirRel = "hosts";
   hostsDir = flakePath hostsDirRel;
-  lib = nixpkgs.lib;
   mkSystems =
     systems:
     builtins.foldl' (
@@ -52,12 +53,13 @@ let
         pkgs = import nixpkgs {
           inherit (hostInfo) system;
           config = { inherit (vars.nix) allowUnfree; };
-          overlays = builtins.attrValues (
-            haumea.lib.load {
-              src = flakePath "overlays";
-              inputs = baseInputs;
-            }
-          );
+          overlays =
+            let
+              overlaysRoot = flakePath "overlays";
+            in
+            builtins.map (path: import "${overlaysRoot}/${path}" baseInputs) (listDir {
+              path = overlaysRoot;
+            });
         };
         systemType =
           with pkgs.stdenv;
@@ -108,47 +110,55 @@ let
         };
       in
       lib.attrsets.recursiveUpdate result {
-        ${configurationsSet}.${hostname} = createSystem {
-          inherit pkgs;
-          inherit (hostInfo) system;
-          lib = lib.extend (
-            _: _: {
-              custom = customLib;
-            }
-          );
-          modules = with lib; [
-            # base system config
-            {
-              networking.hostName = mkDefault hostname;
-              system.stateVersion = mkDefault hostInfo.stateVersion;
-              nix.nixPath = mkDefault [ "nixpkgs=${nixpkgs}" ]; # https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md
-            }
-            # system config
-            (hostPath "hardware")
-            (loadModules "system")
-            # home manager
-            home-manager.${homeModulesSet}.home-manager
-            {
-              home-manager = {
-                useUserPackages = mkDefault true;
-                useGlobalPkgs = mkDefault true;
-                backupFileExtension = mkDefault vars.backupFileExtension;
-                users.${vars.user.username} = {
-                  imports = [
-                    (loadModules "home")
-                  ];
-                  home.stateVersion = lib.mkDefault hostInfo.stateVersion;
-                };
-                extraSpecialArgs = specialArgs // {
-                  configType = "home";
-                };
-              };
-            }
-          ];
-          specialArgs = specialArgs // {
+        ${configurationsSet}.${hostname} =
+          let
             configType = "system";
+          in
+          createSystem {
+            inherit pkgs;
+            inherit (hostInfo) system;
+            lib = lib.extend (
+              _: _: {
+                custom = customLib;
+              }
+            );
+            modules = with lib; [
+              # base system config
+              {
+                networking.hostName = mkDefault hostname;
+                system.stateVersion = mkDefault hostInfo.stateVersion;
+                nix.nixPath = mkDefault [ "nixpkgs=${nixpkgs}" ]; # https://github.com/nix-community/nixd/blob/main/nixd/docs/configuration.md
+              }
+              # system config
+              (hostPath "hardware")
+              (loadModules configType)
+              # home manager
+              home-manager.${homeModulesSet}.home-manager
+              {
+                home-manager =
+                  let
+                    configType = "home";
+                  in
+                  {
+                    useUserPackages = mkDefault true;
+                    useGlobalPkgs = mkDefault true;
+                    backupFileExtension = mkDefault vars.backupFileExtension;
+                    users.${vars.user.username} = {
+                      imports = [
+                        (loadModules configType)
+                      ];
+                      home.stateVersion = lib.mkDefault hostInfo.stateVersion;
+                    };
+                    extraSpecialArgs = specialArgs // {
+                      inherit configType;
+                    };
+                  };
+              }
+            ];
+            specialArgs = specialArgs // {
+              inherit configType;
+            };
           };
-        };
       }
     ) { } systems;
 in

@@ -1,1 +1,1 @@
-{ flakeInputs }: flakeInputs.nur.overlays.default
+{ flakeInputs, ... }: flakeInputs.nur.overlays.default
