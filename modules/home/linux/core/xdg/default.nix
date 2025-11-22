@@ -53,7 +53,6 @@ modules.mkModule inputs ./. {
 
               autostart = {
                 enable = true;
-                readOnly = false; # for now, allow autostart
               };
 
               mimeApps = {
@@ -89,7 +88,7 @@ modules.mkModule inputs ./. {
                       "application/xml"
                       "application/x-yaml"
                     ])
-                    (setAssociations fileManager [ "inode/directory" ])
+                    (setAssociations fileManager.desktop [ "inode/directory" ])
                     (setAssociations pdf [ "application/pdf" ])
                     (setAssociations mail [ "x-scheme-handler/mailto" ])
                     (setAssociations image [

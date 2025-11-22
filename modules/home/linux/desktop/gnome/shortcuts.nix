@@ -4,26 +4,20 @@ modules.mkModule inputs ./shortcuts.nix {
   config =
     with vars.linux.defaultApps;
     let
-      customKeybindings =
-        [ ]
-        ++ (utils.ifNotNull
-          [ ]
-          [
-            {
-              id = "launch-terminal";
-              name = "Launch terminal";
-              command = terminal.program;
-              binding = "<Super>Return";
-            }
-            {
-              id = "launch-files";
-              name = "Launch file manager";
-              command = utils.getNotNull "nautilus" fileManager;
-              binding = "<Super>f";
-            }
-          ]
-          terminal.program
-        );
+      customKeybindings = [
+        {
+          id = "launch-files";
+          name = "Launch file manager";
+          command = utils.getNotNull gnome.defaults.fileManager.program fileManager.program;
+          binding = "<Super>f";
+        }
+        {
+          id = "launch-terminal";
+          name = "Launch terminal";
+          command = utils.getNotNull gnome.defaults.terminal.program terminal.program;
+          binding = "<Super>Return";
+        }
+      ];
       customKeybindingsRoot = "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings";
     in
     {

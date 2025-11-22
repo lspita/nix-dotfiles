@@ -16,8 +16,8 @@ modules.mkModule inputs ./appsLayout.nix {
             (builtins.filter (app: !(builtins.isNull app)) [
               browser.desktop
               editor.desktop
-              terminal.desktop
-              (utils.getNotNull "org.gnome.Nautilus.desktop" fileManager)
+              (utils.getNotNull gnome.defaults.terminal.desktop terminal.desktop)
+              (utils.getNotNull gnome.defaults.fileManager.desktop fileManager.desktop)
               music
             ]);
         };

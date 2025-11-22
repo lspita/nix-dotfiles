@@ -76,19 +76,21 @@
           desktop = null;
           program = null;
         };
-      browser =
-        # app: default browser
+      browser = # app: default browser
         {
           desktop = "firefox.desktop";
           program = "firefox";
         };
-      editor =
-        # app: default text editor
+      editor = # app: default text editor
         {
           desktop = "dev.zed.Zed.desktop";
           program = "nano";
         };
-      fileManager = null; # desktop | null: default file manager
+      fileManager = # app: default file manager
+        {
+          desktop = null;
+          program = null;
+        };
       music = "spotify.desktop"; # desktop | null: default music player (for audio files, set `audio`)
       mail = browser.desktop; # desktop | null: default mail client
       pdf = null; # desktop | null: default pdf viewer
