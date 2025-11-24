@@ -14,7 +14,7 @@ modules.mkModule inputs ./bitwarden.nix {
         packages = [ package ];
         sessionVariables =
           if self.sshAgent.enable then
-            # https://bitwarden.com/help/ssh-agent/#tab-linux-6VN1DmoAVFvm7ZWD95curS
+            # https://bitwarden.com/help/ssh-agent/#configure-bitwarden-ssh-agent
             let
               sockerDir =
                 let
