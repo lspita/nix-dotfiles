@@ -83,7 +83,7 @@
         };
       editor = # app: default text editor
         {
-          desktop = "dev.zed.Zed.desktop";
+          desktop = "code.desktop";
           program = "nano";
         };
       fileManager = # app: default file manager
