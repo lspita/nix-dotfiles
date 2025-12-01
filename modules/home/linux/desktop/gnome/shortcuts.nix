@@ -19,33 +19,35 @@ modules.mkModule inputs ./shortcuts.nix {
         }
       ];
       customKeybindingsRoot = "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings";
+      rangeOptions =
+        {
+          min ? 0,
+          max ? 9,
+        }:
+        key: value:
+        builtins.foldl' (
+          result: i:
+          let
+            istr = builtins.toString i;
+          in
+          result // { "${key istr}" = value istr; }
+        ) { } (lib.lists.range min max);
+      switchToApplicationOptions = rangeOptions {
+        min = 1;
+        max = 10;
+      } (i: "switch-to-application-${i}") (i: [ ]);
+      zeroToLast = i: if i == "0" then "last" else i;
     in
     {
       dconf.settings = {
+        "org/gnome/shell/keybindings" = switchToApplicationOptions;
         "org/gnome/desktop/wm/keybindings" = {
           close = [ "<Super>q" ];
           toggle-fullscreen = [ "<Super>F11" ];
         }
-        // (builtins.foldl'
-          (
-            result: i:
-            let
-              istr = builtins.toString i;
-            in
-            result
-            // {
-              "move-to-workspace-${istr}" = [ "<Shift><Super>${istr}" ];
-              "switch-to-workspace-${istr}" = [ "<Super>${istr}" ];
-              "switch-to-application-${istr}" = [ ];
-            }
-          )
-          {
-            move-to-workspace-last = [ "<Shift><Super>0" ];
-            switch-to-workspace-last = [ "<Super>0" ];
-            switch-to-application-10 = [ ];
-          }
-          (lib.lists.range 1 9)
-        );
+        // (rangeOptions { } (i: "switch-to-workspace-${zeroToLast i}") (i: [ "<Super>${i}" ]))
+        // (rangeOptions { } (i: "move-to-workspace-${zeroToLast i}") (i: [ "<Shift><Super>${i}" ]))
+        // switchToApplicationOptions;
         "org/gnome/settings-daemon/plugins/media-keys" = {
           help = [ ]; # remove shortcut for gnome help
           www = [ "<Super>b" ]; # launch browser
