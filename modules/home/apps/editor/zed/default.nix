@@ -24,6 +24,8 @@ modules.mkModule inputs ./. {
           "neocmake"
           "zig"
           "make"
+          "php"
+          "sql"
         ];
         userSettings = objectConfig ./settings.json (
           with vars.fonts;
