@@ -18,5 +18,6 @@ modules.mkDefaultsModule inputs ./. {
       tree.enable = true;
       htop.enable = true;
       ffmpeg.enable = true;
+      devcontainer.enable = true;
     };
 }
