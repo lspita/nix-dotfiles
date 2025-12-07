@@ -1,9 +1,8 @@
 [
   {
-    "context": "Workspace || Editor",
     "bindings": {
       "ctrl-;": "terminal_panel::Toggle",
-      "ctrl-alt-n": "workspace::NewWindow",
+      "ctrl-shift-alt-n": "workspace::NewWindow",
       "ctrl-alt-b": "workspace::ToggleLeftDock",
       "ctrl-b": "workspace::ToggleRightDock",
       "ctrl-r": [
@@ -22,6 +21,13 @@
     "bindings": {
       "ctrl-shift-n": "project_panel::NewDirectory",
       "ctrl-alt-n": null
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-shift-e": "workspace::ToggleEditPrediction",
+      "ctrl-alt-shift-e": null
     }
   }
 ]
