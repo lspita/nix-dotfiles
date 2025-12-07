@@ -5,6 +5,8 @@ modules.mkModule inputs ./auto-power-profile.nix {
     package = pkgs.gnomeExtensions.auto-power-profile;
     settings = {
       "" = {
+        ac = "balanced";
+        bat = "balanced";
         lapmode = false;
         threshold = 20;
       };
