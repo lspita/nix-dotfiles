@@ -27,6 +27,10 @@ modules.mkModule inputs ./. {
           "php"
           "sql"
         ];
+        mutableUserDebug = false;
+        mutableUserKeymaps = false;
+        mutableUserSettings = false;
+        mutableUserTasks = false;
         userSettings = objectConfig ./settings.json (
           with vars.fonts;
           let
