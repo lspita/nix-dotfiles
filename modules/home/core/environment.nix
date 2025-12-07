@@ -5,9 +5,9 @@ modules.mkModule inputs ./environment.nix {
     home.sessionVariables =
       with vars.linux.defaultApps;
       (utils.ifNotNull { } {
-        EDITOR = editor.program;
-        VISUAL = editor.program;
-      } editor.program)
+        EDITOR = terminalEditor;
+        VISUAL = terminalEditor;
+      } terminalEditor)
       // (utils.ifNotNull { } {
         BROWSER = browser.program;
       } browser.program);

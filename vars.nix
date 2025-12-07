@@ -81,17 +81,17 @@
           desktop = "firefox.desktop";
           program = "firefox";
         };
-      editor = # app: default text editor
-        {
-          desktop = "dev.zed.Zed.desktop";
-          # desktop = "code.desktop";
-          program = "nano";
-        };
       fileManager = # app: default file manager
         {
           desktop = null;
           program = null;
         };
+      editor = # app: default text editor
+        {
+          desktop = "dev.zed.Zed.desktop";
+          program = "zeditor";
+        };
+      terminalEditor = "nano";
       music = "spotify.desktop"; # desktop | null: default music player (for audio files, set `audio`)
       mail = browser.desktop; # desktop | null: default mail client
       pdf = null; # desktop | null: default pdf viewer
