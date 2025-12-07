@@ -3,7 +3,7 @@ with lib.custom;
 modules.mkHostModule inputs ./keyboardRemap.nix {
   config = {
     # https://wiki.nixos.org/wiki/Keyd
-    # To watch events: nix-shell -p keyd --run "sudo keyd monitor"
+    # to watch events: nix-shell -p keyd --run "sudo keyd monitor"
     services.keyd = {
       enable = true;
       keyboards.default = {
