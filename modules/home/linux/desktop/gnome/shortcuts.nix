@@ -17,6 +17,12 @@ modules.mkModule inputs ./shortcuts.nix {
           command = utils.getNotNull gnome.defaults.terminal.program terminal.program;
           binding = "<Super>Return";
         }
+        {
+          id = "launch-editor";
+          name = "Launch editor";
+          command = utils.getNotNull gnome.defaults.editor.program editor.program;
+          binding = "<Super>E";
+        }
       ];
       customKeybindingsRoot = "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings";
       rangeOptions =
