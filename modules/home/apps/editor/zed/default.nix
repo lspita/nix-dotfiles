@@ -20,7 +20,7 @@ modules.mkModule inputs ./. {
           "log"
           "ssh-config"
           "markdown-oxide"
-          "toml"
+          "tombi" # toml + lsp
           "neocmake"
           "zig"
           "make"
