@@ -16,6 +16,7 @@ modules.mkDefaultsModule inputs ./. {
         auto-power-profile.enable = true;
         caffeine.enable = true;
         hide-cursor.enable = true;
+        app-hider.enable = true;
       })
       {
         home.packages = with pkgs; [
