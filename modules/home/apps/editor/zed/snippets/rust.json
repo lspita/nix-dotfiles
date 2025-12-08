@@ -1,0 +1,15 @@
+{
+  "rust-testmod": {
+    "description": "Create a rust test module",
+    "prefix": "testmod",
+    "body": [
+      "#[cfg(test)]",
+      "mod tests {",
+      "    #[${1:rs}test]",
+      "    fn test_$2() {",
+      "        $0",
+      "    }",
+      "}"
+    ]
+  }
+}
