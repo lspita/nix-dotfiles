@@ -45,7 +45,9 @@ modules.mkModule inputs ./nh.nix {
             ''
               flake-init() {
                 nix flake init -t $NH_FLAKE#"$1"
-                git rm --cached .envrc
+                ${
+                  "git rm --cached .envrc || true" # `|| true` to not give an error if not in a repo
+                }
               }
             ''
           ]
