@@ -17,5 +17,6 @@ modules.mkDefaultsModule inputs ./. {
         passwordManager.enable = false;
       };
       music.spotify.enable = true;
+      notes.obsidian.enable = true;
     };
 }
