@@ -1,4 +1,5 @@
 {
+  "wrap_guides": [80],
   "edit_predictions": {
     "mode": "eager"
   },
