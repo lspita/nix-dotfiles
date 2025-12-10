@@ -39,9 +39,7 @@ modules.mkModule inputs ./firefox.nix {
             # to fully apply, close and reopen after first startup
             "browser.uiCustomization.state" = {
               placements = {
-                widget-overflow-fixed-list = [
-
-                ];
+                widget-overflow-fixed-list = [ ];
                 unified-extensions-area = [
                   "ublock0_raymondhill_net-browser-action"
                 ];
@@ -57,24 +55,15 @@ modules.mkModule inputs ./firefox.nix {
                   "fxa-toolbar-menu-button"
                   "downloads-button"
                   "customizableui-special-spring2"
-                ]
-                ++ (
-                  if utils.isInstalled inputs "bitwarden-desktop" then
-                    # pin bitwarden extension
-                    [ "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" ]
-                  else
-                    [ ]
-                )
-                ++ [
+                  "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action"
                   "addon_darkreader_org-browser-action"
+                  "tab-session-manager_sienori-browser-action"
                   "unified-extensions-button"
                 ];
                 toolbar-menubar = [
                   "menubar-items"
                 ];
-                TabsToolbar = [
-
-                ];
+                TabsToolbar = [ ];
                 vertical-tabs = [
                   "tabbrowser-tabs"
                 ];
