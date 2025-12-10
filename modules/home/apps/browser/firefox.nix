@@ -57,7 +57,6 @@ modules.mkModule inputs ./firefox.nix {
                   "customizableui-special-spring2"
                   "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action"
                   "addon_darkreader_org-browser-action"
-                  "tab-session-manager_sienori-browser-action"
                   "unified-extensions-button"
                 ];
                 toolbar-menubar = [
