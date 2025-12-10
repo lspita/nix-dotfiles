@@ -4,7 +4,7 @@ modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
     setDefaultSubconfig {
-      editor = {
+      coding = {
         vscode.enable = true;
         zed.enable = true;
       };
@@ -16,6 +16,6 @@ modules.mkDefaultsModule inputs ./. {
         enable = true;
         passwordManager.enable = false;
       };
-      spotify.enable = true;
+      music.spotify.enable = true;
     };
 }
