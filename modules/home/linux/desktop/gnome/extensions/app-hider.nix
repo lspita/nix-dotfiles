@@ -5,7 +5,10 @@ modules.mkModule inputs ./app-hider.nix {
     package = pkgs.gnomeExtensions.app-hider;
     settings =
       let
-        fullHideApps = [ "htop.desktop" ];
+        fullHideApps = [
+          "htop.desktop"
+          "org.gnome.Extensions.desktop"
+        ];
       in
       {
         "" = {
