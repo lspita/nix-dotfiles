@@ -34,7 +34,7 @@ modules.mkModule inputs ./. {
           ++ self.excludePackages;
         # Fix visual glitches in gtk popup windows
         # https://www.reddit.com/r/Fedora/comments/1oirfcr/comment/nlzxhyq/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-        sessionVariables.GSK_RENDERER = "gl";
+        # sessionVariables.GSK_RENDERER = "gl";
       };
 
       # https://discourse.nixos.org/t/setting-the-user-profile-image-under-gnome/36233
