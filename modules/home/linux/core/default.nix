@@ -5,5 +5,6 @@ modules.mkDefaultsModule inputs ./. {
     { setDefaultSubconfig, ... }:
     setDefaultSubconfig {
       xdg.enable = true;
+      unixtools.enable = true;
     };
 }
