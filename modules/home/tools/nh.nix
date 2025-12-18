@@ -37,6 +37,12 @@ modules.mkModule inputs ./nh.nix {
               }
             ''
             ''
+              flake-switch() {
+                git ${gitFlakeRef} add .
+                nh os switch
+              }
+            ''
+            ''
               flake-update() {
                 nh os switch -u
                 flake-push "auto: flake update"
@@ -44,10 +50,15 @@ modules.mkModule inputs ./nh.nix {
             ''
             ''
               flake-init() {
-                nix flake init -t $NH_FLAKE#"$1"
+                nix flake init -t ${flakeRef}#"$1"
                 ${
                   "git rm --cached .envrc || true" # `|| true` to not give an error if not in a repo
                 }
+              }
+            ''
+            ''
+              flake-develop() {
+                nix develop --no-write-lock-file ${flakeRef}/templates/$1
               }
             ''
           ]
