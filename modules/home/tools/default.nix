@@ -19,5 +19,6 @@ modules.mkDefaultsModule inputs ./. {
       htop.enable = true;
       ffmpeg.enable = true;
       devcontainer.enable = true;
+      fd.enable = true;
     };
 }
