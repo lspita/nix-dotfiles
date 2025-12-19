@@ -1,4 +1,4 @@
-{ lib }:
+{ root, lib }:
 # set: configuration module
 { config, configType, ... }: # set: config inputs
 path: # path: path to module (or dir if it is default.nix)
@@ -48,7 +48,7 @@ let
   getSubconfig = path: lib.attrsets.getAttrFromPath path config;
   self = getSubconfig pathList;
   super = getSubconfig (lib.lists.dropEnd 1 pathList);
-  root = getSubconfig rootPathList;
+  rootPath = getSubconfig rootPathList;
   cfg = module.config;
 in
 {
@@ -65,16 +65,22 @@ in
   );
   config = lib.mkIf (self.${enableOption}) (
     if builtins.isFunction cfg then
-      cfg rec {
-        inherit
-          pathList
-          self
-          super
-          root
-          ;
-        path = lib.strings.concatStringsSep "/" modulePathList;
-        setSubconfig = value: lib.attrsets.setAttrByPath pathList value;
-      }
+      cfg (
+        {
+          inherit
+            pathList
+            self
+            super
+            ;
+          root = rootPath;
+          path = lib.strings.concatStringsSep "/" modulePathList;
+
+        }
+        // rec {
+          setSubconfig = value: lib.attrsets.setAttrByPath pathList value;
+          setDefaultSubconfig = value: setSubconfig (root.utils.mkDefaultRec value);
+        }
+      )
     else
       cfg
   );
