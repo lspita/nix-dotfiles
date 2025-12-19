@@ -9,7 +9,7 @@ modules.mkModule inputs ./fzf.nix {
     {
       assertions = [
         {
-          assertion = (utils.isInstalled inputs "fd") || self.fd.enable;
+          assertion = (utils.isInstalled inputs "fd") || !self.fd.enable;
           message = "fd must be installed to use it with fzf";
         }
       ];

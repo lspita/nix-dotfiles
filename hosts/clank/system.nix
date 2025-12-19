@@ -9,10 +9,7 @@
       login.gdm.enable = true;
       desktop = {
         enableDefaults = true;
-        gnome = {
-          enable = true;
-          nautilus.enableDefaults = true;
-        };
+        gnome.enable = true;
       };
       virtualisation.enableDefaults = true;
     };

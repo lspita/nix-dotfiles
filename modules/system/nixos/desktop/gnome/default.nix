@@ -14,7 +14,7 @@ modules.mkModule inputs ./. {
     };
   };
   config =
-    { self, ... }:
+    { self, setSubconfig, ... }:
     let
       profiles = assets.profiles inputs;
       userImage = vars.user.image;
@@ -36,7 +36,6 @@ modules.mkModule inputs ./. {
         # https://www.reddit.com/r/Fedora/comments/1oirfcr/comment/nlzxhyq/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
         # sessionVariables.GSK_RENDERER = "gl";
       };
-
       # https://discourse.nixos.org/t/setting-the-user-profile-image-under-gnome/36233
       system.activationScripts =
         if builtins.isNull userImage then
@@ -47,5 +46,8 @@ modules.mkModule inputs ./. {
               cp -f ${profiles.${userImage}} /var/lib/AccountsService/icons/${vars.user.username}
             '';
           };
-    };
+    }
+    // (setSubconfig {
+      nautilus.enableDefaults = true;
+    });
 }
