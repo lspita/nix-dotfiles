@@ -13,14 +13,25 @@ modules.mkModule inputs ./. {
       programs.zed-editor =
         let
           objectConfig =
-            path: override: lib.attrsets.recursiveUpdate (builtins.fromJSON (builtins.readFile path)) override;
-          listConfig = path: override: builtins.fromJSON (builtins.readFile path) ++ override;
+            path: override:
+            lib.attrsets.recursiveUpdate
+              # allow trailing commas + comments
+              (utils.fromJSON5 (builtins.readFile path))
+              override;
+          listConfig =
+            path: override:
+            # allow trailing commas + comments
+            utils.fromJSON5 (builtins.readFile path) ++ override;
         in
         {
           enable = true;
           extensions = [
+            # themes
             "catppuccin"
             "catppuccin-icons"
+            "github-theme"
+            "material-icon-theme"
+            # extensions
             "git-firefly"
             "nix"
             "dockerfile"
