@@ -13,6 +13,7 @@ modules.mkDefaultsModule inputs ./. {
     lib.attrsets.recursiveUpdate
       (setDefaultSubconfig {
         aliases.enable = true;
+        input.enable = true;
         bash = {
           enable = true;
           blesh.enable = true;

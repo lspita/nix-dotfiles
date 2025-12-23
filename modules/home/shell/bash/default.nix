@@ -4,7 +4,6 @@ modules.mkModule inputs ./. {
   options = {
     completition = {
       enable = utils.mkTrueEnableOption "bash completition";
-      ignoreCase = utils.mkTrueEnableOption "case-insensitive completition";
     };
   };
   config =
@@ -17,9 +16,5 @@ modules.mkModule inputs ./. {
           initExtra = lib.mkAfter (shell.loadrc inputs "bash");
         };
       };
-      # https://www.cyberciti.biz/faq/bash-shell-setup-filename-tab-completion-case-insensitive/
-      home.file.".inputrc".text = ''
-        ${if self.completition.ignoreCase then "set completion-ignore-case on" else ""}
-      '';
     };
 }
