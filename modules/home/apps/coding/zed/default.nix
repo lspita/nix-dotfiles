@@ -13,15 +13,15 @@ modules.mkModule inputs ./. {
       programs.zed-editor =
         let
           objectConfig =
-            path: override:
+            filepath: override:
             lib.attrsets.recursiveUpdate
               # allow trailing commas + comments
-              (utils.fromJSON5 (builtins.readFile path))
+              (utils.fromJSON5 (builtins.readFile filepath))
               override;
           listConfig =
-            path: override:
+            filepath: override:
             # allow trailing commas + comments
-            utils.fromJSON5 (builtins.readFile path) ++ override;
+            utils.fromJSON5 (builtins.readFile filepath) ++ override;
         in
         {
           enable = true;
