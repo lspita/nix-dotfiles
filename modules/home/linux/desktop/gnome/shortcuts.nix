@@ -34,7 +34,7 @@ modules.mkModule inputs ./shortcuts.nix {
         builtins.foldl' (
           result: i:
           let
-            istr = builtins.toString i;
+            istr = toString i;
           in
           result // { "${key istr}" = value istr; }
         ) { } (lib.lists.range min max);
@@ -57,7 +57,7 @@ modules.mkModule inputs ./shortcuts.nix {
         "org/gnome/settings-daemon/plugins/media-keys" = {
           help = [ ]; # remove shortcut for gnome help
           www = [ "<Super>b" ]; # launch browser
-          custom-keybindings = builtins.map (kb: "/${customKeybindingsRoot}/${kb.id}/") customKeybindings;
+          custom-keybindings = map (kb: "/${customKeybindingsRoot}/${kb.id}/") customKeybindings;
         };
       }
       // (builtins.foldl' (

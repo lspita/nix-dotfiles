@@ -7,7 +7,7 @@ modules.mkDefaultsModule inputs ./. {
       openAnyTerminal.enable =
         with vars.linux.defaultApps.terminal;
         let
-          notNullAndDifferentFrom = value: check: (!builtins.isNull value) && value != check;
+          notNullAndDifferentFrom = value: check: (!isNull value) && value != check;
         in
         (notNullAndDifferentFrom desktop gnome.defaults.terminal.desktop)
         && (notNullAndDifferentFrom program gnome.defaults.terminal.program);

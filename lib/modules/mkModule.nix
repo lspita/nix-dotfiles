@@ -1,7 +1,7 @@
 { root, lib }:
 # set: configuration module
 { config, configType, ... }: # set: config inputs
-path: # path: path to module (or dir if it is default.nix)
+modulePath: # path: path to module (or dir if it is default.nix)
 module:
 /*
   {
@@ -42,10 +42,10 @@ let
 
   modulePathList = (
     lib.lists.drop 4 # "/nix/store/<hash>/..." is splitted into [ "" "nix" "store" "<hash>" ... ]
-      (splitPath (lib.strings.removeSuffix ".nix" (builtins.toString path)))
+      (splitPath (lib.strings.removeSuffix ".nix" (toString modulePath)))
   );
   pathList = rootPathList ++ (lib.lists.removePrefix moduleDirPath modulePathList);
-  getSubconfig = path: lib.attrsets.getAttrFromPath path config;
+  getSubconfig = configArrayPath: lib.attrsets.getAttrFromPath configArrayPath config;
   self = getSubconfig pathList;
   super = getSubconfig (lib.lists.dropEnd 1 pathList);
   rootPath = getSubconfig rootPathList;
@@ -73,7 +73,7 @@ in
             super
             ;
           root = rootPath;
-          path = lib.strings.concatStringsSep "/" modulePathList;
+          selfPath = lib.strings.concatStringsSep "/" modulePathList;
 
         }
         // rec {

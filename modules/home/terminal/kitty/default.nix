@@ -19,7 +19,7 @@ modules.mkModule inputs ./. {
         };
       };
       xdg.configFile =
-        if builtins.isNull self.theme then
+        if isNull self.theme then
           { }
         else
           let

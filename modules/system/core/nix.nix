@@ -30,7 +30,7 @@ modules.mkModule inputs ./nix.nix {
         gc = with self.cleaning; {
           inherit dates;
           automatic = true;
-          options = "--delete-older-than +${builtins.toString maxGenerations}";
+          options = "--delete-older-than +${toString maxGenerations}";
         };
       };
     };

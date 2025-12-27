@@ -6,7 +6,7 @@
 traceOrOptions:
 /*
   {
-    trace = string: trace message
+    message = string: trace message
     map = fn(any) -> any = value mapping function
     pred: fn(any) -> bool = trace predicate
   } |
@@ -14,8 +14,11 @@ traceOrOptions:
 */
 value: # any: value to trace and return
 let
-  trace = traceOrOptions.trace or traceOrOptions;
-  map = traceOrOptions.map or lib.id;
-  pred = traceOrOptions.pred or (_: true);
+  message = traceOrOptions.message or traceOrOptions;
+  mapfn = traceOrOptions.mapfn or lib.id;
+  predicatefn = traceOrOptions.predicatefn or (_: true);
 in
-if pred value then builtins.trace "${trace} -- ${builtins.toJSON (map value)}" value else value
+if predicatefn value then
+  builtins.trace "${message} -- ${builtins.toJSON (mapfn value)}" value
+else
+  value

@@ -14,10 +14,7 @@ modules.mkModule inputs ./. {
       programs.starship = {
         enable = true;
         settings =
-          if builtins.isNull self.preset then
-            { }
-          else
-            builtins.fromTOML (builtins.readFile ./presets/${self.preset}.toml);
+          if isNull self.preset then { } else fromTOML (builtins.readFile ./presets/${self.preset}.toml);
       };
     };
 }

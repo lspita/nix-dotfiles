@@ -6,18 +6,18 @@ in
   templates =
     builtins.foldl'
       (
-        result: path:
+        result: templatePath:
         result
         // {
-          ${path} = {
-            description = "${path}"; # description is required
-            path = "${root}/${path}";
+          ${templatePath} = {
+            description = "${templatePath}"; # description is required
+            path = "${root}/${templatePath}";
           };
         }
       )
       { }
       (listDir {
-        path = root;
-        filter = (_: type: type == "directory");
+        dirPath = root;
+        filterfn = (_: type: type == "directory");
       });
 }

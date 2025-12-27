@@ -3,18 +3,19 @@ let
   lib = nixpkgs.lib;
   listDir =
     {
-      path,
-      filter ? (path: _: path != "default.nix"),
+      dirPath,
+      filterfn ? (filepath: _: filepath != "default.nix"),
     }:
-    builtins.attrNames (lib.attrsets.filterAttrs filter (builtins.readDir path));
+    builtins.attrNames (lib.attrsets.filterAttrs filterfn (builtins.readDir dirPath));
 in
 builtins.foldl'
   (
-    result: path: lib.attrsets.recursiveUpdate result (import path (inputs // { inherit lib listDir; }))
+    result: filePath:
+    lib.attrsets.recursiveUpdate result (import filePath (inputs // { inherit lib listDir; }))
   )
   { }
   (
-    builtins.map (f: ./${f}) (listDir {
-      path = ./.;
+    map (f: ./${f}) (listDir {
+      dirPath = ./.;
     })
   )

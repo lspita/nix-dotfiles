@@ -21,9 +21,9 @@ let
         hostDirRel = "${hostsDirRel}/${hostname}";
         hostDir = "${hostsDir}/${hostname}";
         hostPath =
-          path:
+          filePath:
           let
-            fullPath = "${hostDir}/${path}";
+            fullPath = "${hostDir}/${filePath}";
           in
           with lib.filesystem;
           if pathIsDirectory fullPath then fullPath else "${fullPath}.nix";
@@ -57,8 +57,8 @@ let
             let
               overlaysRoot = flakePath "overlays";
             in
-            builtins.map (path: import "${overlaysRoot}/${path}" baseInputs) (listDir {
-              path = overlaysRoot;
+            map (overlayPath: import "${overlaysRoot}/${overlayPath}" baseInputs) (listDir {
+              dirPath = overlaysRoot;
             });
         };
         systemType =
@@ -76,7 +76,7 @@ let
           inherit inputs;
           src = flakePath "lib";
         };
-        specialArgs = builtins.removeAttrs inputs [
+        specialArgs = removeAttrs inputs [
           "lib"
           "pkgs"
         ];
@@ -163,7 +163,7 @@ let
     ) { } systems;
 in
 mkSystems (
-  builtins.map
+  map
     (
       hostname:
       let
@@ -176,7 +176,7 @@ mkSystems (
     (
       builtins.attrNames (
         lib.attrsets.filterAttrs (
-          path: _type: (_type == "directory") # each host is a directory
+          dirPath: _type: (_type == "directory") # each host is a directory
         ) (builtins.readDir hostsDir)
       )
     )

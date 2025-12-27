@@ -41,7 +41,7 @@ modules.mkModule inputs ./bat.nix {
             if enable then
               {
                 fzf.fileWidgetOptions = [
-                  "--preview 'bat --color=always --style=numbers --line-range=:${builtins.toString range} {}'"
+                  "--preview 'bat --color=always --style=numbers --line-range=:${toString range} {}'"
                 ];
               }
             else

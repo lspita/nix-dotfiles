@@ -9,12 +9,12 @@ modules.mkModule inputs ./wallpaper.nix {
     in
     {
       dconf.settings =
-        if builtins.isNull vars.wallpaper then
+        if isNull vars.wallpaper then
           { }
         else
           with wallpapers.${vars.wallpaper};
           let
-            pathToURI = path: "file://${path}";
+            pathToURI = filePath: "file://${filePath}";
             uris = assets.wallpaperValue type {
               light-dark = {
                 light = pathToURI path.light;

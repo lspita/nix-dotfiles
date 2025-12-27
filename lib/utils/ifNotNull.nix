@@ -3,4 +3,4 @@ _:
 default: # any: default value
 result: # any: resulting value
 value: # any: original value
-if builtins.isNull value then default else result
+if isNull value then default else result

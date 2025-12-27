@@ -1,10 +1,10 @@
 { lib, flakeInputs, ... }:
 # list[path]: list of all files inside `path` recursively
-path: # path: dir to list
+dirPath: # path: directory to list
 with flakeInputs;
 lib.attrsets.collect builtins.isString (
   haumea.lib.load {
-    src = path;
+    src = dirPath;
     loader = haumea.lib.loaders.path;
   }
 )

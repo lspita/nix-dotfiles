@@ -52,7 +52,7 @@ modules.mkModule inputs ./open-bar.nix {
         apply-flatpak = false;
       }
       // (
-        if builtins.isNull vars.wallpaper then
+        if isNull vars.wallpaper then
           { }
         else
           with (assets.wallpapers inputs).${vars.wallpaper};

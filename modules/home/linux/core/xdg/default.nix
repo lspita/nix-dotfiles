@@ -62,7 +62,7 @@ modules.mkModule inputs ./. {
                     setAssociations =
                       app: mimetypes:
                       utils.ifNotNull { } (builtins.listToAttrs (
-                        builtins.map (mime: lib.attrsets.nameValuePair mime app) mimetypes
+                        map (mime: lib.attrsets.nameValuePair mime app) mimetypes
                       )) app;
                   in
                   (builtins.foldl' (result: current: result // current) { } [

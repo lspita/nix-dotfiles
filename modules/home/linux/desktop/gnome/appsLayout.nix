@@ -13,7 +13,7 @@ modules.mkModule inputs ./appsLayout.nix {
         "org/gnome/shell" = {
           favorite-apps =
             with vars.linux.defaultApps;
-            (builtins.filter (app: !(builtins.isNull app)) [
+            (builtins.filter (app: !(isNull app)) [
               browser.desktop
               editor.desktop
               (utils.getNotNull gnome.defaults.terminal.desktop terminal.desktop)

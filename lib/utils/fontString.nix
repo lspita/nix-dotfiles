@@ -4,4 +4,4 @@ _:
   name, # string: font name
   size, # int: font size
 }:
-"${name} ${builtins.toString size}"
+"${name} ${toString size}"

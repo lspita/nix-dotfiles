@@ -38,7 +38,7 @@ modules.mkModule inputs ./. {
       };
       # https://discourse.nixos.org/t/setting-the-user-profile-image-under-gnome/36233
       system.activationScripts =
-        if builtins.isNull userImage then
+        if isNull userImage then
           { }
         else
           {

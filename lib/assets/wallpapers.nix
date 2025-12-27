@@ -24,15 +24,15 @@ let
   wallpaperAssetsDir = "wallpapers";
   wallpapersStaticRoot = flakePath "assets/${wallpaperAssetsDir}";
   wallpapers = lib.attrsets.foldlAttrs (
-    result: path: type:
+    result: assetPath: type:
     let
-      wallpaperPath = "${super.assetPath inputs wallpaperAssetsDir}/${path}";
+      wallpaperPath = "${super.assetPath inputs wallpaperAssetsDir}/${assetPath}";
     in
     result
     // (
       if type == "directory" then
         {
-          ${path} = {
+          ${assetPath} = {
             type = "light-dark";
             path =
               let
@@ -40,11 +40,11 @@ let
                   variant:
                   let
                     matches = builtins.filter (lib.strings.hasPrefix variant) (
-                      builtins.attrNames (builtins.readDir "${wallpapersStaticRoot}/${path}")
+                      builtins.attrNames (builtins.readDir "${wallpapersStaticRoot}/${assetPath}")
                     );
                   in
                   if builtins.length matches == 0 then
-                    throw "Variant ${variant} not found for wallpaper ${path}"
+                    throw "Variant ${variant} not found for wallpaper ${assetPath}"
                   else
                     "${wallpaperPath}/${builtins.head matches}";
               in
@@ -56,7 +56,7 @@ let
         }
       else
         {
-          ${root.utils.fileBasename path} = {
+          ${root.utils.fileBasename assetPath} = {
             type = "regular";
             path = wallpaperPath;
           };
@@ -67,7 +67,7 @@ in
 let
   wallpaper = vars.wallpaper;
 in
-if builtins.isNull wallpaper || builtins.hasAttr wallpaper wallpapers then
+if isNull wallpaper || builtins.hasAttr wallpaper wallpapers then
   wallpapers
 else
   throw "Invalid wallpaper selected: ${wallpaper}"

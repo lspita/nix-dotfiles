@@ -41,7 +41,7 @@
       inputs
       // rec {
         flakeRoot = ./.;
-        flakePath = path: "${flakeRoot}/${path}";
+        flakePath = filePath: "${flakeRoot}/${filePath}";
       }
     );
 }

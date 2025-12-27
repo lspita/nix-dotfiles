@@ -11,17 +11,18 @@ let
   profilesAssetsDir = "profiles";
   profilesStaticRoot = flakePath "assets/${profilesAssetsDir}";
   profiles = lib.attrsets.foldlAttrs (
-    result: path: type:
+    result: profilePath: type:
     result
     // {
-      ${root.utils.fileBasename path} = "${super.assetPath inputs profilesAssetsDir}/${path}";
+      ${root.utils.fileBasename profilePath} =
+        "${super.assetPath inputs profilesAssetsDir}/${profilePath}";
     }
   ) { } (builtins.readDir profilesStaticRoot);
 in
 let
   image = vars.user.image;
 in
-if builtins.isNull image || builtins.hasAttr image profiles then
+if isNull image || builtins.hasAttr image profiles then
   profiles
 else
-  throw "Invalid profile selected: ${builtins.toString image}"
+  throw "Invalid profile selected: ${toString image}"
