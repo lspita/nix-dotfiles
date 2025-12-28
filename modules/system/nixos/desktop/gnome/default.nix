@@ -30,6 +30,8 @@ modules.mkModule inputs ./. {
             geary
             epiphany
             gnome-console
+            yelp
+            gnome-maps
           ]
           ++ self.excludePackages;
         # Fix visual glitches in gtk popup windows
