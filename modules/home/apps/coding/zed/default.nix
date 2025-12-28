@@ -21,7 +21,7 @@ modules.mkModule inputs ./. {
           listConfig =
             filepath: override:
             # allow trailing commas + comments
-            utils.fromJSON5 (builtins.readFile filepath) ++ override;
+            (utils.fromJSON5 (builtins.readFile filepath)) ++ override;
         in
         {
           enable = true;
@@ -31,6 +31,7 @@ modules.mkModule inputs ./. {
             "catppuccin-icons"
             "github-theme"
             "material-icon-theme"
+            "colored-zed-icons-theme"
             # extensions
             "git-firefly"
             "nix"
