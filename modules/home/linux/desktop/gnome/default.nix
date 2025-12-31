@@ -12,7 +12,7 @@ modules.mkDefaultsModule inputs ./. {
         shortcuts.enable = true;
         nautilus.enable = true;
         extensions.enableDefaults = true;
-        theme.adw-gtk3.enable = true;
+        themes.enableDefaults = true;
       })
       {
         programs.gnome-shell.enable = true;
