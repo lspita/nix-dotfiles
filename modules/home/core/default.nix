@@ -9,5 +9,6 @@ modules.mkDefaultsModule inputs ./. {
       git.enable = true;
       wget.enable = true;
       curl.enable = true;
+      gpg.enable = true;
     };
 }
