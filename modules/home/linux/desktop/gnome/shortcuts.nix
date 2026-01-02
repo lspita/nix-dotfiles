@@ -50,6 +50,12 @@ modules.mkModule inputs ./shortcuts.nix {
         "org/gnome/desktop/wm/keybindings" = {
           close = [ "<Super>q" ];
           toggle-fullscreen = [ "<Super>F11" ];
+          switch-applications = [ "<Alt>Tab" ];
+          switch-applications-backward = [ "<Shift><Alt>Tab" ];
+          switch-group = [ "<Super>Tab" ];
+          switch-group-backward = [ "<Shift><Super>Tab" ];
+          switch-panels = [ ];
+          switch-panels-backward = [ ];
         }
         // (rangeOptions { } (i: "switch-to-workspace-${zeroToLast i}") (i: [ "<Super>${i}" ]))
         // (rangeOptions { } (i: "move-to-workspace-${zeroToLast i}") (i: [ "<Shift><Super>${i}" ]))
