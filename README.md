@@ -1,6 +1,6 @@
 # ❄️ Nix dotfiles
 
-This is my nix + [home manager](https://github.com/nix-community/home-manager) configuration shared between different machines and systems.
+This is my [Nix](https://nixos.org/) + [Home manager](https://github.com/nix-community/home-manager) configuration shared between different machines and systems.
 
 > [!important]
 > While it is modular and configurable, it's still meant to be my personal configuration and not something anyone can grab and use without touching anything.
