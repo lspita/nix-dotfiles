@@ -11,6 +11,7 @@
   "file_types": {
     "Shell Script": [".envrc"],
     "YAML": [".clangd", ".clang-tidy", ".clang-format"],
+    "Dockerfile": ["Containerfile", "containerfile", "*.containerfile"],
   },
   "icon_theme": {
     "dark": "Catppuccin Mocha",
