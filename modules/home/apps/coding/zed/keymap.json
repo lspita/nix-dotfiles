@@ -25,4 +25,10 @@
       "ctrl-alt-shift-e": null,
     },
   },
+  {
+    "context": "(Editor && edit_prediction)",
+    "bindings": {
+      "tab": null,
+    },
+  },
 ]
