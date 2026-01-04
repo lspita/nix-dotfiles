@@ -15,11 +15,6 @@ modules.mkModule inputs ./wsl.nix {
       enable = true;
       defaultUser = vars.user.username;
     };
-    programs.nix-ld.enable = true;
-    custom.nixos.core = {
-      enableDefaults = false;
-      nix-ld.enable = true;
-    };
     environment.sessionVariables = {
       LD_LIBRARY_PATH = [
         "/usr/lib/wsl/lib"

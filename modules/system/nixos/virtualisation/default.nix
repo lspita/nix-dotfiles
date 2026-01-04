@@ -3,7 +3,12 @@ with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
-    setDefaultSubconfig {
-      containers.enableDefaults = true;
-    };
+    setDefaultSubconfig (
+      utils.systemValue {
+        linux = {
+          containers.enableDefaults = true;
+        };
+        darwin = { };
+      }
+    );
 }

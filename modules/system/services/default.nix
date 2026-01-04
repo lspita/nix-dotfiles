@@ -3,7 +3,16 @@ with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
-    setDefaultSubconfig {
-      ssh.enable = true;
-    };
+    let
+      defaultModules = {
+        ssh.enable = true;
+      };
+    in
+    setDefaultSubconfig (
+      utils.systemValue {
+        linux = defaultModules;
+        darwin = defaultModules;
+        wsl = { };
+      }
+    );
 }

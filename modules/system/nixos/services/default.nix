@@ -6,10 +6,10 @@ modules.mkDefaultsModule inputs ./. {
     setDefaultSubconfig (
       utils.systemValue {
         linux = {
-          config.enable = true;
-          docker.enable = true;
-          # podman.enable = true;
+          printing.enable = true;
+          fingerprint.enable = true;
         };
+        wsl = { };
         darwin = { };
       }
     );
