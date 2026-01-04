@@ -8,6 +8,8 @@ This is my [Nix](https://nixos.org/) + [Home manager](https://github.com/nix-com
 > [!important]
 > [nix-darwin](https://github.com/nix-darwin/nix-darwin) is included in the flake for macos support and the modules are splitted based on what is cross-platform and what not, but since I don't have a mac, it was never tested.
 
+Credits to [Ryan Yin's config](https://github.com/ryan4yin/nix-config) for a lot of inspiration on how to structure the project and how to configure some modules.
+
 ## Structure
 
 - `vars.nix`: variables used all across the configuration.
