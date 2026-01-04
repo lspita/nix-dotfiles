@@ -4,9 +4,10 @@ modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
     setDefaultSubconfig {
-      coding = {
+      editors = {
         vscode.enable = true;
         zed.enable = true;
+        obsidian.enable = true;
       };
       security.bitwarden = {
         enable = true;
@@ -16,7 +17,6 @@ modules.mkDefaultsModule inputs ./. {
         enable = true;
         passwordManager.enable = false;
       };
-      music.spotify.enable = true;
-      notes.obsidian.enable = true;
+      media.spotify.enable = true;
     };
 }
