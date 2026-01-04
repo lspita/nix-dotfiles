@@ -8,7 +8,7 @@ modules.mkDefaultsModule inputs ./. {
         enable = true;
         plymouth.enable = true;
       };
-      filesystem.enable = true;
+      filesystem.exfat.enable = true;
       power.enable = true;
       wayland.enable = true;
       locale.enable = true;
