@@ -15,7 +15,7 @@
         devShell =
           with pkgs;
           let
-            ccLib = pkgs.stdenv.cc.cc.lib;
+            ccLib = stdenv.cc.cc.lib;
           in
           mkShell {
             buildInputs = [
