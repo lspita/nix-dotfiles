@@ -1,0 +1,9 @@
+.env
+
+# direnv
+.direnv/
+.envrc
+
+# python
+.venv/
+__pycache__/
