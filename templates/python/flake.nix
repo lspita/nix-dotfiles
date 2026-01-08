@@ -14,6 +14,9 @@
       {
         devShell =
           with pkgs;
+          let
+            ccLib = pkgs.stdenv.cc.cc.lib;
+          in
           mkShell {
             buildInputs = [
               # nix
@@ -22,9 +25,11 @@
               nixfmt
               # python
               python3
+              ccLib
             ];
             shellHook = ''
               set -a
+              LD_LIBRARY_PATH=${ccLib}/lib:$LD_LIBRARY_PATH
               source .env 2> /dev/null
               set +a
 

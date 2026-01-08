@@ -7,6 +7,7 @@ modules.mkModule inputs ./nix-ld.nix {
       enable = true;
       libraries = with pkgs; [
         stdenv.cc.cc
+        stdenv.cc.cc.lib
       ];
     };
   };
