@@ -20,5 +20,6 @@ modules.mkDefaultsModule inputs ./. {
       ffmpeg.enable = true;
       devcontainer.enable = true;
       fd.enable = true;
+      ripgrep.enable = true;
     };
 }
