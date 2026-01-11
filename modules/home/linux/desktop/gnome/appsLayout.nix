@@ -13,12 +13,15 @@ modules.mkModule inputs ./appsLayout.nix {
         "org/gnome/shell" = {
           favorite-apps =
             with vars.linux.defaultApps;
+            let
+              gnomeApps = gnome.defaults.apps;
+            in
             (map (app: app.desktop) (
               builtins.filter (app: !(isNull app)) [
                 browser
                 editor
-                (utils.getNotNull gnome.defaults.terminal terminal)
-                (utils.getNotNull gnome.defaults.fileManager fileManager)
+                (utils.getNotNull gnomeApps.terminal terminal)
+                (utils.getNotNull gnomeApps.fileManager fileManager)
                 music
               ]
             ));

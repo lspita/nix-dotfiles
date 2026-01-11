@@ -4,7 +4,7 @@ modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
     let
-      gnomeTerminal = gnome.defaults.terminal;
+      gnomeTerminal = gnome.defaults.apps.terminal;
       varsTerminal = vars.linux.defaultApps.terminal;
     in
     setDefaultSubconfig {

@@ -7,7 +7,7 @@ modules.mkModule inputs ./shortcuts.nix {
         appName:
         let
           varApps = vars.linux.defaultApps;
-          gnomeApps = gnome.defaults;
+          gnomeApps = gnome.defaults.apps;
         in
         utils.ifNotNull (gnomeApps.${appName}.program) varApps.${appName}.program varApps.${appName};
       customKeybindings = [
