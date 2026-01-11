@@ -8,7 +8,7 @@ modules.mkDefaultsModule inputs ./. {
         linux = {
           config.enable = true;
           docker.enable = true;
-          # podman.enable = true;
+          podman.enable = true;
         };
         darwin = { };
       }

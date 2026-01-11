@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./firefox.nix {
   options = {
-    passwordManager.enable = utils.mkTrueEnableOption "firefox password manager";
+    passwordManager.enable = utils.mkEnableOption true "firefox password manager";
   };
   config =
     { self, ... }:

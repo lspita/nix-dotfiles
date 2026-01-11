@@ -55,11 +55,7 @@ in
   inherit imports;
   options = lib.attrsets.setAttrByPath pathList (
     {
-      ${enableOption} = lib.mkOption {
-        type = lib.types.bool;
-        default = enable;
-        description = "Whether to enable ${lib.concatStringsSep "." pathList}";
-      };
+      ${enableOption} = root.utils.mkEnableOption enable (lib.concatStringsSep "." pathList);
     }
     // options
   );

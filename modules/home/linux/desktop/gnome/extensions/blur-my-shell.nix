@@ -3,13 +3,13 @@ with lib.custom;
 modules.mkModule inputs ./blur-my-shell.nix {
   options = {
     applications = {
-      enable = lib.mkEnableOption "applications blur";
+      enable = utils.mkEnableOption false "applications blur";
       blacklist = lib.mkOption {
         type = with lib.types; listOf str;
         default = [ ];
         description = "Applications blur blacklisted apps";
       };
-      opaqueFocused = lib.mkEnableOption "opaque effect for focused app";
+      opaqueFocused = utils.mkEnableOption false "opaque effect for focused app";
     };
   };
   config =

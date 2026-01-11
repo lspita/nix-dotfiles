@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./bluetooth.nix {
   options = {
-    fastConnectable = lib.mkEnableOption "fast connectable mode (increased idle power consumption)";
+    fastConnectable = utils.mkEnableOption false "fast connectable mode (increased idle power consumption)";
   };
   config =
     { self, ... }:

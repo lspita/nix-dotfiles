@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./. {
   options = {
-    completition.enable = utils.mkTrueEnableOption "bash completition";
+    completition.enable = utils.mkEnableOption true "bash completition";
   };
   config =
     { self, setDefaultSubconfig, ... }:

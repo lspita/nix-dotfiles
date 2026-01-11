@@ -2,9 +2,9 @@
 with lib.custom;
 modules.mkModule inputs ./settings.nix {
   options = {
-    vrr.enable = lib.mkEnableOption "variable refresh rate";
-    fractionalScaling.enable = lib.mkEnableOption "fractional scaling";
-    locationServices.enable = lib.mkEnableOption "location services";
+    vrr.enable = utils.mkEnableOption false "variable refresh rate";
+    fractionalScaling.enable = utils.mkEnableOption false "fractional scaling";
+    locationServices.enable = utils.mkEnableOption false "location services";
   };
   config =
     { self, ... }:

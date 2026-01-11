@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./fzf.nix {
   options = {
-    fd.enable = utils.mkTrueEnableOption "fd as the file/dir search command";
+    fd.enable = utils.mkEnableOption true "fd as the file/dir search command";
   };
   config =
     { self, ... }:

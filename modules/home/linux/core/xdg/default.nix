@@ -7,7 +7,7 @@
 with lib.custom;
 modules.mkModule inputs ./. {
   options = {
-    openAlias = utils.mkTrueEnableOption "open alias";
+    openAlias = utils.mkEnableOption true "open alias";
   };
   config =
     { self, ... }:

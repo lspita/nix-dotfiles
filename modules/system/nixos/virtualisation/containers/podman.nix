@@ -8,7 +8,7 @@ with lib.custom;
 modules.mkModule inputs ./podman.nix {
   options = {
     autoPrune = {
-      enable = utils.mkTrueEnableOption "podman auto pruning";
+      enable = utils.mkEnableOption true "podman auto pruning";
       dates = lib.mkOption {
         type = with lib.types; str;
         default = "weekly";
@@ -20,16 +20,22 @@ modules.mkModule inputs ./podman.nix {
         description = "Any additional flags passed to the prune command.";
       };
     };
-    setGroup = utils.mkTrueEnableOption "podman group for the user";
-    defaultNetworkDns = utils.mkTrueEnableOption "podman default network DNS";
+    setGroup = utils.mkEnableOption true "podman group for the user";
+    defaultNetworkDns = utils.mkEnableOption true "podman default network DNS";
     docker = {
-      replaceSocket = utils.mkTrueEnableOption "docker socket replacement";
-      alias = utils.mkTrueEnableOption "podman docker alias";
+      replaceSocket = utils.mkEnableOption false "docker socket replacement";
+      alias = utils.mkEnableOption false "podman docker alias";
     };
   };
   config =
     { self, ... }:
     {
+      assertions = [
+        {
+          assertion = !(utils.isInstalled inputs "docker") || (with self.docker; !replaceSocket && !alias);
+          message = "Podman cannot override docker if it's installed";
+        }
+      ];
       # https://wiki.nixos.org/wiki/Podman
       virtualisation.podman = {
         inherit (self) autoPrune;

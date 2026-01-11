@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./nh.nix {
   options = {
-    functions.enable = utils.mkTrueEnableOption "flake shell functions";
+    functions.enable = utils.mkEnableOption true "flake shell functions";
   };
   config =
     { self, ... }:

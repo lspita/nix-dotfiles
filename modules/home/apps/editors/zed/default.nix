@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./. {
   options = {
-    alias.enable = utils.mkTrueEnableOption "'zed' alias";
+    alias.enable = utils.mkEnableOption true "'zed' alias";
   };
   config =
     { self, ... }:
