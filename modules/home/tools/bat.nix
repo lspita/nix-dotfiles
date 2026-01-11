@@ -8,7 +8,7 @@ modules.mkModule inputs ./bat.nix {
       description = "bat extra packages to install";
     };
     fzfPager = {
-      enable = utils.mkTrueEnableOption "bat as the fzf pager";
+      enable = utils.mkEnableOption true "bat as the fzf pager";
       range = lib.mkOption {
         type = with lib.types; int;
         default = 500;

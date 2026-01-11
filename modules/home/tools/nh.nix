@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./nh.nix {
   options = {
-    functions.enable = utils.mkTrueEnableOption "flake shell functions";
+    functions.enable = utils.mkEnableOption true "flake shell functions";
   };
   config =
     { self, ... }:
@@ -45,7 +45,10 @@ modules.mkModule inputs ./nh.nix {
             ''
               flake-update() {
                 nh os switch -u
-                flake-push "auto: flake update"
+                local push=''${1:-true}
+                if [ $push = true ]; then
+                  flake-push "auto: flake update"
+                fi
               }
             ''
             ''

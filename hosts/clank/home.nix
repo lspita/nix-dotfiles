@@ -15,8 +15,10 @@
     };
     shell.enableDefaults = true;
     tools.enableDefaults = true;
-    apps.enableDefaults = true;
+    apps = {
+      enableDefaults = true;
+      browsers.chrome.enable = true;
+    };
     terminal.gnome-console.enable = true;
-    apps.browser.chrome.enable = true;
   };
 }

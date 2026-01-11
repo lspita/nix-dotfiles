@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./blesh.nix {
   options = {
-    fzfIntegration.enable = utils.mkTrueEnableOption "ble.sh fzf integration (if installed)";
+    fzfIntegration.enable = utils.mkEnableOption true "ble.sh fzf integration (if installed)";
   };
   config =
     { self, ... }:

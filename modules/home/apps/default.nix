@@ -13,9 +13,9 @@ modules.mkDefaultsModule inputs ./. {
         enable = true;
         sshAgent.enable = true;
       };
-      browser.firefox = {
+      browsers.firefox = {
         enable = true;
-        passwordManager.enable = false;
+        passwordManager.enable = false; # use bitwarden instead
       };
       media.spotify.enable = true;
     };

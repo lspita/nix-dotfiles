@@ -10,23 +10,22 @@
   ...
 }@flakeInputs:
 let
-  hostsDirRel = "hosts";
-  hostsDir = flakePath hostsDirRel;
+  hostsRootRel = "hosts";
+  hostsRoot = flakePath hostsRootRel;
   mkSystems =
     systems:
     builtins.foldl' (
       result:
       { hostname, hostInfo }:
       let
-        hostDirRel = "${hostsDirRel}/${hostname}";
-        hostDir = "${hostsDir}/${hostname}";
+        hostDirRel = "${hostsRootRel}/${hostname}";
+        hostDir = "${hostsRoot}/${hostname}";
         hostPath =
           filePath:
           let
             fullPath = "${hostDir}/${filePath}";
           in
-          with lib.filesystem;
-          if pathIsDirectory fullPath then fullPath else "${fullPath}.nix";
+          if lib.filesystem.pathIsDirectory fullPath then fullPath else "${fullPath}.nix";
         vars =
           let
             baseVars = import (flakePath "vars.nix");
@@ -167,7 +166,7 @@ mkSystems (
     (
       hostname:
       let
-        hostInfo = import "${hostsDir}/${hostname}/info.nix";
+        hostInfo = import "${hostsRoot}/${hostname}/info.nix";
       in
       {
         inherit hostname hostInfo;
@@ -177,7 +176,7 @@ mkSystems (
       builtins.attrNames (
         lib.attrsets.filterAttrs (
           dirPath: _type: (_type == "directory") # each host is a directory
-        ) (builtins.readDir hostsDir)
+        ) (builtins.readDir hostsRoot)
       )
     )
 )

@@ -2,25 +2,31 @@
 with lib.custom;
 modules.mkModule inputs ./shortcuts.nix {
   config =
-    with vars.linux.defaultApps;
     let
+      getProgramOrGnomeDefault =
+        appName:
+        let
+          varApps = vars.linux.defaultApps;
+          gnomeApps = gnome.defaults.apps;
+        in
+        utils.ifNotNull (gnomeApps.${appName}.program) varApps.${appName}.program varApps.${appName};
       customKeybindings = [
         {
           id = "launch-files";
           name = "Launch file manager";
-          command = utils.getNotNull gnome.defaults.fileManager.program fileManager.program;
+          command = getProgramOrGnomeDefault "fileManager";
           binding = "<Super>f";
         }
         {
           id = "launch-terminal";
           name = "Launch terminal";
-          command = utils.getNotNull gnome.defaults.terminal.program terminal.program;
+          command = getProgramOrGnomeDefault "terminal";
           binding = "<Super>Return";
         }
         {
           id = "launch-editor";
           name = "Launch editor";
-          command = utils.getNotNull gnome.defaults.editor.program editor.program;
+          command = getProgramOrGnomeDefault "editor";
           binding = "<Super>E";
         }
       ];

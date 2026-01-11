@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./networkmanager.nix {
   options = {
-    wifiLimitedConnectivityFix = utils.mkTrueEnableOption "network manager limited wifi connectivity fix";
+    wifiLimitedConnectivityFix = utils.mkEnableOption true "network manager limited wifi connectivity fix";
   };
   config =
     { self, ... }:
