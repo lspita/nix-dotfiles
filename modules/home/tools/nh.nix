@@ -53,7 +53,7 @@ modules.mkModule inputs ./nh.nix {
             ''
             ''
               flake-undo-update() {
-                git ${gitFlakeRef} restore ${flakeRef}/flake.lock
+                git ${gitFlakeRef} restore flake.lock
                 nh os switch
               }
             ''
