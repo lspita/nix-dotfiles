@@ -28,7 +28,7 @@
   {
     "context": "(Editor && edit_prediction)",
     "bindings": {
-      "tab": null,
+      "tab": "editor::Tab",
     },
   },
 ]
