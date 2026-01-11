@@ -62,42 +62,40 @@
     defaultApps = rec {
       /*
         <desktop>: string = .desktop file of gui app
+        <program>: string = program name to use from cli
         <app>:
-          desktop = <desktop> | null: desktop file for gui app
-          program = string | null: program name to use from cli
+          desktop = desktop: desktop file for gui app
+          program = program: program name to use from cli
+
+        set to null to not override
 
         You can check available desktop files
         - system: ls /run/current-system/sw/share/applications/
         - user: ls /etc/profiles/per-user/$USER/share/applications/
       */
-      terminal =
-        # app: default terminal app
-        {
-          desktop = null;
-          program = null;
-        };
-      browser = # app: default browser
+      terminal = null; # app | null: default terminal app
+      browser = # app | null: default browser
         {
           desktop = "firefox.desktop";
           program = "firefox";
         };
-      fileManager = # app: default file manager
-        {
-          desktop = null;
-          program = null;
-        };
-      editor = # app: default text editor
+      fileManager = null; # app | null: default file manager
+      editor = # app | null: default text editor
         {
           desktop = "dev.zed.Zed.desktop";
           program = "zeditor";
         };
-      terminalEditor = "nano";
-      music = "spotify.desktop"; # desktop | null: default music player (for audio files, set `audio`)
-      mail = browser.desktop; # desktop | null: default mail client
-      pdf = null; # desktop | null: default pdf viewer
-      image = null; # desktop | null: default image viewer
-      audio = null; # desktop | null: default audio player
-      video = null; # desktop | null: default video player
+      terminalEditor = "nano"; # program: editor to use from terminal
+      music = # app | null: default music player (for audio files, set `audio`)
+        {
+          desktop = "spotify.desktop";
+          program = "spotify";
+        };
+      mail = browser; # app | null: default mail client
+      pdf = null; # app | null: default pdf viewer
+      image = null; # app | null: default image viewer
+      audio = null; # app | null: default audio player
+      video = null; # app | null: default video player
     };
   };
 }

@@ -10,6 +10,6 @@ modules.mkModule inputs ./environment.nix {
       } terminalEditor)
       // (utils.ifNotNull { } {
         BROWSER = browser.program;
-      } browser.program);
+      } browser);
   };
 }

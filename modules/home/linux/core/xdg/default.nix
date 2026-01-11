@@ -49,7 +49,7 @@ modules.mkModule inputs ./. {
               }
               // (utils.ifNotNull { } {
                 settings.default = [ terminal.desktop ];
-              } terminal.desktop);
+              } terminal);
 
               autostart = {
                 enable = true;
@@ -62,11 +62,11 @@ modules.mkModule inputs ./. {
                     setAssociations =
                       app: mimetypes:
                       utils.ifNotNull { } (builtins.listToAttrs (
-                        map (mime: lib.attrsets.nameValuePair mime app) mimetypes
+                        map (mime: lib.attrsets.nameValuePair mime app.desktop) mimetypes
                       )) app;
                   in
                   (builtins.foldl' (result: current: result // current) { } [
-                    (setAssociations browser.desktop [
+                    (setAssociations browser [
                       "text/html"
                       "application/xhtml+xml"
                       "application/xhtml_xml"
@@ -80,7 +80,7 @@ modules.mkModule inputs ./. {
                       "x-scheme-handler/http"
                       "x-scheme-handler/https"
                     ])
-                    (setAssociations editor.desktop [
+                    (setAssociations editor [
                       "text/plain"
                       "text/markdown"
                       "text/*"
@@ -88,7 +88,7 @@ modules.mkModule inputs ./. {
                       "application/xml"
                       "application/x-yaml"
                     ])
-                    (setAssociations fileManager.desktop [ "inode/directory" ])
+                    (setAssociations fileManager [ "inode/directory" ])
                     (setAssociations pdf [ "application/pdf" ])
                     (setAssociations mail [ "x-scheme-handler/mailto" ])
                     (setAssociations image [

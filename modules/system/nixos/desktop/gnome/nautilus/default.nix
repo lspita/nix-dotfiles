@@ -4,8 +4,8 @@ modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
     let
-      gnomeTerminal = gnome.defaults.terminal.program;
-      varsTerminal = vars.linux.defaultApps.terminal.program;
+      gnomeTerminal = gnome.defaults.terminal;
+      varsTerminal = vars.linux.defaultApps.terminal;
     in
     setDefaultSubconfig {
       openAnyTerminal.enable = varsTerminal != null && varsTerminal != gnomeTerminal;
