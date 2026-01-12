@@ -41,6 +41,9 @@
   "tabs": {
     "git_status": true,
   },
+  "git_panel": {
+    "tree_view": true,
+  },
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
