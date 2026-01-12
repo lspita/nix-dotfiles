@@ -46,6 +46,7 @@ modules.mkModule inputs ./. {
             "make"
             "php"
             "sql"
+            "java"
           ];
           userSettings = objectConfig ./settings.json (
             with vars.fonts;
