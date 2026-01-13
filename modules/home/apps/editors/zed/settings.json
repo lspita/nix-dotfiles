@@ -61,4 +61,9 @@
   "ui_font_features": {
     "calt": false, // no ligatures
   },
+  "languages": {
+    "PHP": {
+      "language_servers": ["!intelephense", "!phptools", "..."],
+    },
+  },
 }

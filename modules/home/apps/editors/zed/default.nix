@@ -33,6 +33,7 @@ modules.mkModule inputs ./. {
             "material-icon-theme"
             "colored-zed-icons-theme"
             # extensions
+            "html"
             "git-firefly"
             "nix"
             "dockerfile"
