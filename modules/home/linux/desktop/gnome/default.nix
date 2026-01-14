@@ -11,6 +11,7 @@ modules.mkDefaultsModule inputs ./. {
         appsLayout.enable = true;
         shortcuts.enable = true;
         nautilus.enable = true;
+        accessibility.enable = true;
         extensions.enableDefaults = true;
         themes.enableDefaults = true;
       })
