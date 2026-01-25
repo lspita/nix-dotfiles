@@ -8,6 +8,8 @@ modules.mkDefaultsModule inputs ./. {
       varsTerminal = vars.linux.defaultApps.terminal;
     in
     setDefaultSubconfig {
+      # google drive mount will not work until libsoup is not at a secure version
+      # https://github.com/NixOS/nixpkgs/issues/438121
       openAnyTerminal.enable = varsTerminal != null && varsTerminal != gnomeTerminal;
     };
 }
