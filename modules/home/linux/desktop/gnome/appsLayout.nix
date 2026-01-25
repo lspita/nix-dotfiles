@@ -20,8 +20,8 @@ modules.mkModule inputs ./appsLayout.nix {
               builtins.filter (app: !(isNull app)) [
                 browser
                 editor
-                (utils.getNotNull gnomeApps.terminal terminal)
-                (utils.getNotNull gnomeApps.fileManager fileManager)
+                (optionals.getNotNull gnomeApps.terminal terminal)
+                (optionals.getNotNull gnomeApps.fileManager fileManager)
                 music
               ]
             ));

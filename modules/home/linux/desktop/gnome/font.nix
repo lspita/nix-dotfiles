@@ -4,23 +4,16 @@ modules.mkModule inputs ./font.nix {
   config = with vars.fonts; {
     dconf.settings = {
       "org/gnome/desktop/interface" =
-        (utils.ifNotNull { } (
-          let
-            fontString = utils.fontString normal;
-          in
-          {
-            font-name = fontString;
-            document-font-name = fontString;
-          }
-        ) normal)
-        // (utils.ifNotNull { } (
-          let
-            fontString = utils.fontString monospace;
-          in
-          {
-            monospace-font-name = fontString;
-          }
-        ) monospace);
+        let
+          fontString = font: "${font.name} ${toString font.size}";
+        in
+        (optionals.ifNotNull { } ({
+          font-name = fontString normal;
+          document-font-name = fontString normal;
+        }) normal)
+        // (optionals.ifNotNull { } ({
+          monospace-font-name = fontString monospace;
+        }) monospace);
     };
   };
 }

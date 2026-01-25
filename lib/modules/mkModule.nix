@@ -55,7 +55,7 @@ in
   inherit imports;
   options = lib.attrsets.setAttrByPath pathList (
     {
-      ${enableOption} = root.utils.mkEnableOption enable (lib.concatStringsSep "." pathList);
+      ${enableOption} = root.modules.mkEnableOption enable (lib.concatStringsSep "." pathList);
     }
     // options
   );
@@ -74,7 +74,7 @@ in
         }
         // rec {
           setSubconfig = value: lib.attrsets.setAttrByPath pathList value;
-          setDefaultSubconfig = value: setSubconfig (root.utils.mkDefaultRec value);
+          setDefaultSubconfig = value: setSubconfig (root.attrsets.mkDefaultRec value);
         }
       )
     else

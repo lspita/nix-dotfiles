@@ -4,11 +4,11 @@ modules.mkModule inputs ./environment.nix {
   config = {
     home.sessionVariables =
       with vars.linux.defaultApps;
-      (utils.ifNotNull { } {
+      (optionals.ifNotNull { } {
         EDITOR = terminalEditor;
         VISUAL = terminalEditor;
       } terminalEditor)
-      // (utils.ifNotNull { } {
+      // (optionals.ifNotNull { } {
         BROWSER = browser.program;
       } browser);
   };

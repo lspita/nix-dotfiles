@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./delta.nix {
   options = {
-    git.enable = utils.mkEnableOption true "git integration";
+    git.enable = modules.mkEnableOption true "git integration";
   };
   config =
     { self, ... }:

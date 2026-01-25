@@ -56,7 +56,7 @@ let
         }
       else
         {
-          ${root.utils.fileBasename assetPath} = {
+          ${root.files.fileBasename assetPath} = {
             type = "regular";
             path = wallpaperPath;
           };

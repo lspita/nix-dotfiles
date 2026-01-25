@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./accessibility.nix {
   options = {
-    onScreenKeyboard.enable = utils.mkEnableOption false "on screen keyboard";
+    onScreenKeyboard.enable = modules.mkEnableOption false "on screen keyboard";
   };
   config =
     { self, ... }:

@@ -7,7 +7,7 @@ modules.mkDefaultsModule inputs ./. {
       wsl = systemType == "wsl";
     in
     setDefaultSubconfig (
-      utils.systemValue {
+      platform.systemTypeValue {
         linux = {
           boot = {
             enable = !wsl;

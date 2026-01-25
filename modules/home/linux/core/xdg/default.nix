@@ -7,7 +7,7 @@
 with lib.custom;
 modules.mkModule inputs ./. {
   options = {
-    openAlias = utils.mkEnableOption true "open alias";
+    openAlias = modules.mkEnableOption true "open alias";
   };
   config =
     { self, ... }:
@@ -47,7 +47,7 @@ modules.mkModule inputs ./. {
               terminal-exec = {
                 enable = true;
               }
-              // (utils.ifNotNull { } {
+              // (optionals.ifNotNull { } {
                 settings.default = [ terminal.desktop ];
               } terminal);
 
@@ -61,7 +61,7 @@ modules.mkModule inputs ./. {
                   let
                     setAssociations =
                       app: mimetypes:
-                      utils.ifNotNull { } (builtins.listToAttrs (
+                      optionals.ifNotNull { } (builtins.listToAttrs (
                         map (mime: lib.attrsets.nameValuePair mime app.desktop) mimetypes
                       )) app;
                   in

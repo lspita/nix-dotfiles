@@ -3,8 +3,8 @@ with lib.custom;
 modules.mkModule inputs ./open.nix {
   config = {
     custom = {
-      linux.core.xdg.openAlias = false;
-      shell.rc = [
+      linux.core.xdg.openAlias = lib.mkForce false;
+      shell.rc = lib.mkBefore [
         ''
           open() {
             local args=()
@@ -13,12 +13,16 @@ modules.mkModule inputs ./open.nix {
             done
             powershell.exe -Command "Start-Process ''${args[*]}"
           }
-          BROWSER=open
         ''
       ];
     };
-    home.shellAliases = {
-      xdg-open = "open";
+    home = {
+      shellAliases = {
+        xdg-open = "open";
+      };
+      sessionVariables = {
+        BROWSER = lib.mkForce "open";
+      };
     };
   };
 }

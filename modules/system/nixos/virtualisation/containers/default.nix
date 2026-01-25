@@ -4,7 +4,7 @@ modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
     setDefaultSubconfig (
-      utils.systemValue {
+      platform.systemTypeValue {
         linux = {
           config.enable = true;
           docker.enable = true;

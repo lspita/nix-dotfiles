@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./nh.nix {
   options = {
-    functions.enable = utils.mkEnableOption true "flake shell functions";
+    functions.enable = modules.mkEnableOption true "flake shell functions";
   };
   config =
     { self, ... }:
@@ -33,19 +33,19 @@ modules.mkModule inputs ./nh.nix {
             ''
               flake-sync() {
                 flake-pull
-                nh os switch
+                nh os switch $@
               }
             ''
             ''
               flake-switch() {
                 git ${gitFlakeRef} add .
-                nh os switch
+                nh os switch $@
               }
             ''
             ''
               flake-update() {
-                nh os switch -u
                 local push=''${1:-true}
+                nh os switch -u
                 if [ $push = true ]; then
                   flake-push "auto: flake update"
                 fi

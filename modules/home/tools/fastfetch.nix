@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./fastfetch.nix {
   options = {
-    neofetchAlias = utils.mkEnableOption true "neofetch alias";
+    neofetchAlias = modules.mkEnableOption true "neofetch alias";
   };
   config =
     { self, ... }:

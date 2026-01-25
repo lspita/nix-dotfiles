@@ -5,7 +5,7 @@ modules.mkModule inputs ./locale.nix {
     time.timeZone = timeZone;
     i18n = {
       defaultLocale = default;
-      extraLocaleSettings = utils.getNotNull { } extraSettings;
+      extraLocaleSettings = optionals.getNotNull { } extraSettings;
     };
     console.keyMap = keyboard;
   };

@@ -8,7 +8,7 @@ with lib.custom;
 modules.mkModule inputs ./podman.nix {
   options = {
     autoPrune = {
-      enable = utils.mkEnableOption true "podman auto pruning";
+      enable = modules.mkEnableOption true "podman auto pruning";
       dates = lib.mkOption {
         type = with lib.types; str;
         default = "weekly";
@@ -20,11 +20,11 @@ modules.mkModule inputs ./podman.nix {
         description = "Any additional flags passed to the prune command.";
       };
     };
-    setGroup = utils.mkEnableOption true "podman group for the user";
-    defaultNetworkDns = utils.mkEnableOption true "podman default network DNS";
+    setGroup = modules.mkEnableOption true "podman group for the user";
+    defaultNetworkDns = modules.mkEnableOption true "podman default network DNS";
     docker = {
-      replaceSocket = utils.mkEnableOption false "docker socket replacement";
-      alias = utils.mkEnableOption false "podman docker alias";
+      replaceSocket = modules.mkEnableOption false "docker socket replacement";
+      alias = modules.mkEnableOption false "podman docker alias";
     };
   };
   config =
@@ -32,7 +32,7 @@ modules.mkModule inputs ./podman.nix {
     {
       assertions = [
         {
-          assertion = !(utils.isInstalled inputs "docker") || (with self.docker; !replaceSocket && !alias);
+          assertion = !(packages.isInstalled inputs "docker") || (with self.docker; !replaceSocket && !alias);
           message = "Podman cannot override docker if it's installed";
         }
       ];

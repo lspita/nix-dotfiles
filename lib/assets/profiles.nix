@@ -14,7 +14,7 @@ let
     result: profilePath: type:
     result
     // {
-      ${root.utils.fileBasename profilePath} =
+      ${root.files.fileBasename profilePath} =
         "${super.assetPath inputs profilesAssetsDir}/${profilePath}";
     }
   ) { } (builtins.readDir profilesStaticRoot);

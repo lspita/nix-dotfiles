@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./bitwarden.nix {
   options = {
-    sshAgent.enable = utils.mkEnableOption false "bitwarden ssh agent";
+    sshAgent.enable = modules.mkEnableOption false "bitwarden ssh agent";
   };
   config =
     { self, ... }:
@@ -20,7 +20,7 @@ modules.mkModule inputs ./bitwarden.nix {
                 let
                   homeDir = dotfiles.homeDir inputs;
                 in
-                utils.systemValue {
+                platform.systemTypeValue {
                   linux = homeDir;
                   darwin = "${homeDir}/Library/Containers/com.bitwarden.desktop/Data";
                 };

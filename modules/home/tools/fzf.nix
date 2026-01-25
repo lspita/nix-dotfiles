@@ -2,14 +2,14 @@
 with lib.custom;
 modules.mkModule inputs ./fzf.nix {
   options = {
-    fd.enable = utils.mkEnableOption true "fd as the file/dir search command";
+    fd.enable = modules.mkEnableOption true "fd as the file/dir search command";
   };
   config =
     { self, ... }:
     {
       assertions = [
         {
-          assertion = (utils.isInstalled inputs "fd") || !self.fd.enable;
+          assertion = (packages.isInstalled inputs "fd") || !self.fd.enable;
           message = "fd must be installed to use it with fzf";
         }
       ];

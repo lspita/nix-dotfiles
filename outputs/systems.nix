@@ -81,12 +81,12 @@ let
         ];
         loadModules = type: {
           imports =
-            (customLib.utils.listRec (flakePath "modules/${type}"))
+            (customLib.files.listRec (flakePath "modules/${type}"))
             ++ (
               let
                 hostModulesPath = hostPath "modules/${type}";
               in
-              if builtins.pathExists hostModulesPath then customLib.utils.listRec hostModulesPath else [ ]
+              if builtins.pathExists hostModulesPath then customLib.files.listRec hostModulesPath else [ ]
             )
             ++ (
               let
@@ -95,15 +95,15 @@ let
               if builtins.pathExists hostConfig then [ hostConfig ] else [ ]
             );
         };
-        createSystem = customLib.utils.systemValue {
+        createSystem = customLib.platform.systemTypeValue {
           linux = nixpkgs.lib.nixosSystem;
           darwin = nix-darwin.lib.darwinSystem;
         };
-        configurationsSet = customLib.utils.systemValue {
+        configurationsSet = customLib.platform.systemTypeValue {
           linux = "nixosConfigurations";
           darwin = "darwinConfigurations";
         };
-        homeModulesSet = customLib.utils.systemValue {
+        homeModulesSet = customLib.platform.systemTypeValue {
           linux = "nixosModules";
           darwin = "darwinModules";
         };

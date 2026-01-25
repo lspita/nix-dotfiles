@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./direnv.nix {
   options = {
-    silent = utils.mkEnableOption false "silent logging";
+    silent = modules.mkEnableOption false "silent logging";
   };
   config =
     { self, ... }:

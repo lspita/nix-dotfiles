@@ -9,7 +9,7 @@ modules.mkModule inputs ./shortcuts.nix {
           varApps = vars.linux.defaultApps;
           gnomeApps = gnome.defaults.apps;
         in
-        utils.ifNotNull (gnomeApps.${appName}.program) varApps.${appName}.program varApps.${appName};
+        optionals.ifNotNull (gnomeApps.${appName}.program) varApps.${appName}.program varApps.${appName};
       customKeybindings = [
         {
           id = "launch-files";

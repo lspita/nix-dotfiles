@@ -7,7 +7,7 @@
 with lib.custom;
 modules.mkModule inputs ./. {
   options = {
-    alias.enable = utils.mkEnableOption true "'zed' alias";
+    alias.enable = modules.mkEnableOption true "'zed' alias";
   };
   config =
     { self, ... }:
@@ -22,12 +22,12 @@ modules.mkModule inputs ./. {
             filepath: override:
             lib.attrsets.recursiveUpdate
               # allow trailing commas + comments
-              (utils.fromJSON5 (builtins.readFile filepath))
+              (files.fromJSON5 (builtins.readFile filepath))
               override;
           listConfig =
             filepath: override:
             # allow trailing commas + comments
-            (utils.fromJSON5 (builtins.readFile filepath)) ++ override;
+            (files.fromJSON5 (builtins.readFile filepath)) ++ override;
         in
         {
           enable = true;
@@ -61,11 +61,11 @@ modules.mkModule inputs ./. {
             let
               fontZoom = 1.5;
             in
-            (utils.ifNotNull { } {
+            (optionals.ifNotNull { } {
               ui_font_family = normal.name;
               ui_font_size = normal.size * fontZoom;
             } normal)
-            // (utils.ifNotNull { } {
+            // (optionals.ifNotNull { } {
               buffer_font_family = monospace.name;
               buffer_font_size = monospace.size * fontZoom;
             } monospace)

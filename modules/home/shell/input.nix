@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./input.nix {
   options = {
-    completition.ignoreCase = utils.mkEnableOption true "case-insensitive completition";
+    completition.ignoreCase = modules.mkEnableOption true "case-insensitive completition";
   };
   config =
     { self, ... }:

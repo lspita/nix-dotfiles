@@ -3,7 +3,7 @@ with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
-    utils.systemValue {
+    platform.systemTypeValue {
       linux =
         lib.attrsets.recursiveUpdate
           (setDefaultSubconfig {
