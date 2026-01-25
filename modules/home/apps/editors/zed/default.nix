@@ -26,7 +26,7 @@ modules.mkModule inputs ./. {
         in
         {
           enable = true;
-          package = if self.package.enable then null else packages.defaultProgramPackage inputs "zed-editor";
+          package = if self.package.enable then packages.defaultProgramPackage inputs "zed-editor" else null;
           extensions = [
             # themes
             "catppuccin"
