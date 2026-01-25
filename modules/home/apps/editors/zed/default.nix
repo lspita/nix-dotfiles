@@ -1,4 +1,9 @@
-{ lib, vars, ... }@inputs:
+{
+  systemType,
+  lib,
+  vars,
+  ...
+}@inputs:
 with lib.custom;
 modules.mkModule inputs ./. {
   options = {
@@ -8,6 +13,7 @@ modules.mkModule inputs ./. {
     { self, ... }:
     let
       zedConfigDir = "zed";
+      wsl = systemType == "wsl";
     in
     {
       programs.zed-editor =
@@ -25,6 +31,7 @@ modules.mkModule inputs ./. {
         in
         {
           enable = true;
+          package = if wsl then null else options.programs.zed-editor.package.default;
           extensions = [
             # themes
             "catppuccin"
@@ -68,6 +75,6 @@ modules.mkModule inputs ./. {
       xdg.configFile = {
         "${zedConfigDir}/snippets".source = ./snippets;
       };
-      home.shellAliases = if self.alias.enable then { zed = "zeditor"; } else { };
+      home.shellAliases = if self.alias.enable && !wsl then { zed = "zeditor"; } else { };
     };
 }

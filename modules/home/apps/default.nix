@@ -1,22 +1,25 @@
-{ lib, ... }@inputs:
+{ systemType, lib, ... }@inputs:
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
+    let
+      notWsl = systemType != "wsl";
+    in
     setDefaultSubconfig {
       editors = {
-        vscode.enable = true;
+        vscode.enable = notWsl;
         zed.enable = true;
-        obsidian.enable = true;
+        obsidian.enable = notWsl;
       };
       security.bitwarden = {
-        enable = true;
+        enable = notWsl;
         sshAgent.enable = true;
       };
       browsers.firefox = {
-        enable = true;
+        enable = notWsl;
         passwordManager.enable = false; # use bitwarden instead
       };
-      media.spotify.enable = true;
+      media.spotify.enable = notWsl;
     };
 }

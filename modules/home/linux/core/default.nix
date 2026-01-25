@@ -1,4 +1,4 @@
-{ lib, ... }@inputs:
+{ systemType, lib, ... }@inputs:
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
@@ -6,5 +6,6 @@ modules.mkDefaultsModule inputs ./. {
     setDefaultSubconfig {
       xdg.enable = true;
       unixtools.enable = true;
+      wsl.enableDefaults = systemType == "wsl";
     };
 }

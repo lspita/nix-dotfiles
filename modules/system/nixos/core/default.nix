@@ -1,27 +1,26 @@
-{ lib, ... }@inputs:
+{ systemType, lib, ... }@inputs:
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
+    let
+      wsl = systemType == "wsl";
+    in
     setDefaultSubconfig (
       utils.systemValue {
         linux = {
           boot = {
-            enable = true;
-            plymouth.enable = true;
+            enable = !wsl;
+            plymouth.enable = !wsl;
           };
-          filesystem.exfat.enable = true;
-          power.enable = true;
-          wayland.enable = true;
-          locale.enable = true;
-          bluetooth.enable = true;
-          audio.pipewire.enable = true;
-          network.networkmanager.enable = true;
-          documentation.enable = true;
-          nix-ld.enable = true;
-        };
-        wsl = {
-          wsl.enable = true;
+          filesystem.exfat.enable = !wsl;
+          power.enable = !wsl;
+          wayland.enable = !wsl;
+          locale.enable = !wsl;
+          bluetooth.enable = !wsl;
+          audio.pipewire.enable = !wsl;
+          network.networkmanager.enable = !wsl;
+          wsl.enable = wsl;
           documentation.enable = true;
           nix-ld.enable = true;
         };
