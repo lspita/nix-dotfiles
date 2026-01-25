@@ -1,15 +1,18 @@
-{ systemType, lib, ... }@inputs:
+{ lib, vars, ... }@inputs:
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
     let
-      notWsl = systemType != "wsl";
+      notWsl = !vars.linux.wsl;
     in
     setDefaultSubconfig {
       editors = {
         vscode.enable = notWsl;
-        zed.enable = true;
+        zed = {
+          enable = true;
+          package.enable = notWsl;
+        };
         obsidian.enable = notWsl;
       };
       security.bitwarden = {

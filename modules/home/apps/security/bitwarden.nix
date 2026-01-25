@@ -2,6 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./bitwarden.nix {
   options = {
+    autostart.enable = modules.mkEnableOption false "bitwarden autostart";
     sshAgent.enable = modules.mkEnableOption false "bitwarden ssh agent";
   };
   config =
@@ -31,6 +32,13 @@ modules.mkModule inputs ./bitwarden.nix {
           else
             { };
       };
-      xdg.autostart.entries = [ "${package}/share/applications/bitwarden.desktop" ];
+      xdg.autostart.entries =
+        if self.autostart.enable then
+          platform.systemTypeValue {
+            linux = [ "${package}/share/applications/bitwarden.desktop" ];
+            darwin = [ ];
+          }
+        else
+          [ ];
     };
 }

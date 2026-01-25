@@ -1,10 +1,10 @@
-{ systemType, lib, ... }@inputs:
+{ lib, vars, ... }@inputs:
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
     setDefaultSubconfig (
-      if systemType == "wsl" then
+      if vars.linux.wsl then
         { }
       else
         {

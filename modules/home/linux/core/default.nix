@@ -1,11 +1,11 @@
-{ systemType, lib, ... }@inputs:
+{ lib, vars, ... }@inputs:
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
     setDefaultSubconfig {
-      xdg.enable = true;
+      wsl.enableDefaults = vars.linux.wsl;
+      xdg.enableDefaults = true;
       unixtools.enable = true;
-      wsl.enableDefaults = systemType == "wsl";
     };
 }
