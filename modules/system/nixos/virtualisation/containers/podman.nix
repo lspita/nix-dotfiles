@@ -26,6 +26,11 @@ modules.mkModule inputs ./podman.nix {
       replaceSocket = modules.mkEnableOption false "docker socket replacement";
       alias = modules.mkEnableOption false "podman docker alias";
     };
+    composeProvider = lib.mkOption {
+      type = with lib.types; str;
+      default = "podman-compose";
+      description = "The container backend to use for compose files.";
+    };
   };
   config =
     { self, ... }:
@@ -45,9 +50,14 @@ modules.mkModule inputs ./podman.nix {
         dockerCompat = self.docker.alias;
         dockerSocket.enable = self.docker.replaceSocket;
       };
-      environment.systemPackages = with pkgs; [
-        podman-compose
-      ];
+      environment = {
+        systemPackages = with pkgs; [
+          podman-compose
+        ];
+        sessionVariables = {
+          PODMAN_COMPOSE_PROVIDER = self.composeProvider;
+        };
+      };
       users.users.${vars.user.username}.extraGroups = if self.setGroup then [ "podman" ] else [ ];
     };
 }
