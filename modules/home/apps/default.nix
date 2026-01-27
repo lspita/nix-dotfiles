@@ -17,6 +17,7 @@ modules.mkDefaultsModule inputs ./. {
       };
       security.bitwarden = {
         enable = notWsl;
+        autostart.enable = true;
         sshAgent.enable = true;
       };
       browsers.firefox = {
