@@ -1,4 +1,5 @@
 {
+  options,
   lib,
   pkgs,
   vars,
@@ -26,14 +27,18 @@ modules.mkModule inputs ./podman.nix {
       replaceSocket = modules.mkEnableOption false "docker socket replacement";
       alias = modules.mkEnableOption false "podman docker alias";
     };
-    composeProvider = lib.mkOption {
-      type = with lib.types; str;
-      default = "podman-compose";
-      description = "The container backend to use for compose files.";
+    setAsContainersBackend = modules.mkEnableOption false "podman as containers backend";
+    compose = {
+      enable = modules.mkEnableOption true "podman-compose";
+      addAsContainersProvider = modules.mkEnableOption false "podman-compose as containers compose provider";
     };
   };
   config =
     { self, ... }:
+    let
+      podmanPackage = options.virtualisation.podman.package.default;
+      composePackage = pkgs.podman-compose;
+    in
     {
       assertions = [
         {
@@ -45,19 +50,30 @@ modules.mkModule inputs ./podman.nix {
       virtualisation.podman = {
         inherit (self) autoPrune;
         enable = true;
+        package = podmanPackage;
         # Required for containers under podman-compose to be able to talk to each other.
         defaultNetwork.settings.dns_enabled = self.defaultNetworkDns;
         dockerCompat = self.docker.alias;
         dockerSocket.enable = self.docker.replaceSocket;
       };
-      environment = {
-        systemPackages = with pkgs; [
-          podman-compose
-        ];
-        sessionVariables = {
-          PODMAN_COMPOSE_PROVIDER = self.composeProvider;
-        };
-      };
       users.users.${vars.user.username}.extraGroups = if self.setGroup then [ "podman" ] else [ ];
+      environment.systemPackages = if self.compose.enable then [ composePackage ] else [ ];
+      custom.nixos.virtualisation.containers.config =
+        (
+          if self.compose.addAsContainersProvider then
+            {
+              composeProviders = [ "${composePackage}/bin/podman-compose" ];
+            }
+          else
+            { }
+        )
+        // (
+          if self.setAsContainersBackend then
+            {
+              backend = [ "${podmanPackage}/bin/podman" ];
+            }
+          else
+            { }
+        );
     };
 }

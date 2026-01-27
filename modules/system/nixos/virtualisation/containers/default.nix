@@ -6,6 +6,10 @@ modules.mkDefaultsModule inputs ./. {
     setDefaultSubconfig {
       config.enable = true;
       docker.enable = true;
-      podman.enable = true;
+      podman = {
+        enable = true;
+        setAsContainersBackend = true;
+        compose.addAsContainersProvider = true;
+      };
     };
 }
