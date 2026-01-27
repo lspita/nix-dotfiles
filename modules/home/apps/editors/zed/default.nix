@@ -1,4 +1,9 @@
-{ lib, vars, ... }@inputs:
+{
+  options,
+  lib,
+  vars,
+  ...
+}@inputs:
 with lib.custom;
 modules.mkModule inputs ./. {
   options = {
@@ -26,7 +31,7 @@ modules.mkModule inputs ./. {
         in
         {
           enable = true;
-          package = if self.package.enable then packages.defaultProgramPackage inputs "zed-editor" else null;
+          package = if self.package.enable then options.programs.zed-editor.package.default else null;
           extensions = [
             # themes
             "catppuccin"
