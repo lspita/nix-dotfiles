@@ -22,7 +22,7 @@ modules.mkModule inputs ./config.nix {
           registries.search = [ "docker.io" ];
           containersConf.settings = (
             optionals.ifNotNull { } {
-              compose_providers = self.composeProviders;
+              engine.compose_providers = self.composeProviders;
             } self.composeProviders
           );
         };
