@@ -15,5 +15,6 @@ modules.mkModule inputs ./ohmyposh.nix {
         enable = true;
         useTheme = self.theme;
       };
+      custom.shell.rc = lib.mkAfter [ (shell: ''eval "$(oh-my-posh init ${shell})"'') ];
     };
 }

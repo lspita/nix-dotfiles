@@ -16,5 +16,6 @@ modules.mkModule inputs ./. {
         settings =
           if isNull self.preset then { } else fromTOML (builtins.readFile ./presets/${self.preset}.toml);
       };
+      custom.shell.rc = lib.mkAfter [ (shell: ''eval "$(starship init ${shell})"'') ];
     };
 }

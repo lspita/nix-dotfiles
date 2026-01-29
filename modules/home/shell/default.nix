@@ -24,7 +24,7 @@ modules.mkDefaultsModule inputs ./. {
         };
       })
       {
-        home.shell.enableShellIntegration = lib.mkDefault true;
+        home.shell.enableShellIntegration = false; # integrate manually
       };
 
 }

@@ -23,12 +23,8 @@ modules.mkModule inputs ./blesh.nix {
       };
       # https://github.com/akinomyoga/ble.sh/wiki/Manual-A1-Installation#user-content-nixpkgs
       custom.shell.rc = lib.mkMerge [
-        (lib.mkBefore [
-          ''source -- "$(blesh-share)"/ble.sh --attach=none''
-        ])
-        (lib.mkAfter [
-          ''[[ ! \$\{BLE_VERSION-} ]] || ble-attach''
-        ])
+        (lib.mkBefore [ ''source -- "$(blesh-share)"/ble.sh --attach=none'' ])
+        (lib.mkAfter [ ''[[ ! \$\{BLE_VERSION-} ]] || ble-attach'' ])
       ];
     };
 }
