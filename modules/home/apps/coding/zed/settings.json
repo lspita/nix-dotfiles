@@ -12,6 +12,7 @@
     "Shell Script": [".envrc"],
     "YAML": [".clangd", ".clang-tidy", ".clang-format"],
     "Dockerfile": ["Containerfile", "containerfile", "*.containerfile"],
+    "JSONC": ["*.json5"],
   },
   "icon_theme": {
     "dark": "Catppuccin Mocha",
