@@ -1,3 +1,0 @@
-{
-  linux.wsl = true;
-}

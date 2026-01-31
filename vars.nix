@@ -40,7 +40,6 @@
         };
     };
   linux = {
-    wsl = false; # bool: if it is a wsl system
     locale = {
       timeZone = "Europe/Rome"; # string: system time zone
       keyboard = "it"; # string: keyboard layout

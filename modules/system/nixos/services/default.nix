@@ -1,9 +1,9 @@
-{ lib, vars, ... }@inputs:
+{ lib, hostInfo, ... }@inputs:
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
-    if vars.linux.wsl then
+    if hostInfo.wsl then
       { }
     else
       setDefaultSubconfig {

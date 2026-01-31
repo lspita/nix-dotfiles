@@ -63,7 +63,7 @@ let
         systemType =
           with pkgs.stdenv;
           if isLinux then
-            if vars.linux.wsl then "wsl" else "linux"
+            if hostInfo.wsl then "wsl" else "linux"
           else if isDarwin then
             "darwin"
           else
@@ -169,7 +169,12 @@ mkSystems (
         hostInfo = import "${hostsRoot}/${hostname}/info.nix";
       in
       {
-        inherit hostname hostInfo;
+        inherit hostname;
+        hostInfo = {
+          inherit (hostInfo) system stateVersion;
+          hostname = hostInfo.hostname or hostname;
+          wsl = hostInfo.wsl or false;
+        };
       }
     )
     (

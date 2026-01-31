@@ -1,10 +1,10 @@
-{ lib, vars, ... }@inputs:
+{ lib, hostInfo, ... }@inputs:
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
     let
-      notWsl = !vars.linux.wsl;
+      notWsl = !hostInfo.wsl;
     in
     setDefaultSubconfig {
       directories.enable = true;

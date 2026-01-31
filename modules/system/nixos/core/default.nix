@@ -1,10 +1,10 @@
-{ lib, vars, ... }@inputs:
+{ lib, hostInfo, ... }@inputs:
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
     let
-      wsl = vars.linux.wsl;
+      wsl = hostInfo.wsl;
     in
     setDefaultSubconfig {
       boot = {
