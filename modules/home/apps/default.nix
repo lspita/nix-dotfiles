@@ -7,13 +7,16 @@ modules.mkDefaultsModule inputs ./. {
       notWsl = !vars.linux.wsl;
     in
     setDefaultSubconfig {
-      editors = {
+      coding = {
         vscode.enable = notWsl;
         zed = {
           enable = true;
           package.enable = notWsl;
         };
+      };
+      productivity = {
         obsidian.enable = notWsl;
+        libreoffice.enable = notWsl;
       };
       security.bitwarden = {
         enable = notWsl;

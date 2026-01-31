@@ -7,4 +7,6 @@
   */
   system = "x86_64-linux";
   stateVersion = "25.05";
+  # TODO: wsl here
+  # TODO: optional hostname override
 }
