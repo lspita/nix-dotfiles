@@ -7,5 +7,6 @@ modules.mkDefaultsModule inputs ./. {
       wsl.enableDefaults = vars.linux.wsl;
       xdg.enableDefaults = true;
       unixtools.enable = true;
+      util-linux.enable = true;
     };
 }
