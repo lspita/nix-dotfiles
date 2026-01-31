@@ -14,7 +14,7 @@ modules.mkDefaultsModule inputs ./. {
       filesystem.exfat.enable = !wsl;
       power.enable = !wsl;
       wayland.enable = !wsl;
-      locale.enable = !wsl;
+      locale.enableDefaults = !wsl;
       bluetooth.enable = !wsl;
       audio.pipewire.enable = !wsl;
       network.networkmanager.enable = !wsl;

@@ -45,6 +45,13 @@
       timeZone = "Europe/Rome"; # string: system time zone
       keyboard = "it"; # string: keyboard layout
       default = "en_US.UTF-8"; # string: default locale
+      languages =
+        # list[string]: used languages (e.g. for spellcheck)
+        [
+          "en_US"
+          "en_GB"
+          "it_IT"
+        ];
       extraSettings =
         # { [string] = string } | null: extra locales
         {
