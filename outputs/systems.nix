@@ -174,6 +174,7 @@ mkSystems (
           inherit (hostInfo) system stateVersion;
           hostname = hostInfo.hostname or hostname;
           wsl = hostInfo.wsl or false;
+          graphics = hostInfo.graphics or null;
         };
       }
     )
