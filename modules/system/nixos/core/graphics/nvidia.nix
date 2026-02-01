@@ -4,6 +4,7 @@ modules.mkModule inputs ./nvidia.nix {
   options = {
     openDrivers.enable = modules.mkEnableOption true "open source drivers";
     wayland.enable = modules.mkEnableOption true "wayland support";
+    powerManagement.enable = modules.mkEnableOption true "nvidia power management";
   };
   config =
     { self, ... }:
@@ -12,6 +13,7 @@ modules.mkModule inputs ./nvidia.nix {
       # https://nixos.wiki/wiki/Nvidia
       services.xserver.videoDrivers = [ "nvidia" ];
       hardware.nvidia = {
+        inherit (self.powerManagement) enable;
         open = self.openDrivers.enable;
         modesetting.enable = self.wayland.enable;
       };

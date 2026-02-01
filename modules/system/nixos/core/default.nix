@@ -13,7 +13,6 @@ modules.mkDefaultsModule inputs ./. {
       };
       graphics.enableDefaults = !wsl;
       filesystem.exfat.enable = !wsl;
-      power.enable = !wsl;
       wayland.enable = !wsl;
       locale.enableDefaults = !wsl;
       bluetooth.enable = !wsl;
