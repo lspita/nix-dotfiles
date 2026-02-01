@@ -9,8 +9,8 @@
         enableDefaults = true;
         openrgb.enable = true;
       };
-      login.gdm.enable = true;
-      desktop.gnome.enable = true;
+      login.sddm.enable = true;
+      desktop.plasma.enable = true;
       virtualisation.enableDefaults = true;
     };
   };
