@@ -9,6 +9,7 @@ modules.mkModule inputs ./nvidia.nix {
     { self, ... }:
     {
       # https://wiki.nixos.org/wiki/NVIDIA
+      # https://nixos.wiki/wiki/Nvidia
       services.xserver.videoDrivers = [ "nvidia" ];
       hardware.nvidia = {
         open = self.openDrivers.enable;
