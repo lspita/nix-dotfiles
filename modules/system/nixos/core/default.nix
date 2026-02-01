@@ -11,12 +11,7 @@ modules.mkDefaultsModule inputs ./. {
         enable = !wsl;
         plymouth.enable = !wsl;
       };
-      graphics = {
-        enableDefaults = !wsl;
-      }
-      // (optionals.ifNotNull { } {
-        ${hostInfo.graphics}.enable = !wsl;
-      } hostInfo.graphics);
+      graphics.enableDefaults = !wsl;
       filesystem.exfat.enable = !wsl;
       power.enable = !wsl;
       wayland.enable = !wsl;
