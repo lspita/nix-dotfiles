@@ -44,9 +44,25 @@ modules.mkModule inputs ./. {
           { }
         else
           {
-            gnome-set-pfp.text = ''
-              cp -f ${profiles.${userImage}} /var/lib/AccountsService/icons/${vars.user.username}
-            '';
+            gnome-set-pfp.text =
+              # https://discourse.nixos.org/t/setting-the-user-profile-image-under-gnome/36233/6
+              let
+                username = vars.user.username;
+                imageFile = profiles.${userImage};
+                outDir = "/var/lib/AccountsService";
+                iconsDir = "${outDir}/icons";
+                usersDir = "${outDir}/users";
+                iconFile = "${iconsDir}/${username}";
+                userFile = "${usersDir}/${username}";
+              in
+              ''
+                rm -rf ${iconFile}
+                rm -rf ${userFile}
+                mkdir -p ${iconsDir}
+                mkdir -p ${usersDir}
+                cp -f ${imageFile} ${iconFile}
+                echo -e "[User]\nIcon=${imageFile}\n" > ${userFile}
+              '';
           };
     }
     // (setSubconfig {
