@@ -23,8 +23,12 @@ modules.mkModule inputs ./plasma.nix {
           kolourpaint
           ksystemlog
           isoimagewriter
-          sddm-kcm
           partitionmanager
+          # sddm settings integration
+          sddm-kcm
+          # online accounts integration
+          kaccounts-integration
+          kaccounts-providers
         ];
         plasma6 = { inherit (self) excludePackages; };
       };
