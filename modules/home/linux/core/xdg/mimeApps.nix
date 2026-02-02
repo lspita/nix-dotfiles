@@ -7,7 +7,7 @@ modules.mkModule inputs ./mimeApps {
   config =
     { self, ... }:
     {
-      # https://github.com/ryan4yin/nix-config/blob/main/home/linux/gui/base/xdg.nix
+      # https://github.com/ryan4yin/nix-config/blob/main/home/linux/gui/base/xdg/mime.nix
       xdg.mimeApps = {
         enable = true;
         defaultApplications =

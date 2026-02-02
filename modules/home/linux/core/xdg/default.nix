@@ -14,5 +14,6 @@ modules.mkDefaultsModule inputs ./. {
       };
       autostart.enable = notWsl;
       terminalExec.enable = notWsl;
+      portal.enable = notWsl;
     };
 }

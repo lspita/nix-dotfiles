@@ -1,4 +1,4 @@
-{ lib, ... }@inputs:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
@@ -17,5 +17,6 @@ modules.mkDefaultsModule inputs ./. {
       })
       {
         programs.gnome-shell.enable = true;
+        custom.linux.core.xdg.portal.packages = with pkgs; [ xdg-desktop-portal-gnome ];
       };
 }
