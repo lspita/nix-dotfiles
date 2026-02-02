@@ -29,7 +29,6 @@ modules.mkModule inputs ./. {
             gnome-tour
             geary
             epiphany
-            gnome-console
             yelp
             gnome-maps
           ]
