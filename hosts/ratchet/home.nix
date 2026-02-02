@@ -10,8 +10,7 @@
     tools.enableDefaults = true;
     apps = {
       enableDefaults = true;
-      browsers.chrome.enable = true;
+      chrome.enable = true;
     };
-    terminal.gnome-console.enable = true;
   };
 }
