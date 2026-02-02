@@ -15,18 +15,19 @@ modules.mkDefaultsModule inputs ./. {
         virtual-keyboard.enable = true;
         plugins.enableDefaults = true;
         appearance = {
+          themes.catppuccin.enable = true;
           koi = {
             enable = true;
             themes = {
               colors = {
                 enable = true;
-                dark = "BreezeDark";
-                light = "BreezeLight";
+                dark = "CatppuccinMochaSapphire";
+                light = "CatppuccinLatteSapphire";
               };
               cursor = {
                 enable = true;
-                dark = "breeze_cursors";
-                light = "Breeze_Light";
+                dark = "catppuccin-mocha-sapphire-cursors";
+                light = "catppuccin-latte-sapphire-cursors";
               };
               gtk = {
                 enable = true;
@@ -39,7 +40,13 @@ modules.mkDefaultsModule inputs ./. {
       })
       {
         programs.plasma.enable = true;
-        custom.linux.core.xdg.portal.packages = with pkgs.kdePackages; [ xdg-desktop-portal-kde ];
+        custom.linux.core.xdg.portal.packages =
+          with pkgs;
+          with kdePackages;
+          [
+            xdg-desktop-portal-kde
+            xdg-desktop-portal-gtk # needed for some applications to detect theme changes (e.g. Zed)
+          ];
       }
     ];
 }

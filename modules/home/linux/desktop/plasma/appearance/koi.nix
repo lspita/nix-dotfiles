@@ -27,6 +27,11 @@ modules.mkModule inputs ./koi.nix {
         cursor = mkLightDarkThemeOption "cursor theme"; # plasma-apply-cursortheme --list-themes
         gtk = mkLightDarkThemeOption "gtk theme"; # ls /var/run/current-system/sw/share/themes
       };
+      toggle.shortcut = lib.mkOption {
+        type = with lib.types; nullOr str;
+        default = null;
+        description = "Shortcut to toggle between light and dark mode";
+      };
     };
   config =
     { self, ... }:
@@ -66,14 +71,14 @@ modules.mkModule inputs ./koi.nix {
           {
             ${koiScriptDark} = {
               text = ''
-                #!/usr/bin/env bash
+                #!/bin/sh
                 ${cursorScript.dark}
               '';
               executable = true;
             };
             ${koiScriptLight} = {
               text = ''
-                #!/usr/bin/env bash
+                #!/bin/sh
                 ${cursorScript.light}
               '';
               executable = true;
@@ -115,13 +120,15 @@ modules.mkModule inputs ./koi.nix {
             IconTheme.enabled.value = false;
           };
         };
+      }
+      // (optionals.ifNotNull { } {
         hotkeys.commands = {
           "koi-toggle-mode" = {
             comment = "Toggle dakr/light mode (Koi)";
-            key = "Meta+F5";
+            key = self.toggle.shortcut;
             command = "qdbus dev.baduhai.Koi /Koi local.KoiDbusInterface.toggleMode";
           };
         };
-      };
+      } self.toggle.shortcut);
     };
 }
