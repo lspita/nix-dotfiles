@@ -21,11 +21,7 @@ modules.mkDefaultsModule inputs ./. {
         programs.plasma.enable = true;
         custom.linux.core.xdg.portal.packages =
           with pkgs;
-          with kdePackages;
-          [
-            xdg-desktop-portal-kde
-            xdg-desktop-portal-gtk # needed for some applications to detect theme changes (e.g. Zed)
-          ];
+          with kdePackages; [ xdg-desktop-portal-kde ];
       }
     ];
 }
