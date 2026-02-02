@@ -11,7 +11,7 @@ modules.mkModule inputs ./shortcuts.nix {
         "MoveMouseToCenter" = "None"; # Meta+F6
       };
       plasmashell = {
-        "activate application launcher" = "None"; # Meta
+        "activate application launcher" = "Meta+A"; # Meta
         "manage activities" = "Meta+W"; # Meta+Q
       };
     }
