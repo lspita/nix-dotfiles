@@ -30,7 +30,9 @@ modules.mkModule inputs ./plasma.nix {
           kaccounts-integration
           kaccounts-providers
         ];
-        plasma6 = { inherit (self) excludePackages; };
+        plasma6 = {
+          excludePackages = self.excludePackages ++ (with pkgs.kdePackages; [ kate ]);
+        };
       };
     };
 }

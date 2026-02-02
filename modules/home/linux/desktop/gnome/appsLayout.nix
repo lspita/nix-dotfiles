@@ -16,7 +16,7 @@ modules.mkModule inputs ./appsLayout.nix {
             let
               gnomeApps = gnome.defaults.apps;
             in
-            (map (app: app.desktop) (
+            map (app: app.desktop) (
               builtins.filter (app: !(isNull app)) [
                 browser
                 editor
@@ -24,7 +24,7 @@ modules.mkModule inputs ./appsLayout.nix {
                 (optionals.getNotNull gnomeApps.fileManager fileManager)
                 music
               ]
-            ));
+            );
         };
       }
       // (

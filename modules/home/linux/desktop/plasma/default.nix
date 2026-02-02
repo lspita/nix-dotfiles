@@ -12,31 +12,10 @@ modules.mkDefaultsModule inputs ./. {
     lib.mkMerge [
       (setDefaultSubconfig {
         settings.enable = true;
+        shortcuts.enable = true;
         virtual-keyboard.enable = true;
         plugins.enableDefaults = true;
-        appearance = {
-          themes.catppuccin.enable = true;
-          koi = {
-            enable = true;
-            themes = {
-              colors = {
-                enable = true;
-                dark = "CatppuccinMochaSapphire";
-                light = "CatppuccinLatteSapphire";
-              };
-              cursor = {
-                enable = true;
-                dark = "catppuccin-mocha-sapphire-cursors";
-                light = "catppuccin-latte-sapphire-cursors";
-              };
-              gtk = {
-                enable = true;
-                dark = "Breeze";
-                light = "Breeze";
-              };
-            };
-          };
-        };
+        appearance.enableDefaults = true;
       })
       {
         programs.plasma.enable = true;
