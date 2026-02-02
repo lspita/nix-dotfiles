@@ -4,14 +4,14 @@ modules.mkModule inputs ./portal.nix {
   options = {
     packages = lib.mkOption {
       type = with lib.types; listOf package;
-      default = [ ];
+      default = with pkgs; [ xdg-desktop-portal ];
       description = "Portal packages to install";
     };
   };
   config =
     { self, ... }:
     let
-      packages = self.packages ++ (with pkgs; [ xdg-desktop-portal ]);
+      packages = self.packages;
     in
     {
       xdg.portal = {
