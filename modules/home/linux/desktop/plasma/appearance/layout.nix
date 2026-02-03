@@ -9,9 +9,9 @@ modules.mkModule inputs ./layout.nix {
           location = "top";
           lengthMode = "fill";
           height = 32;
-          opacity = "translucent";
+          opacity = "adaptive";
           hiding = "normalpanel";
-          floating = false;
+          floating = true;
           widgets = [
             {
               name = "org.kde.plasma.pager";
@@ -41,7 +41,7 @@ modules.mkModule inputs ./layout.nix {
           location = "bottom";
           lengthMode = "fit";
           height = 44;
-          opacity = "translucent";
+          opacity = "adaptive";
           hiding = "dodgewindows";
           floating = true;
           widgets = [
