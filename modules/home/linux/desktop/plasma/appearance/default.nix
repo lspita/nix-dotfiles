@@ -6,6 +6,7 @@ modules.mkDefaultsModule inputs ./. {
     setDefaultSubconfig {
       themes.catppuccin.enable = true;
       layout.enable = true;
+      fonts.enable = true;
       koi = {
         enable = true;
         themes = {
