@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   flakeInputs,
   pkgs,
@@ -15,8 +16,8 @@ modules.mkModule inputs ./. {
         description = "The default profile name.";
       };
       colorScheme = lib.mkOption {
-        type = with lib.types; str;
-        default = "catppuccin-mocha";
+        type = with lib.types; nullOr str;
+        default = null;
         description = "The default color scheme to use.";
       };
     };
@@ -52,8 +53,28 @@ modules.mkModule inputs ./. {
           customColorSchemes = colorSchemes;
           profiles =
             let
+              fontZoom = 1.2;
+              plasmaMonospaceFont = config.programs.plasma.fonts.fixedWidth or null;
+              monospaceFont = optionals.ifNotNull vars.fonts.monospace (
+                plasmaMonospaceFont
+                // {
+                  name = plasmaMonospaceFont.family;
+                  size = plasmaMonospaceFont.pointSize;
+                }
+              ) plasmaMonospaceFont;
               defaultProfile = {
                 inherit (self.defaultProfile) colorScheme;
+                font =
+                  let
+                    font = optionals.getNotNull { size = 1; } monospaceFont;
+                  in
+                  {
+                    name = font.name;
+                    size = builtins.floor (font.size * fontZoom);
+                  };
+                extraConfig = {
+                  Scrolling.ScrollBarPosition = 2;
+                };
               };
             in
             with lib.attrsets;
