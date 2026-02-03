@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
-    { setDefaultSubconfig, ... }:
+    { self, setDefaultSubconfig, ... }:
     setDefaultSubconfig (
       {
         config.enable = true;
@@ -13,8 +13,13 @@ modules.mkDefaultsModule inputs ./. {
           compose.addAsContainersProvider = true;
         };
       }
-      // (optionals.ifNotNull { } {
-        ${hostInfo.graphics}.enable = !hostInfo.wsl;
-      } hostInfo.graphics)
+      // (optionals.ifNotNull { } (
+        if builtins.hasAttr hostInfo.graphics self then
+          {
+            ${hostInfo.graphics}.enable = !hostInfo.wsl;
+          }
+        else
+          { }
+      ) hostInfo.graphics)
     );
 }
