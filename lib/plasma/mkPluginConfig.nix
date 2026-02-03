@@ -4,11 +4,12 @@
   package, # pkg: plugin package
   name ? lib.getName package, # string?: plugin name
   settings ? { }, # set?: extension settings
+  enable ? true, # boolean?: enable plugin
 }:
 {
   home.packages = [ package ];
   programs.plasma.configFile.kwinrc = {
-    Plugins."${name}Enabled" = true;
+    Plugins."${name}Enabled" = enable;
     "Script-${name}" = settings;
   };
 }

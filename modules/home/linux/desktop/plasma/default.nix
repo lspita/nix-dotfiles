@@ -19,7 +19,13 @@ modules.mkDefaultsModule inputs ./. {
       })
       {
         programs.plasma.enable = true;
-        custom.linux.core.xdg.portal.packages = with pkgs.kdePackages; [ xdg-desktop-portal-kde ];
+        custom.linux.core.xdg.portal.packages =
+          with pkgs;
+          with kdePackages;
+          [
+            xdg-desktop-portal-kde
+            xdg-desktop-portal-gtk
+          ];
       }
     ];
 }

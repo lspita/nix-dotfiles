@@ -55,7 +55,6 @@ modules.mkModule inputs ./shortcuts.nix {
         "org/gnome/shell/keybindings" = switchToApplicationOptions;
         "org/gnome/desktop/wm/keybindings" = {
           close = [ "<Super>q" ];
-          toggle-fullscreen = [ "<Super>F11" ];
           switch-applications = [ "<Alt>Tab" ];
           switch-applications-backward = [ "<Shift><Alt>Tab" ];
           switch-group = [ "<Super>Tab" ];

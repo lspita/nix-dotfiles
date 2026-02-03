@@ -3,7 +3,7 @@ with lib.custom;
 modules.mkModule inputs ./layout.nix {
   config = {
     programs.plasma.panels =
-      # .config/plasma-org.kde.plasma.desktop-appletsrc
+      # plasma-org.kde.plasma.desktop-appletsrc
       [
         {
           location = "top";

@@ -5,7 +5,7 @@ modules.mkModule inputs ./dynamic-workspaces.nix {
     package = pkgs.kdePackages.dynamic-workspaces;
     name = "dynamic_workspaces";
     settings = {
-      keepEmptyMiddleDesktops = true;
+      keepEmptyMiddleDesktops = false;
     };
   };
 }
