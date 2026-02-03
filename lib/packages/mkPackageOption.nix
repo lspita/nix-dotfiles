@@ -1,5 +1,5 @@
 { lib, ... }:
-default: # pkg | null: default package to use
+default: # pkg?: default package to use
 name: # string: name to use in the description
 lib.mkOption {
   inherit default;

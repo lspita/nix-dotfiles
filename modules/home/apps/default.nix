@@ -7,26 +7,23 @@ modules.mkDefaultsModule inputs ./. {
       notWsl = !hostInfo.wsl;
     in
     setDefaultSubconfig {
-      coding = {
-        vscode.enable = notWsl;
-        zed = {
-          enable = true;
-          package.enable = notWsl;
-        };
+      vscode.enable = notWsl;
+      zed = {
+        enable = true;
+        package.enable = notWsl;
       };
-      productivity = {
-        obsidian.enable = notWsl;
-        libreoffice.enable = notWsl;
-      };
-      security.bitwarden = {
+      obsidian.enable = notWsl;
+      libreoffice.enable = notWsl;
+      bitwarden = {
         enable = notWsl;
         autostart.enable = true;
         sshAgent.enable = true;
       };
-      browsers.firefox = {
+      firefox = {
         enable = notWsl;
         passwordManager.enable = false; # use bitwarden instead
       };
-      media.spotify.enable = notWsl;
+      spotify.enable = notWsl;
+      discord.enable = notWsl;
     };
 }

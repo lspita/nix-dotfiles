@@ -1,13 +1,13 @@
 {
   dotfilesHome = "nix-dotfiles"; # string: location of this repo relative to the user home
   backupFileExtension = "bkp"; # string: file extension to use for home-manager backups
-  wallpaper = "palette-gray"; # string | null: wallpaper from `assets/wallpapers`
+  wallpaper = "palette-gray"; # string?: wallpaper from `assets/wallpapers`
   user = {
     username = "lspita"; # string: short-form name
     fullname = "Ludovico Spitaleri"; # string: long-form name
-    email = "ludovico.spitaleri@gmail.com"; # string | null: user email (e.g. for git config)
-    image = "clank"; # string | null: user image from `assets/profiles`
-    shell = pkgs: pkgs.bash; # fn(pkgs) -> pkg | null: shell package to use for the user
+    email = "ludovico.spitaleri@gmail.com"; # string?: user email (e.g. for git config)
+    image = "clank"; # string?: user image from `assets/profiles`
+    shell = pkgs: pkgs.bash; # fn(pkgs) -> pkg?: shell package to use for the user
   };
   nix.allowUnfree = true; # bool: if to allow nix unfree software
   fonts =
@@ -15,7 +15,7 @@
       size = 11;
     in
     {
-      packages = # fn(pkgs) -> list[pkg] | null: font packages to install
+      packages = # fn(pkgs) -> list[pkg]?: font packages to install
         pkgs: with pkgs; [
           noto-fonts
           nerd-fonts.noto
@@ -28,12 +28,12 @@
           size = int: size of the font
           name = string: name of the font
       */
-      normal = # font | null: default font (interface, documents, ...)
+      normal = # font?: default font (interface, documents, ...)
         {
           inherit size;
           name = "NotoSans Nerd Font";
         };
-      monospace = # font | null: monospace font (terminal, editor, ...)
+      monospace = # font?: monospace font (terminal, editor, ...)
         {
           inherit size;
           name = "FiraMono Nerd Font";
@@ -52,7 +52,7 @@
           "it_IT"
         ];
       extraSettings =
-        # { [string] = string } | null: extra locales
+        # { [string] = string }?: extra locales
         {
           LC_ADDRESS = "it_IT.UTF-8";
           LC_IDENTIFICATION = "it_IT.UTF-8";
@@ -79,29 +79,29 @@
         - system: ls /run/current-system/sw/share/applications/
         - user: ls /etc/profiles/per-user/$USER/share/applications/
       */
-      terminal = null; # app | null: default terminal app
-      browser = # app | null: default browser
+      terminal = null; # app?: default terminal app
+      browser = # app?: default browser
         {
           desktop = "firefox.desktop";
           program = "firefox";
         };
-      fileManager = null; # app | null: default file manager
-      editor = # app | null: default text editor
+      fileManager = null; # app?: default file manager
+      editor = # app?: default text editor
         {
           desktop = "dev.zed.Zed.desktop";
           program = "zeditor";
         };
       terminalEditor = "nano"; # program: editor to use from terminal
-      music = # app | null: default music player (for audio files, set `audio`)
+      music = # app?: default music player (for audio files, set `audio`)
         {
           desktop = "spotify.desktop";
           program = "spotify";
         };
-      mail = browser; # app | null: default mail client
-      pdf = null; # app | null: default pdf viewer
-      image = null; # app | null: default image viewer
-      audio = null; # app | null: default audio player
-      video = null; # app | null: default video player
+      mail = browser; # app?: default mail client
+      pdf = null; # app?: default pdf viewer
+      image = null; # app?: default image viewer
+      audio = null; # app?: default audio player
+      video = null; # app?: default video player
     };
   };
 }
