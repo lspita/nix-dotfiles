@@ -24,5 +24,6 @@ modules.mkDefaultsModule inputs ./. {
         passwordManager.enable = false; # use bitwarden instead
       };
       spotify.enable = notWsl;
+      discord.enable = notWsl;
     };
 }
