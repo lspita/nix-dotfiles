@@ -16,8 +16,8 @@ modules.mkDefaultsModule inputs ./. {
           };
           cursor = {
             enable = true;
-            dark = "catppuccin-mocha-sapphire-cursors";
-            light = "catppuccin-latte-sapphire-cursors";
+            dark = "breeze_cursors";
+            light = "Breeze_Light";
           };
           gtk = {
             enable = true;
