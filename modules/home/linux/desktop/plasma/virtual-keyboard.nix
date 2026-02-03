@@ -13,7 +13,7 @@ modules.mkModule inputs ./virtual-keyboard.nix {
             value = "${package}/share/applications/com.github.maliit.keyboard.desktop";
             shellExpand = true; # enabling it from the gui settings puts $e
           };
-          VirtualKeyboardEnabled.value = true;
+          VirtualKeyboardEnabled.value = false; # not enabled by default
         };
       };
     };
