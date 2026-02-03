@@ -6,7 +6,6 @@ module: # set: module settings
 super.mkModule inputs modulePath (
   module
   // {
-    enable = module.enable or true;
     root = [ "hostModules" ];
     dirPath = hostDirRel;
   }

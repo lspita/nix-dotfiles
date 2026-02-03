@@ -27,6 +27,7 @@ let
   enableOption = module.enableOption or "enable";
   enable = module.enable or false;
   rootPathList = [ "custom" ] ++ (module.root or [ ]);
+  splitPath = lib.strings.splitString "/";
   moduleDirPath =
     (
       let
@@ -38,8 +39,6 @@ let
       "modules"
       configType
     ];
-  splitPath = lib.strings.splitString "/";
-
   modulePathList = (
     lib.lists.drop 4 # "/nix/store/<hash>/..." is splitted into [ "" "nix" "store" "<hash>" ... ]
       (splitPath (lib.strings.removeSuffix ".nix" (toString modulePath)))

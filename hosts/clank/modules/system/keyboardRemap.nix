@@ -1,6 +1,7 @@
 { lib, ... }@inputs:
 with lib.custom;
 modules.mkHostModule inputs ./keyboardRemap.nix {
+  enable = true;
   config = {
     # https://wiki.nixos.org/wiki/Keyd
     # to watch events: nix-shell -p keyd --run "sudo keyd monitor"
