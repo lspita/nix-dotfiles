@@ -24,6 +24,11 @@ modules.mkDefaultsModule inputs ./. {
             dark = "Breeze";
             light = "Breeze";
           };
+          konsole = {
+            enable = true;
+            dark = "catppuccin-mocha";
+            light = "catppuccin-latte";
+          };
         };
       };
     };

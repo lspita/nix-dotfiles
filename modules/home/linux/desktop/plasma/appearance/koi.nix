@@ -26,6 +26,7 @@ modules.mkModule inputs ./koi.nix {
         colors = mkLightDarkThemeOption "colors"; # plasma-apply-colorscheme --list-schemes
         cursor = mkLightDarkThemeOption "cursor theme"; # plasma-apply-cursortheme --list-themes
         gtk = mkLightDarkThemeOption "gtk theme"; # ls /var/run/current-system/sw/share/themes
+        konsole = mkLightDarkThemeOption "konsole profile"; # ls ~/.local/share/konsole
       };
       toggle.shortcut = lib.mkOption {
         type = with lib.types; nullOr str;
@@ -90,8 +91,11 @@ modules.mkModule inputs ./koi.nix {
           kdeglobals.General.ColorScheme.persistent = true;
           kcminputrc.Mouse.cursorTheme.persistent = true;
           koirc = {
+            # https://github.com/baduhai/Koi/blob/master/Development/Configuration/Samples/koirc.sample
             General = {
               current.persistent = true;
+              latitude.persistent = true;
+              longitude.persistent = true;
               notify.value = 0; # disabled
               schedule.value = 0; # disabled
               start-hidden.value = 2; # enabled
@@ -111,6 +115,11 @@ modules.mkModule inputs ./koi.nix {
             };
             Wallpaper.enabled.value = false;
             GTKTheme = with self.themes.gtk; {
+              enabled.value = enable;
+              dark.value = dark;
+              light.value = light;
+            };
+            KonsoleProfile = with self.themes.konsole; {
               enabled.value = enable;
               dark.value = dark;
               light.value = light;
