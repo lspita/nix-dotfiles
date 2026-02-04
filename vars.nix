@@ -52,7 +52,7 @@
           "it_IT"
         ];
       extraSettings =
-        # { [string] = string }?: extra locales. en_IE is the most similar to EU english
+        # { [string] = string }?: extra locales (en_IE is the most similar to EU english)
         {
           LC_ADDRESS = "it_IT.UTF-8";
           LC_IDENTIFICATION = "it_IT.UTF-8";
