@@ -3,7 +3,7 @@ with lib.custom;
 modules.mkModule inputs ./settings.nix {
   config = {
     programs.plasma = {
-      # overrideConfig = true;
+      overrideConfig = true;
       workspace.enableMiddleClickPaste = false; # it doesn't disable it in reality :(
       input.keyboard.layouts = [ { layout = vars.linux.locale.keyboard; } ];
       session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
@@ -12,18 +12,19 @@ modules.mkModule inputs ./settings.nix {
         edgeBarrier = 0;
       };
       configFile = {
-        kded5rc.Module-browserintegrationreminder.autoload.value = false; # disable browser integration alert in system tray
+        kded5rc.Module-browserintegrationreminder.autoload = false; # disable browser integration alert in system tray
         kwinrc = {
-          Effect-overview.FilterWindows.value = false; # make search in overview ignore windows
+          Effect-overview.FilterWindows = false; # make search in overview ignore windows
           ElectricBorders = {
-            Bottom.value = "";
-            BottomLeft.value = "";
-            BottomRight.value = "";
-            Left.value = "";
-            Right.value = "";
-            Top.value = "";
-            TopLeft.value = "";
-            TopRight.value = "";
+            # TODO: null value (even for other options)
+            Bottom = "none";
+            BottomLeft = "none";
+            BottomRight = "none";
+            Left = "none";
+            Right = "none";
+            Top = "none";
+            TopLeft = "none";
+            TopRight = "none";
           };
         };
         kdeglobals.General =

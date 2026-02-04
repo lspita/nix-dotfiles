@@ -96,37 +96,37 @@ modules.mkModule inputs ./koi.nix {
               current.persistent = true;
               latitude.persistent = true;
               longitude.persistent = true;
-              notify.value = 0; # disabled
-              schedule.value = 0; # disabled
-              start-hidden.value = 2; # enabled
+              notify = 0; # disabled
+              schedule = 0; # disabled
+              start-hidden = 2; # enabled
             };
             # Koi doesn't recognize these themes, if you press "save" in the app preferences
             # it overwrites with defaults. With the "immutable" option enabled for the keys
             # it doesn't recognize them anymore and says you have empty values.
             ColorScheme = with self.themes.colors; {
-              enabled.value = enable;
-              dark.value = dark;
-              light.value = light;
+              enabled = enable;
+              dark = dark;
+              light = light;
             };
             Script = {
-              enabled.value = self.themes.cursor.enable;
-              dark.value = "${config.xdg.dataHome}/${koiScriptDark}";
-              light.value = "${config.xdg.dataHome}/${koiScriptLight}";
+              enabled = self.themes.cursor.enable;
+              dark = "${config.xdg.dataHome}/${koiScriptDark}";
+              light = "${config.xdg.dataHome}/${koiScriptLight}";
             };
-            Wallpaper.enabled.value = false;
+            Wallpaper.enabled = false;
             GTKTheme = with self.themes.gtk; {
-              enabled.value = enable;
-              dark.value = dark;
-              light.value = light;
+              enabled = enable;
+              dark = dark;
+              light = light;
             };
             KonsoleProfile = with self.themes.konsole; {
-              enabled.value = enable;
-              dark.value = dark;
-              light.value = light;
+              enabled = enable;
+              dark = dark;
+              light = light;
             };
-            PlasmaStyle.enabled.value = false;
-            KvantumStyle.enabled.value = false;
-            IconTheme.enabled.value = false;
+            PlasmaStyle.enabled = false;
+            KvantumStyle.enabled = false;
+            IconTheme.enabled = false;
           };
         };
       }
