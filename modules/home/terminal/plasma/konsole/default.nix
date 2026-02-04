@@ -10,7 +10,6 @@ modules.mkModule inputs ./. {
   imports = [ flakeInputs.plasma-manager.homeModules.plasma-manager ];
   options = {
     defaultProfile = {
-      reset = modules.mkEnableOption (!(packages.isInstalled inputs "koi")) "Reset the default profile";
       name = lib.mkOption {
         type = with lib.types; str;
         default = "default";
@@ -91,7 +90,7 @@ modules.mkModule inputs ./. {
                   }
                 ) colorSchemes
               );
-          defaultProfile = if self.defaultProfile.reset then defaultProfileName else null;
+          defaultProfile = defaultProfileName;
         };
     };
 }
