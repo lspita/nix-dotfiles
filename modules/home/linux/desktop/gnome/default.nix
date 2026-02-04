@@ -14,6 +14,7 @@ modules.mkDefaultsModule inputs ./. {
         accessibility.enable = true;
         extensions.enableDefaults = true;
         themes.enableDefaults = true;
+        apps.enableDefaults = true;
       })
       {
         programs.gnome-shell.enable = true;

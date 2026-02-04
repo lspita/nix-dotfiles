@@ -16,6 +16,7 @@ modules.mkDefaultsModule inputs ./. {
         virtual-keyboard.enable = true;
         plugins.enableDefaults = true;
         appearance.enableDefaults = true;
+        apps.enableDefaults = true;
       })
       {
         programs.plasma.enable = true;

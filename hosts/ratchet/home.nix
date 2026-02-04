@@ -12,6 +12,5 @@
       enableDefaults = true;
       chrome.enable = true;
     };
-    terminal.plasma.konsole.enable = true;
   };
 }

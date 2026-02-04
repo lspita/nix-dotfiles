@@ -1,13 +1,6 @@
-{
-  config,
-  lib,
-  flakeInputs,
-  pkgs,
-  ...
-}@inputs:
+{ config, lib, ... }@inputs:
 with lib.custom;
 modules.mkModule inputs ./. {
-  imports = [ flakeInputs.plasma-manager.homeModules.plasma-manager ];
   options = {
     defaultProfile = {
       reset = modules.mkEnableOption (!(packages.isInstalled inputs "koi")) "the defaults";
@@ -26,7 +19,6 @@ modules.mkModule inputs ./. {
   config =
     { self, ... }:
     {
-      home.packages = with pkgs.kdePackages; [ konsole ];
       programs.konsole =
         let
           defaultProfileName = self.defaultProfile.name;
