@@ -31,7 +31,7 @@ modules.mkModule inputs ./plasma.nix {
           kaccounts-providers
         ];
         plasma6 = {
-          excludePackages = self.excludePackages ++ (with pkgs.kdePackages; [ kate ]);
+          excludePackages = self.excludePackages;
         };
       };
     };
