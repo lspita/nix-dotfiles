@@ -4,3 +4,4 @@
 - [ ] Wallpapers
 - [ ] Profile image
 - [ ] Meta+Arrows shortcuts for windows
+- [ ] Fix online accounts
