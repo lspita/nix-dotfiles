@@ -9,7 +9,7 @@
 {
   home.packages = [ package ];
   programs.plasma.configFile.kwinrc = {
-    Plugins."${name}Enabled" = enable;
+    Plugins."${name}Enabled".value = enable;
     "Script-${name}" = settings;
   };
 }

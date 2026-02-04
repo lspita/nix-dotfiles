@@ -25,12 +25,12 @@ modules.mkModule inputs ./shortcuts.nix {
         kwin = {
           Overview = "Meta";
           "Window Close" = "Meta+Q";
-          "MoveMouseToFocus" = "None"; # Meta+F5
-          "MoveMouseToCenter" = "None"; # Meta+F6
+          "MoveMouseToFocus" = ""; # Meta+F5
+          "MoveMouseToCenter" = ""; # Meta+F6
         }
         # TODO: fix
         // (rangeOptions { } (i: "Switch to Desktop ${i}") (i: "Meta+${i}")) # Ctrl+F<i>
-        // (rangeOptions { } (i: "Switch to Screen ${i}") (i: "None")) # Meta+<i>
+        // (rangeOptions { } (i: "Switch to Screen ${i}") (i: "")) # Meta+<i>
         # Meta+Shift+<i> doesn't work because it registers as Meta+<special char of number>
         // (rangeOptions { } (i: "Window to Desktop ${i}") (i: "Meta+Shift+${i}")); # None
 
@@ -38,9 +38,9 @@ modules.mkModule inputs ./shortcuts.nix {
           "activate application launcher" = "Meta+A"; # Meta
           "manage activities" = "Meta+W"; # Meta+Q
         }
-        // (rangeOptions { } (i: "activate task manager entry ${i}") (i: "None"));
+        // (rangeOptions { } (i: "activate task manager entry ${i}") (i: "")); # Meta-<i>
 
-        org_kde_powerdevil.powerProfile = "None"; # Meta+B
+        org_kde_powerdevil.powerProfile = ""; # Meta+B
       }
       // (
         let
@@ -52,7 +52,7 @@ modules.mkModule inputs ./shortcuts.nix {
             in
             (optionals.ifNotNull { } {
               "services/${plasmaDefaultApp.desktop}" = {
-                "_launch" = "None";
+                "_launch" = "";
               };
             } plasmaDefaultApp)
             // (

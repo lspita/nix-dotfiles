@@ -12,18 +12,18 @@ modules.mkModule inputs ./settings.nix {
         edgeBarrier = 0;
       };
       configFile = {
-        kded5rc.Module-browserintegrationreminder.autoload = false; # disable browser integration alert in system tray
+        kded5rc.Module-browserintegrationreminder.autoload.value = false; # disable browser integration alert in system tray
         kwinrc = {
-          Effect-overview.FilterWindows = false; # make search in overview ignore windows
+          Effect-overview.FilterWindows.value = false; # make search in overview ignore windows
           ElectricBorders = {
-            Bottom.value = "None";
-            BottomLeft.value = "None";
-            BottomRight.value = "None";
-            Left.value = "None";
-            Right.value = "None";
-            Top.value = "None";
-            TopLeft.value = "None";
-            TopRight.value = "None";
+            Bottom.value = "";
+            BottomLeft.value = "";
+            BottomRight.value = "";
+            Left.value = "";
+            Right.value = "";
+            Top.value = "";
+            TopLeft.value = "";
+            TopRight.value = "";
           };
         };
         kdeglobals.General =
