@@ -15,17 +15,6 @@ modules.mkModule inputs ./settings.nix {
         kded5rc.Module-browserintegrationreminder.autoload = false; # disable browser integration alert in system tray
         kwinrc = {
           Effect-overview.FilterWindows = false; # make search in overview ignore windows
-          ElectricBorders = {
-            # TODO: null value (even for other options)
-            Bottom = "none";
-            BottomLeft = "none";
-            BottomRight = "none";
-            Left = "none";
-            Right = "none";
-            Top = "none";
-            TopLeft = "none";
-            TopRight = "none";
-          };
         };
         kdeglobals.General =
           with vars.linux.defaultApps;
