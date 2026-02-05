@@ -4,7 +4,10 @@ modules.mkModule inputs ./settings.nix {
   config = {
     programs.plasma = {
       overrideConfig = false;
-      workspace.enableMiddleClickPaste = false; # it doesn't disable it in reality :(
+      workspace = {
+        enableMiddleClickPaste = false;
+        splashScreen.theme = "org.kde.breeze.desktop";
+      };
       input.keyboard.layouts = [ { layout = vars.linux.locale.keyboard; } ];
       session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
       kwin = {
