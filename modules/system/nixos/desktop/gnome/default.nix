@@ -9,7 +9,9 @@ modules.mkModule inputs ./. {
   options = {
     excludePackages = lib.mkOption {
       type = with lib.types; listOf package;
-      default = [ ];
+      default = optionals.ifNotNull [ ] (with pkgs; [
+        gnome-console
+      ]) vars.linux.defaultApps.terminal;
       description = "Gnome packages to exclude";
     };
   };

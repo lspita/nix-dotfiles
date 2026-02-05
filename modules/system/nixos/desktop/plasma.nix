@@ -1,10 +1,17 @@
-{ lib, pkgs, ... }@inputs:
+{
+  lib,
+  pkgs,
+  vars,
+  ...
+}@inputs:
 with lib.custom;
 modules.mkModule inputs ./plasma.nix {
   options = {
     excludePackages = lib.mkOption {
       type = with lib.types; listOf package;
-      default = [ ];
+      default = optionals.ifNotNull [ ] (with pkgs.kdePackages; [
+        konsole
+      ]) vars.linux.defaultApps.terminal;
       description = "List of kde packages to exclude.";
     };
   };
