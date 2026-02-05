@@ -4,6 +4,6 @@ modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
     setDefaultSubconfig {
-      dynamic-workspaces.enable = true;
+      # dynamic-workspaces.enable = true;
     };
 }
