@@ -55,6 +55,7 @@ modules.mkModule inputs ./. {
             "php"
             "sql"
             "java"
+            "lua"
           ];
           userSettings = objectConfig ./settings.json (
             with vars.fonts;
