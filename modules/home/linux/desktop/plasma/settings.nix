@@ -17,7 +17,10 @@ modules.mkModule inputs ./settings.nix {
           enableMiddleClickPaste = false;
           splashScreen.theme = "org.kde.breeze.desktop";
         };
-        input.keyboard.layouts = [ { layout = vars.linux.locale.keyboard; } ];
+        input.keyboard = {
+          layouts = [ { layout = vars.linux.locale.keyboard; } ];
+          numlockOnStartup = "on";
+        };
         session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
         kwin = {
           inherit (self) virtualDesktops;

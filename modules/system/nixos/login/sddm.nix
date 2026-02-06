@@ -16,6 +16,7 @@ modules.mkModule inputs ./sddm.nix {
           inherit (self.wayland) enable;
           compositor = "kwin";
         };
+        autoNumlock = true;
       };
       security.pam.services.login.fprintAuth = lib.mkForce false; # fix sddm waiting for fingerprint
     };
