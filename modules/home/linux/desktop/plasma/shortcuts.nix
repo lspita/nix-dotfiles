@@ -35,13 +35,19 @@ modules.mkModule inputs ./shortcuts.nix {
         ])) # Ctrl+F<i>
         // (rangeOptions { } (i: "Switch to Screen ${i}") (i: "")) # Meta+<i>
         # Meta+Shift+<i> doesn't work because it registers as Meta+<special char of number>
-        // (rangeOptions { } (i: "Window to Desktop ${i}") (i: "Meta+Shift+${i}")); # None
+        // (rangeOptions { } (i: "Window to Desktop ${i}") (i: [
+          "Meta+Shift+${i}"
+          "Meta+Shift+Num+${i}"
+        ])); # None
 
         plasmashell = {
           "activate application launcher" = "Meta+A"; # Meta
           "manage activities" = "Meta+W"; # Meta+Q
         }
-        // (rangeOptions { } (i: "activate task manager entry ${i}") (i: "")); # Meta-<i>
+        // (rangeOptions { } (i: "activate task manager entry ${i}") (i: [
+          "Meta+Alt+${i}"
+          "Meta+Alt+Num+${i}"
+        ])); # Meta-<i>
 
         org_kde_powerdevil.powerProfile = ""; # Meta+B
       }
