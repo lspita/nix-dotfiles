@@ -29,7 +29,10 @@ modules.mkModule inputs ./shortcuts.nix {
           "MoveMouseToCenter" = ""; # Meta+F6
         }
         # TODO: fix
-        // (rangeOptions { } (i: "Switch to Desktop ${i}") (i: "Meta+${i}")) # Ctrl+F<i>
+        // (rangeOptions { } (i: "Switch to Desktop ${i}") (i: [
+          "Meta+${i}"
+          "Meta+Num+${i}"
+        ])) # Ctrl+F<i>
         // (rangeOptions { } (i: "Switch to Screen ${i}") (i: "")) # Meta+<i>
         # Meta+Shift+<i> doesn't work because it registers as Meta+<special char of number>
         // (rangeOptions { } (i: "Window to Desktop ${i}") (i: "Meta+Shift+${i}")); # None
