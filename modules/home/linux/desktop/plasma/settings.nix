@@ -23,6 +23,17 @@ modules.mkModule inputs ./settings.nix {
           inherit (self) virtualDesktops;
           cornerBarrier = false;
           edgeBarrier = 0;
+          effects = {
+            blur.enable = true;
+            desktopSwitching.navigationWrapping = true;
+            hideCursor = {
+              enable = true;
+              hideOnInactivity = 5;
+              hideOnTyping = true;
+            };
+            shakeCursor.enable = true;
+            translucency.enable = true;
+          };
         };
         configFile = {
           kded5rc.Module-browserintegrationreminder.autoload = false; # disable browser integration alert in system tray
