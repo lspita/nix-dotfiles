@@ -35,7 +35,7 @@ modules.mkModule inputs ./settings.nix {
               hideOnTyping = true;
             };
             shakeCursor.enable = true;
-            translucency.enable = true;
+            translucency.enable = false;
           };
         };
         configFile = {
