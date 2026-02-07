@@ -12,5 +12,6 @@
       enableDefaults = true;
       chrome.enable = true;
     };
+    terminal.kitty.enable = true;
   };
 }

@@ -79,7 +79,11 @@
         - system: ls /run/current-system/sw/share/applications/
         - user: ls /etc/profiles/per-user/$USER/share/applications/
       */
-      terminal = null; # app?: default terminal app
+      terminal = # app?: default terminal app
+        {
+          desktop = "kitty.desktop";
+          program = "kitty";
+        };
       browser = # app?: default browser
         {
           desktop = "firefox.desktop";

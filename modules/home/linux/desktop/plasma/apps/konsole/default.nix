@@ -65,9 +65,12 @@ modules.mkModule inputs ./. {
                     name = font.name;
                     size = builtins.floor (font.size * fontZoom);
                   };
-                extraConfig.Scrolling = {
-                  ScrollBarPosition = 2;
-                  HighlightScrolledLines = false;
+                extraConfig = {
+                  Scrolling = {
+                    ScrollBarPosition = 2;
+                    HighlightScrolledLines = false;
+                  };
+                  "Terminal Features".BlinkingCursorEnabled = true;
                 };
               };
             in
