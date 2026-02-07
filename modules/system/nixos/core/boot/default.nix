@@ -1,7 +1,12 @@
-{ lib, ... }@inputs:
+{ lib, pkgs, ... }@inputs:
 with lib.custom;
 modules.mkModule inputs ./. {
   options = {
+    kernel.packages = lib.mkOption {
+      type = with lib.types; attrs;
+      default = pkgs.linuxPackages_latest;
+      description = "Linux kernel packages to use.";
+    };
     maxEntries = lib.mkOption {
       type = lib.types.int;
       default = 10;
@@ -37,6 +42,8 @@ modules.mkModule inputs ./. {
     { self, ... }:
     {
       boot = {
+        # https://wiki.nixos.org/wiki/Linux_kernel
+        kernelPackages = self.kernel.packages;
         loader = {
           systemd-boot = {
             enable = true;
