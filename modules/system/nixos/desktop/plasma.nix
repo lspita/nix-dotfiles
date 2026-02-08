@@ -35,6 +35,8 @@ modules.mkModule inputs ./plasma.nix {
           # online accounts integration
           kaccounts-integration
           kaccounts-providers
+          kio-extras
+          signond
         ]
         ++ (
           if config.services.displayManager.sddm.enable then
