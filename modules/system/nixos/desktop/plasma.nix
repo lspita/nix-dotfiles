@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   vars,
@@ -31,12 +32,19 @@ modules.mkModule inputs ./plasma.nix {
           ksystemlog
           isoimagewriter
           partitionmanager
-          # sddm settings integration
-          sddm-kcm
           # online accounts integration
           kaccounts-integration
           kaccounts-providers
-        ];
+        ]
+        ++ (
+          if config.services.displayManager.sddm.enable then
+            [
+              # sddm settings integration
+              sddm-kcm
+            ]
+          else
+            [ ]
+        );
         plasma6 = {
           excludePackages = self.excludePackages;
         };
