@@ -2,17 +2,24 @@
 with lib.custom;
 modules.mkModule inputs ./settings.nix {
   options = {
-    virtualDesktops.number = lib.mkOption {
-      type = with lib.types; ints.unsigned;
-      default = 5;
-      description = "Number of virtual desktops";
+    virtualDesktops = {
+      number = lib.mkOption {
+        type = with lib.types; ints.unsigned;
+        default = 5;
+        description = "Number of virtual desktops";
+      };
+      rows = lib.mkOption {
+        type = with lib.types; ints.unsigned;
+        default = 1;
+        description = "Number of rows for virtual desktops";
+      };
     };
   };
   config =
     { self, ... }:
     {
       programs.plasma = {
-        overrideConfig = false;
+        overrideConfig = true;
         workspace = {
           enableMiddleClickPaste = false;
           splashScreen.theme = "org.kde.breeze.desktop";
