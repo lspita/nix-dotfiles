@@ -32,7 +32,7 @@ modules.mkModule inputs ./. {
         settings = {
           term = self.term;
           touch_scroll_multiplier = 2.0;
-          # cursor
+          open_url_with = "default";
           cursor_shape = "block";
           cursor_shape_unfocused = "hollow";
           cursor_trail = 10; # ms
