@@ -23,8 +23,7 @@ modules.mkModule inputs ./shortcuts.nix {
       in
       {
         kwin = {
-          Overview = "Meta";
-          "Window Close" = "Meta+Q";
+          "Window Close" = "Meta+Q"; # Alt+F4
           "MoveMouseToFocus" = ""; # Meta+F5
           "MoveMouseToCenter" = ""; # Meta+F6
         }
@@ -41,8 +40,7 @@ modules.mkModule inputs ./shortcuts.nix {
         ])); # None
 
         plasmashell = {
-          "activate application launcher" = "Meta+A"; # Meta
-          "manage activities" = "Meta+W"; # Meta+Q
+          "manage activities" = "Meta+A"; # Meta+Q
         }
         // (rangeOptions { } (i: "activate task manager entry ${i}") (i: [
           "Meta+Alt+${i}"
