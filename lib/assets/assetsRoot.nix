@@ -1,0 +1,1 @@
+{ flakePath }: flakePath "assets"

@@ -7,6 +7,7 @@ modules.mkDefaultsModule inputs ./. {
       themes.catppuccin.enable = true;
       layout.enable = true;
       fonts.enable = true;
+      wallpapers.enable = true;
       koi = {
         enable = true;
         themes = {

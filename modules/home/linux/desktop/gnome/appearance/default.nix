@@ -7,6 +7,6 @@ modules.mkDefaultsModule inputs ./. {
       themes.enableDefaults = true;
       layout.enable = true;
       fonts.enable = true;
-      wallpaper.enable = true;
+      wallpapers.enable = true;
     };
 }

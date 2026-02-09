@@ -1,4 +1,4 @@
-_:
-# string: file name without last extension
+{ lib }:
+# string: file name without last extensions
 filename: # string: file name
-builtins.head (builtins.match "(.*)\\..*" filename)
+lib.strings.join "." (lib.lists.dropEnd 1 (lib.strings.splitString "." filename))

@@ -1,24 +1,25 @@
 { lib, vars, ... }@inputs:
 with lib.custom;
-modules.mkModule inputs ./wallpaper.nix {
+modules.mkModule inputs ./wallpapers.nix {
   config =
     let
       wallpapers = assets.wallpapers inputs;
       wallpapersDataDir = "gnome-background-properties";
-      color = "#000000";
+      defaultColor = "#000000";
+      wallpaperName = vars.wallpaper;
     in
     {
       dconf.settings =
-        if isNull vars.wallpaper then
+        if isNull wallpaperName then
           { }
         else
-          with wallpapers.${vars.wallpaper};
+          with wallpapers.${wallpaperName};
           let
             pathToURI = filePath: "file://${filePath}";
-            uris = assets.wallpaperValue type {
+            uris = assets.assetTypeValue type {
               light-dark = {
-                light = pathToURI path.light;
-                dark = pathToURI path.dark;
+                light = pathToURI light.path;
+                dark = pathToURI dark.path;
               };
               regular =
                 let
@@ -34,40 +35,38 @@ modules.mkModule inputs ./wallpaper.nix {
             "org/gnome/desktop/background" = {
               picture-uri = uris.light;
               picture-uri-dark = uris.dark;
-              primary-color = color;
+              primary-color = defaultColor;
             };
             "org/gnome/desktop/screensaver" = {
               picture-uri = uris.light;
-              primary-color = color;
+              primary-color = defaultColor;
             };
           };
       xdg.dataFile = lib.attrsets.foldlAttrs (
-        result: id: properties:
+        result: _: wallpaper:
         result
         // {
-          "${wallpapersDataDir}/${id}.xml".text =
+          "${wallpapersDataDir}/${wallpaper.id}.xml".text =
             # https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/blob/main/backgrounds/adwaita.xml.in
-            with properties; ''
+            ''
               <?xml version="1.0"?>
               <!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
               <wallpapers>
                 <wallpaper deleted="false">
-                  <name>${id}</name>
-                  ${
-                    if type == "light-dark" then
-                      ''
-                        <filename>${path.light}</filename>
-                        <filename-dark>${path.dark}</filename-dark>
-                      ''
-                    else
-                      ''
-                        <filename>${path}</filename>
-                      ''
-                  }
+                  <name>${wallpaper.id}</name>
+                  ${assets.assetTypeValue type {
+                    light-dark = ''
+                      <filename>${wallpaper.light.path}</filename>
+                      <filename-dark>${wallpaper.dark.path}</filename-dark>
+                    '';
+                    regular = ''
+                      <filename>${path}</filename>
+                    '';
+                  }}
                   <options>zoom</options>
                   <shade_type>solid</shade_type>
-                  <pcolor>${color}</pcolor>
-                  <scolor>${color}</scolor>
+                  <pcolor>${defaultColor}</pcolor>
+                  <scolor>${defaultColor}</scolor>
                 </wallpaper>
               </wallpapers>
             '';

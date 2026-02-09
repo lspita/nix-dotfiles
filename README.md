@@ -24,8 +24,8 @@ Credits to [Ryan Yin's config](https://github.com/ryan4yin/nix-config) for a lot
   - `vars.nix`: host `vars.nix` overrides.
   - `modules`: directory with all the host-specific configuration modules. These modules options are available under the `custom.hostModules` option in the corresponding configuration. It is structured just like the top-level `modules` directory.
 - `lib`: directory with user defined library. The library is loaded with [haumea](https://github.com/nix-community/haumea) and provided under `lib.custom`.
-- `assets`: directory with different type of assets:
-  - `wallpapers`: directory with wallpapers. A wallpaper can either be a single file or a directory containing a `light` and `dark` variant.
+- `assets`: directory with different type of assets. An asset is a directory with a `metadata.nix` file pointing to the real asset files.
+  - `wallpapers`: directory with wallpapers.
   - `profiles`: directory with user profile pictures.
 - `outputs`: directory with the flake outputs.
 - `templates`: directory with templates provided by this flake
