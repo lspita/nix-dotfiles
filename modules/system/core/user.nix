@@ -31,6 +31,7 @@ modules.mkModule inputs ./user.nix {
         in
         lib.mkIf (!isNull userImage) (
           platform.systemTypeValue {
+            # Like this it works on gnome but also other DE (e.g. Plasma)
             # https://discourse.nixos.org/t/setting-the-user-profile-image-under-gnome/36233
             linux.system.activationScripts.gnome-set-pfp.text =
               # https://discourse.nixos.org/t/setting-the-user-profile-image-under-gnome/36233/6
