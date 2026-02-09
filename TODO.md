@@ -8,3 +8,4 @@
 - [ ] Starship prompt
 - [ ] Auto-tiling
 - [ ] Wallpaper-matching colors
+- [ ] Localsend
