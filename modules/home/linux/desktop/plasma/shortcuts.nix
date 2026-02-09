@@ -24,15 +24,18 @@ modules.mkModule inputs ./shortcuts.nix {
       {
         kwin = {
           "Window Close" = "Meta+Q"; # Alt+F4
-          "MoveMouseToFocus" = ""; # Meta+F5
-          "MoveMouseToCenter" = ""; # Meta+F6
+          "MoveMouseToFocus" = "none"; # Meta+F5
+          "MoveMouseToCenter" = "none"; # Meta+F6
+          "Walk Through Windows" = "Alt+Tab"; # Alt+Tab, Meta+Tab
+          "Walk Through Windows (Reverse)" = "Alt+Shift+Tab"; # Alt+Shift+Tab, Meta+Shift+Tab
+          "Walk Through Windows of Current Application" = "Meta+Tab"; # Alt+`
+          "Walk Through Windows of Current Application (Reverse)" = "Meta+Shift+Tab"; # Alt+~
         }
-        # TODO: fix
         // (rangeOptions { } (i: "Switch to Desktop ${i}") (i: [
           "Meta+${i}"
           "Meta+Num+${i}"
         ])) # Ctrl+F<i>
-        // (rangeOptions { } (i: "Switch to Screen ${i}") (i: "")) # Meta+<i>
+        // (rangeOptions { } (i: "Switch to Screen ${i}") (i: "none")) # Meta+<i>
         # Meta+Shift+<i> doesn't work because it registers as Meta+<special char of number>
         // (rangeOptions { } (i: "Window to Desktop ${i}") (i: [
           "Meta+Shift+${i}"
@@ -47,7 +50,7 @@ modules.mkModule inputs ./shortcuts.nix {
           "Meta+Alt+Num+${i}"
         ])); # Meta-<i>
 
-        org_kde_powerdevil.powerProfile = ""; # Meta+B
+        org_kde_powerdevil.powerProfile = "none"; # Meta+B
       }
       // (
         let
@@ -59,7 +62,7 @@ modules.mkModule inputs ./shortcuts.nix {
             in
             (optionals.ifNotNull { } {
               "services/${plasmaDefaultApp.desktop}" = {
-                "_launch" = "";
+                "_launch" = "none";
               };
             } plasmaDefaultApp)
             // (
