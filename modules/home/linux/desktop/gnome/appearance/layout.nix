@@ -1,6 +1,6 @@
 { lib, vars, ... }@inputs:
 with lib.custom;
-modules.mkModule inputs ./appsLayout.nix {
+modules.mkModule inputs ./layout.nix {
   config =
     let
       defaultAppFolders = [

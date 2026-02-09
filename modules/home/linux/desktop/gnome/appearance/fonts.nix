@@ -1,19 +1,19 @@
 { lib, vars, ... }@inputs:
 with lib.custom;
-modules.mkModule inputs ./font.nix {
+modules.mkModule inputs ./fonts.nix {
   config = with vars.fonts; {
     dconf.settings = {
       "org/gnome/desktop/interface" =
         let
           fontString = font: "${font.name} ${toString font.size}";
         in
-        (optionals.ifNotNull { } ({
+        (optionals.ifNotNull { } {
           font-name = fontString normal;
           document-font-name = fontString normal;
-        }) normal)
-        // (optionals.ifNotNull { } ({
+        } normal)
+        // (optionals.ifNotNull { } {
           monospace-font-name = fontString monospace;
-        }) monospace);
+        } monospace);
     };
   };
 }
