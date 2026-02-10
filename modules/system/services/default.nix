@@ -3,12 +3,10 @@ with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
-    setDefaultSubconfig (
-      let
-        notWsl = !hostInfo.wsl;
-      in
-      {
-        ssh.enable = notWsl;
-      }
-    );
+    let
+      notWsl = !hostInfo.wsl;
+    in
+    setDefaultSubconfig {
+      ssh.enable = notWsl;
+    };
 }
