@@ -9,3 +9,4 @@
 - [ ] Auto-tiling
 - [ ] Wallpaper-matching colors
 - [ ] Localsend
+- [ ] Remove ifs where possible (use lib functions e.g. lib.lists.optional)
