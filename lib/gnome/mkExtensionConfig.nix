@@ -20,7 +20,7 @@
           [
             "org/gnome/shell/extensions/${name}"
           ]
-          ++ (if key != "" then [ key ] else [ ])
+          ++ (lib.lists.optionals (key != "") key)
         )
       } =
         value;

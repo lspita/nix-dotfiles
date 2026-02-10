@@ -52,22 +52,19 @@ modules.mkModule inputs ./open-bar.nix {
         apply-gtk = false;
         apply-flatpak = false;
       }
-      // (
-        if isNull vars.wallpaper then
-          { }
-        else
-          with (assets.wallpapers inputs).${vars.wallpaper};
-          assets.wallpaperValue type {
-            light-dark = {
-              autotheme-dark = "Dark";
-              autotheme-light = "Light";
-            };
-            regular = {
-              autotheme-dark = "Color";
-              autotheme-light = "Color";
-            };
-          }
-      );
+      // (optionals.ifNotNull { } (
+        with (assets.wallpapers inputs).${vars.wallpaper};
+        assets.wallpaperValue type {
+          light-dark = {
+            autotheme-dark = "Dark";
+            autotheme-light = "Light";
+          };
+          regular = {
+            autotheme-dark = "Color";
+            autotheme-light = "Color";
+          };
+        }
+      ) vars.wallpaper);
     };
   };
 }

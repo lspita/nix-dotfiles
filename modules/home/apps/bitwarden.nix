@@ -14,24 +14,22 @@ modules.mkModule inputs ./bitwarden.nix {
       {
         home = {
           packages = [ package ];
-          sessionVariables =
-            if self.sshAgent.enable then
-              # https://bitwarden.com/help/ssh-agent/#configure-bitwarden-ssh-agent
-              let
-                sockerDir =
-                  let
-                    homeDir = dotfiles.homeDir inputs;
-                  in
-                  platform.systemTypeValue {
-                    linux = homeDir;
-                    darwin = "${homeDir}/Library/Containers/com.bitwarden.desktop/Data";
-                  };
-              in
-              {
-                SSH_AUTH_SOCK = "${sockerDir}/.bitwarden-ssh-agent.sock";
-              }
-            else
-              { };
+          sessionVariables = lib.attrsets.optionalAttrs self.sshAgent.enable (
+            # https://bitwarden.com/help/ssh-agent/#configure-bitwarden-ssh-agent
+            let
+              socketDir =
+                let
+                  homeDir = dotfiles.homeDir inputs;
+                in
+                platform.systemTypeValue {
+                  linux = homeDir;
+                  darwin = "${homeDir}/Library/Containers/com.bitwarden.desktop/Data";
+                };
+            in
+            {
+              SSH_AUTH_SOCK = "${socketDir}/.bitwarden-ssh-agent.sock";
+            }
+          );
         };
       }
       (lib.mkIf self.autostart.enable (

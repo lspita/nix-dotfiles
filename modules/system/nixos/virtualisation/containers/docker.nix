@@ -32,6 +32,6 @@ modules.mkModule inputs ./docker.nix {
       environment.systemPackages = with pkgs; [
         docker-compose
       ];
-      users.users.${vars.user.username}.extraGroups = if self.setGroup then [ "docker" ] else [ ];
+      users.users.${vars.user.username}.extraGroups = lib.lists.optional self.setGroup "docker";
     };
 }

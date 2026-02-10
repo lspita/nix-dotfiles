@@ -9,17 +9,13 @@ modules.mkModule inputs ./blesh.nix {
     {
       home = {
         packages = with pkgs; [ blesh ];
-        file.".blerc".text =
-          if self.fzfIntegration.enable then
-            ''
-              # https://github.com/akinomyoga/blesh-contrib/blob/master/integration/fzf.md
+        file.".blerc".text = lib.strings.optionalString self.fzfIntegration.enable ''
+          # https://github.com/akinomyoga/blesh-contrib/blob/master/integration/fzf.md
 
-              # Set up fzf
-              ble-import -d integration/fzf-completion
-              ble-import -d integration/fzf-key-bindings
-            ''
-          else
-            "";
+          # Set up fzf
+          ble-import -d integration/fzf-completion
+          ble-import -d integration/fzf-key-bindings
+        '';
       };
       # https://github.com/akinomyoga/ble.sh/wiki/Manual-A1-Installation#user-content-nixpkgs
       custom.shell.rc = lib.mkMerge [

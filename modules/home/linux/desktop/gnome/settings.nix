@@ -20,16 +20,11 @@ modules.mkModule inputs ./settings.nix {
           center-new-windows = true;
           experimental-features =
             [ ]
-            ++ (if self.vrr.enable then [ "variable-refresh-rate" ] else [ ])
-            ++ (
-              if self.fractionalScaling.enable then
-                [
-                  "scale-monitor-framebuffer"
-                  "xwayland-native-scaling"
-                ]
-              else
-                [ ]
-            );
+            ++ (lib.lists.optional self.vrr.enable "variable-refresh-rate")
+            ++ (lib.lists.optionals self.fractionalScaling.enable [
+              "scale-monitor-framebuffer"
+              "xwayland-native-scaling"
+            ]);
         };
         "org/gnome/settings-daemon/plugins/color" = {
           # manual night light

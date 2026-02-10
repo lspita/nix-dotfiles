@@ -146,12 +146,8 @@ modules.mkModule inputs ./mimeApps {
             ])
           ]);
       };
-      home.shellAliases =
-        if self.openAlias.enable then
-          {
-            open = "xdg-open";
-          }
-        else
-          { };
+      home.shellAliases = lib.attrsets.optionalAttrs self.openAlias.enable {
+        open = "xdg-open";
+      };
     };
 }

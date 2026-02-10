@@ -38,30 +38,28 @@ modules.mkModule inputs ./. {
           cursor_trail = 10; # ms
         };
       };
-      xdg.configFile =
-        if isNull self.theme then
-          { }
-        else
-          let
-            kittyConfigDir = "kitty";
-            theme = ./themes/${self.theme};
-            paths =
-              if lib.filesystem.pathIsDirectory theme then
-                {
-                  dark = "${theme}/dark.conf";
-                  light = "${theme}/light.conf";
-                }
-              else
-                {
-                  dark = "${theme}.conf";
-                  light = "${theme}.conf";
-                };
-          in
-          {
-            # https://sw.kovidgoyal.net/kitty/kittens/themes/#change-color-themes-automatically-when-the-os-switches-between-light-and-dark
-            "${kittyConfigDir}/no-preference-theme.auto.conf".source = paths.dark;
-            "${kittyConfigDir}/dark-theme.auto.conf".source = paths.dark;
-            "${kittyConfigDir}/light-theme.auto.conf".source = paths.light;
-          };
+      xdg.configFile = optionals.ifNotNull { } (
+        let
+          kittyConfigDir = "kitty";
+          theme = ./themes/${self.theme};
+          paths =
+            if lib.filesystem.pathIsDirectory theme then
+              {
+                dark = "${theme}/dark.conf";
+                light = "${theme}/light.conf";
+              }
+            else
+              {
+                dark = "${theme}.conf";
+                light = "${theme}.conf";
+              };
+        in
+        {
+          # https://sw.kovidgoyal.net/kitty/kittens/themes/#change-color-themes-automatically-when-the-os-switches-between-light-and-dark
+          "${kittyConfigDir}/no-preference-theme.auto.conf".source = paths.dark;
+          "${kittyConfigDir}/dark-theme.auto.conf".source = paths.dark;
+          "${kittyConfigDir}/light-theme.auto.conf".source = paths.light;
+        }
+      ) self.theme;
     };
 }

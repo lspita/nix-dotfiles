@@ -10,6 +10,6 @@ modules.mkModule inputs ./fastfetch.nix {
       programs.fastfetch = {
         enable = true;
       };
-      home.shellAliases = if self.neofetchAlias then { neofetch = "fastfetch"; } else { };
+      home.shellAliases = lib.attrsets.optionalAttrs self.neofetchAlias { neofetch = "fastfetch"; };
     };
 }

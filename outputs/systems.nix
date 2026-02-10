@@ -30,7 +30,7 @@ let
           let
             baseVars = import (flakePath "vars.nix");
             hostVarPath = hostPath "vars";
-            hostVars = if builtins.pathExists hostVarPath then (import hostVarPath) else { };
+            hostVars = lib.attrsets.optionalAttrs (builtins.pathExists hostVarPath) (import hostVarPath);
           in
           lib.attrsets.recursiveUpdate baseVars (
             if builtins.isFunction hostVars then hostVars baseVars else hostVars

@@ -4,11 +4,11 @@ modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
     setDefaultSubconfig (
-      if hostInfo.wsl then
-        { }
-      else
-        {
-          ssh.enable = true;
-        }
+      let
+        notWsl = !hostInfo.wsl;
+      in
+      {
+        ssh.enable = notWsl;
+      }
     );
 }

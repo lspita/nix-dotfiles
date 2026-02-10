@@ -8,7 +8,7 @@ modules.mkModule inputs ./input.nix {
     { self, ... }:
     {
       home.file.".inputrc".text = ''
-        ${if self.completition.ignoreCase then "set completion-ignore-case on" else ""}
+        ${lib.strings.optionalString self.completition.ignoreCase "set completion-ignore-case on"}
       '';
     };
 }

@@ -13,8 +13,9 @@ modules.mkModule inputs ./. {
     {
       programs.starship = {
         enable = true;
-        settings =
-          if isNull self.preset then { } else fromTOML (builtins.readFile ./presets/${self.preset}.toml);
+        settings = optionals.ifNotNull { } (fromTOML (
+          builtins.readFile ./presets/${self.preset}.toml
+        )) self.preset;
       };
       custom.shell.rc = lib.mkAfter [ (shell: ''eval "$(starship init ${shell})"'') ];
     };

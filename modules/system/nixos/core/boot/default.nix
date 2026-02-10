@@ -52,17 +52,14 @@ modules.mkModule inputs ./. {
           }
           // (
             with self.dualBoot;
-            if enable then
-              {
-                # https://wiki.nixos.org/wiki/Dual_Booting_NixOS_and_Windows#EFI_with_multiple_disks
-                windows = windows.entries;
-                edk2-uefi-shell = {
-                  enable = true;
-                  sortKey = "z_edk2"; # put last
-                };
-              }
-            else
-              { }
+            lib.attrsets.optionalAttrs enable {
+              # https://wiki.nixos.org/wiki/Dual_Booting_NixOS_and_Windows#EFI_with_multiple_disks
+              windows = windows.entries;
+              edk2-uefi-shell = {
+                enable = true;
+                sortKey = "z_edk2"; # put last
+              };
+            }
           );
           efi.canTouchEfiVariables = true;
           timeout = optionals.getNotNull (if self.dualBoot.enable then 5 else 0) self.entriesTimeout; # spam space to show entries selection

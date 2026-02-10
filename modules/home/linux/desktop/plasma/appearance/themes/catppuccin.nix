@@ -24,14 +24,9 @@ modules.mkModule inputs ./catppuccin.nix {
       programs.plasma.workspace = {
         theme = "default"; # use breeze and override colors
       }
-      // (
-        if self.reset then
-          {
-            colorScheme = "CatppuccinMochaSapphire";
-            cursor.theme = "catppuccin-mocha-sapphire-cursors";
-          }
-        else
-          { }
-      );
+      // (lib.attrsets.optionalAttrs self.reset {
+        colorScheme = "CatppuccinMochaSapphire";
+        cursor.theme = "catppuccin-mocha-sapphire-cursors";
+      });
     };
 }

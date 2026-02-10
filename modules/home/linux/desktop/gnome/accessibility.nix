@@ -10,14 +10,9 @@ modules.mkModule inputs ./accessibility.nix {
       dconf.settings = {
         "org/gnome/desktop/interface".toolkit-accessibility = true;
       }
-      // (
-        if self.onScreenKeyboard.enable then
-          {
-            "org/gnome/desktop/a11y/applications".screen-keyboard-enabled = true;
-            "org/gnome/desktop/a11y/keyboard".enable = true;
-          }
-        else
-          { }
-      );
+      // (lib.attrsets.optionalAttrs self.onScreenKeyboard.enable {
+        "org/gnome/desktop/a11y/applications".screen-keyboard-enabled = true;
+        "org/gnome/desktop/a11y/keyboard".enable = true;
+      });
     };
 }

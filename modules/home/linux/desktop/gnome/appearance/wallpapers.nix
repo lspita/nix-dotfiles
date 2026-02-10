@@ -9,39 +9,37 @@ modules.mkModule inputs ./wallpapers.nix {
       wallpaperName = vars.wallpaper;
     in
     {
-      dconf.settings =
-        if isNull wallpaperName then
-          { }
-        else
-          with wallpapers.${wallpaperName};
-          let
-            pathToURI = filePath: "file://${filePath}";
-            uris = assets.assetTypeValue type {
-              light-dark = {
-                light = pathToURI light.path;
-                dark = pathToURI dark.path;
+      dconf.settings = optionals.ifNotNull { } (
+        with wallpapers.${wallpaperName};
+        let
+          pathToURI = filePath: "file://${filePath}";
+          uris = assets.assetTypeValue type {
+            light-dark = {
+              light = pathToURI light.path;
+              dark = pathToURI dark.path;
+            };
+            regular =
+              let
+                uri = pathToURI path;
+              in
+              {
+                light = uri;
+                dark = uri;
               };
-              regular =
-                let
-                  uri = pathToURI path;
-                in
-                {
-                  light = uri;
-                  dark = uri;
-                };
-            };
-          in
-          {
-            "org/gnome/desktop/background" = {
-              picture-uri = uris.light;
-              picture-uri-dark = uris.dark;
-              primary-color = defaultColor;
-            };
-            "org/gnome/desktop/screensaver" = {
-              picture-uri = uris.light;
-              primary-color = defaultColor;
-            };
           };
+        in
+        {
+          "org/gnome/desktop/background" = {
+            picture-uri = uris.light;
+            picture-uri-dark = uris.dark;
+            primary-color = defaultColor;
+          };
+          "org/gnome/desktop/screensaver" = {
+            picture-uri = uris.light;
+            primary-color = defaultColor;
+          };
+        }
+      ) wallpaperName;
       xdg.dataFile = lib.attrsets.foldlAttrs (
         result: _: wallpaper:
         result

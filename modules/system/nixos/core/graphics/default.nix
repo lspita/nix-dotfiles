@@ -5,14 +5,11 @@ modules.mkDefaultsModule inputs ./. {
     { self, setDefaultSubconfig, ... }:
     lib.mkMerge [
       (setDefaultSubconfig (
-        optionals.ifNotNull { } (
-          if builtins.hasAttr hostInfo.graphics self then
-            {
-              ${hostInfo.graphics}.enable = !hostInfo.wsl;
-            }
-          else
-            { }
-        ) hostInfo.graphics
+        lib.attrsets.optionalAttrs
+          ((!isNull hostInfo.graphics) && (builtins.hasAttr hostInfo.graphics self))
+          {
+            ${hostInfo.graphics}.enable = !hostInfo.wsl;
+          }
       ))
       {
         hardware.graphics.enable = true;

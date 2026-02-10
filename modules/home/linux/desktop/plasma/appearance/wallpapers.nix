@@ -54,12 +54,9 @@ modules.mkModule inputs ./wallpapers.nix {
                   let
                     wallpaperColor = wallpaper.color or null;
                   in
-                  if (!isNull wallpaperColor && self.accentColor.enable) then
-                    {
-                      X-KDE-PlasmaImageWallpaper-AccentColor = wallpaperColor;
-                    }
-                  else
-                    { }
+                  lib.attrsets.optionalAttrs (!isNull wallpaperColor && self.accentColor.enable) {
+                    X-KDE-PlasmaImageWallpaper-AccentColor = wallpaperColor;
+                  }
                 )
               );
             }

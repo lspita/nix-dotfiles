@@ -35,15 +35,10 @@ modules.mkModule inputs ./plasma.nix {
             isoimagewriter
             partitionmanager
           ]
-          ++ (
-            if config.services.displayManager.sddm.enable then
-              [
-                # sddm settings integration
-                sddm-kcm
-              ]
-            else
-              [ ]
-          );
+          ++ (lib.lists.optionals config.services.displayManager.sddm.enable [
+            # sddm settings integration
+            sddm-kcm
+          ]);
           plasma6 = {
             excludePackages = self.excludePackages;
           };
