@@ -28,11 +28,7 @@ modules.mkModule inputs ./koi.nix {
         gtk = mkLightDarkThemeOption "gtk theme"; # ls /var/run/current-system/sw/share/themes
         konsole = mkLightDarkThemeOption "konsole profile"; # ls ~/.local/share/konsole
       };
-      toggle.shortcut = lib.mkOption {
-        type = with lib.types; nullOr str;
-        default = null;
-        description = "Shortcut to toggle between light and dark mode";
-      };
+      shortcuts.toggle = plasma.mkShortcutOption { } "toggle light/dark mode";
     };
   config =
     { self, ... }:
@@ -131,13 +127,11 @@ modules.mkModule inputs ./koi.nix {
         };
       }
       // (optionals.ifNotNull { } {
-        hotkeys.commands = {
-          "koi-toggle-mode" = {
-            comment = "Toggle dakr/light mode (Koi)";
-            key = self.toggle.shortcut;
-            command = "qdbus dev.baduhai.Koi /Koi local.KoiDbusInterface.toggleMode";
-          };
+        hotkeys.commands."koi-toggle-mode" = {
+          comment = "Toggle light/dark mode (Koi)";
+          key = self.shortcuts.toggle;
+          command = "qdbus dev.baduhai.Koi /Koi local.KoiDbusInterface.toggleMode";
         };
-      } self.toggle.shortcut);
+      } self.shortcuts.toggle);
     };
 }

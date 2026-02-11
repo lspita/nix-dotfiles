@@ -6,5 +6,6 @@ modules.mkDefaultsModule inputs ./. {
     setDefaultSubconfig {
       konsole.enable = true;
       kwrite.enable = true;
+      krunner.enable = true;
     };
 }

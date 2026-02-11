@@ -59,6 +59,7 @@ modules.mkModule inputs ./settings.nix {
               TerminalApplication.value = customTerminal.program;
               TerminalService.value = customTerminal.desktop;
             };
+          kuriikwsfilterrc.General.DefaultWebShortcut = "google"; # use google in plasma search "web search"
         };
       };
     };
