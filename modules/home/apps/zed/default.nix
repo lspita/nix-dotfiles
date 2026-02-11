@@ -56,6 +56,7 @@ modules.mkModule inputs ./. {
             "sql"
             "java"
             "lua"
+            "kotlin"
           ];
           userSettings = objectConfig ./settings.json (
             with vars.fonts;

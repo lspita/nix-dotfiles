@@ -25,5 +25,6 @@ modules.mkDefaultsModule inputs ./. {
       };
       spotify.enable = notWsl;
       discord.enable = notWsl;
+      android-studio.enable = notWsl;
     };
 }

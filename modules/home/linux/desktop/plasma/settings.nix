@@ -47,7 +47,7 @@ modules.mkModule inputs ./settings.nix {
         };
         configFile = {
           kded5rc.Module-browserintegrationreminder.autoload = false; # disable browser integration alert in system tray
-          # kwinrc.Effect-overview.FilterWindows = false; # make search in overview ignore windows;
+          kwinrc.Effect-overview.FilterWindows = false; # make search in overview ignore windows;
           kdeglobals.General =
             with vars.linux.defaultApps;
             let
@@ -56,9 +56,10 @@ modules.mkModule inputs ./settings.nix {
             in
             {
               ColorScheme.persistent = true;
-              TerminalApplication.value = customTerminal.program;
-              TerminalService.value = customTerminal.desktop;
+              TerminalApplication = customTerminal.program;
+              TerminalService = customTerminal.desktop;
             };
+          kuriikwsfilterrc.General.DefaultWebShortcut = "google"; # use google in plasma search "web search"
         };
       };
     };

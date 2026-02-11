@@ -5,5 +5,6 @@ modules.mkDefaultsModule inputs ./. {
     { setDefaultSubconfig, ... }:
     setDefaultSubconfig {
       containers.enableDefaults = true;
+      libvirtd.enable = true;
     };
 }

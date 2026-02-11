@@ -29,8 +29,11 @@ modules.mkModule inputs ./nh.nix {
           ''
           ''
             flake-push() {
-              git ${gitFlakeRef} add .
-              git ${gitFlakeRef} commit -m "$1"
+              local message="''${1:-""}"
+              if [ ! -z "$message" ]; then
+                git ${gitFlakeRef} add .
+                git ${gitFlakeRef} commit -m "$message"
+              fi
               git ${gitFlakeRef} push
             }
           ''

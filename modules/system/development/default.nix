@@ -4,8 +4,6 @@ modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
     setDefaultSubconfig {
-      konsole.enable = true;
-      kwrite.enable = true;
-      krunner.enable = true;
+      android.enable = true;
     };
 }

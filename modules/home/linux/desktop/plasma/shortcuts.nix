@@ -2,7 +2,10 @@
 with lib.custom;
 modules.mkModule inputs ./shortcuts.nix {
   config = {
-    custom.linux.desktop.plasma.appearance.koi.toggle.shortcut = "Meta+F5";
+    custom.linux.desktop.plasma = {
+      appearance.koi.shortcuts.toggle = "Meta+F5";
+      apps.krunner.shortcuts.launch = "Meta"; # Alt+Space
+    };
     programs.plasma.shortcuts =
       # kglobalshortcutsrc
       let
@@ -23,7 +26,7 @@ modules.mkModule inputs ./shortcuts.nix {
       in
       {
         kwin = {
-          Overview = "Meta";
+          # Overview = "Meta"; # Meta+W
           "Window Close" = "Meta+Q"; # Alt+F4
           "MoveMouseToFocus" = "none"; # Meta+F5
           "MoveMouseToCenter" = "none"; # Meta+F6
@@ -67,22 +70,17 @@ modules.mkModule inputs ./shortcuts.nix {
                 "_launch" = "none";
               };
             } plasmaDefaultApp)
-            // (
-              if plasmaDefaultApp != null || customApp != null then
-                {
-                  # override plasma default terminal if null
-                  "services/${customApp.desktop}" = {
-                    "_launch" = shortcut;
-                  };
-                }
-              else
-                { }
-            );
+            // (lib.attrsets.optionalAttrs (plasmaDefaultApp != null || customApp != null) {
+              # override plasma default terminal if null
+              "services/${customApp.desktop}" = {
+                "_launch" = shortcut;
+              };
+            });
         in
         (plasmaDefaultOrCustomIfPresent "terminal" "Meta+Return") # Ctrl+Alt+T
         // (plasmaDefaultOrCustomIfPresent "fileManager" "Meta+F") # Meta+E
-        // (plasmaDefaultOrCustomIfPresent "browser" "Meta+B") # None
-        // (plasmaDefaultOrCustomIfPresent "editor" "Meta+E") # None
+        // (plasmaDefaultOrCustomIfPresent "browser" "Meta+B")
+        // (plasmaDefaultOrCustomIfPresent "editor" "Meta+E")
       );
   };
 }
