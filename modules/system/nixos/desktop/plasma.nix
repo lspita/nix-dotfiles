@@ -26,6 +26,7 @@ modules.mkModule inputs ./plasma.nix {
         services.desktopManager.plasma6.enable = true;
         environment = with pkgs.kdePackages; {
           systemPackages = [
+            # https://apps.kde.org/
             kcalc
             kcharselect
             kclock
@@ -34,6 +35,10 @@ modules.mkModule inputs ./plasma.nix {
             ksystemlog
             isoimagewriter
             partitionmanager
+            filelight
+            kamoso
+            dragon
+            krecorder
           ]
           ++ (lib.lists.optionals config.services.displayManager.sddm.enable [
             # sddm settings integration
