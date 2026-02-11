@@ -18,6 +18,11 @@ modules.mkModule inputs ./nh.nix {
         in
         [
           ''
+            flake-status() {
+              git ${gitFlakeRef} status
+            }
+          ''
+          ''
             flake-pull() {
               git ${gitFlakeRef} pull
             }
