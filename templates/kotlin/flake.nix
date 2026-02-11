@@ -22,7 +22,7 @@
               nixfmt
               # kotlin
               kotlin
-              kotlin-language-server
+              kotlin-language-server # deprecated, but official kotlin-lsp is still not packaged
               gradle
             ];
             shellHook = ''
