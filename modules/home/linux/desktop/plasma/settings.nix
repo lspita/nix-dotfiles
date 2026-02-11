@@ -56,8 +56,8 @@ modules.mkModule inputs ./settings.nix {
             in
             {
               ColorScheme.persistent = true;
-              TerminalApplication.value = customTerminal.program;
-              TerminalService.value = customTerminal.desktop;
+              TerminalApplication = customTerminal.program;
+              TerminalService = customTerminal.desktop;
             };
           kuriikwsfilterrc.General.DefaultWebShortcut = "google"; # use google in plasma search "web search"
         };
