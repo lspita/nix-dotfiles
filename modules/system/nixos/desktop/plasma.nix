@@ -40,10 +40,7 @@ modules.mkModule inputs ./plasma.nix {
             dragon
             krecorder
           ]
-          ++ (lib.lists.optionals config.services.displayManager.sddm.enable [
-            # sddm settings integration
-            sddm-kcm
-          ]);
+          ++ (lib.lists.optional config.services.displayManager.sddm.enable sddm-kcm); # sddm settings integration
           plasma6 = {
             excludePackages = self.excludePackages;
           };
