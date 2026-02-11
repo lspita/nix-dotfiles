@@ -55,6 +55,7 @@ modules.mkModule inputs ./settings.nix {
               customTerminal = optionals.getNotNull plasmaDefaultTerminal terminal;
             in
             {
+              ColorScheme.persistent = true;
               TerminalApplication.value = customTerminal.program;
               TerminalService.value = customTerminal.desktop;
             };
