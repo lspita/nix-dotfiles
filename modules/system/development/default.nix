@@ -4,7 +4,6 @@ modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
     setDefaultSubconfig {
-      containers.enableDefaults = true;
-      libvirtd.enable = true;
+      android.enable = true;
     };
 }

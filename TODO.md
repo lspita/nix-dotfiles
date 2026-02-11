@@ -11,3 +11,4 @@
 - [ ] Localsend
 - [x] Remove ifs where possible (use lib functions e.g. lib.lists.optional)
 - [ ] System tray icons
+- [ ] PlatformIO module (like android)
