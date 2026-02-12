@@ -2,7 +2,7 @@
 
 - [ ] Power profiles (hybernate after 2 hours)
 - [x] Wallpapers
-- [ ] Profile image AS TMPFILE
+- [x] Profile image AS TMPFILE
 - [?] Fix online accounts
 - [ ] Night light
 - [ ] Starship prompt

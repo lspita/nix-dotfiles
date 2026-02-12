@@ -36,28 +36,31 @@ modules.mkModule inputs ./user.nix {
           platform.systemTypeValue {
             # Like this it works on gnome but also other DE (e.g. Plasma)
             # https://discourse.nixos.org/t/setting-the-user-profile-image-under-gnome/36233
-            linux.system.activationScripts.gnome-set-pfp.text =
-              # https://discourse.nixos.org/t/setting-the-user-profile-image-under-gnome/36233/6
-              let
-                username = vars.user.username;
-                imageFile = assets.assetTypeValue userProfile {
-                  light-dark = throw "Invalid asset type";
-                  regular = userProfile.path;
-                };
-                outDir = "/var/lib/AccountsService";
-                iconsDir = "${outDir}/icons";
-                usersDir = "${outDir}/users";
-                iconFile = "${iconsDir}/${username}";
-                userFile = "${usersDir}/${username}";
-              in
-              ''
-                rm -rf ${iconFile}
-                rm -rf ${userFile}
-                mkdir -p ${iconsDir}
-                mkdir -p ${usersDir}
-                cp -f ${imageFile} ${iconFile}
-                echo -e "[User]\nIcon=${imageFile}\n" > ${userFile}
-              '';
+            linux = {
+              systemd.tmpfiles.rules =
+                # https://discourse.nixos.org/t/setting-the-user-profile-image-under-gnome/36233/6
+                let
+                  username = vars.user.username;
+                  imageFile = assets.assetTypeValue userProfile {
+                    light-dark = throw "Invalid asset type";
+                    regular = userProfile.path;
+                  };
+                  outDir = "/var/lib/AccountsService";
+                  iconsDir = "${outDir}/icons";
+                  usersDir = "${outDir}/users";
+                  iconFilePath = "${iconsDir}/${username}";
+                  userFilePath = "${usersDir}/${username}";
+                  userFileContents = pkgs.writeText "accounts-service-${username}" ''
+                    [User]
+                    Icon=${iconFilePath}
+                  '';
+                in
+                # man 5 tmpfiles.d
+                [
+                  "L+ ${iconFilePath} 644 ${username} ${username} - ${imageFile}"
+                  "L+ ${userFilePath} 644 ${username} ${username} - ${userFileContents}"
+                ];
+            };
             darwin = { };
           }
         )
