@@ -1,3 +1,4 @@
+{ hostInfo, ... }:
 {
   dotfilesHome = "nix-dotfiles"; # string: location of this repo relative to the user home
   backupFileExtension = "bkp"; # string: file extension to use for home-manager backups
@@ -9,7 +10,13 @@
     image = "clank"; # string?: user image from `assets/profiles`
     shell = pkgs: pkgs.bash; # fn(pkgs) -> pkg?: shell package to use for the user
   };
-  nix.allowUnfree = true; # bool: if to allow nix unfree software
+  nixpkgs.config =
+    # set?: nixpkgs config (using flakes, you need to provide the nixpkgs config before the modules)
+    {
+      allowUnfree = true;
+      android_sdk.accept_license = true;
+      cudaSupport = hostInfo.graphics == "nvidia";
+    };
   fonts =
     let
       size = 11;

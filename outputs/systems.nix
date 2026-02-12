@@ -28,12 +28,17 @@ let
           if lib.filesystem.pathIsDirectory fullPath then fullPath else "${fullPath}.nix";
         vars =
           let
-            baseVars = import (flakePath "vars.nix");
+            optionalVarsFunction = vars: inputs: if builtins.isFunction vars then vars inputs else vars;
+            baseVarsInputs = {
+              inherit hostInfo;
+              vars = null;
+            };
+            baseVars = optionalVarsFunction (import (flakePath "vars.nix")) baseVarsInputs;
             hostVarPath = hostPath "vars";
             hostVars = lib.attrsets.optionalAttrs (builtins.pathExists hostVarPath) (import hostVarPath);
           in
           lib.attrsets.recursiveUpdate baseVars (
-            if builtins.isFunction hostVars then hostVars baseVars else hostVars
+            optionalVarsFunction hostVars (baseVarsInputs // { vars = baseVars; })
           );
         baseInputs = {
           inherit
@@ -51,7 +56,7 @@ let
         };
         pkgs = import nixpkgs {
           inherit (hostInfo) system;
-          config = { inherit (vars.nix) allowUnfree; };
+          inherit (vars.nixpkgs) config;
           overlays =
             let
               overlaysRoot = flakePath "overlays";
