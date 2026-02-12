@@ -48,7 +48,7 @@ modules.mkModule inputs ./shortcuts.nix {
 
         plasmashell = {
           "activate application launcher" = "Meta+A"; # Meta
-          "manage activities" = "Meta+W"; # Meta+Q
+          "manage activities" = "none"; # Meta+Q
         }
         // (rangeOptions { } (i: "activate task manager entry ${i}") (i: [
           "Meta+Alt+${i}"
