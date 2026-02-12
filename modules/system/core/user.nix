@@ -57,8 +57,8 @@ modules.mkModule inputs ./user.nix {
                 in
                 # man 5 tmpfiles.d
                 [
-                  "L+ ${iconFilePath} 644 ${username} ${username} - ${imageFile}"
-                  "L+ ${userFilePath} 644 ${username} ${username} - ${userFileContents}"
+                  "L+ ${iconFilePath} - - - - ${imageFile}"
+                  "L+ ${userFilePath} - - - - ${userFileContents}"
                 ];
             };
             darwin = { };
