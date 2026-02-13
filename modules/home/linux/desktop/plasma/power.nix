@@ -11,15 +11,15 @@ modules.mkModule inputs ./power.nix {
         battery = {
           autoSuspend = {
             action = "sleep";
-            idleTimeout = 10 * 60;
+            idleTimeout = 5 * 60;
           };
           dimDisplay = {
             enable = true;
             idleTimeout = 2 * 60;
           };
           turnOffDisplay = {
-            idleTimeout = 5 * 60;
-            idleTimeoutWhenLocked = 2 * 60;
+            idleTimeout = 3 * 60;
+            idleTimeoutWhenLocked = 1 * 60;
           };
           dimKeyboard.enable = false;
           inhibitLidActionWhenExternalMonitorConnected = true;
