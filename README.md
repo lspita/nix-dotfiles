@@ -1,5 +1,7 @@
 # ❄️ Nix dotfiles
 
+[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
+
 This is my [Nix](https://nixos.org/) + [Home manager](https://github.com/nix-community/home-manager) configuration shared between different machines and systems.
 
 > [!important]
