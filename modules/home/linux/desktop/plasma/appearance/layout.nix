@@ -51,7 +51,7 @@ modules.mkModule inputs ./layout.nix {
               config = {
                 General = {
                   launchers =
-                    with vars.linux.defaultApps;
+                    with vars.defaultApps;
                     let
                       plasmaApps = plasma.defaults.apps;
                     in

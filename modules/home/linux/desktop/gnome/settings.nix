@@ -36,7 +36,7 @@ modules.mkModule inputs ./settings.nix {
         "org/gnome/desktop/input-sources".sources = [
           (lib.hm.gvariant.mkTuple [
             "xkb"
-            vars.linux.locale.keyboard
+            vars.locale.keyboard
           ])
         ];
         "org/gnome/system/location".enabled = self.locationServices.enable;

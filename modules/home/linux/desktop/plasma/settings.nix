@@ -25,7 +25,7 @@ modules.mkModule inputs ./settings.nix {
           splashScreen.theme = "org.kde.breeze.desktop";
         };
         input.keyboard = {
-          layouts = [ { layout = vars.linux.locale.keyboard; } ];
+          layouts = [ { layout = vars.locale.keyboard; } ];
           numlockOnStartup = "on";
         };
         session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
@@ -49,7 +49,7 @@ modules.mkModule inputs ./settings.nix {
           kded5rc.Module-browserintegrationreminder.autoload = false; # disable browser integration alert in system tray
           kwinrc.Effect-overview.FilterWindows = false; # make search in overview ignore windows;
           kdeglobals.General =
-            with vars.linux.defaultApps;
+            with vars.defaultApps;
             let
               plasmaDefaultTerminal = plasma.defaults.apps.terminal;
               customTerminal = optionals.getNotNull plasmaDefaultTerminal terminal;

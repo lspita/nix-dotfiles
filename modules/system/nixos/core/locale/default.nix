@@ -3,7 +3,7 @@ with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   config =
     { setDefaultSubconfig, ... }:
-    with vars.linux.locale;
+    with vars.locale;
     lib.mkMerge [
       (setDefaultSubconfig {
         hunspell.enable = true;

@@ -12,7 +12,7 @@ modules.mkModule inputs ./layout.nix {
       dconf.settings = {
         "org/gnome/shell" = {
           favorite-apps =
-            with vars.linux.defaultApps;
+            with vars.defaultApps;
             let
               gnomeApps = gnome.defaults.apps;
             in

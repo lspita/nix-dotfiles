@@ -11,7 +11,7 @@ modules.mkModule inputs ./. {
       type = with lib.types; listOf package;
       default = optionals.ifNotNull [ ] (with pkgs; [
         gnome-console
-      ]) vars.linux.defaultApps.terminal;
+      ]) vars.defaultApps.terminal;
       description = "Gnome packages to exclude";
     };
   };

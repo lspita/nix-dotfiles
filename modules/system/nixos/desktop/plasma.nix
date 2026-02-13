@@ -13,7 +13,7 @@ modules.mkModule inputs ./plasma.nix {
       type = with lib.types; listOf package;
       default = optionals.ifNotNull [ ] (with pkgs.kdePackages; [
         konsole
-      ]) vars.linux.defaultApps.terminal;
+      ]) vars.defaultApps.terminal;
       description = "List of kde packages to exclude.";
     };
   };

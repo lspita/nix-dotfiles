@@ -6,7 +6,7 @@ modules.mkModule inputs ./shortcuts.nix {
       getProgramOrGnomeDefault =
         appName:
         let
-          varApps = vars.linux.defaultApps;
+          varApps = vars.defaultApps;
           gnomeApps = gnome.defaults.apps;
         in
         optionals.ifNotNull (gnomeApps.${appName}.program) varApps.${appName}.program varApps.${appName};

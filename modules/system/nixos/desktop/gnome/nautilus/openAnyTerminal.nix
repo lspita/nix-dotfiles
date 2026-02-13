@@ -13,7 +13,7 @@ modules.mkModule inputs ./openAnyTerminal.nix {
           settings."com/github/stunkymonkey/nautilus-open-any-terminal" =
             let
               gnomeTerminal = gnome.defaults.apps.terminal;
-              varsTerminal = vars.linux.defaultApps.terminal;
+              varsTerminal = vars.defaultApps.terminal;
               terminal = (optionals.getNotNull gnomeTerminal varsTerminal).program;
             in
             {

@@ -5,7 +5,7 @@ modules.mkDefaultsModule inputs ./. {
     { setDefaultSubconfig, ... }:
     let
       gnomeTerminal = gnome.defaults.apps.terminal;
-      varsTerminal = vars.linux.defaultApps.terminal;
+      varsTerminal = vars.defaultApps.terminal;
     in
     setDefaultSubconfig {
       # google drive mount will not work until libsoup is not at a secure version

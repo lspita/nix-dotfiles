@@ -18,7 +18,7 @@ modules.mkModule inputs ./mimeApps {
                 map (mime: lib.attrsets.nameValuePair mime app.desktop) mimetypes
               )) app;
           in
-          with vars.linux.defaultApps;
+          with vars.defaultApps;
           (builtins.foldl' (result: current: result // current) { } [
             (setAssociations browser [
               "text/html"

@@ -63,7 +63,7 @@ modules.mkModule inputs ./shortcuts.nix {
             app: shortcut:
             let
               plasmaDefaultApp = plasma.defaults.apps.${app} or null;
-              customApp = optionals.getNotNull plasmaDefaultApp vars.linux.defaultApps.${app};
+              customApp = optionals.getNotNull plasmaDefaultApp vars.defaultApps.${app};
             in
             (optionals.ifNotNull { } {
               "services/${plasmaDefaultApp.desktop}" = {

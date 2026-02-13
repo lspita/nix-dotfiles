@@ -1,7 +1,7 @@
 { lib, vars, ... }@inputs:
 with lib.custom;
 modules.mkModule inputs ./terminalExec.nix {
-  config = with vars.linux.defaultApps; {
+  config = with vars.defaultApps; {
     xdg.terminal-exec = {
       enable = true;
     }

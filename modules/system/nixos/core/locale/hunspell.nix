@@ -27,7 +27,7 @@ modules.mkModule inputs ./hunspell.nix {
           hunspellDicts.${largeLang}
         else
           hunspellDicts.${lang};
-      dictionaryPackages = map getLangDictionary (vars.linux.locale.languages ++ self.extraLanguages);
+      dictionaryPackages = map getLangDictionary (vars.locale.languages ++ self.extraLanguages);
     in
     {
       environment.systemPackages = with pkgs; [ hunspell ] ++ dictionaryPackages;

@@ -3,7 +3,7 @@ with lib.custom;
 modules.mkModule inputs ./environment.nix {
   config = {
     home.sessionVariables =
-      with vars.linux.defaultApps;
+      with vars.defaultApps;
       (optionals.ifNotNull { } {
         EDITOR = terminalEditor;
         VISUAL = terminalEditor;
