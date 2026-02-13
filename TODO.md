@@ -13,3 +13,4 @@
 - [ ] PlatformIO module (like android)
 - [ ] Window title applet
 - [ ] Autologin (greetd)
+- [ ] Change shortcuts not using meta
