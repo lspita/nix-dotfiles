@@ -34,18 +34,17 @@ modules.mkModule inputs ./nix.nix {
     { self, ... }:
     {
       nix = {
-        settings = lib.mkMerge [
-          {
-            trusted-users = [ vars.user.username ];
-            experimental-features = [
-              "nix-command"
-              "flakes"
-            ];
-            auto-optimise-store = true;
-            substituters = map (substituter: substituter.url) self.extraSubstituters;
-            trusted-public-keys = map (substituter: substituter.key) self.extraSubstituters;
-          }
-        ];
+        settings = {
+          trusted-users = [ vars.user.username ];
+          experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
+          auto-optimise-store = true;
+          substituters = map (substituter: substituter.url) self.extraSubstituters;
+          trusted-public-keys = map (substituter: substituter.key) self.extraSubstituters;
+          use-xdg-base-directories = true;
+        };
         gc = with self.cleaning; {
           inherit dates;
           automatic = true;
