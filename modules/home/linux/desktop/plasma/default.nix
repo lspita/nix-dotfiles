@@ -17,6 +17,7 @@ modules.mkDefaultsModule inputs ./. {
         plugins.enableDefaults = true;
         appearance.enableDefaults = true;
         apps.enableDefaults = true;
+        power.enable = true;
       })
       {
         programs.plasma.enable = true;

@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] Power profiles (hybernate after 2 hours)
+- [x] Power profiles
 - [x] Wallpapers
 - [x] Profile image AS TMPFILE
 - [?] Fix online accounts
