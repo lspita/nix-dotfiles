@@ -6,7 +6,6 @@
 - [?] Fix online accounts
 - [ ] Night light
 - [ ] Starship prompt
-- [ ] Auto-tiling (Krohnkite)
 - [ ] Localsend
 - [x] Remove ifs where possible (use lib functions e.g. lib.lists.optional)
 - [ ] System tray icons
