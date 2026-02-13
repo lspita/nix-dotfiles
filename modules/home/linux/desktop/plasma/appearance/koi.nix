@@ -84,14 +84,9 @@ modules.mkModule inputs ./koi.nix {
       };
       programs.plasma = {
         configFile = {
-          kdeglobals.General.ColorScheme.persistent = true;
-          kcminputrc.Mouse.cursorTheme.persistent = true;
           koirc = {
             # https://github.com/baduhai/Koi/blob/master/Development/Configuration/Samples/koirc.sample
             General = {
-              current.persistent = true;
-              latitude.persistent = true;
-              longitude.persistent = true;
               notify = 0; # disabled
               schedule = 0; # disabled
               start-hidden = 2; # enabled
