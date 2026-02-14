@@ -13,6 +13,8 @@
     "YAML": [".clangd", ".clang-tidy", ".clang-format"],
     "Dockerfile": ["Containerfile", "containerfile", "*.containerfile"],
     "JSONC": ["*.json5"],
+    "C": ["*.h"],
+    "C++": ["*.hpp"],
   },
   "icon_theme": {
     "dark": "Catppuccin Mocha",

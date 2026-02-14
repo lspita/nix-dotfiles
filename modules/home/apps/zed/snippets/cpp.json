@@ -1,0 +1,14 @@
+{
+  "hguard": {
+    "description": "Create a C++ header guard",
+    "prefix": "hguard",
+    "body": [
+      "#ifndef ${1:HEADER}_HPP",
+      "#define ${1:HEADER}_HPP",
+      "",
+      "$0",
+      "",
+      "#endif // ${1:HEADER}_HPP"
+    ]
+  }
+}

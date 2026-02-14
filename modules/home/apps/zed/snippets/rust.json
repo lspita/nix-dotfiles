@@ -1,5 +1,5 @@
 {
-  "rust-testmod": {
+  "testmod": {
     "description": "Create a rust test module",
     "prefix": "testmod",
     "body": [
