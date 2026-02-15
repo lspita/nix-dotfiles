@@ -43,8 +43,8 @@ modules.mkModule inputs ./power.nix {
           powerProfile = "powerSaving";
         };
         batteryLevels = {
-          criticalAction = "hibernate";
-          criticalLevel = 5;
+          criticalAction = if self.hibernation.enable then "hibernate" else "sleep";
+          criticalLevel = 2;
           lowLevel = 20;
         };
         general.pausePlayersOnSuspend = true;
