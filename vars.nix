@@ -2,7 +2,7 @@
 {
   dotfilesHome = "nix-dotfiles"; # string: location of this repo relative to the user home
   backupFileExtension = "bkp"; # string: file extension to use for home-manager backups
-  wallpaper = "plasma-orionids"; # string?: wallpaper from `assets/wallpapers`
+  wallpaper = "mountains"; # string?: wallpaper from `assets/wallpapers`
   user = {
     username = "lspita"; # string: short-form name
     fullname = "Ludovico Spitaleri"; # string: long-form name
