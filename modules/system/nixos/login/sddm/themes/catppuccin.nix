@@ -36,6 +36,7 @@ modules.mkModule inputs ./catppuccin.nix {
               font = font.name;
               fontSize = toString font.size;
               clockEnabled = false;
+              loginBackground = true;
             }
             // (lib.attrsets.optionalAttrs (!isNull wallpaperName) {
               background = assets.assetTypeValue wallpaper {
