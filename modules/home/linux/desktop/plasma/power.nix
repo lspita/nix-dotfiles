@@ -1,53 +1,48 @@
 { lib, ... }@inputs:
 with lib.custom;
 modules.mkModule inputs ./power.nix {
-  options = {
-    hibernation.enable = modules.mkEnableOption true "hibernation";
-  };
-  config =
-    { self, ... }:
-    {
-      programs.plasma.powerdevil = rec {
-        battery = {
-          autoSuspend = {
-            action = "sleep";
-            idleTimeout = 5 * 60;
-          };
-          dimDisplay = {
-            enable = true;
-            idleTimeout = 2 * 60;
-          };
-          turnOffDisplay = {
-            idleTimeout = 3 * 60;
-            idleTimeoutWhenLocked = 1 * 60;
-          };
-          dimKeyboard.enable = false;
-          inhibitLidActionWhenExternalMonitorConnected = true;
-          powerButtonAction = "showLogoutScreen";
-          powerProfile = "balanced";
-          whenLaptopLidClosed = "sleep";
-          whenSleepingEnter = if self.hibernation.enable then "hybridSleep" else "standby";
+  config = {
+    programs.plasma.powerdevil = rec {
+      battery = {
+        autoSuspend = {
+          action = "sleep";
+          idleTimeout = 5 * 60;
         };
-        AC = lib.attrsets.recursiveUpdate battery {
-          autoSuspend = {
-            action = "nothing";
-            idleTimeout = null;
-          };
-          turnOffDisplay = {
-            idleTimeout = "never";
-            idleTimeoutWhenLocked = null;
-          };
-          powerProfile = "performance";
+        dimDisplay = {
+          enable = true;
+          idleTimeout = 2 * 60;
         };
-        lowBattery = lib.attrsets.recursiveUpdate battery {
-          powerProfile = "powerSaving";
+        turnOffDisplay = {
+          idleTimeout = 3 * 60;
+          idleTimeoutWhenLocked = 1 * 60;
         };
-        batteryLevels = {
-          criticalAction = if self.hibernation.enable then "hibernate" else "sleep";
-          criticalLevel = 2;
-          lowLevel = 20;
-        };
-        general.pausePlayersOnSuspend = true;
+        dimKeyboard.enable = false;
+        inhibitLidActionWhenExternalMonitorConnected = true;
+        powerButtonAction = "showLogoutScreen";
+        powerProfile = "balanced";
+        whenLaptopLidClosed = "sleep";
+        whenSleepingEnter = "standby";
       };
+      AC = lib.attrsets.recursiveUpdate battery {
+        autoSuspend = {
+          action = "nothing";
+          idleTimeout = null;
+        };
+        turnOffDisplay = {
+          idleTimeout = "never";
+          idleTimeoutWhenLocked = null;
+        };
+        powerProfile = "performance";
+      };
+      lowBattery = lib.attrsets.recursiveUpdate battery {
+        powerProfile = "powerSaving";
+      };
+      batteryLevels = {
+        criticalAction = "sleep";
+        criticalLevel = 2;
+        lowLevel = 20;
+      };
+      general.pausePlayersOnSuspend = true;
     };
+  };
 }
