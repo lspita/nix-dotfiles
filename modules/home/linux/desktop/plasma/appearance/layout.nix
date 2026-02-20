@@ -4,8 +4,10 @@ modules.mkModule inputs ./layout.nix {
   config = {
     programs.plasma.panels =
       # plasma-org.kde.plasma.desktop-appletsrc
+      # https://github.com/nix-community/plasma-manager/tree/trunk/modules/widgets
       [
         {
+          screen = "all";
           location = "top";
           lengthMode = "fill";
           height = 32;
@@ -14,18 +16,23 @@ modules.mkModule inputs ./layout.nix {
           floating = true;
           widgets = [
             {
-              name = "org.kde.plasma.pager";
-              config = {
-                General = {
+              pager = {
+                general = {
                   showWindowOutlines = true;
-                  showWindowIcons = true;
+                  showApplicationIconsOnWindowOutlines = true;
                 };
               };
             }
-            "org.kde.plasma.panelspacer"
-            "org.kde.plasma.digitalclock"
-            "org.kde.plasma.panelspacer"
-            "org.kde.plasma.systemtray"
+            { panelSpacer = { }; }
+            { digitalClock = { }; }
+            { panelSpacer = { }; }
+            {
+              systemTray = {
+                items.hidden = [
+                  "org.kde.plasma.clipboard"
+                ];
+              };
+            }
             {
               name = "org.kde.plasma.userswitcher";
               config = {
@@ -38,6 +45,7 @@ modules.mkModule inputs ./layout.nix {
           ];
         }
         {
+          screen = "all";
           location = "bottom";
           lengthMode = "fit";
           height = 44;
@@ -45,26 +53,24 @@ modules.mkModule inputs ./layout.nix {
           hiding = "dodgewindows";
           floating = true;
           widgets = [
-            "org.kde.plasma.kickerdash"
+            { kickerdash = { }; }
             {
-              name = "org.kde.plasma.icontasks";
-              config = {
-                General = {
-                  launchers =
-                    with vars.defaultApps;
-                    let
-                      plasmaApps = plasma.defaults.apps;
-                    in
-                    map (app: "applications:${app.desktop}") (
-                      builtins.filter (app: !(isNull app)) [
-                        browser
-                        editor
-                        (optionals.getNotNull plasmaApps.terminal terminal)
-                        (optionals.getNotNull plasmaApps.fileManager fileManager)
-                        music
-                      ]
-                    );
-                };
+              iconTasks = {
+                launchers =
+                  with vars.defaultApps;
+                  let
+                    plasmaApps = plasma.defaults.apps;
+                  in
+                  map (app: "applications:${app.desktop}") (
+                    builtins.filter (app: !(isNull app)) [
+                      browser
+                      editor
+                      (optionals.getNotNull plasmaApps.terminal terminal)
+                      (optionals.getNotNull plasmaApps.fileManager fileManager)
+                      music
+                    ]
+                  );
+                behavior.unhideOnAttentionNeeded = true;
               };
             }
           ];
