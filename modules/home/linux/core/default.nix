@@ -8,5 +8,6 @@ modules.mkDefaultsModule inputs ./. {
       xdg.enableDefaults = true;
       unixtools.enable = true;
       util-linux.enable = true;
+      wl-clipboard.enable = true;
     };
 }
