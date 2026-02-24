@@ -14,9 +14,6 @@
       {
         devShell =
           with pkgs;
-          let
-            ccLib = stdenv.cc.cc.lib;
-          in
           mkShell {
             buildInputs = [
               # nix
@@ -25,17 +22,15 @@
               nixfmt
               # python
               python3
-              ccLib
+              ruff
+              uv
             ];
             shellHook = ''
               set -a
               source .env 2>/dev/null
-              LD_LIBRARY_PATH=${ccLib}/lib:$LD_LIBRARY_PATH
               set +a
 
-              if [ ! -d .venv ]; then
-                python3 -m venv .venv
-              fi
+              uv sync --frozen
               source .venv/bin/activate
             '';
           };
