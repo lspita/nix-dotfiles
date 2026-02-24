@@ -49,7 +49,7 @@ modules.mkModule inputs ./settings.nix {
           kwinrc = {
             Effect-overview = {
               FilterWindows = false; # make search in overview ignore windows;
-              BorderActivate = 0;
+              BorderActivate = 9;
             };
             ElectricBorders = {
               TopLeft = "";
