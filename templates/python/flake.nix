@@ -29,8 +29,8 @@
             ];
             shellHook = ''
               set -a
+              source .env 2>/dev/null
               LD_LIBRARY_PATH=${ccLib}/lib:$LD_LIBRARY_PATH
-              source .env 2> /dev/null
               set +a
 
               if [ ! -d .venv ]; then
