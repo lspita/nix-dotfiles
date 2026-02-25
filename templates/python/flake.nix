@@ -23,6 +23,7 @@
               # python
               python3
               ruff
+              ty
               uv
             ];
             shellHook = ''

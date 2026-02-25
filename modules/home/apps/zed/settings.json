@@ -68,5 +68,8 @@
     "PHP": {
       "language_servers": ["!intelephense", "!phptools", "..."],
     },
+    "Python": {
+      "language_servers": ["ty", "!basedpyright", "..."],
+    },
   },
 }
