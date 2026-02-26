@@ -21,5 +21,6 @@ modules.mkDefaultsModule inputs ./. {
       # devcontainer.enable = true; # broken
       fd.enable = true;
       ripgrep.enable = true;
+      usbutils.enable = true;
     };
 }
