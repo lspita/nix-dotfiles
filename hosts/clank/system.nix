@@ -10,5 +10,6 @@
       desktop.plasma.enable = true;
       virtualisation.enableDefaults = true;
     };
+    development.enableDefaults = true;
   };
 }

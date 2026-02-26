@@ -8,5 +8,6 @@
       services.enableDefaults = true;
       virtualisation.enableDefaults = true;
     };
+    development.enableDefaults = true;
   };
 }

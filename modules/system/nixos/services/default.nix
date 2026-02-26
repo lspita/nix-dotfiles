@@ -9,5 +9,6 @@ modules.mkDefaultsModule inputs ./. {
     setDefaultSubconfig {
       printing.enable = notWsl;
       fingerprint.enable = notWsl;
+      udev.enable = true;
     };
 }
