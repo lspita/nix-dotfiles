@@ -17,10 +17,7 @@
           };
         };
       };
-      services = {
-        enableDefaults = true;
-        openrgb.enable = true;
-      };
+      services.enableDefaults = true;
       login.sddm.enable = true;
       desktop.plasma.enable = true;
       virtualisation.enableDefaults = true;
