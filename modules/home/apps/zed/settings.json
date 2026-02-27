@@ -28,6 +28,7 @@
   },
   "inlay_hints": {
     "enabled": true,
+    "show_type_hints": false,
   },
   "linked_edits": true,
   "middle_click_paste": false,
