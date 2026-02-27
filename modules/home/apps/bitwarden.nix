@@ -42,5 +42,11 @@ modules.mkModule inputs ./bitwarden.nix {
           };
         }
       ))
+      (platform.systemTypeValue {
+        linux = {
+          xdg.mimeApps.defaultApplicationPackages = [ package ];
+        };
+        darwin = { };
+      })
     ];
 }
