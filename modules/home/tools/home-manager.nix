@@ -12,7 +12,8 @@ modules.mkModule inputs ./home-manager.nix {
         ''
           clean-home-backups() {
             local dir=''${1:-"."}
-            find $dir -name '*.${vars.backupFileExtension}' -print -exec rm -rf '{}' \\; 2>/dev/null
+            find $dir -name '*.${vars.backupFileExtension}' -print -exec rm -rf '{}' \; 2>/dev/null
+            return 0
           }
         ''
         ''
