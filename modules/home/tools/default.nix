@@ -22,5 +22,6 @@ modules.mkDefaultsModule inputs ./. {
       fd.enable = true;
       ripgrep.enable = true;
       usbutils.enable = true;
+      home-manager.enable = true;
     };
 }
