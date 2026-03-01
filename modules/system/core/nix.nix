@@ -12,10 +12,10 @@ modules.mkModule inputs ./nix.nix {
         default = "weekly";
         description = "How often the garbage collection is performed.";
       };
-      maxGenerations = lib.mkOption {
-        type = with lib.types; int;
-        default = 5;
-        description = "Maximum number of generations to keep.";
+      maxLifespan = lib.mkOption {
+        type = with lib.types; str;
+        default = "14d";
+        description = "Maximum lifespan of generations to keep.";
       };
     };
     extraSubstituters = lib.mkOption {
@@ -48,7 +48,7 @@ modules.mkModule inputs ./nix.nix {
         gc = with self.cleaning; {
           inherit dates;
           automatic = true;
-          options = "--delete-older-than +${toString maxGenerations}";
+          options = "--delete-older-than ${maxLifespan}";
         };
       };
     };
