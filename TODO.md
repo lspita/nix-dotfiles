@@ -8,6 +8,5 @@
 - [ ] Starship prompt
 - [ ] Localsend
 - [x] Remove ifs where possible (use lib functions e.g. lib.lists.optional)
-- [ ] System tray icons
-- [ ] Window title applet
+- [x] System tray icons
 - [ ] Change shortcuts not using meta
