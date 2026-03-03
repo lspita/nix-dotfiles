@@ -19,6 +19,7 @@ modules.mkModule inputs ./settings.nix {
     { self, ... }:
     {
       programs.plasma = {
+        overrideConfig = false;
         workspace = {
           enableMiddleClickPaste = false;
           splashScreen.theme = "org.kde.breeze.desktop";
