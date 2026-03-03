@@ -11,7 +11,7 @@ modules.mkModule inputs ./home-manager.nix {
       custom.shell.rc = lib.lists.optionals self.functions.enable [
         ''
           clean-home-backups() {
-            local dir=''${1:-"."}
+            local dir=''${1:-"$HOME"}
             find $dir -name '*.${vars.backupFileExtension}' -print -exec rm -rf '{}' \; 2>/dev/null
             return 0
           }

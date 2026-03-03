@@ -13,7 +13,8 @@ modules.mkModule inputs ./. {
   config =
     { self, ... }:
     let
-      zedConfigDir = "zed";
+      configDir = "zed";
+      desktopFile = "dev.zed.Zed.desktop";
     in
     {
       programs.zed-editor =
@@ -75,8 +76,9 @@ modules.mkModule inputs ./. {
           userKeymaps = listConfig ./keymap.json [ ];
         };
       xdg.configFile = {
-        "${zedConfigDir}/snippets".source = ./snippets;
+        "${configDir}/snippets".source = ./snippets;
       };
       home.shellAliases = if self.alias.enable then { zed = "zeditor"; } else { };
+      custom.linux.core.xdg.mimeApps.schemeHandlers.zed = desktopFile;
     };
 }

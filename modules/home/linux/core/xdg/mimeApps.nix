@@ -3,6 +3,11 @@ with lib.custom;
 modules.mkModule inputs ./mimeApps {
   options = {
     openAlias.enable = modules.mkEnableOption true "open alias";
+    schemeHandlers = lib.mkOption {
+      type = with lib.types; attrsOf (either str (listOf str));
+      default = { };
+      description = "Added app scheme handlers";
+    };
   };
   config =
     { self, ... }:
@@ -145,6 +150,9 @@ modules.mkModule inputs ./mimeApps {
               "video/*"
             ])
           ]);
+        associations.added =
+          with lib.attrsets;
+          mapAttrs' (name: value: nameValuePair "x-scheme-handler/${name}" value) self.schemeHandlers;
       };
       home.shellAliases = lib.attrsets.optionalAttrs self.openAlias.enable {
         open = "xdg-open";

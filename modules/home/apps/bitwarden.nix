@@ -9,6 +9,7 @@ modules.mkModule inputs ./bitwarden.nix {
     { self, ... }:
     let
       package = pkgs.bitwarden-desktop;
+      desktopFile = "bitwarden.desktop";
     in
     lib.mkMerge [
       {
@@ -31,22 +32,17 @@ modules.mkModule inputs ./bitwarden.nix {
             }
           );
         };
+        custom.linux.core.xdg.mimeApps.schemeHandlers.bitwarden = desktopFile;
       }
       (lib.mkIf self.autostart.enable (
         platform.systemTypeValue {
           linux = {
-            xdg.autostart.entries = [ "${package}/share/applications/bitwarden.desktop" ];
+            xdg.autostart.entries = [ "${package}/share/applications/${desktopFile}" ];
           };
           darwin = {
             # figure out how to autostart on macos
           };
         }
       ))
-      (platform.systemTypeValue {
-        linux = {
-          xdg.mimeApps.defaultApplicationPackages = [ package ];
-        };
-        darwin = { };
-      })
     ];
 }
