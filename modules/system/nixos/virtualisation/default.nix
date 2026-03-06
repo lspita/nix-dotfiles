@@ -5,6 +5,6 @@ modules.mkDefaultsModule inputs ./. {
     { setDefaultSubconfig, ... }:
     setDefaultSubconfig {
       containers.enableDefaults = true;
-      libvirtd.enable = true;
+      # libvirtd.enable = true; # broken, searches for /usr/bin/sh
     };
 }
