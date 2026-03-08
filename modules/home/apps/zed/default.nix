@@ -9,6 +9,16 @@ modules.mkModule inputs ./. {
   options = {
     package.enable = modules.mkEnableOption true "zed package installation";
     alias.enable = modules.mkEnableOption true "'zed' alias";
+    mutability =
+      let
+        defaultMutability = false;
+      in
+      {
+        tasks.enable = modules.mkEnableOption defaultMutability "zed tasks immutability";
+        debug.enable = modules.mkEnableOption defaultMutability "zed debug configurations immutability";
+        keymaps.enable = modules.mkEnableOption defaultMutability "zed keymaps immutability";
+        settings.enable = modules.mkEnableOption defaultMutability "zed settings immutability";
+      };
   };
   config =
     { self, ... }:
@@ -33,6 +43,10 @@ modules.mkModule inputs ./. {
         {
           enable = true;
           package = if self.package.enable then options.programs.zed-editor.package.default else null;
+          mutableUserTasks = self.mutability.tasks.enable;
+          mutableUserDebug = self.mutability.debug.enable;
+          mutableUserKeymaps = self.mutability.keymaps.enable;
+          mutableUserSettings = self.mutability.settings.enable;
           extensions = [
             # themes
             "catppuccin"
@@ -77,6 +91,14 @@ modules.mkModule inputs ./. {
         };
       xdg.configFile = {
         "${configDir}/snippets".source = ./snippets;
+        "tombi/config.toml".text =
+          # fix zed opening LSP edits
+          # https://github.com/tombi-toml/tombi/issues/1463
+          # not working by setting lsp settings from zed
+          ''
+            [lsp]
+            goto-type-definition.enabled = false
+          '';
       };
       home.shellAliases = if self.alias.enable then { zed = "zeditor"; } else { };
       custom.linux.core.xdg.mimeApps.schemeHandlers.zed = desktopFile;
