@@ -13,6 +13,7 @@ modules.mkModule inputs ./mimeApps {
     { self, ... }:
     {
       # https://github.com/ryan4yin/nix-config/blob/main/home/linux/gui/base/xdg/mime.nix
+      xdg.configFile."mimeapps.list".force = true; # prevent backup at every switch because of packages adding associations
       xdg.mimeApps = {
         enable = true;
         defaultApplications = lib.mkMerge [
