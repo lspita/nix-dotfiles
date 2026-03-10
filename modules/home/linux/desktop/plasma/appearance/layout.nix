@@ -1,7 +1,18 @@
-{ lib, vars, ... }@inputs:
+{
+  config,
+  lib,
+  vars,
+  ...
+}@inputs:
 with lib.custom;
 modules.mkModule inputs ./layout.nix {
   config = {
+    # Prevent race condition in loading panels because of screen = "all"
+    # https://github.com/nix-community/plasma-manager/issues/577
+    programs.plasma.startup.desktopScript."panels".preCommands = lib.mkForce ''
+      sleep 3
+      [ -f ${config.xdg.configHome}/plasma-org.kde.plasma.desktop-appletsrc ] && rm ${config.xdg.configHome}/plasma-org.kde.plasma.desktop-appletsrc
+    '';
     programs.plasma.panels =
       # plasma-org.kde.plasma.desktop-appletsrc
       # https://github.com/nix-community/plasma-manager/tree/trunk/modules/widgets
@@ -16,19 +27,23 @@ modules.mkModule inputs ./layout.nix {
           floating = true;
           widgets = [
             {
-              pager = {
-                general = {
+              name = "org.kde.plasma.pager";
+              config = {
+                General = {
+                  showWindowIcons = true;
                   showWindowOutlines = true;
-                  showApplicationIconsOnWindowOutlines = true;
                 };
               };
             }
-            { panelSpacer = { }; }
-            { digitalClock = { }; }
-            { panelSpacer = { }; }
             {
-              systemTray = {
-                items.hidden = [
+              name = "org.kde.plasma.panelspacer";
+            }
+            { name = "org.kde.plasma.digitalclock"; }
+            { name = "org.kde.plasma.panelspacer"; }
+            {
+              name = "org.kde.plasma.systemtray";
+              config = {
+                General.hiddenItems = [
                   "org.kde.plasma.clipboard"
                 ];
               };
@@ -53,24 +68,32 @@ modules.mkModule inputs ./layout.nix {
           hiding = "dodgewindows";
           floating = true;
           widgets = [
-            { kickerdash = { }; }
             {
-              iconTasks = {
-                launchers =
-                  with vars.defaultApps;
-                  let
-                    plasmaApps = plasma.defaults.apps;
-                  in
-                  map (app: "applications:${app.desktop}") (
-                    builtins.filter (app: !(isNull app)) [
-                      browser
-                      editor
-                      (optionals.getNotNull plasmaApps.terminal terminal)
-                      (optionals.getNotNull plasmaApps.fileManager fileManager)
-                      music
-                    ]
-                  );
-                behavior.unhideOnAttentionNeeded = true;
+              name = "org.kde.plasma.kickerdash";
+              config = {
+                General.forceDarkMode = false;
+              };
+            }
+            {
+              name = "org.kde.plasma.icontasks";
+              config = {
+                General = {
+                  launchers =
+                    with vars.defaultApps;
+                    let
+                      plasmaApps = plasma.defaults.apps;
+                    in
+                    map (app: "applications:${app.desktop}") (
+                      builtins.filter (app: !(isNull app)) [
+                        browser
+                        editor
+                        (optionals.getNotNull plasmaApps.terminal terminal)
+                        (optionals.getNotNull plasmaApps.fileManager fileManager)
+                        music
+                      ]
+                    );
+                  unhideOnAttention = true;
+                };
               };
             }
           ];

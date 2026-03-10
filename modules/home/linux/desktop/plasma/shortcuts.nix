@@ -4,7 +4,7 @@ modules.mkModule inputs ./shortcuts.nix {
   config = {
     custom.linux.desktop.plasma = {
       appearance.koi.shortcuts.toggle = "Meta+F5";
-      apps.krunner.shortcuts.launch = "Meta"; # Alt+Space
+      # apps.krunner.shortcuts.launch = "Meta"; # Alt+Space
     };
     programs.plasma.shortcuts =
       # kglobalshortcutsrc
@@ -47,7 +47,7 @@ modules.mkModule inputs ./shortcuts.nix {
         ])); # None
 
         plasmashell = {
-          "activate application launcher" = "Meta+A"; # Meta
+          # "activate application launcher" = "Meta+A"; # Meta
           "manage activities" = "none"; # Meta+Q
         }
         // (rangeOptions { } (i: "activate task manager entry ${i}") (i: [

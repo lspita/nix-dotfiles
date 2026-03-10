@@ -11,9 +11,7 @@ modules.mkModule inputs ./plasma.nix {
     integrations.enable = modules.mkEnableOption true "accounts integration";
     excludePackages = lib.mkOption {
       type = with lib.types; listOf package;
-      default = optionals.ifNotNull [ ] (with pkgs.kdePackages; [
-        konsole
-      ]) vars.defaultApps.terminal;
+      default = with pkgs.kdePackages; (optionals.ifNotNull [ ] [ konsole ] vars.defaultApps.terminal);
       description = "List of kde packages to exclude.";
     };
   };
