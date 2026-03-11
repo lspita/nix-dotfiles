@@ -34,7 +34,11 @@ modules.mkModule inputs ./settings.nix {
           cornerBarrier = false;
           edgeBarrier = 0;
           effects = {
-            blur.enable = true;
+            blur = {
+              enable = true;
+              strength = 8;
+              noiseStrength = 3;
+            };
             desktopSwitching.navigationWrapping = true;
             hideCursor = {
               enable = true;
