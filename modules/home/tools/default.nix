@@ -18,11 +18,12 @@ modules.mkDefaultsModule inputs ./. {
       tree.enable = true;
       htop.enable = true;
       ffmpeg.enable = true;
-      # devcontainer.enable = true; # broken
+      devcontainer.enable = true;
       fd.enable = true;
       ripgrep.enable = true;
       usbutils.enable = true;
       home-manager.enable = true;
       opencode.enable = true;
+      unzip.enable = true;
     };
 }
