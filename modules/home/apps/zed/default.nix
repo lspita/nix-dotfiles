@@ -72,6 +72,7 @@ modules.mkModule inputs ./. {
             "java"
             "lua"
             "kotlin"
+            "editorconfig"
           ];
           userSettings = objectConfig ./settings.json (
             with vars.fonts;
