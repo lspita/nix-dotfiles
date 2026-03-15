@@ -4,10 +4,7 @@ modules.mkModule inputs ./android.nix {
   config = platform.systemTypeValue {
     linux = {
       # https://wiki.nixos.org/wiki/Android
-      services.udev.packages = with pkgs; [
-        platformio-core.udev
-        openocd
-      ];
+      services.udev.packages = with pkgs; [ android-udev-rules ];
       users.users.${vars.user.username}.extraGroups = [ "kvm" ];
     };
     darwin = { };
