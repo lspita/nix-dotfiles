@@ -1,8 +1,8 @@
-.env
+/.env
 
 # direnv
-.direnv/
-.envrc
+/.direnv/
+/.envrc
 
 # output of build
 /result

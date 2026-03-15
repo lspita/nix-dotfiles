@@ -31,9 +31,11 @@
               RUST_SRC_PATH = "${rust.packages.stable.rustPlatform.rustLibSrc}";
             };
             shellHook = ''
-              set -a
-              source .env 2>/dev/null
-              set +a
+              if [ -f .env ]; then
+                set -a
+                source .env
+                set +a
+              fi
             '';
           };
       }
