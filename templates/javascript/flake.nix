@@ -20,8 +20,9 @@
               nixd
               nil
               nixfmt
-              # nodejs
+              # javascript
               nodejs
+              prettier
             ];
             shellHook = ''
               if [ -f .env ]; then
