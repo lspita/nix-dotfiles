@@ -9,10 +9,10 @@ modules.mkModule inputs ./layout.nix {
   config = {
     # Prevent race condition in loading panels because of screen = "all"
     # https://github.com/nix-community/plasma-manager/issues/577
-    programs.plasma.startup.desktopScript."panels".preCommands = lib.mkForce ''
-      sleep 3
-      [ -f ${config.xdg.configHome}/plasma-org.kde.plasma.desktop-appletsrc ] && rm ${config.xdg.configHome}/plasma-org.kde.plasma.desktop-appletsrc
-    '';
+    # programs.plasma.startup.desktopScript."panels".preCommands = lib.mkForce ''
+    #   sleep 3
+    #   [ -f ${config.xdg.configHome}/plasma-org.kde.plasma.desktop-appletsrc ] && rm ${config.xdg.configHome}/plasma-org.kde.plasma.desktop-appletsrc
+    # '';
     programs.plasma.panels =
       # plasma-org.kde.plasma.desktop-appletsrc
       # https://github.com/nix-community/plasma-manager/tree/trunk/modules/widgets
