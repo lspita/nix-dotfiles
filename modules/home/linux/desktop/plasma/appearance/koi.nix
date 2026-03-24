@@ -87,6 +87,7 @@ modules.mkModule inputs ./koi.nix {
           koirc = {
             # https://github.com/baduhai/Koi/blob/master/Development/Configuration/Samples/koirc.sample
             General = {
+              current.persistent = true;
               notify = 0; # disabled
               schedule = 0; # disabled
               start-hidden = 2; # enabled
