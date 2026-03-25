@@ -1,7 +1,7 @@
 {
   "wrap_guides": [80],
   "edit_predictions": {
-    "mode": "eager",
+    "mode": "subtle",
   },
   "format_on_save": "off",
   "agent": {
@@ -17,14 +17,14 @@
     "C++": ["*.hpp"],
   },
   "icon_theme": {
+    "mode": "system",
     "dark": "Catppuccin Mocha",
     "light": "Catppuccin Latte",
-    "mode": "system",
   },
   "theme": {
+    "mode": "system",
     "dark": "Catppuccin Mocha",
     "light": "Catppuccin Latte",
-    "mode": "system",
   },
   "inlay_hints": {
     "enabled": true,

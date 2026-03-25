@@ -19,13 +19,6 @@
     },
   },
   {
-    "context": "Editor",
-    "bindings": {
-      "alt-shift-e": "workspace::ToggleEditPrediction",
-      "ctrl-alt-shift-e": null,
-    },
-  },
-  {
     "context": "(Editor && edit_prediction)",
     "bindings": {
       "tab": "editor::Tab",
