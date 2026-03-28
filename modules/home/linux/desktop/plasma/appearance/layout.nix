@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  vars,
-  ...
-}@inputs:
+{ lib, vars, ... }@inputs:
 with lib.custom;
 modules.mkModule inputs ./layout.nix {
   config = {
