@@ -10,5 +10,6 @@ modules.mkDefaultsModule inputs ./. {
       printing.enable = notWsl;
       fingerprint.enable = notWsl;
       udev.enable = true;
+      geoclue2.enable = true;
     };
 }
