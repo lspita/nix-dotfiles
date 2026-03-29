@@ -9,6 +9,7 @@ modules.mkModule inputs ./gh.nix {
         gh-skyline
       ];
       settings = {
+        # https://cli.github.com/manual/gh_config
         git_protocol = "ssh";
       };
     };
