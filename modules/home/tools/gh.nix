@@ -8,6 +8,9 @@ modules.mkModule inputs ./gh.nix {
         gh-notify
         gh-skyline
       ];
+      settings = {
+        git_protocol = "ssh";
+      };
     };
   };
 }
