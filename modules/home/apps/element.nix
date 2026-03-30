@@ -2,6 +2,6 @@
 with lib.custom;
 modules.mkModule inputs ./element.nix {
   config = {
-    programs.element.enable = true;
+    programs.element-desktop.enable = true;
   };
 }
