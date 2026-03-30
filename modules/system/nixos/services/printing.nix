@@ -20,11 +20,6 @@ modules.mkModule inputs ./printing.nix {
           inherit (self) drivers;
           enable = true;
         };
-        avahi = {
-          enable = true;
-          nssmdns4 = true;
-          openFirewall = true;
-        };
       };
     };
 }

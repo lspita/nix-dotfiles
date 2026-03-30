@@ -11,5 +11,6 @@ modules.mkDefaultsModule inputs ./. {
       fingerprint.enable = notWsl;
       udev.enable = true;
       geoclue2.enable = true;
+      avahi.enable = true;
     };
 }
