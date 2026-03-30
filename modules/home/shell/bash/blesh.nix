@@ -18,6 +18,9 @@ modules.mkModule inputs ./blesh.nix {
               # Set up fzf
               ble-import -d integration/fzf-completion
               ble-import -d integration/fzf-key-bindings
+
+              # Disable auto-menu without tab
+              bleopt complete_auto_menu=
             '';
       };
       # https://github.com/akinomyoga/ble.sh/wiki/Manual-A1-Installation#user-content-nixpkgs
