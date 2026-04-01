@@ -102,11 +102,7 @@
         program = "zeditor";
       };
     terminalEditor = "nano"; # program: editor to use from terminal
-    music = # app?: default music player (for audio files, set `audio`)
-      {
-        desktop = "spotify.desktop";
-        program = "spotify";
-      };
+    music = null; # app?: default music player (for audio files, set `audio`)
     mail = browser; # app?: default mail client
     pdf = null; # app?: default pdf viewer
     image = null; # app?: default image viewer
