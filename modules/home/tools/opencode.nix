@@ -4,7 +4,7 @@ modules.mkModule inputs ./opencode.nix {
   config = {
     programs.opencode = {
       enable = true;
-      settings = {
+      tui = {
         theme = "system";
       };
     };
