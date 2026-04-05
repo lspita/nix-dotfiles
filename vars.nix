@@ -2,7 +2,7 @@
 {
   dotfilesHome = "nix-dotfiles"; # string: location of this repo relative to the user home
   backupFileExtension = "hmbackup"; # string: file extension to use for home-manager backups
-  wallpaper = "mountains"; # string?: wallpaper from `assets/wallpapers`
+  wallpaper = "lake"; # string?: wallpaper from `assets/wallpapers`
   user = {
     username = "lspita"; # string: short-form name
     fullname = "Ludovico Spitaleri"; # string: long-form name
