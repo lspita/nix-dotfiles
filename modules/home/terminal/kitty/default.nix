@@ -35,7 +35,7 @@ modules.mkModule inputs ./. {
           open_url_with = "default";
           cursor_shape = "block";
           cursor_shape_unfocused = "hollow";
-          cursor_trail = 10; # ms
+          cursor_trail = 0; # ms
         };
       };
       xdg.configFile = optionals.ifNotNull { } (
