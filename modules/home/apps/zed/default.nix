@@ -74,6 +74,7 @@ modules.mkModule inputs ./. {
             "kotlin"
             "editorconfig"
             "dart"
+            "latex"
           ];
           userSettings = objectConfig ./settings.json (
             with vars.fonts;
