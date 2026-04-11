@@ -6,16 +6,7 @@
     nixos = {
       core = {
         enableDefaults = true;
-        boot.dualBoot = {
-          enable = true;
-          windows.entries = {
-            "windows11" = {
-              title = "Windows 11";
-              efiDeviceHandle = "FS0";
-              sortKey = "_windows11";
-            };
-          };
-        };
+        boot.dualBoot.enable = true;
       };
       services.enableDefaults = true;
       login.sddm.enable = true;
