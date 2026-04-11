@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   custom = {
     core.enableDefaults = true;

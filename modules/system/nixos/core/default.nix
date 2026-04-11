@@ -17,7 +17,8 @@ modules.mkDefaultsModule inputs ./. {
       locale.enableDefaults = !wsl;
       bluetooth.enable = !wsl;
       audio.pipewire.enable = !wsl;
-      network.networkmanager.enable = !wsl;
+      network.enableDefaults = !wsl;
+      firmware.enable = true;
       wsl.enable = wsl;
       documentation.enable = true;
       nix-ld.enable = true;
