@@ -39,7 +39,7 @@ modules.mkDefaultsModule inputs ./. {
         programs.plasma.configFile.kdeglobals = {
           General = {
             ColorScheme.persistent = true;
-            ColorSchemeHash.persistent = true;
+            # ColorSchemeHash.persistent = true;
           };
         };
       }
