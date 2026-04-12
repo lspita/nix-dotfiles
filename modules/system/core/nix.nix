@@ -1,6 +1,7 @@
 {
   lib,
   vars,
+  options,
   ...
 }@inputs:
 with lib.custom;
@@ -8,13 +9,12 @@ modules.mkModule inputs ./nix.nix {
   options = {
     cleaning = {
       dates = lib.mkOption {
-        type = with lib.types; either singleLineStr (listOf str);
+        inherit (options.nix.gc.dates) type description;
         default = "weekly";
-        description = "How often the garbage collection is performed.";
       };
       maxLifespan = lib.mkOption {
         type = with lib.types; str;
-        default = "14d";
+        default = "7d";
         description = "Maximum lifespan of generations to keep.";
       };
     };
