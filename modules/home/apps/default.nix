@@ -13,7 +13,8 @@ modules.mkDefaultsModule inputs ./. {
         package.enable = notWsl;
       };
       obsidian.enable = notWsl;
-      libreoffice.enable = notWsl;
+      # libreoffice.enable = notWsl;
+      onlyoffice.enable = notWsl;
       bitwarden = {
         enable = notWsl;
         autostart.enable = true;
