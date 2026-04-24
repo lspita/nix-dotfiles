@@ -39,7 +39,7 @@ modules.mkModule inputs ./nh.nix {
           ''
           ''
             flake-sync() {
-              flake-pull
+              flake-pull && \
               nh os switch $@
             }
           ''
@@ -52,7 +52,7 @@ modules.mkModule inputs ./nh.nix {
           ''
             flake-update() {
               local push=''${1:-true}
-              nh os switch -u
+              nh os switch -u && \
               if [ $push = true ]; then
                 flake-push "auto: flake update"
               fi
@@ -60,16 +60,14 @@ modules.mkModule inputs ./nh.nix {
           ''
           ''
             flake-undo-update() {
-              git ${gitFlakeRef} restore ${flakeRef}/flake.lock
+              git ${gitFlakeRef} restore ${flakeRef}/flake.lock && \
               nh os switch
             }
           ''
           ''
             flake-init() {
               nix flake init -t ${flakeRef}#"''${1:-devshell}"
-              ${
-                "git rm --cached .envrc || true" # `|| true` to not give an error if not in a repo
-              }
+              git rm --cached .envrc || true # `|| true` to not give an error if not in a repo
             }
           ''
           ''
