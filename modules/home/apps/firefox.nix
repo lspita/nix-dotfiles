@@ -1,4 +1,4 @@
-{ lib, ... }@inputs:
+{ config, lib, ... }@inputs:
 with lib.custom;
 modules.mkModule inputs ./firefox.nix {
   options = {
@@ -10,6 +10,7 @@ modules.mkModule inputs ./firefox.nix {
       # extensions are synced with account
       programs.firefox = {
         enable = true;
+        configPath = "${config.xdg.configHome}/mozilla/firefox";
         policies = {
           DisableTelemetry = true;
           OverrideFirstRunPage = "";
