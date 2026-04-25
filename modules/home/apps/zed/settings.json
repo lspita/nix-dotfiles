@@ -7,6 +7,20 @@
   "agent": {
     "dock": "left",
   },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "right",
+    "tree_view": true,
+  },
+  "project_panel": {
+    "dock": "right",
+    "hide_root": false,
+  },
   "base_keymap": "VSCode",
   "file_types": {
     "Shell Script": [".envrc"],
@@ -35,18 +49,11 @@
   "minimap": {
     "show": "always",
   },
-  "project_panel": {
-    "dock": "right",
-    "hide_root": false,
-  },
   "show_edit_predictions": true,
   "show_signature_help_after_edits": true,
   "show_whitespaces": "selection",
   "tabs": {
     "git_status": true,
-  },
-  "git_panel": {
-    "tree_view": true,
   },
   "telemetry": {
     "diagnostics": false,
@@ -57,7 +64,7 @@
     "blinking": "on",
   },
   "title_bar": {
-    "show_branch_icon": true,
+    "show_branch_status_icon": true,
   },
   "buffer_font_features": {
     "calt": false, // no ligatures
