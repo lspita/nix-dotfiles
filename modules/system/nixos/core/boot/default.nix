@@ -31,6 +31,7 @@ modules.mkModule inputs ./. {
         };
         description = "List of Windows entries to add to the boot menu.";
       };
+      hardwareClockInLocalTime = modules.mkEnableOption true "hardware clock in local time";
     };
     entriesTimeout = lib.mkOption {
       type = with lib.types; nullOr int;
@@ -40,31 +41,39 @@ modules.mkModule inputs ./. {
   };
   config =
     { self, ... }:
-    {
-      boot = {
-        # https://wiki.nixos.org/wiki/Linux_kernel
-        kernelPackages = self.kernel.packages;
-        loader = {
-          systemd-boot = {
-            enable = true;
-            editor = false; # recommended false https://search.nixos.org/options?channel=unstable&show=boot.loader.systemd-boot.editor
-            configurationLimit = self.maxEntries;
-          }
-          // (
-            with self.dualBoot;
-            lib.attrsets.optionalAttrs enable {
-              # https://wiki.nixos.org/wiki/Dual_Booting_NixOS_and_Windows#EFI_with_multiple_disks
-              windows = windows.entries;
-              edk2-uefi-shell = {
-                enable = true;
-                sortKey = "z_edk2"; # put last
-              };
-            }
-          );
-          efi.canTouchEfiVariables = true;
-          timeout = optionals.getNotNull (if self.dualBoot.enable then 5 else 0) self.entriesTimeout; # spam space to show entries selection
+    lib.mkMerge [
+      {
+        boot = {
+          # https://wiki.nixos.org/wiki/Linux_kernel
+          kernelPackages = self.kernel.packages;
+          loader = {
+            systemd-boot = {
+              enable = true;
+              editor = false; # recommended false https://search.nixos.org/options?channel=unstable&show=boot.loader.systemd-boot.editor
+              configurationLimit = self.maxEntries;
+            };
+            efi.canTouchEfiVariables = true;
+            timeout = optionals.getNotNull (if self.dualBoot.enable then 5 else 0) self.entriesTimeout; # spam space to show entries selection
+          };
+          tmp.cleanOnBoot = true;
         };
-        tmp.cleanOnBoot = true;
-      };
-    };
+      }
+      (
+        with self.dualBoot;
+        lib.mkIf enable {
+          boot.loader.systemd-boot = {
+            # https://wiki.nixos.org/wiki/Dual_Booting_NixOS_and_Windows#EFI_with_multiple_disks
+            windows = windows.entries;
+            edk2-uefi-shell = {
+              enable = true;
+              sortKey = "z_edk2"; # put last
+            };
+          };
+          time = {
+            # https://nixos.wiki/wiki/Dual_Booting_NixOS_and_Windows#System_time
+            inherit hardwareClockInLocalTime;
+          };
+        }
+      )
+    ];
 }
