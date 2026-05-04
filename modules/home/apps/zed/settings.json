@@ -50,7 +50,7 @@
     "show": "always",
   },
   "show_edit_predictions": true,
-  "show_signature_help_after_edits": true,
+  "show_signature_help_after_edits": false,
   "show_whitespaces": "selection",
   "tabs": {
     "git_status": true,
