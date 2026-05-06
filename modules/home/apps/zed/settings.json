@@ -72,6 +72,7 @@
   "ui_font_features": {
     "calt": false, // no ligatures
   },
+  "restore_on_startup": "launchpad",
   "languages": {
     "PHP": {
       "language_servers": ["!intelephense", "!phptools", "..."],
