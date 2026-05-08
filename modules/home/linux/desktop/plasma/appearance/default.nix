@@ -22,11 +22,6 @@ modules.mkDefaultsModule inputs ./. {
               dark = "breeze_cursors";
               light = "Breeze_Light";
             };
-            gtk = {
-              enable = true;
-              dark = "Breeze";
-              light = "Breeze";
-            };
             konsole = {
               enable = true;
               dark = "catppuccin-mocha";

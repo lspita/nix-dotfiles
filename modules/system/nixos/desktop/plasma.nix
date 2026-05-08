@@ -37,6 +37,7 @@ modules.mkModule inputs ./plasma.nix {
             kamoso
             dragon
             krecorder
+            kde-gtk-config
           ]
           ++ (lib.lists.optional config.services.displayManager.sddm.enable sddm-kcm); # sddm settings integration
           plasma6 = {
