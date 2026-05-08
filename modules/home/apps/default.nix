@@ -28,6 +28,7 @@ modules.mkDefaultsModule inputs ./. {
       discord.enable = notWsl;
       android-studio.enable = notWsl;
       hoppscotch.enable = notWsl;
+      vlc.enable = notWsl;
       element.enable = notWsl;
     };
 }

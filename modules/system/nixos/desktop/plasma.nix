@@ -35,7 +35,6 @@ modules.mkModule inputs ./plasma.nix {
             partitionmanager
             filelight
             kamoso
-            dragon
             krecorder
             kde-gtk-config
           ]
