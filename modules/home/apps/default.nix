@@ -29,7 +29,7 @@ modules.mkDefaultsModule inputs ./. {
       android-studio.enable = notWsl;
       hoppscotch.enable = notWsl;
       vlc.enable = notWsl;
-      kdenlive.enable = notWsl;
+      # kdenlive.enable = notWsl;
       element.enable = notWsl;
     };
 }
