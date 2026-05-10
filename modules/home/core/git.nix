@@ -39,13 +39,11 @@ modules.mkModule inputs ./git.nix {
           };
         };
       };
-      xdg.configFile = {
-        ${attributesConfigPath}.text = ''
-          * text=auto eol=lf
-          *.[cC][mM][dD] text eol=crlf
-          *.[bB][aA][tT] text eol=crlf
-          *.[pP][sS]1 text eol=crlf
-        '';
-      };
+      xdg.configFile.${attributesConfigPath}.text = ''
+        * text=auto eol=lf
+        *.[cC][mM][dD] text eol=crlf
+        *.[bB][aA][tT] text eol=crlf
+        *.[pP][sS]1 text eol=crlf
+      '';
     };
 }
