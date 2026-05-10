@@ -60,7 +60,7 @@ modules.mkModule inputs ./nh.nix {
               local push=''${1:-true}
               nh os switch -u && \
               if [ $push = true ]; then
-                flake-push "auto: flake update"
+                flake-push "chore: flake update"
               fi
             }
           ''
