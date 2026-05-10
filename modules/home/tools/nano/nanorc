@@ -4,7 +4,6 @@ set constantshow
 set linenumbers
 set mouse
 set smarthome
-set smoothscroll
 set softwrap
 set tabsize 4
 set tabstospaces
