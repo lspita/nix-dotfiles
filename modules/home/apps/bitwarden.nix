@@ -2,7 +2,7 @@
 with lib.custom;
 modules.mkModule inputs ./bitwarden.nix {
   options = {
-    start.enable = modules.mkEnableOption false "bitwarden autostart";
+    autostart.enable = modules.mkEnableOption false "bitwarden autostart";
     sshAgent.enable = modules.mkEnableOption false "bitwarden ssh agent";
   };
   config =
