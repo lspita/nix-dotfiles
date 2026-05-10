@@ -1,0 +1,10 @@
+# https://www.nano-editor.org/dist/v2.9/nanorc.5.html#OPTIONS
+set autoindent
+set constantshow
+set linenumbers
+set mouse
+set smarthome
+set smooth
+set softwrap
+set tabsize 4
+set tabstospaces

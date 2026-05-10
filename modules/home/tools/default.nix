@@ -7,6 +7,7 @@ modules.mkDefaultsModule inputs ./. {
       nh.enable = true;
       direnv.enable = true;
       # gh.enable = true;
+      nano.enable = true;
       fastfetch.enable = true;
       lazycli.enable = true;
       lazygit.enable = true;
