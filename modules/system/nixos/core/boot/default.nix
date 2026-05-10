@@ -4,7 +4,7 @@ modules.mkModule inputs ./. {
   options = {
     kernel.packages = lib.mkOption {
       type = with lib.types; attrs;
-      default = pkgs.linuxPackages;
+      default = pkgs.linuxPackages_latest;
       description = "Linux kernel packages to use.";
     };
     maxEntries = lib.mkOption {
