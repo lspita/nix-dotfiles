@@ -50,6 +50,12 @@ modules.mkModule inputs ./nh.nix {
             }
           ''
           ''
+            flake-boot() {
+              git ${gitFlakeRef} add .
+              nh os boot $@
+            }
+          ''
+          ''
             flake-update() {
               local push=''${1:-true}
               nh os switch -u && \
