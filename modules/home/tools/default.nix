@@ -26,5 +26,6 @@ modules.mkDefaultsModule inputs ./. {
       home-manager.enable = true;
       opencode.enable = true;
       unzip.enable = true;
+      plantuml.enable = true;
     };
 }

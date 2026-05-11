@@ -31,6 +31,5 @@ modules.mkDefaultsModule inputs ./. {
       vlc.enable = notWsl;
       # kdenlive.enable = notWsl;
       element.enable = notWsl;
-      plantuml.enable = notWsl;
     };
 }
