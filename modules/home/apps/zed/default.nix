@@ -75,7 +75,6 @@ modules.mkModule inputs ./. {
             "editorconfig"
             "dart"
             "latex"
-            "plantuml"
           ];
           userSettings = objectConfig ./settings.json (
             with vars.fonts;
