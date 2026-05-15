@@ -18,10 +18,8 @@
         };
       in
       {
-        devShell =
-          with pkgs;
-          mkShell {
-            buildInputs = [
+        devShell = pkgs.mkShell {
+            buildInputs = with pkgs; [
               # nix
               nixd
               nil

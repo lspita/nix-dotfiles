@@ -27,10 +27,8 @@
         rust-toolchain = pkgs.rust-bin.stable.latest.default;
       in
       {
-        devShell =
-          with pkgs;
-          mkShell {
-            buildInputs = [
+        devShell = pkgs.mkShell {
+            buildInputs = with pkgs; [
               # nix
               nixd
               nil
@@ -41,7 +39,7 @@
               tombi
             ];
             env = {
-              RUST_SRC_PATH = "${rust.packages.stable.rustPlatform.rustLibSrc}";
+              RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
             };
             shellHook = ''
               if [ -f .env ]; then
