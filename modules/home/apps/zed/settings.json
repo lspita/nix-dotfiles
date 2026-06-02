@@ -52,6 +52,7 @@
   "show_edit_predictions": true,
   "show_signature_help_after_edits": false,
   "show_whitespaces": "selection",
+  "code_lens": "on",
   "tabs": {
     "git_status": true,
   },
@@ -79,6 +80,15 @@
     },
     "Python": {
       "language_servers": ["ty", "!basedpyright", "..."],
+    },
+    "TypeScript": {
+      "language_servers": ["typescript-language-server", "!vtsls", "..."],
+    },
+    "TSX": {
+      "language_servers": ["typescript-language-server", "!vtsls", "..."],
+    },
+    "JavaScript": {
+      "language_servers": ["typescript-language-server", "!vtsls", "..."],
     },
   },
 }
