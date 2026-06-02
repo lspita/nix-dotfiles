@@ -14,7 +14,7 @@ modules.mkModule inputs ./bitwarden.nix {
     lib.mkMerge [
       {
         home = {
-          packages = [ package ];
+          # packages = [ package ];
           sessionVariables = lib.attrsets.optionalAttrs self.sshAgent.enable (
             # https://bitwarden.com/help/ssh-agent/#configure-bitwarden-ssh-agent
             let

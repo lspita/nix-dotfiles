@@ -7,6 +7,7 @@
       core.enableDefaults = true;
       services.enableDefaults = true;
       virtualisation.enableDefaults = true;
+      apps.enableDefaults = true;
     };
     development.enableDefaults = true;
   };

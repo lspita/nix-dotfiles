@@ -9,6 +9,7 @@
       login.sddm.enable = true;
       desktop.plasma.enable = true;
       virtualisation.enableDefaults = true;
+      apps.enableDefaults = true;
     };
     development.enableDefaults = true;
   };
