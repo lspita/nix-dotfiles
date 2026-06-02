@@ -6,6 +6,7 @@ modules.mkModule inputs ./aliases.nix {
       ll = "ls -al";
       la = "ls -a";
       purge-all = "find . -mindepth 1 -maxdepth 1 -print -exec rm -rf '{}' \\;";
+      git-root = "cd $(git rev-parse --show-toplevel)";
     };
   };
 }
