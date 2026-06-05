@@ -1,4 +1,4 @@
-{ lib, ... }@inputs:
+{ config, lib, ... }@inputs:
 with lib.custom;
 modules.mkModule inputs ./zsh.nix {
   config = {
@@ -8,6 +8,7 @@ modules.mkModule inputs ./zsh.nix {
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       autocd = true;
+      dotDir = "${config.xdg.configHome}/zsh";
       initContent = lib.mkAfter (shell.loadrc inputs "zsh");
     };
   };
