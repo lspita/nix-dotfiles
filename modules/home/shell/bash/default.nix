@@ -8,6 +8,7 @@ modules.mkModule inputs ./. {
     { self, setDefaultSubconfig, ... }:
     (setDefaultSubconfig {
       autocd.enable = true;
+      blesh.enable = true;
     })
     // {
       programs.bash = {

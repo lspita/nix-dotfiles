@@ -8,7 +8,7 @@
     fullname = "Ludovico Spitaleri"; # string: long-form name
     email = "ludovico.spitaleri@gmail.com"; # string?: user email (e.g. for git config)
     image = "clank"; # string?: user image from `assets/profiles`
-    shell = pkgs: pkgs.bash; # fn(pkgs) -> pkg?: shell package to use for the user
+    shell = "zsh"; # string: shell to use for the user
   };
   nixpkgs.config =
     # set?: nixpkgs config (using flakes, you need to provide the nixpkgs config before the modules)

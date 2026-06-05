@@ -13,7 +13,7 @@ modules.mkModule inputs ./user.nix {
         users.users.${username} = {
           description = fullname;
         }
-        // (optionals.ifNotNull { } { shell = shell pkgs; } shell)
+        // (optionals.ifNotNull { } { shell = pkgs.${shell}; } shell)
         // (platform.systemTypeValue {
           linux = {
             isNormalUser = true;

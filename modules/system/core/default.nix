@@ -21,5 +21,6 @@ modules.mkDefaultsModule inputs ./. {
           ];
       };
       user.enable = true;
+      shell.enable = true;
     };
 }

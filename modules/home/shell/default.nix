@@ -1,4 +1,4 @@
-{ lib, ... }@inputs:
+{ lib, vars, ... }@inputs:
 with lib.custom;
 modules.mkDefaultsModule inputs ./. {
   options = {
@@ -14,10 +14,7 @@ modules.mkDefaultsModule inputs ./. {
       (setDefaultSubconfig {
         aliases.enable = true;
         input.enable = true;
-        bash = {
-          enable = true;
-          blesh.enable = true;
-        };
+        ${vars.user.shell}.enable = true;
         prompt.starship = {
           enable = true;
           preset = "omarchy";
