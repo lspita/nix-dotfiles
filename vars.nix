@@ -43,7 +43,7 @@
       monospace = # font?: monospace font (terminal, editor, ...)
         {
           inherit size;
-          name = "FiraMono Nerd Font";
+          name = "JetBrainsMono Nerd Font";
         };
     };
   locale = {
