@@ -25,9 +25,9 @@ modules.mkDefaultsModule inputs ./. {
         passwordManager.enable = false; # use bitwarden instead
       };
       spotify.enable = notWsl;
-      discord.enable = notWsl;
+      # discord.enable = notWsl;
       android-studio.enable = notWsl;
-      hoppscotch.enable = notWsl;
+      # hoppscotch.enable = notWsl;
       vlc.enable = notWsl;
       # kdenlive.enable = notWsl;
       element.enable = notWsl;

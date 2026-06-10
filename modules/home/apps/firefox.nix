@@ -25,7 +25,7 @@ modules.mkModule inputs ./firefox.nix {
           isDefault = true;
           settings = {
             "sidebar.revamp" = true;
-            "sidebar.verticalTabs" = true;
+            "sidebar.verticalTabs" = false;
             "sidebar.visibility" = "always-show";
             "browser.uiCustomization.horizontalTabstrip" = [
               "tabbrowser-tabs"
