@@ -16,6 +16,9 @@
       allowUnfree = true;
       android_sdk.accept_license = true;
       cudaSupport = hostInfo.graphics == "nvidia";
+      permittedInsecurePackages = [
+        "electron-39.8.10"
+      ];
     };
   fonts =
     let

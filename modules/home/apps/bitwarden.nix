@@ -1,14 +1,13 @@
-{ lib, pkgs, ... }@inputs:
+{ lib, ... }@inputs:
 with lib.custom;
 modules.mkModule inputs ./bitwarden.nix {
   options = {
-    autostart.enable = modules.mkEnableOption false "bitwarden autostart";
+    # autostart.enable = modules.mkEnableOption false "bitwarden autostart";
     sshAgent.enable = modules.mkEnableOption false "bitwarden ssh agent";
   };
   config =
     { self, ... }:
     let
-      package = pkgs.bitwarden-desktop;
       desktopFile = "bitwarden.desktop";
     in
     lib.mkMerge [
@@ -34,15 +33,15 @@ modules.mkModule inputs ./bitwarden.nix {
         };
         custom.linux.core.xdg.mimeApps.schemeHandlers.bitwarden = desktopFile;
       }
-      (lib.mkIf self.autostart.enable (
-        platform.systemTypeValue {
-          linux = {
-            xdg.autostart.entries = [ "${package}/share/applications/${desktopFile}" ];
-          };
-          darwin = {
-            # figure out how to autostart on macos
-          };
-        }
-      ))
+      # (lib.mkIf self.autostart.enable (
+      #   platform.systemTypeValue {
+      #     linux = {
+      #       # xdg.autostart.entries = [ "${package}/share/applications/${desktopFile}" ];
+      #     };
+      #     darwin = {
+      #       # figure out how to autostart on macos
+      #     };
+      #   }
+      # ))
     ];
 }

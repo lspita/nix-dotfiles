@@ -17,7 +17,7 @@ modules.mkDefaultsModule inputs ./. {
       # onlyoffice.enable = notWsl;
       bitwarden = {
         enable = notWsl;
-        autostart.enable = true;
+        # autostart.enable = true;
         sshAgent.enable = true;
       };
       firefox = {
