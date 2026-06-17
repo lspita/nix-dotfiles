@@ -26,7 +26,7 @@ modules.mkDefaultsModule inputs ./. {
       };
       spotify.enable = notWsl;
       # discord.enable = notWsl;
-      android-studio.enable = notWsl;
+      # android-studio.enable = notWsl;
       # hoppscotch.enable = notWsl;
       vlc.enable = notWsl;
       # kdenlive.enable = notWsl;
