@@ -21,8 +21,8 @@ modules.mkModule inputs ./fzf.nix {
           in
           {
             defaultCommand = fdFile;
-            changeDirWidgetCommand = fdDir;
-            fileWidgetCommand = fdFile;
+            changeDirWidget.command = fdDir;
+            fileWidget.command = fdFile;
           }
         ));
       }

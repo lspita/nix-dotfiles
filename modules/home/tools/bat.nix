@@ -39,7 +39,7 @@ modules.mkModule inputs ./bat.nix {
             # https://github.com/sharkdp/bat?tab=readme-ov-file#fzf
             with self.fzfPager;
             lib.attrsets.optionalAttrs enable {
-              fzf.fileWidgetOptions = [
+              fzf.fileWidget.options = [
                 "--preview 'bat --color=always --style=numbers --line-range=:${toString range} {}'"
               ];
             }
