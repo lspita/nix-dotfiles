@@ -25,8 +25,10 @@ modules.mkModule inputs ./firefox.nix {
           isDefault = true;
           settings = {
             "sidebar.revamp" = true;
-            "sidebar.verticalTabs" = false;
-            "sidebar.visibility" = "always-show";
+            "sidebar.verticalTabs" = true;
+            "sidebar.visibility" = "expand-on-hover"; # alternatives: always-show, expand-on-hover
+            "sidebar.animation.expand-on-hover.delay-duration-ms" = 100;
+            "sidebar.animation.expand-on-hover.duration-ms" = 200;
             "browser.uiCustomization.horizontalTabstrip" = [
               "tabbrowser-tabs"
               "new-tab-button"
