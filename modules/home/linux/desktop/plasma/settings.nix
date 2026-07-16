@@ -49,6 +49,7 @@ modules.mkModule inputs ./settings.nix {
             translucency.enable = false;
           };
         };
+        searchPlugins.webSearchKeywords.default = "google";
         configFile = {
           kded5rc.Module-browserintegrationreminder.autoload = false; # disable browser integration alert in system tray
           kwinrc = {
@@ -77,7 +78,6 @@ modules.mkModule inputs ./settings.nix {
               TerminalApplication = customTerminal.program;
               TerminalService = customTerminal.desktop;
             };
-          kuriikwsfilterrc.General.DefaultWebShortcut = "google"; # use google in plasma search "web search"
         };
       };
     };
