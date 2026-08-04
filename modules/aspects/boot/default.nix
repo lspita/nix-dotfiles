@@ -28,7 +28,9 @@
       nixos = { pkgs, ... }: {
         boot = {
           # https://wiki.nixos.org/wiki/Linux_kernel
-          kernelPackages = with config.kernel; if packages != null then packages else pkgs.linuxPackages_latest;
+          kernelPackages =
+            with config.kernel;
+            if packages != null then packages else pkgs.linuxPackages_latest;
           loader = {
             inherit (config.entries) timeout;
             systemd-boot = {

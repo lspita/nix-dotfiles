@@ -26,16 +26,14 @@
 
   outputs =
     inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } ({ inputs, den, ... }: {
-      _module.args.inputs = inputs;
-      systems = builtins.attrNames den.hosts;
-      imports = [
-        inputs.den.flakeModule
-        (inputs.import-tree [
-          ./modules
-          ./users
-          ./hosts
-        ])
-      ];
-    });
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } (
+      { inputs, ... }: {
+        _module.args.inputs = inputs;
+        systems = inputs.nixpkgs.lib.systems.flakeExposed;
+        imports = [
+          inputs.den.flakeModule
+          (inputs.import-tree ./modules)
+        ];
+      }
+    );
 }

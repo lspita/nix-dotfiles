@@ -18,7 +18,7 @@
       };
     };
 
-    includes =  [
+    includes = [
       den.aspects.host
     ];
   };
