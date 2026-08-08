@@ -22,6 +22,11 @@
                 description = "Timeout (in seconds) until loader boots the default menu item.";
               };
             };
+            tmp.clean = lib.mkOption {
+              type = lib.types.bool;
+              default = true;
+              description = "Whether to enable tmp clean on boot.";
+            };
           };
         }
       ];
@@ -40,7 +45,7 @@
             };
             efi.canTouchEfiVariables = true;
           };
-          tmp.cleanOnBoot = true;
+          tmp.cleanOnBoot = config.tmp.clean;
         };
       };
     };

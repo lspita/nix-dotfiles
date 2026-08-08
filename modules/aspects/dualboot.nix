@@ -1,5 +1,5 @@
-{
-  den.aspects.dualBoot = { config, lib, ... }: {
+{ den, ... }: {
+  den.aspects.dualboot = { config, lib, ... }: {
     imports = [
       {
         options = {
@@ -29,19 +29,11 @@
       }
     ];
 
-    nixos = {
-      boot.loader.systemd-boot = {
-        # https://wiki.nixos.org/wiki/Dual_Booting_NixOS_and_Windows#EFI_with_multiple_disks
-        windows = config.windows.entries;
-        edk2-uefi-shell = {
-          enable = true;
-          sortKey = "z_edk2"; # put last
-        };
-      };
-      time = {
-        # https://nixos.wiki/wiki/Dual_Booting_NixOS_and_Windows#System_time
-        inherit (config) hardwareClockInLocalTime;
-      };
+    includes = with den.aspects; [ boot ];
+
+    nixos.time = {
+      # https://nixos.wiki/wiki/Dual_Booting_NixOS_and_Windows#System_time
+      inherit (config) hardwareClockInLocalTime;
     };
   };
 }

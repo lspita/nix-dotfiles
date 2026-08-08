@@ -7,8 +7,9 @@
     };
     aspects.clank = {
       includes = [
-        den.aspects.boot
-        den.aspects.dualBoot
+        den.aspects.systemd-boot
+        den.aspects.nix
+        den.aspects.nixpkgs
       ];
 
       os.imports = [ ./_hardware.nix ];
