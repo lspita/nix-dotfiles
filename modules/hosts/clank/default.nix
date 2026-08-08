@@ -9,7 +9,6 @@
       includes = with den.aspects; [
         systemd-boot
         nix
-        nixpkgs
       ];
 
       os.imports = [ ./_hardware.nix ];
