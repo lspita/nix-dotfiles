@@ -18,8 +18,6 @@
       };
     };
 
-    includes = [
-      den.aspects.host
-    ];
+    includes = with den.aspects; [ host ];
   };
 }

@@ -6,10 +6,10 @@
       users.lspita = { };
     };
     aspects.clank = {
-      includes = [
-        den.aspects.systemd-boot
-        den.aspects.nix
-        den.aspects.nixpkgs
+      includes = with den.aspects; [
+        systemd-boot
+        nix
+        nixpkgs
       ];
 
       os.imports = [ ./_hardware.nix ];
