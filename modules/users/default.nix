@@ -1,6 +1,6 @@
-{ lib, den, ... }: {
+{ den, ... }: {
   den.schema.user = {
-    includes = [ den.batteries.define-user ];
-    classes = lib.mkDefault [ "homeManager" ];
+    includes = with den.batteries; [ define-user ];
+    classes = [ "homeManager" ];
   };
 }
