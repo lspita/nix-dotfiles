@@ -1,5 +1,5 @@
 {
-  den.aspects.nix = {
+  nix.settings = {
     os = {
       nix.settings.experimental-features = [
         "nix-command"

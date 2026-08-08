@@ -1,5 +1,5 @@
-{
-  den.aspects.nvidia =
+{ den, ... }: {
+  graphics.nvidia =
     { config, lib, ... }:
     {
       imports = [
@@ -19,6 +19,9 @@
             };
           };
         }
+      ];
+      includes = [
+        (den.batteries.unfree [ "nvidia-x11" "nvidia-settings" ])
       ];
 
       nixos = {

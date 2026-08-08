@@ -5,10 +5,10 @@
       graphics = "intel";
       users.lspita = { };
     };
-    aspects.clank = {
-      includes = with den.aspects; [
-        systemd-boot
-        nix
+    aspects.clank = with den.ful; {
+      includes = [
+        boot.systemd-boot
+        nix.settings
       ];
 
       os.imports = [ ./_hardware.nix ];

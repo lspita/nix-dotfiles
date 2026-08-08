@@ -1,5 +1,5 @@
 {
-  den.aspects.boot =
+  boot.core =
     { config, lib, ... }:
     {
       imports = [

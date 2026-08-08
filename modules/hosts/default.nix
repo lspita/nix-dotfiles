@@ -23,23 +23,18 @@
     };
 
     aspects.host = { host, ... }: {
-      includes = [
-        den.batteries.hostname
-        (
-          { host, ... }:
-          let
-            graphicsAspects = with den.aspects; {
-              nvidia = nvidia;
-              intel = intel-graphics;
-            };
-          in
-          {
-            includes = [ graphicsAspects.${host.graphics} or { } ];
-          }
-        )
+      includes = with den.batteries; [
+        hostname
+        (den.ful.graphics.${host.graphics} or { })
       ];
 
-      os.system.stateVersion = host.stateVersion;
+      os = {
+        system.stateVersion = host.stateVersion;
+        home-manager = {
+          useGlobalPkgs = lib.mkDefault true;
+          useUserPackages = lib.mkDefault true;
+        };
+      };
       provides.to-users.homeManager.home.stateVersion = host.stateVersion;
     };
   };

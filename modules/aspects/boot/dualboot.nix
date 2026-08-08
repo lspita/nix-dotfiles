@@ -1,5 +1,5 @@
 { den, ... }: {
-  den.aspects.dualboot = { config, lib, ... }: {
+  boot.dualboot = { config, lib, ... }: {
     imports = [
       {
         options = {
@@ -28,8 +28,7 @@
         };
       }
     ];
-
-    includes = with den.aspects; [ boot ];
+    includes = with den.ful; [ boot.core ];
 
     nixos.time = {
       # https://nixos.wiki/wiki/Dual_Booting_NixOS_and_Windows#System_time
