@@ -22,20 +22,21 @@
       includes = with den.aspects; [ host ];
     };
 
-    aspects.host = { host, ... }: {
+    aspects.host = { host, ... }:
+    let
+      graphicsAspect = den.aspects.graphics.${host.graphics} or { };
+    in
+    {
       includes = with den.batteries; [
         hostname
-        (den.ful.graphics.${host.graphics} or { })
+        graphicsAspect
       ];
 
-      os = {
-        system.stateVersion = host.stateVersion;
-        home-manager = {
-          useGlobalPkgs = lib.mkDefault true;
-          useUserPackages = lib.mkDefault true;
-        };
+      os.system.stateVersion = host.stateVersion;
+      provides.to-users = {
+        includes = [ graphicsAspect ];
+        homeManager.home.stateVersion = host.stateVersion;
       };
-      provides.to-users.homeManager.home.stateVersion = host.stateVersion;
     };
   };
 }

@@ -1,5 +1,5 @@
 {
-  graphics.intel.nixos = { pkgs, ... }: {
+  den.aspects.graphics.intel.nixos = { pkgs, ... }: {
     # https://wiki.nixos.org/wiki/Intel_Graphics
     services.xserver.videoDrivers = [ "modesetting" ];
     hardware.graphics.extraPackages = with pkgs; [
