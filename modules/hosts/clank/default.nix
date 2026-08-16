@@ -9,7 +9,7 @@
       clank.hardware
       kernel.latest
       boot.systemd-boot
-      nix.settings
+      nix
       home-manager
     ];
   };
