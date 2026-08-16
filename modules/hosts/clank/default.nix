@@ -2,18 +2,15 @@
   den = {
     hosts.x86_64-linux.clank = {
       stateVersion = "26.11";
-      graphics = "nvidia";
+      graphics = "intel";
       users.lspita = { };
     };
-    aspects.clank = with den.aspects; {
-      includes = [
-        kernel.latest
-        boot.systemd-boot
-        nix.settings
-        home-manager
-      ];
-
-      os.imports = [ ./_hardware.nix ];
-    };
+    aspects.clank.includes = with den.aspects; [
+      clank.hardware
+      kernel.latest
+      boot.systemd-boot
+      nix.settings
+      home-manager
+    ];
   };
 }
