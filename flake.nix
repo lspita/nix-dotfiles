@@ -31,7 +31,6 @@
         _module.args.inputs = inputs;
         systems = inputs.nixpkgs.lib.systems.flakeExposed;
         imports = [
-          inputs.den.flakeModule
           (inputs.import-tree ./modules)
         ];
       }
