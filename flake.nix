@@ -16,6 +16,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # https://nix-community.github.io/haumea/intro/getting-started.html
+    haumea = {
+      url = "github:nix-community/haumea/v0.2.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # https://flake.parts/getting-started.html
     flake-parts.url = "github:hercules-ci/flake-parts";
 
@@ -28,7 +34,11 @@
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } (
       { inputs, ... }: {
-        _module.args.inputs = inputs;
+        _module.args = rec {
+          inputs = inputs;
+          flakeRoot = ./.;
+          flakePath = filePath: "${flakeRoot}/${filePath}";
+        };
         systems = inputs.nixpkgs.lib.systems.flakeExposed;
         imports = [
           (inputs.import-tree ./modules)
