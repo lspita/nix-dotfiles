@@ -66,7 +66,7 @@ let
             });
         };
         systemType =
-          with pkgs.stdenv;
+          with pkgs.stdenv.hostPlatform;
           if isLinux then
             if hostInfo.wsl then "wsl" else "linux"
           else if isDarwin then
