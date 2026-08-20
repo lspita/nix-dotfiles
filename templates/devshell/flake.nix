@@ -13,20 +13,20 @@
       in
       {
         devShell = pkgs.mkShell {
-            buildInputs = with pkgs; [
-              # nix
-              nixd
-              nil
-              nixfmt
-            ];
-            shellHook = ''
-              if [ -f .env ]; then
-                set -a
-                source .env
-                set +a
-              fi
-            '';
-          };
+          buildInputs = with pkgs; [
+            # nix
+            nixd
+            nil
+            nixfmt
+          ];
+          shellHook = ''
+            if [ -f .env ]; then
+              set -a
+              source .env
+              set +a
+            fi
+          '';
+        };
       }
     );
 }

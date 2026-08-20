@@ -13,28 +13,28 @@
       in
       {
         devShell = pkgs.mkShell {
-            buildInputs = with pkgs; [
-              # nix
-              nixd
-              nil
-              nixfmt
-              # python
-              python3
-              ruff
-              ty
-              uv
-            ];
-            shellHook = ''
-              if [ -f .env ]; then
-                set -a
-                source .env
-                set +a
-              fi
+          buildInputs = with pkgs; [
+            # nix
+            nixd
+            nil
+            nixfmt
+            # python
+            python3
+            ruff
+            ty
+            uv
+          ];
+          shellHook = ''
+            if [ -f .env ]; then
+              set -a
+              source .env
+              set +a
+            fi
 
-              uv sync --frozen
-              source .venv/bin/activate
-            '';
-          };
+            uv sync --frozen
+            source .venv/bin/activate
+          '';
+        };
       }
     );
 }

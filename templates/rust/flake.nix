@@ -28,27 +28,27 @@
       in
       {
         devShell = pkgs.mkShell {
-            buildInputs = with pkgs; [
-              # nix
-              nixd
-              nil
-              nixfmt
-              # rust
-              rust-toolchain
-              # toml
-              tombi
-            ];
-            env = {
-              RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
-            };
-            shellHook = ''
-              if [ -f .env ]; then
-                set -a
-                source .env
-                set +a
-              fi
-            '';
+          buildInputs = with pkgs; [
+            # nix
+            nixd
+            nil
+            nixfmt
+            # rust
+            rust-toolchain
+            # toml
+            tombi
+          ];
+          env = {
+            RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
           };
+          shellHook = ''
+            if [ -f .env ]; then
+              set -a
+              source .env
+              set +a
+            fi
+          '';
+        };
       }
     );
 }

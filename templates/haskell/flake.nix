@@ -18,10 +18,10 @@
             nixd
             nil
             nixfmt
-            # kotlin
-            kotlin
-            kotlin-language-server # deprecated, but official kotlin-lsp is still not packaged
-            gradle
+            # haskell
+            haskell.compiler.ghc912
+            cabal-install
+            haskell-language-server
           ];
           shellHook = ''
             if [ -f .env ]; then
