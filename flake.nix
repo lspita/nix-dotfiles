@@ -16,12 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # https://nix-community.github.io/haumea/intro/getting-started.html
-    haumea = {
-      url = "github:nix-community/haumea/v0.2.2";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # https://flake.parts/getting-started.html
     flake-parts.url = "github:hercules-ci/flake-parts";
 
