@@ -27,9 +27,10 @@
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } (
-      { inputs, ... }: {
+      { config, inputs, ... }: {
         _module.args = rec {
-          inputs = inputs;
+          inherit inputs;
+          inherit (config) flake;
           flakeRoot = ./.;
           flakePath = filePath: "${flakeRoot}/${filePath}";
         };
