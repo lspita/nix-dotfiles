@@ -39,6 +39,7 @@ modules.mkModule inputs ./nix.nix {
           experimental-features = [
             "nix-command"
             "flakes"
+            "pipe-operators"
           ];
           auto-optimise-store = true;
           substituters = map (substituter: substituter.url) self.extraSubstituters;
