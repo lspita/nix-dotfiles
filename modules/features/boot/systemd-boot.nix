@@ -1,4 +1,4 @@
-{ den, lib, ... }: {
+{ flake, den, lib, ... }: {
   den.aspects.boot.systemd-boot =
     let
       inherit (den.aspects) boot;
@@ -20,7 +20,7 @@
         lib.optionalAttrs (host.hasAspect boot.dualboot) {
           boot.loader.systemd-boot = {
             # https://wiki.nixos.org/wiki/Dual_Booting_NixOS_and_Windows#EFI_with_multiple_disks
-            windows = lib.mkMerge windowsEntries;
+            windows = flake.lib.boot.mergeWindowsEntries windowsEntries;
             edk2-uefi-shell = {
               enable = true;
               sortKey = "z_edk2"; # put last

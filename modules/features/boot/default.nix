@@ -1,4 +1,7 @@
 {
+  flake.lib.boot.mergeWindowsEntries =
+    windowsEntries: builtins.foldl' (acc: e: acc // e) { } windowsEntries;
+
   den = {
     quirks.windowsEntries.description = "Windows boot entries";
 
