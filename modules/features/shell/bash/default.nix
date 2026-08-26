@@ -1,7 +1,7 @@
 {
-  flake,
   den,
   lib,
+  lib2,
   ...
 }:
 {
@@ -19,7 +19,7 @@
         programs.bash = {
           enable = true;
           enableCompletion = true;
-          initExtra = lib.mkAfter (flake.lib.shell.mkShellrc "bash" shellrc);
+          initExtra = lib.mkAfter (lib2.shell.mkShellrc "bash" shellrc);
         };
         home.shell.enableBashIntegration = true;
       };

@@ -1,4 +1,9 @@
-{ flake, den, lib, ... }:
+{
+  den,
+  lib,
+  lib2,
+  ...
+}:
 {
   den.aspects.shell.zsh = {
     includes = with den.aspects; [ shell ];
@@ -15,7 +20,7 @@
           syntaxHighlighting.enable = true;
           autocd = true;
           dotDir = "${config.xdg.configHome}/zsh";
-          initContent = lib.mkAfter (flake.lib.shell.mkShellrc "zsh" shellrc);
+          initContent = lib.mkAfter (lib2.shell.mkShellrc "zsh" shellrc);
         };
         home.shell.enableZshIntegration = true;
       };
