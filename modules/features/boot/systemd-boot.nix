@@ -1,4 +1,10 @@
-{ den, lib, lib2, ... }: {
+{
+  den,
+  lib,
+  lib2,
+  ...
+}:
+{
   den.aspects.boot.systemd-boot =
     let
       inherit (den.aspects) boot;
