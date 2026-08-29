@@ -11,7 +11,7 @@
     provides.to-host.os.programs.zsh.enable = true;
 
     homeManager =
-      { config, shellrc, ... }:
+      { config, ... }:
       {
         programs.zsh = {
           enable = true;
@@ -20,7 +20,7 @@
           syntaxHighlighting.enable = true;
           autocd = true;
           dotDir = "${config.xdg.configHome}/zsh";
-          initContent = lib.mkAfter (lib2.shell.mkShellrc "zsh" shellrc);
+          initContent = lib.mkAfter (lib2.shell.mkShellrc config "zsh");
         };
         home.shell.enableZshIntegration = true;
       };

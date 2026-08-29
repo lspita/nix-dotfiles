@@ -1,18 +1,18 @@
 { den, lib, ... }: {
   den.aspects.shell.bash.blesh = {
-    shellrc = [
-      (lib.mkBefore ''[[ $- == *i* ]] && source -- "$(blesh-share)"/ble.sh --attach=none'')
-      (lib.mkAfter "[[ ! \${BLE_VERSION-} ]] || ble-attach")
-    ];
+    homeManager = { host, pkgs, ... }: {
+      features.shell.rc = lib.mkMerge [
+        (lib.mkBefore [ ''[[ $- == *i* ]] && source -- "$(blesh-share)"/ble.sh --attach=none'' ])
+        (lib.mkAfter [ "[[ ! \${BLE_VERSION-} ]] || ble-attach" ])
+      ];
 
-    homeManager = { pkgs, ... }: {
-      home = { hasAspect, ... }: {
+      home = {
         packages = with pkgs; [ blesh ];
         file.".blerc".text =
 
           # https://github.com/akinomyoga/ble.sh/blob/master/blerc.template
           ''
-            ${lib.strings.optionalString (hasAspect den.aspects.tool.fzf)
+            ${lib.strings.optionalString (host.hasAspect den.aspects.tools.fzf)
               # https://github.com/akinomyoga/ble.sh#fzf-integration
               ''
                 # Note: If you want to combine fzf-completion with bash_completion, you need to
