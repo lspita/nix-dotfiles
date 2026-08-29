@@ -31,6 +31,6 @@ modules.mkDefaultsModule inputs ./. {
       vlc.enable = notWsl;
       # kdenlive.enable = notWsl;
       element.enable = notWsl;
-      slack.enable = notWsl;
+      # slack.enable = notWsl;
     };
 }
