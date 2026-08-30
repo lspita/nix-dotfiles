@@ -21,16 +21,14 @@
       };
     };
 
-    cuda = {
-      os = {
-        nix.settings = {
-          # https://wiki.nixos.org/wiki/CUDA#Setting_up_CUDA_Binary_Cache
-          substituers = [ "https://cache.nixos-cuda.org" ];
-          trusted-public-keys = [ "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=" ];
-        };
-        nixpkgs.config.cudaSupport = true;
-      };
-    };
+    cuda.includes = with den.aspects; [
+      (nix.settings {
+        # https://wiki.nixos.org/wiki/CUDA#Setting_up_CUDA_Binary_Cache
+        substituers = [ "https://cache.nixos-cuda.org" ];
+        trusted-public-keys = [ "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=" ];
+      })
+      (nixpkgs.settings { cudaSupport = true; })
+    ];
     wayland.nixos =
       { host, ... }:
       lib.optionalAttrs (host.hasAspect den.aspects.graphics.wayland) {

@@ -16,6 +16,7 @@
       home-manager
       shell.prompt.starship
       dev.probe-rs
+      dev.android
     ];
   };
 }
