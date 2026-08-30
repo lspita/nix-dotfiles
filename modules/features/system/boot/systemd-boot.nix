@@ -1,8 +1,8 @@
 { den, lib, ... }:
 {
-  den.aspects.boot.systemd-boot =
+  den.aspects.system.boot.systemd-boot =
     let
-      inherit (den.aspects) boot;
+      inherit (den.aspects.system) boot;
     in
     {
       includes = [

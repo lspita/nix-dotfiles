@@ -1,5 +1,5 @@
 { lib, ... }: {
-  den.aspects.boot = {
+  den.aspects.system.boot = {
     nixos.boot = {
       # https://wiki.nixos.org/wiki/Linux_kernel
       loader = {

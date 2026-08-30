@@ -11,7 +11,7 @@
     aspects.clank.includes = with den.aspects; [
       clank.hardware
       kernel.latest
-      boot.systemd-boot
+      system.boot.systemd-boot
       nix
       home-manager
       shell.prompt.starship
