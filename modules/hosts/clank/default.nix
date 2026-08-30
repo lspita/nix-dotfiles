@@ -17,6 +17,7 @@
       shell.prompt.starship
       dev.probe-rs
       dev.android
+      dev.platformio
     ];
   };
 }
