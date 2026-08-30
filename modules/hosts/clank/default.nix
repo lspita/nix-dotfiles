@@ -15,6 +15,7 @@
       nix
       home-manager
       shell.prompt.starship
+      tools.probe-rs
     ];
   };
 }
