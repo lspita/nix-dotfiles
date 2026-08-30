@@ -1,3 +1,3 @@
 {
-  den.aspects.tools.fzf = {};
+  den.aspects.tools.fzf = { };
 }

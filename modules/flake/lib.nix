@@ -1,6 +1,6 @@
 { flake, lib, ... }: {
   options.flake.lib = lib.mkOption {
-    type = lib.types.lazyAttrsOf lib.types.raw;
+    type = lib.types.attrs;
     default = { };
     description = "Custom library functions";
   };

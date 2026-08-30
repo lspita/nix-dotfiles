@@ -4,7 +4,7 @@
       options = {
         shell = lib.mkOption {
           type = lib.types.str;
-          description = "Shell of the user.";
+          description = "Shell used by the user.";
         };
       };
 
@@ -29,5 +29,11 @@
           primary-user
         ]);
       };
+  };
+
+  flake.users = lib.mkOption {
+    type = lib.types.attrs;
+    default = { };
+    description = "Users defaults definitions";
   };
 }

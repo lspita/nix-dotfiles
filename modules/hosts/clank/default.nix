@@ -5,6 +5,7 @@
       graphics = "intel";
       users.lspita = {
         shell = "zsh";
+        profile.image = "clank";
       };
     };
     aspects.clank.includes = with den.aspects; [
@@ -14,8 +15,6 @@
       nix
       home-manager
       shell.prompt.starship
-      shell.bash.blesh
-      tools.fzf
     ];
   };
 }

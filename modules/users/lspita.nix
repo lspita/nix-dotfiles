@@ -1,3 +1,3 @@
 {
-  den.aspects.lspita = { };
+  den.aspects.lspita = {};
 }
