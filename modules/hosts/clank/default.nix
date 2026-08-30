@@ -18,6 +18,7 @@
       dev.probe-rs
       dev.android
       dev.platformio
+      services.openssh
     ];
   };
 }
