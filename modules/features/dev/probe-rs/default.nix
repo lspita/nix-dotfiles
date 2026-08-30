@@ -1,5 +1,5 @@
 {
-  den.aspects.tools.probe-rs.nixos =
+  den.aspects.dev.probe-rs.nixos =
     { user, pkgs, ... }:
     let
       probersUdevRulesPackage = pkgs.stdenv.mkDerivation {
