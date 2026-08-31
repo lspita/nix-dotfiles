@@ -6,6 +6,16 @@
           type = lib.types.str;
           description = "Shell used by the user.";
         };
+        fullName = lib.mkOption {
+          type = with lib.types; nullOr str;
+          default = null;
+          description = "Full name of the user";
+        };
+        email = lib.mkOption {
+          type = with lib.types; nullOr str;
+          default = null;
+          description = "Email name of the user";
+        };
       };
 
       includes = with den.aspects; [ user ];
