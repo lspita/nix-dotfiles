@@ -9,6 +9,25 @@
       tmp.cleanOnBoot = true;
     };
 
+    plymouth.nixos.boot = {
+      # https://wiki.nixos.org/wiki/Plymouth
+      plymouth = {
+        enable = true;
+        theme = "bgrt"; # distro logo
+      };
+
+      # silent boot
+      consoleLogLevel = 3;
+      initrd.verbose = false;
+      kernelParams = [
+        "quiet"
+        "splash"
+        "boot.shell_on_fail"
+        "udev.log_priority=3"
+        "rd.systemd.show_status=auto"
+      ];
+    };
+
     dualboot.nixos = {
       # https://nixos.wiki/wiki/Dual_Booting_NixOS_and_Windows#System_time
       options.features.boot.dualboot.windows.entries = lib.mkOption {

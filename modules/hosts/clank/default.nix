@@ -12,6 +12,9 @@
       clank.hardware
       kernel.latest
       system.boot.systemd-boot
+      system.boot.plymouth
+      system.audio.pipewire
+      system.fs.exfat
       nix
       home-manager
       shell.prompt.starship
