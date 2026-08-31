@@ -23,6 +23,8 @@
       system.fs.exfat
       system.locale
       system.locale.hunspell
+      system.network
+      system.network.networkmanager
       nix
       home-manager
       shell.prompt.starship
