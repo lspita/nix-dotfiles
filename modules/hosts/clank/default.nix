@@ -25,6 +25,7 @@
       system.locale.hunspell
       system.network
       system.network.networkmanager
+      system.bluetooth
       nix
       home-manager
       shell.prompt.starship
