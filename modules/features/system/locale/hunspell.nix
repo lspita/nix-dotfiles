@@ -6,7 +6,7 @@
       description = "Languages to install";
     };
 
-    aspects.locale.hunspell.os =
+    aspects.system.locale.hunspell.os =
       { host, pkgs, ... }:
       let
         hunspellDicts = pkgs.hunspellDicts;

@@ -4,17 +4,25 @@
       stateVersion = "26.11";
       graphics = "intel";
       users.lspita = {
+        fullName = "Ludovico Spitaleri";
+        email = "ludovico.spitaleri@gmail.com";
         shell = "zsh";
         profile.image = "clank";
+      };
+      locale = {
+        default = "en_DK.UTF-8";
+        keyboard = "it";
       };
     };
     aspects.clank.includes = with den.aspects; [
       clank.hardware
-      kernel.latest
+      system.kernel.latest
       system.boot.systemd-boot
       system.boot.plymouth
       system.audio.pipewire
       system.fs.exfat
+      system.locale
+      system.locale.hunspell
       nix
       home-manager
       shell.prompt.starship

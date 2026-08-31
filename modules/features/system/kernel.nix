@@ -1,5 +1,5 @@
 {
-  den.aspects.kernel =
+  den.aspects.system.kernel =
     let
       mkKernelAspect = kernelPkgsFn: {
         nixos = { pkgs, ... }: {

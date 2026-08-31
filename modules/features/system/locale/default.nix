@@ -18,11 +18,11 @@
       };
     };
 
-    aspects.locale = {
+    aspects.system.locale = {
       os = { host, ... }: { time.timeZone = host.locale.timeZone; };
       nixos = { host, ... }: with host.locale;
         {
-          i18.defaultLocale = default;
+          i18n.defaultLocale = default;
           console.keyMap = keyboard;
         };
     };
