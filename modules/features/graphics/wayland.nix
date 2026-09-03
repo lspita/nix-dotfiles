@@ -1,3 +1,0 @@
-{
-  den.aspects.graphics.wayland = { };
-}

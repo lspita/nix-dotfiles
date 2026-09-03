@@ -31,7 +31,7 @@
     ];
     wayland.nixos =
       { host, ... }:
-      lib.optionalAttrs (host.hasAspect den.aspects.graphics.wayland) {
+      lib.optionalAttrs (host.hasAspect den.aspects.system.wayland) {
         hardware.nvidia.modesetting.enable = true;
       };
   };

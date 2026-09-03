@@ -29,6 +29,7 @@
       system.documentation
       system.firmware.all
       system.nix-ld
+      system.wayland
       nix
       home-manager
       shell.prompt.starship
