@@ -27,6 +27,7 @@
       system.network.networkmanager
       system.bluetooth
       system.documentation
+      system.firmware.all
       nix
       home-manager
       shell.prompt.starship
