@@ -28,6 +28,7 @@
       system.bluetooth
       system.documentation
       system.firmware.all
+      system.nix-ld
       nix
       home-manager
       shell.prompt.starship
