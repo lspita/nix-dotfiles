@@ -30,13 +30,17 @@
       system.firmware.all
       system.nix-ld
       system.wayland
+      services.fingerprint
+      services.location
+      services.printing
+      services.ssh
+      services.udev
       nix
       home-manager
       shell.prompt.starship
       dev.probe-rs
       dev.android
       dev.platformio
-      services.openssh
     ];
   };
 }
