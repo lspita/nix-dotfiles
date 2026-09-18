@@ -14,6 +14,8 @@
         androidPkgs.androidsdk;
     in
     {
+      includes = [ den.aspects.virtualisation.libvirtd ];
+
       nixos =
         { user, ... }:
         {

@@ -35,6 +35,10 @@
       services.printing
       services.ssh
       services.udev
+      (virtualisation.containers "podman")
+      virtualisation.docker
+      virtualisation.podman
+      virtualisation.libvirtd
       nix
       home-manager
       shell.prompt.starship
