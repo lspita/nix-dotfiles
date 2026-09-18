@@ -26,11 +26,13 @@
       { host, ... }:
       let
         graphicsAspect = den.aspects.graphics.${host.graphics} or { };
+        wslAspect = lib.optionalAttrs host.wsl.enable den.aspects.system.wsl;
       in
       {
         includes = with den.batteries; [
           hostname
           graphicsAspect
+          wslAspect
         ];
 
         os.system.stateVersion = host.stateVersion;

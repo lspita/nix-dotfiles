@@ -10,6 +10,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # https://nix-community.github.io/NixOS-WSL/how-to/nix-flakes.html
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
     # https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-nixos-module
     home-manager = {
       url = "github:nix-community/home-manager";
