@@ -91,7 +91,24 @@
       "language_servers": ["typescript-language-server", "!vtsls", "..."],
     },
     "Haskell": {
-      "tab_size": 2
-    }
+      "tab_size": 2,
+    },
+  },
+  "lsp": {
+    "tinymist": {
+      "initialization_options": {
+        "preview": {
+          "background": {
+            "enabled": true,
+          },
+        },
+      },
+
+      "settings": {
+        "exportPdf": "onSave",
+        "outputPath": "$root/$name",
+        "formatterMode": "typstyle",
+      },
+    },
   },
 }
