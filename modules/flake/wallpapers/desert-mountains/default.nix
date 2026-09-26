@@ -1,5 +1,5 @@
 {
-  flake.assets.wallpapers.desert-mountains = {
+  flake.wallpapers.desert-mountains = {
     id = "desert-mountains";
     name = "Desert Mountains";
     type = "regular";

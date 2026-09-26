@@ -1,5 +1,5 @@
 {
-  flake.assets.wallpapers.lake = {
+  flake.wallpapers.lake = {
     id = "lake";
     name = "Lake";
     type = "regular";

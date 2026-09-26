@@ -1,21 +1,21 @@
 {
-  flake.assets.wallpapers.planet-oled = {
-    id = "planet-oled";
-    name = "Planet (OLED)";
+  flake.wallpapers.plasma-orionids = {
+    id = "plasma-orionids";
+    name = "Plasma Orionids";
     type = "light-dark";
     light = {
       path = ./light.png;
-      color = "#ffffff";
+      color = "#8746c6";
       size = {
-        width = 4096;
+        width = 7680;
         height = 2160;
       };
     };
     dark = {
       path = ./dark.png;
-      color = "#000000";
+      color = "#833086";
       size = {
-        width = 4096;
+        width = 7680;
         height = 2160;
       };
     };

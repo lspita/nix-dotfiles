@@ -1,5 +1,5 @@
 {
-  flake.assets.wallpapers.palette-warm = {
+  flake.wallpapers.palette-warm = {
     id = "palette-warm";
     name = "Palette Warm";
     type = "light-dark";

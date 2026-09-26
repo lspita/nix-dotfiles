@@ -1,5 +1,5 @@
 {
-  flake.assets.wallpapers.palette-gray = {
+  flake.wallpapers.palette-gray = {
     id = "palette-gray";
     name = "Palette Gray";
     type = "regular";

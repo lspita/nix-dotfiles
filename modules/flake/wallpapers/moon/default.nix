@@ -1,5 +1,5 @@
 {
-  flake.assets.wallpapers.moon = {
+  flake.wallpapers.moon = {
     id = "moon";
     name = "Moon";
     type = "regular";

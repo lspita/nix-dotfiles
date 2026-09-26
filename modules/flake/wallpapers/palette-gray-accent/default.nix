@@ -1,5 +1,5 @@
 {
-  flake.assets.wallpapers.palette-gray-accent = {
+  flake.wallpapers.palette-gray-accent = {
     id = "palette-gray-accent";
     name = "Palette Gray (with accent)";
     type = "regular";

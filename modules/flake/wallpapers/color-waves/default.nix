@@ -1,5 +1,5 @@
 {
-  flake.assets.wallpapers.color-waves = {
+  flake.wallpapers.color-waves = {
     id = "color-waves";
     name = "Color Waves";
     type = "regular";
