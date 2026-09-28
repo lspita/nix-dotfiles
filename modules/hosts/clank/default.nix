@@ -13,6 +13,20 @@
         default = "en_DK.UTF-8";
         keyboard = "it";
       };
+      fonts =
+        let
+          size = 11;
+        in
+        {
+          normal = {
+            inherit size;
+            name = "NotoSans Nerd Font";
+          };
+          monospace = {
+            inherit size;
+            name = "JetBrainsMono Nerd Font";
+          };
+        };
     };
     aspects.clank.includes = with den.aspects; [
       clank.hardware
@@ -39,6 +53,11 @@
       virtualisation.docker
       virtualisation.podman
       virtualisation.libvirtd
+      fonts.noto
+      fonts.noto-nf
+      fonts.jetbrains-mono-nf
+      fonts.fira-code-nf
+      fonts.fira-mono-nf
       nix
       home-manager
       shell.prompt.starship
