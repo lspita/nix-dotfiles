@@ -12,6 +12,11 @@
       locale = {
         default = "en_DK.UTF-8";
         keyboard = "it";
+        languages = [
+          "en_US"
+          "en_GB"
+          "it_IT"
+        ];
       };
       theme = "catppuccin";
       themes.catppuccin = {
