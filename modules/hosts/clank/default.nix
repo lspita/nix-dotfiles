@@ -1,14 +1,16 @@
-{ den, programs, ... }: {
+{
+  den,
+  programs,
+  users,
+  lib,
+  ...
+}:
+{
   den = {
     hosts.x86_64-linux.clank = {
       stateVersion = "26.11";
       graphics = "intel";
-      users.lspita = {
-        fullName = "Ludovico Spitaleri";
-        email = "ludovico.spitaleri@gmail.com";
-        shell = "zsh";
-        profile.image = "clank";
-      };
+      users = { inherit (users) lspita; };
       locale = {
         default = "en_DK.UTF-8";
         keyboard = "it";
@@ -38,7 +40,7 @@
           };
         };
       programs = rec {
-        terminal.exec = "kitty";
+        terminal = programs.kitty;
         browser.exec = "firefox";
         editor = {
           desktop = "dev.zed.Zed.desktop";

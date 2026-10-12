@@ -10,11 +10,11 @@
       includes = with den.aspects; [ host ];
     };
 
-    aspects.host = { host, ... }:{
-        includes = with den.batteries; [ hostname ];
+    aspects.host = { host, ... }: {
+      includes = with den.batteries; [ hostname ];
 
-        os.system.stateVersion = host.stateVersion;
-        provides.to-users.homeManager.home.stateVersion = host.stateVersion;
-      };
+      os.system.stateVersion = host.stateVersion;
+      provides.to-users.homeManager.home.stateVersion = host.stateVersion;
+    };
   };
 }
