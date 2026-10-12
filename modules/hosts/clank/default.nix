@@ -37,6 +37,17 @@
             name = "JetBrainsMono Nerd Font";
           };
         };
+      apps = rec {
+        terminal.exec = "kitty";
+        browser.exec = "firefox";
+        editor = {
+          desktop = "dev.zed.Zed.desktop";
+          exec = "zeditor";
+        };
+        terminalEditor.exec = "nano";
+        music.exec = "spotify";
+        mail = browser;
+      };
     };
     aspects.clank.includes = with den.aspects; [
       clank.hardware

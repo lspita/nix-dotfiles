@@ -1,24 +1,30 @@
 { lib, ... }:
 {
   den = {
-    schema.user.options.fonts =
+    schema.user.options.apps =
       let
-        mkFontOption = type: {
-          name = lib.mkOption {
-            type = with lib.types; nullOr str;
-            default = null;
-            description = "Font to use (${type})";
+        fontType = lib.types.submodule {
+          options = {
+            desktop = lib.mkOption {
+              type = lib.types.str;
+              description = "Font name";
+            };
+            size = lib.mkOption {
+              type = with lib.types; nullOr int;
+              default = null;
+              description = "Font size";
+            };
           };
-          size = lib.mkOption {
-            type = with lib.types; nullOr int;
-            default = null;
-            description = "Font size (${type})";
-          };
+        };
+        mkFontOption = fontName: lib.mkOption {
+          type = lib.types.nullOr fontType;
+          default = null;
+          description = "${fontName} font to use";
         };
       in
       {
-        normal = mkFontOption "normal";
-        monospace = mkFontOption "monospace";
+        normal = mkFontOption "Normal";
+        monospace = mkFontOption "Monospace";
       };
 
     aspects.font = pkgsFn: {
