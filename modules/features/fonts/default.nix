@@ -16,11 +16,13 @@
             };
           };
         };
-        mkFontOption = fontName: lib.mkOption {
-          type = lib.types.nullOr fontType;
-          default = null;
-          description = "${fontName} font to use";
-        };
+        mkFontOption =
+          fontName:
+          lib.mkOption {
+            type = lib.types.nullOr fontType;
+            default = null;
+            description = "${fontName} font to use";
+          };
       in
       {
         normal = mkFontOption "Normal";

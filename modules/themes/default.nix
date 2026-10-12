@@ -1,4 +1,10 @@
-{ den, lib, lib2, ... }: {
+{
+  den,
+  lib,
+  lib2,
+  ...
+}:
+{
   den.schema.host.options = {
     theme =
       let
