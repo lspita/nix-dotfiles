@@ -17,13 +17,13 @@
           }
           // (lib.attrsets.optionalAttrs (!isNull wallpaper) (
             let
-              wallpaperVariant = lib2.wallpapers.wallpaperTypeValue wallpaper {
-                light-dark = if cfg.flavor == "latte" then wallpaper.light else wallpaper.dark;
-                regular = wallpaper;
+              wallpaperImage = lib2.images.matchTag wallpaper {
+                regular = lib.id;
+                light-dark = { light, dark }: if cfg.flavor == "latte" then light else dark;
               };
             in
             {
-              background = wallpaperVariant.path;
+              background = wallpaperImage.path;
             }
           ))
         );

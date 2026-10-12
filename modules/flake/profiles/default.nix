@@ -1,35 +1,12 @@
-{ lib, flake, ... }:
-let
-  profileType = lib.types.submodule {
-    options = {
-      id = lib.mkOption {
-        type = lib.types.str;
-        description = "Id of the image";
-      };
-      name = lib.mkOption {
-        type = lib.types.str;
-        description = "Display name of the image";
-      };
-      path = lib.mkOption {
-        type = lib.types.path;
-        description = "Path to the image";
-      };
-      size = {
-        width = lib.mkOption {
-          type = lib.types.ints.positive;
-          description = "Width of the image";
-        };
-        height = lib.mkOption {
-          type = lib.types.ints.positive;
-          description = "Height of the image";
-        };
-      };
-    };
-  };
-in
+{
+  lib,
+  lib2,
+  flake,
+  ...
+}:
 {
   options.flake.profiles = lib.mkOption {
-    type = lib.types.attrsOf profileType;
+    type = lib.types.attrsOf (lib2.images.imageType { tagsWhitelist = [ "regular" ]; });
     default = { };
     description = "Profile pictures collection";
   };
