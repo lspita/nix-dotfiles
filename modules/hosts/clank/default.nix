@@ -13,6 +13,11 @@
         default = "en_DK.UTF-8";
         keyboard = "it";
       };
+      theme = "catppuccin";
+      themes.catppuccin = {
+        flavor = "mocha";
+        accent = "sapphire";
+      };
       fonts =
         let
           size = 11;
@@ -53,6 +58,7 @@
       virtualisation.docker
       virtualisation.podman
       virtualisation.libvirtd
+      login.sddm
       fonts.noto
       fonts.noto-nf
       fonts.jetbrains-mono-nf
