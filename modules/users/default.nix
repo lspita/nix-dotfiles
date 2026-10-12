@@ -40,10 +40,4 @@
         ]);
       };
   };
-
-  flake.users = lib.mkOption {
-    type = lib.types.attrs;
-    default = { };
-    description = "Users defaults definitions";
-  };
 }
