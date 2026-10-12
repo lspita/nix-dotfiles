@@ -37,7 +37,7 @@
             name = "JetBrainsMono Nerd Font";
           };
         };
-      apps = rec {
+      programs = rec {
         terminal.exec = "kitty";
         browser.exec = "firefox";
         editor = {
