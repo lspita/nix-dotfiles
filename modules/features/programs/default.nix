@@ -9,7 +9,7 @@ let
         };
         desktop = lib.mkOption {
           type = with lib.types; nullOr str;
-          default = "${config.program}.desktop";
+          default = "${config.exec}.desktop";
           description = "Desktop file name";
         };
       };
@@ -23,7 +23,7 @@ in
     description = "Collection of programs metadata";
   };
 
-  config.den.schema.user.options.programs =
+  config.den.schema.host.options.programs =
     let
       mkProgramOption =
         category:

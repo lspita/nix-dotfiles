@@ -86,6 +86,7 @@
       dev.probe-rs
       dev.android
       dev.platformio
+      programs.kitty
     ];
   };
 }

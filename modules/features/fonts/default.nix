@@ -1,11 +1,11 @@
 { lib, ... }:
 {
   den = {
-    schema.user.options.apps =
+    schema.host.options.fonts =
       let
         fontType = lib.types.submodule {
           options = {
-            desktop = lib.mkOption {
+            name = lib.mkOption {
               type = lib.types.str;
               description = "Font name";
             };
