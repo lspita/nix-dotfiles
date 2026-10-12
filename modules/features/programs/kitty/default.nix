@@ -5,7 +5,7 @@
   ...
 }:
 {
-  flake.programs.kitty.exec = "kitty";
+  programs.kitty.exec = "kitty";
 
   den.aspects.programs.kitty =
     let

@@ -1,4 +1,4 @@
-{ den, ... }: {
+{ den, programs, ... }: {
   den = {
     hosts.x86_64-linux.clank = {
       stateVersion = "26.11";
@@ -49,44 +49,60 @@
         mail = browser;
       };
     };
-    aspects.clank.includes = with den.aspects; [
-      clank.hardware
-      system.kernel.latest
-      system.boot.systemd-boot
-      system.boot.plymouth
-      system.audio.pipewire
-      system.fs.exfat
-      system.locale
-      system.locale.hunspell
-      system.network
-      system.network.networkmanager
-      system.bluetooth
-      system.documentation
-      system.firmware.all
-      system.nix-ld
-      system.wayland
-      services.fingerprint
-      services.location
-      services.printing
-      services.ssh
-      services.udev
-      (virtualisation.containers "podman")
-      virtualisation.docker
-      virtualisation.podman
-      virtualisation.libvirtd
-      login.sddm
-      fonts.noto
-      fonts.noto-nf
-      fonts.jetbrains-mono-nf
-      fonts.fira-code-nf
-      fonts.fira-mono-nf
-      nix
-      home-manager
-      shell.prompt.starship
-      dev.probe-rs
-      dev.android
-      dev.platformio
-      programs.kitty
-    ];
+    aspects.clank.includes =
+      let
+        inherit (den.aspects)
+          clank
+          system
+          services
+          virtualisation
+          login
+          fonts
+          nix
+          home-manager
+          shell
+          dev
+          programs
+          ;
+      in
+      [
+        clank.hardware
+        system.kernel.latest
+        system.boot.systemd-boot
+        system.boot.plymouth
+        system.audio.pipewire
+        system.fs.exfat
+        system.locale
+        system.locale.hunspell
+        system.network
+        system.network.networkmanager
+        system.bluetooth
+        system.documentation
+        system.firmware.all
+        system.nix-ld
+        system.wayland
+        services.fingerprint
+        services.location
+        services.printing
+        services.ssh
+        services.udev
+        (virtualisation.containers "podman")
+        virtualisation.docker
+        virtualisation.podman
+        virtualisation.libvirtd
+        login.sddm
+        fonts.noto
+        fonts.noto-nf
+        fonts.jetbrains-mono-nf
+        fonts.fira-code-nf
+        fonts.fira-mono-nf
+        nix
+        home-manager
+        shell.prompt.starship
+        dev.probe-rs
+        dev.android
+        dev.platformio
+        programs.kitty
+      ];
   };
 }

@@ -1,5 +1,5 @@
 { den, lib, ... }: {
-  flake.lib.shell.mkShellrc =
+  lib2.shell.mkShellrc =
     config: shell:
     config.features.shell.rc
     |> map (source: if builtins.isFunction source then source shell else source)
