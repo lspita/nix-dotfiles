@@ -40,6 +40,7 @@ modules.mkModule inputs ./layout.nix {
               config = {
                 General.hiddenItems = [
                   "org.kde.plasma.clipboard"
+                  "org.kde.merkuro.contact.applet"
                 ];
               };
             }
