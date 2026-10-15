@@ -1,4 +1,6 @@
 {
+  "default_open_behavior": "new_window",
+  "cli_default_open_behavior": "new_window",
   "wrap_guides": [80],
   "edit_predictions": {
     "mode": "subtle",
