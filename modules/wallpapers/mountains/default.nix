@@ -1,5 +1,5 @@
 {
-  wallpapers.mountains = {
+  meta.wallpapers.mountains = {
     name = "Mountains";
     image.light-dark = {
       light = {

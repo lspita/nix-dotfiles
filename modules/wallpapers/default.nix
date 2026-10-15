@@ -5,15 +5,13 @@
   ...
 }:
 {
-  options.wallpapers = lib.mkOption {
+  options.meta.wallpapers = lib.mkOption {
     type = lib.types.attrsOf (lib2.images.imageType { });
     default = { };
     description = "Wallpapers collection";
   };
 
   config = {
-    _module.args.wallpapers = config.wallpapers;
-
     den.schema.host.options.wallpaper = lib.mkOption {
       type = with lib.types; nullOr (enum (builtins.attrNames config.wallpapers));
       default = null;

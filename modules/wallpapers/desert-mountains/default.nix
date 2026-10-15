@@ -1,5 +1,5 @@
 {
-  wallpapers.desert-mountains = {
+  meta.wallpapers.desert-mountains = {
     name = "Desert Mountains";
     image.regular = {
       path = ./image.jpg;

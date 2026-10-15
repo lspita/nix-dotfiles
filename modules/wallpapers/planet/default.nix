@@ -1,5 +1,5 @@
 {
-  wallpapers.planet = {
+  meta.wallpapers.planet = {
     name = "Planet";
     image.light-dark = {
       light = {

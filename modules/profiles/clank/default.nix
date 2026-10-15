@@ -1,5 +1,5 @@
 {
-  profiles.clank = {
+  meta.profiles.clank = {
     name = "Clank";
     image.regular = {
       path = ./image.png;

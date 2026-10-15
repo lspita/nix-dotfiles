@@ -5,7 +5,7 @@
   ...
 }:
 {
-  programs.kitty.exec = "kitty";
+  meta.programs.kitty.exec = "kitty";
 
   den.aspects.programs.kitty =
     let

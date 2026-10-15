@@ -33,7 +33,8 @@
       { config, inputs, ... }: {
         _module.args = rec {
           inherit inputs;
-          inherit (config) flake;
+          inherit (config) flake lib2;
+          meta = config.meta or { };
           flakeRoot = ./.;
           flakePath = filePath: "${flakeRoot}/${filePath}";
         };

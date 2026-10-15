@@ -1,5 +1,5 @@
 {
-  wallpapers.planet-oled = {
+  meta.wallpapers.planet-oled = {
     name = "Planet (OLED)";
     image.light-dark = {
       light = {

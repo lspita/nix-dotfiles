@@ -1,5 +1,5 @@
 {
-  wallpapers.plasma-orionids = {
+  meta.wallpapers.plasma-orionids = {
     name = "Plasma Orionids";
     image.light-dark = {
       light = {

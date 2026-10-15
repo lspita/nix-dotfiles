@@ -1,5 +1,5 @@
 {
-  wallpapers.palette-gray-accent = {
+  meta.wallpapers.palette-gray-accent = {
     name = "Palette Gray (with accent)";
     image.regular = {
       path = ./image.png;
