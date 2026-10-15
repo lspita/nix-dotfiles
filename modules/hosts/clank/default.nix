@@ -1,4 +1,10 @@
-{ den, meta, ... }:
+{
+  den,
+  lib,
+  lib2,
+  meta,
+  ...
+}:
 {
   den = {
     hosts.x86_64-linux.clank = {
@@ -20,19 +26,12 @@
         accent = "sapphire";
       };
       fonts =
-        let
-          size = 11;
-        in
+        with meta.fonts;
         {
-          normal = {
-            inherit size;
-            name = "NotoSans Nerd Font";
-          };
-          monospace = {
-            inherit size;
-            name = "JetBrainsMono Nerd Font";
-          };
-        };
+          normal = noto-sans-nf;
+          monospace = jetbrains-mono-nf;
+        }
+        |> lib.mapAttrs (_: lib2.fonts.withSize 11);
       programs = rec {
         terminal = meta.programs.kitty;
         browser.exec = "firefox";
