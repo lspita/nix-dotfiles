@@ -1,5 +1,5 @@
 {
-  meta.wallpapers.palette-warm = {
+  meta.assets.wallpapers.palette-warm = {
     name = "Palette Warm";
     image.light-dark = {
       light = {

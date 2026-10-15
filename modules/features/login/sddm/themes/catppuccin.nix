@@ -4,7 +4,7 @@
     let
       cfg = host.themes.catppuccin;
       font = host.fonts.normal;
-      wallpaper = lib2.wallpapers.selected host;
+      wallpaper = lib2.assets.wallpapers.selected host;
       sddm-pkg =
         # https://github.com/catppuccin/sddm?tab=readme-ov-file#nixos
         pkgs.catppuccin-sddm.override (

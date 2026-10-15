@@ -5,7 +5,7 @@
   ...
 }:
 {
-  options.meta.wallpapers = lib.mkOption {
+  options.meta.assets.wallpapers = lib.mkOption {
     type = lib.types.attrsOf (lib2.images.imageType { });
     default = { };
     description = "Wallpapers collection";
@@ -13,13 +13,13 @@
 
   config = {
     den.schema.host.options.wallpaper = lib.mkOption {
-      type = with lib.types; nullOr (enum (builtins.attrNames config.wallpapers));
+      type = with lib.types; nullOr (enum (builtins.attrNames config.assets.wallpapers));
       default = null;
       description = "Wallpaper to use";
     };
 
-    lib2.wallpapers = {
-      selected = host: lib2.optionals.fmapNull (w: config.wallpapers.${w}) host.wallpaper;
+    lib2.assets.wallpapers = {
+      selected = host: lib2.optionals.fmapNull (w: config.assets.wallpapers.${w}) host.wallpaper;
     };
   };
 }

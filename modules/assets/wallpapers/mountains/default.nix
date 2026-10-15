@@ -1,20 +1,20 @@
 {
-  meta.wallpapers.planet = {
-    name = "Planet";
+  meta.assets.wallpapers.mountains = {
+    name = "Mountains";
     image.light-dark = {
       light = {
         path = ./light.png;
-        color = "#efefef";
+        color = "#663c92";
         size = {
-          width = 4096;
+          width = 3840;
           height = 2160;
         };
       };
       dark = {
         path = ./dark.png;
-        color = "#101010";
+        color = "#8ab062";
         size = {
-          width = 4096;
+          width = 3840;
           height = 2160;
         };
       };

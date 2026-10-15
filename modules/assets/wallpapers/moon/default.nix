@@ -1,5 +1,5 @@
 {
-  meta.wallpapers.moon = {
+  meta.assets.wallpapers.moon = {
     name = "Moon";
     image.regular = {
       path = ./image.png;

@@ -1,5 +1,5 @@
 {
-  meta.wallpapers.palette-gray = {
+  meta.assets.wallpapers.palette-gray = {
     name = "Palette Gray";
     image.regular = {
       path = ./image.png;

@@ -1,5 +1,5 @@
 {
-  meta.wallpapers.lake = {
+  meta.assets.wallpapers.lake = {
     name = "Lake";
     image.regular = {
       path = ./image.jpg;

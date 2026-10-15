@@ -1,5 +1,5 @@
 {
-  meta.wallpapers.color-waves = {
+  meta.assets.wallpapers.color-waves = {
     name = "Color Waves";
     image.regular = {
       path = ./image.png;
