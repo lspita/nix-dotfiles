@@ -84,5 +84,8 @@
       dev.platformio
       programs.kitty
     ];
+    aspects.clank.homeManager = { pkgs, ... }: {
+      features.system.xdg.portal.packages = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+    };
   };
 }

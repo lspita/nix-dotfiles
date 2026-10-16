@@ -1,10 +1,11 @@
-{ den, lib, ... }:
+{ den, lib, lib2, ... }:
 {
   den.aspects.system.xdg = {
     includes = with den.aspects.system.xdg; [
       autostart
       portal
       terminal-exec
+      directories
     ];
 
     nixos = { config, ... }: {
@@ -55,6 +56,36 @@
           settings.default = [ terminal.desktop ];
         }
       );
+    };
+
+    directories.homeManager = { config, user, ... }: {
+      xdg =
+        let
+          homeDir = lib2.dotfiles.homeDir config user;
+        in
+        {
+          cacheHome = "${homeDir}/.cache";
+          configHome = "${homeDir}/.config";
+          binHome = "${homeDir}/.local/bin";
+          dataHome = "${homeDir}/.local/share";
+          stateHome = "${homeDir}/.local/state";
+
+          localBinInPath = true;
+          userDirs = {
+            enable = true;
+            createDirectories = true;
+            setSessionVariables = true;
+            desktop = "${homeDir}/Desktop";
+            documents = "${homeDir}/Documents";
+            download = "${homeDir}/Downloads";
+            music = "${homeDir}/Music";
+            pictures = "${homeDir}/Pictures";
+            publicShare = "${homeDir}/Public";
+            templates = "${homeDir}/Templates";
+            videos = "${homeDir}/Videos";
+          };
+        };
+      home.file.${config.xdg.userDirs.templates}.source = ./templates;
     };
   };
 }
