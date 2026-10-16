@@ -4,7 +4,7 @@
     let
       platforms = {
         podman = {
-          aspect = den.aspects.virtualisation.podman or { };
+          aspect = den.aspects.virtualisation.podman;
           backend = "podman";
           compose = (pkgs: pkgs.podman-compose);
         };
