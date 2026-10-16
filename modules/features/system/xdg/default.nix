@@ -6,6 +6,7 @@
       portal
       terminal-exec
       directories
+      open-alias
     ];
 
     nixos = { config, ... }: {
@@ -86,6 +87,10 @@
           };
         };
       home.file.${config.xdg.userDirs.templates}.source = ./templates;
+    };
+
+    open-alias.homeManager.home.shellAliases = {
+      open = "xdg-open";
     };
   };
 }
