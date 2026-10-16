@@ -60,6 +60,7 @@
       system.firmware.all
       system.nix-ld
       system.wayland
+      system.xdg
       services.fingerprint
       services.location
       services.printing
