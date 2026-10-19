@@ -8,5 +8,6 @@ modules.mkDefaultsModule inputs ./. {
     in
     setDefaultSubconfig {
       bitwarden.enable = notWsl;
+      mixxx.enable = notWsl;
     };
 }
