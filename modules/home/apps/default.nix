@@ -32,5 +32,6 @@ modules.mkDefaultsModule inputs ./. {
       # kdenlive.enable = notWsl;
       element.enable = notWsl;
       slack.enable = notWsl;
+      nicotine-plus.enable = notWsl;
     };
 }
