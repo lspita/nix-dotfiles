@@ -42,9 +42,10 @@
         ]
         ++ (with den.batteries; [
           host-aspects
-          define-user
           primary-user
         ]);
+
+        provides.to-hosts.includes = [ shellAspect ];
       };
   };
 }

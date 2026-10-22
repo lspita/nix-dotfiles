@@ -8,7 +8,7 @@
   den.aspects.shell.zsh = {
     includes = with den.aspects; [ shell ];
 
-    provides.to-host.os.programs.zsh.enable = true;
+    os.programs.zsh.enable = true;
 
     homeManager =
       { config, ... }:

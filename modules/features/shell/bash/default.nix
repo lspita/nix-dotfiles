@@ -11,7 +11,7 @@
       shell.bash.autocd
     ];
 
-    provides.to-host.os.programs.bash.enable = true;
+    os.programs.bash.enable = true;
 
     homeManager =
       { config, ... }:
