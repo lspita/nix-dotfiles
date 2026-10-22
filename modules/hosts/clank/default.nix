@@ -83,6 +83,7 @@
       dev.android
       dev.platformio
       programs.unixtools
+      programs.util-linux
       programs.kitty
     ];
     aspects.clank.homeManager = { pkgs, ... }: {
