@@ -1,4 +1,9 @@
-{ lib, vars, ... }@inputs:
+{
+  lib,
+  pkgs,
+  vars,
+  ...
+}@inputs:
 with lib.custom;
 modules.mkModule inputs ./networkmanager.nix {
   options = {
@@ -18,6 +23,10 @@ modules.mkModule inputs ./networkmanager.nix {
             response = "";
           };
         };
+        plugins = with pkgs; [
+          networkmanager-openconnect
+          networkmanager-openvpn
+        ];
       };
       users.users.${vars.user.username}.extraGroups = [ "networkmanager" ];
     };
