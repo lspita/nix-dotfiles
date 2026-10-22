@@ -28,12 +28,10 @@
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } (
       { config, inputs, ... }: {
-        _module.args = rec {
+        _module.args = {
           inherit inputs;
           inherit (config) flake lib2;
           meta = config.meta or { };
-          flakeRoot = ./.;
-          flakePath = filePath: "${flakeRoot}/${filePath}";
         };
         systems = inputs.nixpkgs.lib.systems.flakeExposed;
         imports = [
