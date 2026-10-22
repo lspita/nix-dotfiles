@@ -1,5 +1,5 @@
 { lib2, ... }: {
-  den.aspects.programs.unixtools.homeManager = { pkgs, ... }: {
-    home.packages = lib2.pkgs.listGroup pkgs.unixtools;
+  den.aspects.programs.unixtools.nixos = { pkgs, ... }: {
+    environment.systemPackages = lib2.pkgs.listGroup pkgs.unixtools;
   };
 }
