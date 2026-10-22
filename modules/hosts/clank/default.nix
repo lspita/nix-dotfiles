@@ -82,6 +82,7 @@
       dev.probe-rs
       dev.android
       dev.platformio
+      programs.unixtools
       programs.kitty
     ];
     aspects.clank.homeManager = { pkgs, ... }: {

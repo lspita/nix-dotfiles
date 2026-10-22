@@ -7,5 +7,7 @@
       in
       config.programs.${program}.enable or false
       || lib.any (p: (lib.getName p) == program) (lib.lists.flatten packagesLists);
+
+    listGroup = pkgsGroup: builtins.filter (pkg: lib.isDerivation pkg) (builtins.attrValues pkgsGroup);
   };
 }
