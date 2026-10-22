@@ -1,9 +1,11 @@
 { den, ... }: {
   den.aspects.system.network.networkmanager = {
-    includes = with den.aspects; [
+    includes = (with den.aspects; [
       system.network
-      system.network.networkmanager.wifiConnectivityFix
-    ];
+    ]) ++ (with den.aspects.system.network.networkmanager; [
+      wifiConnectivityFix
+      plugins
+    ]);
 
     nixos = { user, ... }: {
       networking.networkmanager.enable = true;
@@ -25,6 +27,22 @@
         wireless.iwd.enable = true;
         networkmanager.wifi.backend = "iwd";
       };
+    };
+
+    plugins = rec {
+      plugin = pkgsFn: {
+        nixos = { pkgs, ... }: {
+          networking.networkmanager.plugins = pkgsFn pkgs;
+        };
+      };
+
+      includes = [
+        openconnect
+        openvpn
+      ];
+
+      openconnect = plugin (pkgs: [ pkgs.networkmanager-openconnect ]);
+      openvpn = plugin (pkgs: [ pkgs.networkmanager-openvpn ]);
     };
   };
 }
