@@ -84,6 +84,7 @@
       dev.platformio
       programs.unixtools
       programs.util-linux
+      programs.wl-clipboard
       programs.kitty
     ];
     aspects.clank.homeManager = { pkgs, ... }: {
