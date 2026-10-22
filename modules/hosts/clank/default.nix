@@ -71,6 +71,7 @@
       virtualisation.podman
       virtualisation.libvirtd
       login.sddm
+      desktop.plasma
       fonts.noto
       fonts.noto-nf
       fonts.jetbrains-mono-nf
