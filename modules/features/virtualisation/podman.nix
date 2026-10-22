@@ -1,7 +1,5 @@
-{ den, ... }: {
+{
   den.aspects.virtualisation.podman = {
-    includes = with den.aspects; [ virtualisation.docker.nvidia ];
-
     nixos =
       {
         user,

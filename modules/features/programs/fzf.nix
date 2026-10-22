@@ -1,0 +1,3 @@
+{
+  den.aspects.programs.fzf = { };
+}

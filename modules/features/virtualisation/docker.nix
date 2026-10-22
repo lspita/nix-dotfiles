@@ -1,6 +1,6 @@
 { den, lib, ... }: {
   den.aspects.virtualisation.docker = {
-    includes = with den.aspects; [ virtualisation.docker.nvidia ];
+    includes = with den.aspects.virtualisation.docker; [ nvidia ];
 
     nixos = { user, pkgs, ... }: {
       virtualisation.docker = {

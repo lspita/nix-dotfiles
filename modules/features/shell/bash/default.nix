@@ -6,10 +6,13 @@
 }:
 {
   den.aspects.shell.bash = {
-    includes = with den.aspects; [
-      shell
-      shell.bash.autocd
-    ];
+    includes =
+      (with den.aspects; [
+        shell
+      ])
+      ++ (with den.aspects.shell.bash; [
+        autocd
+      ]);
 
     os.programs.bash.enable = true;
 
@@ -24,6 +27,9 @@
         home.shell.enableBashIntegration = true;
       };
 
-    autocd.homeManager.features.shell.rc = [ "shopt -s autocd" ];
+    autocd = {
+      includes = with den.aspects; [ shell ];
+      homeManager.features.shell.rc = [ "shopt -s autocd" ];
+    };
   };
 }

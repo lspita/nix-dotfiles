@@ -1,18 +1,15 @@
 { den, lib, ... }: {
   den.aspects.shell.bash.blesh = {
-    homeManager = { host, pkgs, ... }: {
-      features.shell.rc = lib.mkMerge [
-        (lib.mkBefore [ ''[[ $- == *i* ]] && source -- "$(blesh-share)"/ble.sh --attach=none'' ])
-        (lib.mkAfter [ "[[ ! \${BLE_VERSION-} ]] || ble-attach" ])
-      ];
+    includes = with den.aspects.shell.bash.blesh; [ shellrc ];
 
+    homeManager = { host, pkgs, ... }: {
       home = {
         packages = with pkgs; [ blesh ];
         file.".blerc".text =
 
           # https://github.com/akinomyoga/ble.sh/blob/master/blerc.template
           ''
-            ${lib.strings.optionalString (host.hasAspect den.aspects.tools.fzf)
+            ${lib.strings.optionalString (host.hasAspect den.aspects.programs.fzf)
               # https://github.com/akinomyoga/ble.sh#fzf-integration
               ''
                 # Note: If you want to combine fzf-completion with bash_completion, you need to
@@ -29,6 +26,14 @@
             bleopt complete_auto_menu=
           '';
       };
+    };
+
+    shellrc = {
+      includes = with den.aspects; [ shell ];
+      homeManager.features.shell.rc = lib.mkMerge [
+        (lib.mkBefore [ ''[[ $- == *i* ]] && source -- "$(blesh-share)"/ble.sh --attach=none'' ])
+        (lib.mkAfter [ "[[ ! \${BLE_VERSION-} ]] || ble-attach" ])
+      ];
     };
   };
 }
