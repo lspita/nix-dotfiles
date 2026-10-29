@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, lib2, ... }:
 let
   programType = lib.types.submodule (
     { config, ... }: {
@@ -18,7 +18,7 @@ let
 in
 {
   options.meta.programs = lib.mkOption {
-    type = lib.types.attrsOf programType;
+    type = lib2.types.deepAttrsOf programType;
     default = { };
     description = "Collection of programs metadata";
   };

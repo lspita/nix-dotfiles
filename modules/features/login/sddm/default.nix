@@ -1,4 +1,4 @@
-{ den, lib, ... }:
+{ den, lib, lib2, ... }:
 {
   den.aspects.login.sddm = {
     includes = with den.aspects.login.sddm; [
@@ -24,6 +24,6 @@
         };
       };
 
-    theme = { host, ... }: den.aspects.login.sddm.themes.${host.theme} or { };
+    theme = { host, ... }: lib2.themes.mkThemeAspect host den.aspects.login.sddm.themes;
   };
 }

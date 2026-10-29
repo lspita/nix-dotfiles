@@ -19,5 +19,8 @@
 
   lib2.themes = {
     selected = host: lib2.optionals.fmapNull (t: host.themes.${t}) host.theme;
+
+    mkThemeAspect =
+      host: aspects: lib.optionalAttrs (!isNull host.theme) (aspects.${host.theme} or { });
   };
 }

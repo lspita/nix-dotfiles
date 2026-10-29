@@ -24,13 +24,19 @@ in
   config = {
     lib2.fonts = rec {
       mkFontMeta = name: { inherit name; };
-      withSize = size: meta: meta // { inherit size; };
+      withSize = size: font: font // { inherit size; };
+      withZoom = zoom: font: font // { size = font.size * zoom; };
+      withFlooredSize = font: font // { size = builtins.floor font.size; };
+
       mkFontMetaCollection = lib.mapAttrs (_: mkFontMeta);
-      mkNerdFontMetaCollection = lib.concatMapAttrs (id: name: {
-        "${id}-nf" = mkFontMeta "${name} Nerd Font";
-        "${id}-nf-mono" = mkFontMeta "${name} Nerd Font Mono";
-        "${id}-nf-propo" = mkFontMeta "${name} Nerd Font Propo";
-      });
+
+      mkNerdFontMetaCollection = lib.concatMapAttrs (
+        id: name: {
+          "${id}-nf" = mkFontMeta "${name} Nerd Font";
+          "${id}-nf-mono" = mkFontMeta "${name} Nerd Font Mono";
+          "${id}-nf-propo" = mkFontMeta "${name} Nerd Font Propo";
+        }
+      );
     };
 
     den = {

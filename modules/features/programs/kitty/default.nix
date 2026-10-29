@@ -80,6 +80,6 @@
           }
         ) { };
 
-      theme = { host, ... }: den.aspects.programs.kitty.themes.${host.theme} or { };
+      theme = { host, ... }: lib2.themes.mkThemeAspect host den.aspects.programs.kitty.themes;
     };
 }
