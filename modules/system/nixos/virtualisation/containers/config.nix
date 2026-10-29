@@ -19,7 +19,6 @@ modules.mkModule inputs ./config.nix {
       virtualisation = {
         containers = {
           enable = true;
-          registries.search = [ "docker.io" ];
           containersConf.settings = (
             optionals.ifNotNull { } {
               engine.compose_providers = self.composeProviders;
