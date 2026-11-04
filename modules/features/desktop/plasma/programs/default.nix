@@ -1,6 +1,7 @@
 {
   den,
   meta,
+  lib,
   lib2,
   ...
 }:
@@ -34,6 +35,7 @@
       program = p: lib2.plasma.programs.${p};
       programAspect = p: (program p).aspect;
       programPkgs = pkgs: p: (program p).pkgs pkgs;
+      programMeta = p: (program p).meta;
       replacementProgramAspect =
         p:
         if isNull host.programs.${p} then
@@ -50,11 +52,30 @@
             };
           };
     in
-    {
+    rec {
       includes = [
-        (replacementProgramAspect "terminal")
-        (replacementProgramAspect "fileManager")
-        (programAspect "editor")
+        file-manager
+        editor
+        terminal
       ];
+
+      file-manager = replacementProgramAspect "fileManager";
+
+      editor = programAspect "editor";
+
+      terminal = {
+        includes = [ (replacementProgramAspect "terminal") ];
+        homeManager.programs.plasma.configFile.kdeglobals.General =
+          let
+            plasmaTerminal = programMeta "terminal";
+            terminal = lib2.optionals.getOrDefault plasmaTerminal host.programs.terminal;
+          in
+          {
+            TerminalApplication = terminal.exec;
+          }
+          // (lib.optionalAttrs (!isNull terminal.desktop) {
+            TerminalService = terminal.desktop;
+          });
+      };
     };
 }

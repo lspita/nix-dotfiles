@@ -1,7 +1,6 @@
 {
   den,
   lib,
-  lib2,
   inputs,
   ...
 }:
@@ -11,6 +10,7 @@
       xdg
       accounts-integrations
       programs
+      kwin
     ];
 
     nixos =
@@ -50,7 +50,10 @@
 
     homeManager = {
       imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
-      config.programs.plasma.enable = true;
+      config.programs.plasma = {
+        enable = true;
+        overrideConfig = true;
+      };
     };
 
     xdg = {
@@ -75,7 +78,6 @@
 
     settings.homeManager = { host, ... }: {
       programs.plasma = {
-        overrideConfig = true;
         workspace = {
           enableMiddleClickPaste = false;
           splashScreen.theme = "org.kde.breeze.desktop";
@@ -85,59 +87,50 @@
           numlockOnStartup = "on";
         };
         session.sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
-        kwin = {
-          virtualDesktops = {
-            number = 5;
-            rows = 1;
-          };
-          cornerBarrier = false;
-          edgeBarrier = 0;
-          effects = {
-            blur = {
-              enable = true;
-              strength = 8;
-              noiseStrength = 3;
-            };
-            desktopSwitching.navigationWrapping = true;
-            hideCursor = {
-              enable = true;
-              hideOnInactivity = 5;
-              hideOnTyping = true;
-            };
-            shakeCursor.enable = true;
-            translucency.enable = false;
-          };
-        };
+
         searchPlugins.webSearchKeywords.default = "google";
-        configFile = {
-          kded5rc.Module-browserintegrationreminder.autoload = false; # disable browser integration alert in system tray
-          kwinrc = {
-            Effect-overview = {
-              FilterWindows = true; # false to make search in overview ignore windows
-              BorderActivate = 9;
-            };
-            ElectricBorders = {
-              TopLeft = "";
-              Top = "";
-              TopRight = "";
-              Right = "";
-              BottomRight = "";
-              Bottom = "";
-              BottomLeft = "";
-              Left = "";
-            };
+        configFile.kded5rc.Module-browserintegrationreminder.autoload = false; # disable browser integration alert in system tray
+      };
+    };
+
+    kwin.homeManager.programs.plasma = {
+      kwin = {
+        virtualDesktops = {
+          number = 5;
+          rows = 1;
+        };
+        cornerBarrier = false;
+        edgeBarrier = 0;
+        effects = {
+          blur = {
+            enable = true;
+            strength = 8;
+            noiseStrength = 3;
           };
-          kdeglobals.General =
-            let
-              plasmaTerminal = lib2.plasma.programs.terminal.meta;
-              terminal = lib2.optionals.getOrDefault plasmaTerminal host.programs.terminal;
-            in
-            {
-              TerminalApplication = terminal.exec;
-            }
-            // (lib.optionalAttrs (!isNull terminal.desktop) {
-              TerminalService = terminal.desktop;
-            });
+          desktopSwitching.navigationWrapping = true;
+          hideCursor = {
+            enable = true;
+            hideOnInactivity = 5;
+            hideOnTyping = true;
+          };
+          shakeCursor.enable = true;
+          translucency.enable = false;
+        };
+      };
+      configFile.kwinrc = {
+        Effect-overview = {
+          FilterWindows = true; # false to make search in overview ignore windows
+          BorderActivate = 9;
+        };
+        ElectricBorders = {
+          TopLeft = "";
+          Top = "";
+          TopRight = "";
+          Right = "";
+          BottomRight = "";
+          Bottom = "";
+          BottomLeft = "";
+          Left = "";
         };
       };
     };
