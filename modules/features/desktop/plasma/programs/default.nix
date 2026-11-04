@@ -30,14 +30,13 @@
     };
 
   den.aspects.desktop.plasma.programs =
-    { host, ... }:
     let
       program = p: lib2.plasma.programs.${p};
       programAspect = p: (program p).aspect;
       programPkgs = pkgs: p: (program p).pkgs pkgs;
       programMeta = p: (program p).meta;
       replacementProgramAspect =
-        p:
+        host: p:
         if isNull host.programs.${p} then
           {
             includes = [ (programAspect p) ];
@@ -52,19 +51,19 @@
             };
           };
     in
-    rec {
-      includes = [
+    {
+      includes = with den.aspects.desktop.plasma.programs; [
         file-manager
         editor
         terminal
       ];
 
-      file-manager = replacementProgramAspect "fileManager";
+      file-manager = { host, ... }: replacementProgramAspect host "fileManager";
 
-      editor = programAspect "editor";
+      editor.includes = [ (programAspect "editor") ];
 
-      terminal = {
-        includes = [ (replacementProgramAspect "terminal") ];
+      terminal = { host, ... }: {
+        includes = [ (replacementProgramAspect host "terminal") ];
         homeManager.programs.plasma.configFile.kdeglobals.General =
           let
             plasmaTerminal = programMeta "terminal";
