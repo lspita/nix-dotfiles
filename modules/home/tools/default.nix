@@ -24,7 +24,7 @@ modules.mkDefaultsModule inputs ./. {
       ripgrep.enable = true;
       usbutils.enable = true;
       home-manager.enable = true;
-      opencode.enable = true;
+      # opencode.enable = true;
       unzip.enable = true;
       cloc.enable = true;
     };
