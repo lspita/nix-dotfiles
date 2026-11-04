@@ -56,6 +56,7 @@
         file-manager
         editor
         terminal
+        plasma-keyboard
       ];
 
       file-manager = { host, ... }: replacementProgramAspect host "fileManager";
