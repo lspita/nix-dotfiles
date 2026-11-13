@@ -11,7 +11,12 @@
     };
 
     aspects.host = { host, ... }: {
-      includes = with den.batteries; [ hostname define-user ];
+      includes = with den.batteries; [
+        hostname
+        define-user
+        user-aspects
+        mutual-provider
+      ];
 
       os.system.stateVersion = host.stateVersion;
       provides.to-users.homeManager.home.stateVersion = host.stateVersion;
