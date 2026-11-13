@@ -1,5 +1,5 @@
 {
-  meta.programs.plasma = {
+  meta.programs = {
     kwrite = {
       exec = "kwrite";
       desktop = "org.kde.kwrite.desktop";

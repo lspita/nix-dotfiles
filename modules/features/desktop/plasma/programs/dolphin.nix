@@ -1,5 +1,5 @@
 {
-  meta.programs.plasma.dolphin = {
+  meta.programs.dolphin = {
     exec = "dolphin";
     desktop = "org.kde.dolphin.desktop";
   };

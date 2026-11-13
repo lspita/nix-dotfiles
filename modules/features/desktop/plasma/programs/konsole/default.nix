@@ -5,7 +5,7 @@
   ...
 }:
 {
-  meta.programs.plasma.konsole = {
+  meta.programs.konsole = {
     exec = "konsole";
     desktop = "org.kde.konsole.desktop";
   };

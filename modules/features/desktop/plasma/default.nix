@@ -11,6 +11,7 @@
       accounts-integrations
       programs
       kwin
+      shortcuts
     ];
 
     nixos =

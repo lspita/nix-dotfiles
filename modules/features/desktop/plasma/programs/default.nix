@@ -8,7 +8,7 @@
 {
   lib2.plasma.programs =
     let
-      programs = meta.programs.plasma;
+      programs = meta.programs;
       aspects = den.aspects.desktop.plasma.programs;
     in
     {
