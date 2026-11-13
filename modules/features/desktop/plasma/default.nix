@@ -12,6 +12,7 @@
       programs
       kwin
       shortcuts
+      power
     ];
 
     nixos =
