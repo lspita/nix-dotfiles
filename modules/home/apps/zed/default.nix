@@ -77,6 +77,7 @@ modules.mkModule inputs ./. {
             "latex"
             "haskell"
             "typst"
+            "xml"
           ];
           userSettings = objectConfig ./settings.json (
             with vars.fonts;
