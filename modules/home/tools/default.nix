@@ -27,5 +27,6 @@ modules.mkDefaultsModule inputs ./. {
       # opencode.enable = true;
       unzip.enable = true;
       cloc.enable = true;
+      nix-auth.enable = true;
     };
 }
