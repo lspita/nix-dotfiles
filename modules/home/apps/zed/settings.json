@@ -96,14 +96,14 @@
       "tab_size": 2,
     },
     "Typst": {
-      "soft_wrap": "bounded"
+      "soft_wrap": "bounded",
     },
     "LaTeX": {
-      "soft_wrap": "bounded"
+      "soft_wrap": "bounded",
     },
     "Markdown": {
-      "soft_wrap": "bounded"
-    }
+      "soft_wrap": "bounded",
+    },
   },
   "lsp": {
     "tinymist": {
@@ -114,11 +114,19 @@
           },
         },
       },
-
       "settings": {
         "exportPdf": "onSave",
         "outputPath": "$root/$name",
         "formatterMode": "typstyle",
+      },
+    },
+    "nil": {
+      "settings": {
+        "nix": {
+          "flake": {
+            "autoArchive": true,
+          },
+        },
       },
     },
   },
