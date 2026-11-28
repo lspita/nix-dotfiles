@@ -33,5 +33,6 @@ modules.mkDefaultsModule inputs ./. {
       element.enable = notWsl;
       slack.enable = notWsl;
       nicotine-plus.enable = notWsl;
+      stremio.enable = notWsl;
     };
 }
