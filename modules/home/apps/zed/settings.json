@@ -121,7 +121,7 @@
       },
     },
     "nil": {
-      "settings": {
+      "initialization_options": {
         "nix": {
           "flake": {
             "autoArchive": true,
